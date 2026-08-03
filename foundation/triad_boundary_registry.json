@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 877,
+  "generated_from_python_files": 880,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -709,6 +709,12 @@
     },
     "foundation/scripts/audit_mouth_v20_positive_hold_quality.py": {
       "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/benchmark_uml_reference_comparison_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/benchmark_uml_source_efficiency_v1.py": {
+      "filesystem_mutation:output.write_text": 1
     },
     "foundation/scripts/build_acronym_contract_fixup_datasets_v1.py": {
       "filesystem_mutation:path.write_bytes": 1

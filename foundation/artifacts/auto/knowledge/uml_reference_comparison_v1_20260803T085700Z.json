@@ -1,0 +1,219 @@
+{
+  "status": "PASS",
+  "reference": "artifacts\\uml_calculator-12.py",
+  "repeats": 300,
+  "summary": {
+    "incoming": {
+      "cases": 11,
+      "correct": 11,
+      "verified": 11,
+      "mean_eval_ms": 0.008199181818181819
+    },
+    "canonical": {
+      "cases": 11,
+      "correct": 11,
+      "verified": 11,
+      "mean_eval_ms": 0.008248424242424243
+    }
+  },
+  "rows": [
+    {
+      "expr": "[3,4]",
+      "expected": "7.0",
+      "incoming": {
+        "value": "7.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.008260666666666668
+      },
+      "canonical": {
+        "value": "7.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.008488666666666667
+      }
+    },
+    {
+      "expr": "{10,3}",
+      "expected": "7.0",
+      "incoming": {
+        "value": "7.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.008494
+      },
+      "canonical": {
+        "value": "7.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.009736666666666666
+      }
+    },
+    {
+      "expr": ">6,7<",
+      "expected": "42.0",
+      "incoming": {
+        "value": "42.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007352333333333334
+      },
+      "canonical": {
+        "value": "42.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007865
+      }
+    },
+    {
+      "expr": "<{8,2},3>",
+      "expected": "2.0",
+      "incoming": {
+        "value": "2.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.013464
+      },
+      "canonical": {
+        "value": "2.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.013058666666666668
+      }
+    },
+    {
+      "expr": "^3[2]",
+      "expected": "8.0",
+      "incoming": {
+        "value": "8.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007814666666666666
+      },
+      "canonical": {
+        "value": "8.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.0071259999999999995
+      }
+    },
+    {
+      "expr": "![5]",
+      "expected": "120.0",
+      "incoming": {
+        "value": "120.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.006642333333333333
+      },
+      "canonical": {
+        "value": "120.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.006828666666666667
+      }
+    },
+    {
+      "expr": "%[17,5]",
+      "expected": "2.0",
+      "incoming": {
+        "value": "2.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007928666666666667
+      },
+      "canonical": {
+        "value": "2.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.008444333333333333
+      }
+    },
+    {
+      "expr": "[pi,pi]",
+      "expected": "6.283185307179586",
+      "incoming": {
+        "value": "6.283185307179586",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007831666666666666
+      },
+      "canonical": {
+        "value": "6.283185307179586",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.0074466666666666665
+      }
+    },
+    {
+      "expr": "&[2,8]",
+      "expected": "3.0",
+      "incoming": {
+        "value": "3.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007667666666666666
+      },
+      "canonical": {
+        "value": "3.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.0074589999999999995
+      }
+    },
+    {
+      "expr": "|~[5]",
+      "expected": "5.0",
+      "incoming": {
+        "value": "5.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007324666666666667
+      },
+      "canonical": {
+        "value": "5.0",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007055333333333334
+      }
+    },
+    {
+      "expr": "\\/[9]",
+      "expected": "3j",
+      "incoming": {
+        "value": "3j",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007410333333333334
+      },
+      "canonical": {
+        "value": "3j",
+        "correct": true,
+        "verified": true,
+        "verification_report": "ok",
+        "mean_eval_ms": 0.007223666666666666
+      }
+    }
+  ]
+}

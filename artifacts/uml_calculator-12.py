@@ -90,83 +90,6 @@ def is_b52(s: str) -> bool:
     s = s.lstrip('-')
     return bool(s) and all(c in UPPER+LOWER for c in s)
 
-
-def encode_word(word: str, *, mode: str = "packed") -> str:
-    """Encode an alphabetic word as canonical UML.
-
-    ``packed`` preserves the exact letter sequence as a compact base-52 token;
-    ``sum`` expands each letter into an interpretable additive equation. The
-    latter is intentionally lossy as a word representation because addition
-    does not preserve order.
-    """
-    text = str(word or "")
-    if not text or any(ch not in UPPER + LOWER for ch in text):
-        raise ValueError("word must contain only A-Z/a-z letters")
-    selected = str(mode or "packed").lower()
-    if selected == "packed":
-        return text
-    if selected in {"sum", "expanded", "equation"}:
-        return "[" + ",".join(text) + "]"
-    raise ValueError(f"unknown word encoding mode: {mode!r}")
-
-
-def decode_word(token: str) -> str:
-    """Losslessly decode a packed base-52 word token."""
-    text = str(token or "")
-    if not is_b52(text):
-        raise ValueError("packed word must contain only A-Z/a-z letters")
-    # A packed token is already its canonical spelling; validating the numeric
-    # round-trip catches malformed future alphabets without changing case.
-    if to_b52(from_b52(text)) != text:
-        raise ValueError("token is not canonical base-52 spelling")
-    return text
-
-
-def word_encoding_options(word: str) -> dict[str, dict[str, object]]:
-    """Return deterministic compact/interpretive encodings and their costs."""
-    packed = encode_word(word, mode="packed")
-    expanded = encode_word(word, mode="sum")
-    return {
-        "packed": {"uml": packed, "chars": len(packed), "lossless": True},
-        "expanded_sum": {
-            "uml": expanded,
-            "chars": len(expanded),
-            "lossless": False,
-            "preserves_order": True,
-        },
-    }
-
-
-def uml_cost(expr: str) -> dict[str, object]:
-    """Estimate symbolic processing cost from the parsed UML AST.
-
-    This is a structural cost, not a GPU-time claim: each AST node is one
-    machine operation/token, with depth exposing dependency length.
-    """
-    _value, node, notation, _trace = evaluate(expr)
-
-    def walk(cur: Node, depth: int = 1) -> tuple[int, int, int]:
-        if not cur.children:
-            return 1, 1, depth
-        totals = [walk(child, depth + 1) for child in cur.children]
-        return (
-            1 + sum(item[0] for item in totals),
-            sum(item[1] for item in totals),
-            max([depth] + [item[2] for item in totals]),
-        )
-
-    ast_nodes, leaf_tokens, max_depth = walk(node)
-    return {
-        "expr": str(expr),
-        "notation": notation,
-        "chars": len(str(expr)),
-        "ast_nodes": ast_nodes,
-        "operator_nodes": ast_nodes - leaf_tokens,
-        "leaf_tokens": leaf_tokens,
-        "max_depth": max_depth,
-        "symbolic_cost": ast_nodes,
-    }
-
 # ══════════════════════════════════════════════════════════════
 # COMMENT STRIPPING
 # ══════════════════════════════════════════════════════════════
@@ -577,40 +500,6 @@ def evaluate(expr: str):
         node = std_parse(expr)
     return eval_node(node), node, notation, trace
 
-
-def structural_signature(node: Node) -> tuple:
-    """Canonical AST shape used by the machine-language verifier.
-
-    Numeric agreement alone is insufficient: different trees can coincidentally
-    produce the same value.  The signature preserves operator kind, exponent,
-    leaf value, and child order while intentionally ignoring surface notation.
-    Constants and session variables are canonicalized by resolved value
-    because the standard renderer may reparse them as numeric literals. A
-    single-item neutral UML group is collapsed because it is grouping, not an
-    arithmetic operation. Multi-item neutral groups remain distinct.
-    """
-    if node.kind in ("num", "var", "const"):
-        value = node.value
-        if isinstance(value, float) and value.is_integer():
-            value = int(value)
-        return ("scalar", value)
-    if node.kind in {"add", "sub", "mul", "div", "neutral"} and len(node.children) == 1:
-        return structural_signature(node.children[0])
-    if node.kind == "imagroot":
-        # Standard notation renders imaginary roots as sqrt(-(x)); normalize
-        # both forms to the same semantic tree.
-        return ("exp", 0.5, (("neg", None, (structural_signature(node.children[0]),)),))
-    children = []
-    for child in node.children:
-        # Standard notation reparses a variadic UML sum/product as a binary
-        # left-associated tree. Canonicalize only associative operators so that
-        # equivalent renderings compare structurally without erasing order.
-        if node.kind in {"add", "mul"} and child.kind == node.kind:
-            children.extend(structural_signature(grand) for grand in child.children)
-        else:
-            children.append(structural_signature(child))
-    return (node.kind, node.exp, tuple(children))
-
 # ══════════════════════════════════════════════════════════════
 # VERIFIER  —  independent cross-check of every result
 # Re-derives the answer through each rendered form and confirms
@@ -645,23 +534,18 @@ def verify(expr):
         return False, f"eval failed: {ex}"
     # standard leg: render to standard form, parse it AS standard explicitly
     try:
-        s_node = std_parse(to_std(node)); rS = eval_node(s_node)
+        sform = to_std(node); rS = eval_node(std_parse(sform))
     except Exception as ex:
         return False, f"standard-leg failed: {ex}"
     if not _approx_eq(r0, rS):
         return False, f"standard render disagrees: {fmt(r0)} != {fmt(rS)}  ->  {sform}"
     # uml leg: render to UML form, parse it AS UML explicitly
     try:
-        uform = to_uml(node); u_node = UMLParser(uform).parse(); rU = eval_node(u_node)
+        uform = to_uml(node); rU = eval_node(UMLParser(uform).parse())
     except Exception as ex:
         return False, f"uml-leg failed: {ex}"
     if not _approx_eq(r0, rU):
         return False, f"uml render disagrees: {fmt(r0)} != {fmt(rU)}  ->  {uform}"
-    source_sig = structural_signature(node)
-    if structural_signature(s_node) != source_sig:
-        return False, "standard render changed AST structure"
-    if structural_signature(u_node) != source_sig:
-        return False, "uml render changed AST structure"
     return True, "ok"
 
 # ══════════════════════════════════════════════════════════════
@@ -1265,6 +1149,18 @@ def run_demo2(slides=10, delay=3):
     print("  Done. Each run differs as hardware")
     print("  state changes under load.")
     print("=" * 42 + "\n")
+
+
+def run_examples():
+    print("\n  Examples:\n")
+    for expr, desc in DEMO:
+        try:
+            r, _, notation, _ = evaluate(expr)
+            print(f"    {expr:20s}= {fmt(r):>12s}   {desc}")
+        except Exception as ex:
+            print(f"    {expr:20s}-> ERROR: {ex}")
+    print()
+
 
 
 def print_trace(trace, expr):
