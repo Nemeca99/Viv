@@ -402,6 +402,17 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_reasoning_probe_error:{exc}"
 
+    if kind == "cpu_choice_simulation":
+        try:
+            from lib.cpu_choice_simulator import simulate_choices
+
+            oracle = payload.get("oracle_actions") or []
+            choices = payload.get("choices") or []
+            result = simulate_choices(oracle, choices, max_steps=int(payload.get("max_steps") or 256))
+            return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_choice_simulation_error:{exc}"
+
     if kind == "cpu_rid_observe":
         # CPU-first teach tick — plant grades hold prediction; no GPU.
         try:

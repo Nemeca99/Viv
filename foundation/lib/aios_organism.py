@@ -105,6 +105,11 @@ def seed_curriculum(*, force: bool = False) -> dict[str, Any]:
             "manual_only": True,
             "top_k": 3,
         }),
+        ("cpu_choice_simulation", "Simulate bounded three-action CPU choice economy", 44, {
+            "oracle_actions": ["restore", "action", "idle"],
+            "choices": ["restore", "action", "idle"],
+            "max_steps": 3,
+        }),
         ("voice_status", "Voice peripheral status", 50, {}),
         ("speak_brief", "Speak after curriculum", 55, {"query": "I dreamed, wrote code, and measured the plant"}),
     ]

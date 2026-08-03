@@ -999,7 +999,7 @@
           "source": "foundation/lib/core_contracts.py",
           "regression": "foundation/scripts/test_core_contracts_v1.py",
           "manual_core_contracts": 33,
-            "counts": {"wired": 24, "partial": 1, "source_only": 8},
+            "counts": {"wired": 25, "partial": 1, "source_only": 7},
           "meaning": "bulk acceptance map and current-surface inventory; not completion claim",
           "training_authorized": false,
           "live_model_changed": false
@@ -1141,6 +1141,29 @@
             "training": false,
             "deployment_changed": false,
             "live_model_changed": false
+          },
+          "game_cpu_choice_simulator": {
+            "state": "VERIFIED_BOUNDED_DETERMINISTIC_THREE_ACTION_SIMULATION",
+            "source": "foundation/lib/cpu_choice_simulator.py",
+            "runtime_integration": "foundation/lib/agentic_runtime.py",
+            "curriculum_integration": "foundation/lib/aios_organism.py",
+            "regression": "foundation/scripts/test_cpu_choice_simulator_v1.py",
+            "manual_source": "F:/AIOS_Clean/game_core",
+            "actions": ["idle", "action", "restore"],
+            "max_steps": 256,
+            "oracle_is_simulation_only": true,
+            "master_s_n_changed": false,
+            "writes_performed": false,
+            "llm_authority": false,
+            "foundation_preflight": "PASS_1249_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
+          "contract_inventory_refresh_game_core": {
+            "state": "VERIFIED_GAME_CPU_SURFACE_RECONCILED",
+            "source": "foundation/lib/core_contracts.py",
+            "regression": "foundation/scripts/test_core_contracts_v1.py",
+            "counts": {"wired": 25, "partial": 1, "source_only": 7}
           },
           "training_authorized": false,
           "live_model_changed": false

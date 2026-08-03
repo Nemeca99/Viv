@@ -39,7 +39,7 @@ CORE_CONTRACTS: tuple[CoreContract, ...] = (
     CoreContract("streamlit_core", "operator UI", ("status", "read_only", "audit"), ("F:/AIOS_Clean/streamlit_core", "D:/LocalAi/AIOS_V1/streamlit_core"), (), 90),
     CoreContract("backup_core", "immutable backup and restore", ("snapshot", "hash", "restore", "rollback"), ("F:/AIOS_Clean/backup_core", "D:/LocalAi/AIOS_V1/backup_core"), ("foundation/lib/backup_core.py",), 40),
     CoreContract("fractal_core", "recursive multi-scale reasoning", ("recursion", "bounded_depth", "cost"), ("F:/AIOS_Clean/fractal_core", "D:/LocalAi/AIOS_V1/fractal_core"), ("foundation/lib/cpu_fractal_reasoner.py", "foundation/lib/cpu_reasoning_pipeline.py"), 50),
-    CoreContract("game_core", "simulation and interaction", ("simulation", "determinism", "sandbox"), ("F:/AIOS_Clean/game_core", "D:/LocalAi/AIOS_V1/game_core"), (), 90),
+    CoreContract("game_core", "simulation and interaction", ("simulation", "determinism", "sandbox"), ("F:/AIOS_Clean/game_core", "D:/LocalAi/AIOS_V1/game_core"), ("foundation/lib/cpu_choice_simulator.py", "foundation/lib/agentic_runtime.py"), 90),
     CoreContract("marketplace_core", "plugin discovery and policy", ("manifest", "trust", "install_gate"), ("F:/AIOS_Clean/marketplace_core", "D:/LocalAi/AIOS_V1/marketplace_core"), (), 95),
     CoreContract("music_core", "music peripheral", ("routing", "sandbox", "output_gate"), ("F:/AIOS_Clean/music_core", "D:/LocalAi/AIOS_V1/music_core"), (), 95),
     CoreContract("privacy_core", "privacy controls", ("redaction", "consent", "audit"), ("F:/AIOS_Clean/privacy_core", "D:/LocalAi/AIOS_V1/privacy_core"), ("foundation/lib/cpu_privacy_policy.py", "foundation/lib/aios_adapter_privacy.py"), 45),

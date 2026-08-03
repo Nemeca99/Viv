@@ -3144,6 +3144,15 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,236` Python files parsed, all configured suites returned zero, Triad architecture `920` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
 
+## 2026-08-04 — deterministic CPU choice simulation boundary
+
+- Compared the F/D `game_core` implementations. They provide deterministic, state-based interaction and self-comparison concepts but do not implement the three-action CPU economy described by the AIOS design.
+- Backed up `foundation/lib/agentic_runtime.py` and `foundation/lib/aios_organism.py` at `foundation/artifacts/auto/agentic/backups/pre_cpu_choice_simulator_20260804T001500Z/`, and backed up the contract inventory at `foundation/artifacts/auto/agentic/backups/pre_game_cpu_inventory_20260804T003000Z/` before integration.
+- Added `foundation/lib/cpu_choice_simulator.py` with bounded deterministic `idle`, `action`, and `restore` replay against explicit oracle choices. It detects repeated/cyclic choices, applies cumulative loop penalties, and never executes actions or changes live Master S_n.
+- Added `cpu_choice_simulation` to the autonomous runtime and organism curriculum, with `foundation/scripts/test_cpu_choice_simulator_v1.py` covering correct choices, anti-loop penalties, hard bounds, and task execution.
+- Contract inventory now records `25 wired`, `1 partial`, and `7 source-only` cores. Full foundation preflight passed: `1,249` Python files parsed, all configured suites returned zero, Triad architecture `927` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
+
 ## 2026-08-04 — live CPU autonomy beat after privacy surface
 
 - Ran `foundation/aios_main.py beat --max-tasks 1` after the privacy adapter integration. The live beat returned `ok=true`, `mode=nominal`, and `Master S_n=0.7873`.
