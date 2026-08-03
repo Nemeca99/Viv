@@ -922,6 +922,15 @@
         "training_authorized": false,
         "live_model_changed": false,
         "next_action": "provide_compatible_cpu_gguf_embedding_runtime_or_use_a_verified_embedding_directory"
+      },
+      "autonomous_task_loop_repair": {
+        "state": "VERIFIED_PRIORITY_EXECUTION_AND_CASE_INSENSITIVE_DENIAL_BLOCK",
+        "source": "foundation/lib/agentic_runtime.py",
+        "regression": "foundation/scripts/test_autonomous_task_loop_v1.py",
+        "behavior": "ready tasks are selected by priority; completed results are recorded; security/law/sandbox denials block immediately",
+        "live_beat": "PASS_GOAL_STEP_SELECTED_AND_EXECUTED; SECURITY_INGRESS_DENIAL_RECORDED",
+        "training_authorized": false,
+        "live_model_changed": false
       }
     }
   },

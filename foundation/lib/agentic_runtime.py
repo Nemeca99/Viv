@@ -693,7 +693,13 @@ def run_once(max_tasks: int = 1) -> dict[str, Any]:
         else:
             task.retries += 1
             task.last_error = reason
-            if "LAW" in reason or "SECURITY" in reason or "tool_gate" in reason or "Sandbox" in reason:
+            denial_reason = str(reason).casefold()
+            if (
+                "law" in denial_reason
+                or "security" in denial_reason
+                or "tool_gate" in denial_reason
+                or "sandbox" in denial_reason
+            ):
                 task.status = "blocked"
             elif task.retries > task.max_retries:
                 task.status = "failed"

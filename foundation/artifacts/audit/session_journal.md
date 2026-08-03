@@ -3052,3 +3052,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - The canonical Python environment has `transformers`, `torch`, and `gguf`, but no `llama_cpp`, `sentence_transformers`, `onnxruntime`, or `ctransformers`. A binary-only `llama-cpp-python` install was attempted and had no compatible wheel; no source build was started.
 - This is a runtime compatibility limitation, not a corpus or training problem. No semantic model training is needed. The CPU specialist remains installed and catalog-verified, but semantic search is not yet runtime-verified.
 - Next: provide a compatible CPU GGUF embedding adapter or a verified local embedding directory, then run a bounded disjoint retrieval benchmark before enabling semantic alignment as evidence.
+
+## 2026-08-03 — autonomous task-list denial repair
+
+- The live CPU beat proved the intended loop shape: it selected the standing goal's next `survey_systems` step, executed it, recorded the result, and published the task board. A separate `memory_append` task was denied at `security_ingress_denied` and did not mutate memory.
+- Inspection found the denial classifier only matched uppercase `SECURITY`, while the runtime emitted lowercase denial reasons. Patched `foundation/lib/agentic_runtime.py` to classify law/security/tool-gate/sandbox denials case-insensitively and block them immediately instead of retrying.
+- Added `foundation/scripts/test_autonomous_task_loop_v1.py`. It passed priority selection, completion recording, and lowercase security-denial blocking: `AUTONOMOUS_TASK_LOOP_PASS priority_selection=true denial_blocks=true result_recorded=true`.
+- Triad kernel contracts passed with `17,366` ledger events. No training, model load, promotion, deployment, or live-model change occurred.
+- Next: continue strengthening the task-list agent around explicit task contracts and outcome/provenance records; semantic embedding remains a separate runtime compatibility gap.
