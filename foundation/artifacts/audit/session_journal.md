@@ -3028,3 +3028,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Backed up the touched file at `foundation/artifacts/auto/agentic/backups/pre_cpu_model_catalog_repair_20260803T221119Z/`.
 - Verification without model loading: catalog count `44`; CPU model count `3`; all three expected CPU weights present. No training, model load, promotion, deployment, or live-model change occurred.
 - The CPU specialist outputs remain evidence to be checked by deterministic/UML authority; this repair changes backup coverage only.
+
+## 2026-08-03 — CPU specialist role and hash registry
+
+- Added `foundation/models/cpu/CPU_MODEL_CATALOG.json` and `foundation/lib/cpu_model_registry.py` to give the three CPU weights explicit specialist roles, CPU residency, SHA-256 identity, and a hard `specialist_output_is_authority=false` boundary.
+- Added `foundation/scripts/test_cpu_model_registry_v1.py`. It verifies all three model hashes and resolves the semantic-geometry model only from a verified catalog.
+- Verification passed: `CPU_MODEL_REGISTRY_PASS specialists=3 hashes=verified authority=deterministic_cpu_aios`; the existing semantic backend regression also passed all five cases.
+- I did not route the GGUF file into the existing Hugging Face directory loader: that would be an invalid runtime claim. The catalog is verified, but the actual GGUF/CPU runtime adapter remains a distinct next implementation step.
+- No model was loaded, no training or deployment occurred, and no live model changed. Next: implement a read-only CPU GGUF/Ollama readiness adapter that validates the catalog before exposing specialist observations to the autonomous CPU.

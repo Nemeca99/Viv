@@ -885,6 +885,18 @@
         "loaded": false,
         "training_authorized": false,
         "live_model_changed": false
+      },
+      "cpu_specialist_registry": {
+        "state": "VERIFIED_HASHED_ROLE_REGISTRY_NO_RUNTIME_LOAD",
+        "catalog": "foundation/models/cpu/CPU_MODEL_CATALOG.json",
+        "registry": "foundation/lib/cpu_model_registry.py",
+        "regression": "foundation/scripts/test_cpu_model_registry_v1.py",
+        "specialists": 3,
+        "authority_boundary": "specialist_output_is_authority=false",
+        "semantic_backend_regression": "PASS_5_CASES",
+        "runtime_load": "NOT_WIRED; GGUF adapter remains separate",
+        "training_authorized": false,
+        "live_model_changed": false
       }
     }
   },
