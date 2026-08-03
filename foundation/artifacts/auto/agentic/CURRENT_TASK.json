@@ -860,6 +860,16 @@
         ],
         "training_authorized": false,
         "live_model_changed": false
+      },
+      "manual_oracle_slice": {
+        "state": "VERIFIED_READ_ONLY_HASHED_SECTION_LOOKUP",
+        "source": "foundation/lib/manual_oracle.py",
+        "regression": "foundation/scripts/test_manual_oracle_v1.py",
+        "manual": "foundation/AIOS_ALPHA_MANUAL.md",
+        "behavior": "in-memory heading lookup/search returns source and section hashes and abstains on source drift",
+        "triad_architecture": "PASS_899_FILES_100_PERCENT_540_BOUNDARIES",
+        "training_authorized": false,
+        "live_model_changed": false
       }
     }
   },

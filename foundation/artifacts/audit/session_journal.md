@@ -3012,3 +3012,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Verification passed: both files compiled; relevance gate passed; source-contract retrieval packet passed; CPU-to-mouth grounding passed with `grounding=True`, `verification=PASS`, and telemetry contained.
 - This is a CPU retrieval-boundary repair only. No source tree was copied, no corpus was mutated, no training/lease/promotion/deployment occurred, and no live model changed.
 - Next: continue the bounded `rag_core`/ManualOracle slice with read-only provenance and integrity behavior; keep GPU training paused.
+
+## 2026-08-03 — CPU ManualOracle integrity slice
+
+- Added `foundation/lib/manual_oracle.py` as a read-only CPU oracle over the active `foundation/AIOS_ALPHA_MANUAL.md`. It builds an in-memory heading map, performs bounded lexical lookup/search, and returns source plus section SHA-256 values.
+- The oracle fails closed with `ABSTAIN/source_changed` if the manual changes after initialization; it does not write an index or import the V1 legacy tree.
+- Added `foundation/scripts/test_manual_oracle_v1.py`: verified search, exact anchor lookup, section-hash consistency, and post-change abstention.
+- Verification passed: `MANUAL_ORACLE_PASS verified_lookup=true drift_abstain=true`; triad architecture passed with `899` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, and no registry drift.
+- No corpus mutation, training, lease, promotion, deployment, or live-model change occurred. Next CPU target is to connect this oracle to the governed typed retrieval packet without allowing unverified sections into speech.

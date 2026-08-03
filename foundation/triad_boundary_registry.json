@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 897,
+  "generated_from_python_files": 899,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -1915,6 +1915,9 @@
       "filesystem_mutation:tampered_log.write_text": 1,
       "filesystem_mutation:tasks.write_text": 1,
       "filesystem_mutation:too_many.write_text": 1
+    },
+    "foundation/scripts/test_manual_oracle_v1.py": {
+      "filesystem_mutation:path.write_text": 2
     },
     "foundation/scripts/test_mouth_canary_hard_stop_gate.py": {
       "filesystem_mutation:decision_32.write_text": 1,
