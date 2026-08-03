@@ -762,5 +762,38 @@
     "promotion_authorized": false,
     "deployment_authorized": false
   },
-  "updated_utc": "2026-08-03T20:45:00Z"
+  "v9_full_comparison": {
+    "state": "VERIFIED_FULL_COMPARISON_NEGATIVE",
+    "artifact": "foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v9_trl_20260803T202234Z/generated_output_evaluation_incumbent_vs_v9_full_v1.json",
+    "artifact_sha256": "2C9A386F97FE1C1BC34421753711C5BCE76D09F444BB1B063570F4AFFD7538B1",
+    "scope": "incumbent_and_v9_final_across_development_blind_legacy_auditor_negative",
+    "rows_per_adapter": 180,
+    "generation_cap": 64,
+    "incumbent_mind_pass_rate": 0.2656,
+    "v9_mind_pass_rate": 0.0391,
+    "incumbent_valid_speech_rate": 1.0,
+    "v9_valid_speech_rate": 1.0,
+    "incumbent_eos_rate": 1.0,
+    "v9_eos_rate": 1.0,
+    "v9_decision": "REJECT_RETAIN_V6",
+    "interpretation": "V9 loses task-specific behavior across every pack while producing valid generic speech; added architecture-role refinement caused early generic-response bias",
+    "promotion_authorized": false,
+    "deployment_authorized": false
+  },
+  "v9_checkpoint_smoke": {
+    "state": "VERIFIED_READ_ONLY",
+    "rows_per_checkpoint": 16,
+    "generation_cap": 64,
+    "mind_pass_rate": {"step_32": 0.1667, "step_64": 0.0, "step_96": 0.0, "step_128": 0.0},
+    "interpretation": "regression appears by step 32 and persists; not a final-checkpoint serialization defect"
+  },
+  "future_admission_guard": {
+    "state": "IMPLEMENTED_NOT_TRAINING",
+    "source": "foundation/scripts/admit_mouth_recovery_v3_campaign_v1.py",
+    "runtime_owned_axes": ["architecture_cpu_gpu_role"],
+    "behavior": "reject refinement rows on runtime-owned architecture axis from optimizer admission; retain them hold-only for CPU gate validation",
+    "training_authorized": false,
+    "run_authorized": false
+  },
+  "updated_utc": "2026-08-03T22:00:00Z"
 }

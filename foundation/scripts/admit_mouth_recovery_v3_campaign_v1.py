@@ -19,6 +19,7 @@ sys.path.insert(0, str(FOUNDATION))
 TREE = FOUNDATION / "artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns"
 TRAIN_SOURCE = TREE / "mouth_training_recovery_v3_semantic_projection_v1/train_candidate_256_hold.jsonl"
 EVAL_ROOT = TREE / "mouth_training_recovery_v3_eval_rebuild_v1"
+RUNTIME_OWNED_AXES = {"architecture_cpu_gpu_role"}
 
 
 def sha256(path: Path) -> str:
@@ -35,6 +36,19 @@ def dump_jsonl(path: Path, rows: list[dict]) -> None:
 
 def utc() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def reject_runtime_owned_axes(rows: list[dict]) -> None:
+    """Keep CPU-owned contract axes out of GPU optimizer admission."""
+    runtime_owned = sorted({
+        str(row.get("axis") or "")
+        for row in rows
+        if str(row.get("axis") or "") in RUNTIME_OWNED_AXES
+    })
+    if runtime_owned:
+        raise ValueError(
+            "runtime_owned_axis_must_remain_hold_only:" + ",".join(runtime_owned)
+        )
 
 
 def main() -> int:
@@ -67,6 +81,7 @@ def main() -> int:
             raise ValueError("refinement_row_count")
         if any(row.get("hold_only") is not True or row.get("optimizer_eligible") is not False for row in refinement_rows):
             raise ValueError("refinement_row_contract")
+        reject_runtime_owned_axes(refinement_rows)
 
     train_source = train_source + refinement_rows
     train_rows = []

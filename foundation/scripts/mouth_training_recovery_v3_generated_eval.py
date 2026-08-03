@@ -44,8 +44,15 @@ def _load_pack(root: Path, name: str) -> list[dict[str, Any]]:
     } for row in rows]
 
 
-def _evaluate_adapter(adapter: Path, campaign_root: Path, role: str, checkpoint_step: int | None) -> dict[str, Any]:
-    backend = parity.OpenAsterBackend(adapter=adapter, max_new_tokens=160, base_model=LOCAL_BASE)
+def _evaluate_adapter(
+    adapter: Path,
+    campaign_root: Path,
+    role: str,
+    checkpoint_step: int | None,
+    *,
+    max_new_tokens: int = 160,
+) -> dict[str, Any]:
+    backend = parity.OpenAsterBackend(adapter=adapter, max_new_tokens=max_new_tokens, base_model=LOCAL_BASE)
     reports: dict[str, Any] = {}
     try:
         for name in PACKS:
@@ -93,6 +100,8 @@ def evaluate_campaign(
     campaign_root: Path,
     output_root: Path,
     checkpoint_steps: tuple[int, ...] = (32, 64, 96, 128),
+    max_new_tokens: int = 160,
+    output_name: str = "generated_output_evaluation.json",
 ) -> dict[str, Any]:
     del plan
     root = Path(campaign_root)
@@ -100,8 +109,18 @@ def evaluate_campaign(
     # OpenAsterBackend loads the raw HF base and then attaches a PEFT adapter;
     # parity.BASE is therefore not a valid incumbent adapter path.  Compare
     # against the governed parent adapter used by the named campaign.
-    parent = _evaluate_adapter(INCUMBENT_ADAPTER, root, "incumbent", None)
-    checkpoints = [_evaluate_adapter(out / f"adapter_step_{step}", root, "checkpoint", step) for step in checkpoint_steps]
+    if max_new_tokens < 16 or max_new_tokens > 512:
+        raise ValueError(f"max_new_tokens_out_of_bounds:{max_new_tokens}")
+    parent = _evaluate_adapter(
+        INCUMBENT_ADAPTER, root, "incumbent", None, max_new_tokens=max_new_tokens
+    )
+    checkpoints = [
+        _evaluate_adapter(
+            out / f"adapter_step_{step}", root, "checkpoint", step,
+            max_new_tokens=max_new_tokens,
+        )
+        for step in checkpoint_steps
+    ]
     reports = [parent, *checkpoints]
     gates = [_gate_report(report) for report in reports]
     statuses = {row["status"] for row in gates}
@@ -114,7 +133,7 @@ def evaluate_campaign(
         "generated_output_gate": gates,
     }
     out.mkdir(parents=True, exist_ok=True)
-    path = out / "generated_output_evaluation.json"
+    path = out / output_name
     if path.exists():
         raise FileExistsError(f"refuse_to_overwrite:{path}")
     path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
