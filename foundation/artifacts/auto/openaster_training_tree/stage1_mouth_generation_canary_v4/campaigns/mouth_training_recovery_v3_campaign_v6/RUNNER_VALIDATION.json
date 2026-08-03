@@ -1,0 +1,16 @@
+{
+  "campaign_root": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v6",
+  "findings": [],
+  "gpu_steps": 0,
+  "lease_opened": false,
+  "model_loaded": false,
+  "parent_adapter": "L:/Continue/Viv/foundation/models/Training/runs/openaster_stage1_gen_smoke_16_20260730T004859Z/adapter",
+  "parent_sha256": "a951ad3fe3f433b6de636aae3284761de0586bd85e1f830112470fda42a55ccd",
+  "recorded_utc": "2026-08-03T17:50:42Z",
+  "run_authorized": false,
+  "schema_version": "mouth_training_recovery_v3_runner_validation_v1",
+  "status": "VALIDATION_PASS_AUTH_CLOSED",
+  "train_rows": 268,
+  "train_sha256": "0793d356dd6fd44e462770462c01af118afeec0325346ca2feabf170ae901df8",
+  "training_authorized": false
+}

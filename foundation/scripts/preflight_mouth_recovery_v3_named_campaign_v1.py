@@ -82,10 +82,12 @@ def main() -> int:
         if actual != spec.get("sha256"):
             findings.append(f"hash_mismatch:{name}")
 
-    train_path = root / "train_256.jsonl"
+    train_spec = (manifest.get("files") or {}).get("train") or {}
+    train_path = root / str(train_spec.get("path") or "train_256.jsonl")
     train = load_jsonl(train_path)
-    if len(train) != 256:
-        findings.append(f"train_count:{len(train)}")
+    expected_train_rows = int(train_spec.get("rows") or manifest.get("train_rows") or 0)
+    if len(train) != expected_train_rows:
+        findings.append(f"train_count:{len(train)}:{expected_train_rows}")
     if any(
         row.get("optimizer_eligible") is not True
         or row.get("hold_only") is not False
@@ -122,6 +124,11 @@ def main() -> int:
     source_path = Path(str(source.get("path")))
     if not source_path.is_file() or sha256(source_path) != source.get("sha256"):
         findings.append("source_train_hash")
+    refinement = manifest.get("source_train_refinement")
+    if refinement is not None:
+        refinement_path = Path(str(refinement.get("path")))
+        if not refinement_path.is_file() or sha256(refinement_path) != refinement.get("sha256"):
+            findings.append("source_train_refinement_hash")
     parent = FOUNDATION / "models/Training/runs/openaster_stage1_gen_smoke_16_20260730T004859Z/adapter/adapter_model.safetensors"
     if not parent.is_file():
         findings.append("parent_adapter_missing")
@@ -137,6 +144,7 @@ def main() -> int:
         "eval": eval_summary,
         "eval_unique_keys": len(eval_keys),
         "parent_adapter": str(parent).replace("\\", "/"),
+        "train_rows": len(train),
         "training_authorized": False,
         "run_authorized": False,
         "lease_opened": False,

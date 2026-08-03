@@ -2864,3 +2864,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added `build_mouth_memory_attribution_refinement_v1.py`, which generates 12 disjoint paraphrases and refuses to emit the pack unless every target passes the production CPU evaluator. The first draft correctly rejected two vague targets; both were repaired to state explicit service ownership/management.
 - Final hold-only pack passed `12/12` target judgments, is disjoint from all V5 train/evaluation keys, and has `optimizer_eligible=false`, `training_authorized=false`, and `run_authorized=false`. No training, lease, promotion, deployment, or live-model mutation occurred.
 - Artifact: `mouth_memory_attribution_refinement_v1/MANIFEST.json`; next step is separate admission review. Do not mix these rows into the V5 holdout or retroactively change the committed V5 campaign.
+
+## 2026-08-03 — V6 parameterized admission and current preflight
+
+- Backups were created before parameterizing the admission, named-preflight, and runner train-file/count handling at `foundation/artifacts/auto/agentic/backups/pre_parameterize_mouth_campaign_train_rows_20260803T`.
+- Fresh V6 package `mouth_training_recovery_v3_campaign_v6` appends the verified 12-row hold-only memory-attribution refinement to the frozen 256-row candidate, producing 268 train rows. The base candidate and all evaluation packs remain hash-bound; the refinement rows remain disjoint and are not themselves holdout/evaluation rows.
+- Named preflight returned `PREFLIGHT_PASS_TRAINING_CLOSED`; closed runner validation returned `VALIDATION_PASS_AUTH_CLOSED`; both had empty findings, `gpu_steps=0`, `lease_opened=false`, `training_authorized=false`, and `run_authorized=false`.
+- Fresh authority at `2026-08-03T17:53:49Z` was `Master S_n=0.6721`, `ACTIVE`. Full foundation preflight then passed with 1,178 parsed Python files, 883 architecture files, 100% coverage, 531 boundary modules, zero errors, all listed Python tests passing, and Rust/security Cargo tests passing.
+- No V6 lease, optimizer step, adapter commit, promotion, deployment, parent mutation, or live-model mutation has occurred. The next action is a separately recorded one-time authorization for this exact named V6 campaign, if the current authority remains valid.

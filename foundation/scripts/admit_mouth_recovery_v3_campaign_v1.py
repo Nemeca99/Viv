@@ -40,6 +40,7 @@ def utc() -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create a closed V3 campaign package; never authorizes execution.")
     parser.add_argument("--campaign-id", default="mouth_training_recovery_v3_campaign_v1")
+    parser.add_argument("--refinement-root", type=Path, default=None, help="Optional hold-only refinement pack to append to the frozen train candidate.")
     args = parser.parse_args()
     campaign_id = str(args.campaign_id)
     if not campaign_id.startswith("mouth_training_recovery_v3_campaign_"):
@@ -53,6 +54,21 @@ def main() -> int:
     if any(row.get("optimizer_eligible") is not False or row.get("hold_only") is not True for row in train_source):
         raise ValueError("train_source_not_hold_only")
 
+    refinement_rows = []
+    refinement_manifest = None
+    if args.refinement_root is not None:
+        refinement_root = args.refinement_root.resolve()
+        refinement_manifest = json.loads((refinement_root / "MANIFEST.json").read_text(encoding="utf-8"))
+        refinement_path = refinement_root / Path(str(refinement_manifest["jsonl"])).name
+        refinement_rows = load_jsonl(refinement_path)
+        if refinement_manifest.get("status") != "REFINEMENT_PACK_HOLD_ONLY":
+            raise ValueError("refinement_not_hold_only")
+        if refinement_manifest.get("rows") != len(refinement_rows):
+            raise ValueError("refinement_row_count")
+        if any(row.get("hold_only") is not True or row.get("optimizer_eligible") is not False for row in refinement_rows):
+            raise ValueError("refinement_row_contract")
+
+    train_source = train_source + refinement_rows
     train_rows = []
     for index, source in enumerate(train_source):
         row = dict(source)
@@ -89,8 +105,9 @@ def main() -> int:
 
     ROOT.mkdir(parents=True)
     files = {}
-    dump_jsonl(ROOT / "train_256.jsonl", train_rows)
-    files["train"] = {"path": "train_256.jsonl", "rows": 256, "sha256": sha256(ROOT / "train_256.jsonl"), "optimizer_eligible": True}
+    train_filename = f"train_{len(train_rows)}.jsonl"
+    dump_jsonl(ROOT / train_filename, train_rows)
+    files["train"] = {"path": train_filename, "rows": len(train_rows), "sha256": sha256(ROOT / train_filename), "optimizer_eligible": True}
     for name, rows in eval_rows.items():
         dump_jsonl(ROOT / f"{name}.jsonl", rows)
         files[name] = {"path": f"{name}.jsonl", "rows": len(rows), "sha256": sha256(ROOT / f"{name}.jsonl"), "optimizer_eligible": False}
@@ -100,10 +117,10 @@ def main() -> int:
         "campaign_id": campaign_id,
         "status": "CAMPAIGN_ADMITTED_TRAINING_CLOSED",
         "created_utc": utc(),
-        "source_train_candidate": {"path": str(TRAIN_SOURCE).replace("\\", "/"), "sha256": sha256(TRAIN_SOURCE), "rows": len(train_source)},
+        "source_train_candidate": {"path": str(TRAIN_SOURCE).replace("\\", "/"), "sha256": sha256(TRAIN_SOURCE), "rows": 256},
         "source_eval_rebuild": {"path": str(EVAL_ROOT).replace("\\", "/"), "manifest_sha256": sha256(EVAL_ROOT / "manifest.json")},
         "files": files,
-        "train_rows": 256,
+        "train_rows": len(train_rows),
         "eval_rows": {name: len(rows) for name, rows in eval_rows.items()},
         "training_authorized": False,
         "run_authorized": False,
@@ -115,6 +132,12 @@ def main() -> int:
         "deployment_allowed": False,
         "next_action": "preflight_only_then_separate_execution_authorization",
     }
+    if refinement_manifest is not None:
+        manifest["source_train_refinement"] = {
+            "path": str((args.refinement_root.resolve() / Path(str(refinement_manifest["jsonl"])).name)).replace("\\", "/"),
+            "sha256": sha256(args.refinement_root.resolve() / Path(str(refinement_manifest["jsonl"])).name),
+            "rows": len(refinement_rows),
+        }
     (ROOT / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"ok": True, "status": manifest["status"], "output": str(ROOT), "files": files}, sort_keys=True))
     return 0

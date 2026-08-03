@@ -1,0 +1,68 @@
+{
+  "campaign_id": "mouth_training_recovery_v3_campaign_v6",
+  "created_utc": "2026-08-03T17:50:37Z",
+  "deployment_allowed": false,
+  "dpo_authorized": false,
+  "eval_rows": {
+    "auditor_negative": 20,
+    "blind": 32,
+    "development": 64,
+    "legacy": 64
+  },
+  "files": {
+    "auditor_negative": {
+      "optimizer_eligible": false,
+      "path": "auditor_negative.jsonl",
+      "rows": 20,
+      "sha256": "c0d4887e4642916fcb78980d844d939fd5a4d4f579f7451682ba5e6360c19b56"
+    },
+    "blind": {
+      "optimizer_eligible": false,
+      "path": "blind.jsonl",
+      "rows": 32,
+      "sha256": "c30fc8012d9a4c27f5df5b70957c149f297074140ac8eda6feb9a564eb6d16ad"
+    },
+    "development": {
+      "optimizer_eligible": false,
+      "path": "development.jsonl",
+      "rows": 64,
+      "sha256": "6b50406460fe4fde7753be1d5720e8a3b6d288fe3648d176d8016708d4e123be"
+    },
+    "legacy": {
+      "optimizer_eligible": false,
+      "path": "legacy.jsonl",
+      "rows": 64,
+      "sha256": "cc2bc20ad4ba1cb82b1f910748de731d7ae0bf4a46eb11e4254c76d92c0e8f54"
+    },
+    "train": {
+      "optimizer_eligible": true,
+      "path": "train_268.jsonl",
+      "rows": 268,
+      "sha256": "0793d356dd6fd44e462770462c01af118afeec0325346ca2feabf170ae901df8"
+    }
+  },
+  "gpu_steps": 0,
+  "lease_opened": false,
+  "lora_authorized": false,
+  "next_action": "preflight_only_then_separate_execution_authorization",
+  "promotion_allowed": false,
+  "run_authorized": false,
+  "schema_version": "mouth_training_recovery_v3_campaign_v6",
+  "source_eval_rebuild": {
+    "manifest_sha256": "27dd58a33a8fd024f26cafa8932b3799422fc4f2ba12e5707b21beee9130b01f",
+    "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_eval_rebuild_v1"
+  },
+  "source_train_candidate": {
+    "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_semantic_projection_v1/train_candidate_256_hold.jsonl",
+    "rows": 256,
+    "sha256": "c948a33e1fae6ec7e91a62426fa4491cbf7bd7cef0f86fc4720de4730e220d57"
+  },
+  "source_train_refinement": {
+    "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_memory_attribution_refinement_v1/memory_attribution_refinement_hold.jsonl",
+    "rows": 12,
+    "sha256": "7ceb08e1433ef41f760074839d55dc2e6409e77cea4d33d9a657448c33eda75a"
+  },
+  "status": "CAMPAIGN_ADMITTED_TRAINING_CLOSED",
+  "train_rows": 268,
+  "training_authorized": false
+}

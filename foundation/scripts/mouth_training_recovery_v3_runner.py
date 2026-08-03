@@ -106,10 +106,11 @@ def validate_campaign(root: Path = CAMPAIGN, *, allow_authorized: bool = False) 
             findings.append("committed_adapter_missing")
     elif manifest.get("lease_opened") is not False or manifest.get("gpu_steps") != 0:
         findings.append("manifest_execution_state")
-    train_path = root / "train_256.jsonl"
+    train_path = root / str((manifest.get("files", {}).get("train") or {}).get("path") or "train_256.jsonl")
     train = load_jsonl(train_path)
-    if len(train) != 256:
-        findings.append(f"train_count:{len(train)}")
+    expected_train_rows = int((manifest.get("files", {}).get("train") or {}).get("rows") or manifest.get("train_rows") or 0)
+    if len(train) != expected_train_rows:
+        findings.append(f"train_count:{len(train)}:{expected_train_rows}")
     for row in train:
         if row.get("optimizer_eligible") is not True or row.get("response_only_loss_allowed") is not True:
             findings.append(f"train_contract:{row.get('pair_id')}")
@@ -247,7 +248,8 @@ def run_experiment(*, root: Path = CAMPAIGN, output_root: Path | None = None) ->
     validation = validate_campaign(root, allow_authorized=True)
     training_security.require_training_security()
 
-    train_path = root / "train_256.jsonl"
+    manifest = load_manifest(root)
+    train_path = root / str((manifest.get("files", {}).get("train") or {}).get("path") or "train_256.jsonl")
     parent_weights = PARENT / "adapter_model.safetensors"
     run_id = f"{campaign_id}_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
     request_manifest = sha256(root / "manifest.json")
@@ -279,7 +281,7 @@ def run_experiment(*, root: Path = CAMPAIGN, output_root: Path | None = None) ->
             staging_root=Path(lease.staging_root),
             final_root=Path(lease.final_root),
             load_model=True,
-            expected_rows=256,
+            expected_rows=int((manifest.get("files", {}).get("train") or {}).get("rows") or manifest.get("train_rows") or 0),
             max_steps=OPTIMIZER_STEPS,
             warmup_ratio=WARMUP_RATIO,
         )

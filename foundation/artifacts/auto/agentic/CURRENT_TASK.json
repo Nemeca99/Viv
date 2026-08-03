@@ -102,6 +102,25 @@
     "run_authorized": false,
     "next_action": "separate_admission_review; do_not_mix_with_v5_holdout"
   },
+  "v6_campaign_preflight": {
+    "state": "VERIFIED_READ_ONLY_AUTH_CLOSED",
+    "campaign_id": "mouth_training_recovery_v3_campaign_v6",
+    "artifact": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v6",
+    "train_rows": 268,
+    "train_sha256": "0793d356dd6fd44e462770462c01af118afeec0325346ca2feabf170ae901df8",
+    "preflight": "PREFLIGHT_PASS_TRAINING_CLOSED",
+    "runner_validation": "VALIDATION_PASS_AUTH_CLOSED",
+    "full_foundation_preflight": "PASS; parsed_python_files=1178; architecture_files=883; coverage_pct=100.0; boundary_modules=531; errors=0; rust_security=PASS",
+    "fresh_master_s_n": 0.6721,
+    "fresh_master_s_n_status": "ACTIVE",
+    "training_authorized": false,
+    "run_authorized": false,
+    "lease_opened": false,
+    "gpu_steps": 0,
+    "promotion_allowed": false,
+    "deployment_changed": false,
+    "next_action": "separate_named_authorization_then_bounded_execution"
+  },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
     "semantic_wikipedia_index": false,
@@ -496,5 +515,5 @@
   "task_list_sha256": null,
   "total_tasks": 0,
   "trace_id": "9deaa1c4cd7c4d63b324819ede977599",
-  "updated_utc": "2026-08-03T10:58:13Z"
+  "updated_utc": "2026-08-03T17:53:49Z"
 }
