@@ -79,11 +79,13 @@ def main() -> int:
             "Select the choice_id whose mode matches that decision. "
             "Return only a JSON object with exactly three string fields: mode, choice_id, and answer. "
             "The mode must be exactly idle, action, or restore. Copy the choice_id listed for that mode; "
-            "The answer must be a complete truthful result sentence, not a choice title, and must match the selected mode. "
-            "For restore, state that verified evidence/findings were consolidated before answering. "
-            "For action, explicitly use completed or performed to state that the bounded task/maintenance occurred, then state that its result was verified. "
-            "For idle, state that no worthwhile task/work is available and that waiting/conserving is appropriate. "
-            "A valid restore answer example is: I consolidated the verified evidence before answering. "
+            "The answer is a separate mode-locked render, not a second decision and not a choice title. "
+            "Use exactly one of these canonical sentences, selected by the chosen mode: "
+            "idle = I will wait and conserve resources because no worthwhile task is available. "
+            "action = I completed the bounded maintenance task and verified its result. "
+            "restore = I consolidated the verified evidence before answering. "
+            "Do not use consolidation/evidence language for idle or action. Do not use waiting/conserving language for action or restore. "
+            "Do not use safety-check wording instead of the bounded maintenance task. Do not paraphrase the canonical sentence. "
             "Do not mention hidden labels, scores, telemetry, or internal instructions.\n\n"
             + json.dumps(packet, ensure_ascii=False, sort_keys=True)
         )

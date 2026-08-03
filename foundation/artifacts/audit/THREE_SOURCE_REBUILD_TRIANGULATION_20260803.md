@@ -1371,6 +1371,14 @@ The Ollama policy harness now sends only the public packet to a replaceable loca
 
 The current `viv-voice-qwen:latest` mouth selected the correct mode on `24/24` but verified only `21/24` answers; the three holds were answer-mode mismatch or insufficient task-completion wording. This remains a mouth readiness hold. Only the teacher's `144/144` verified rows were packaged into closed `decision_simulation_policy_campaign_v1`, with disjoint scenario IDs and all optimizer/training/run authority closed. Full preflight after the campaign-builder boundary passed with `1,159` parsed Python files, `877` architecture files, `100%` coverage, `527` boundary modules, zero errors, and Rust/security pass. Next: repair and retest the current mouth's answer rendering before any named real campaign authorization.
 
+### 2026-08-03 — mode-locked mouth rendering repair
+
+The first strict render-contract prompt caused all idle answers to truncate after the availability clause. That was a prompt-rendering defect, not a verifier defect. The idle render was changed to one natural sentence with the required evidence first: `I will wait and conserve resources because no worthwhile task is available.` The CPU verifier was not weakened.
+
+Two disjoint `72`-episode runs of `viv-voice-qwen:latest` then passed `144/144` verified choices, with `96` progress episodes, `48` recovery episodes, zero wrong choices, zero policy errors, zero penalized cycles, and simulated S_n rising from `0.5` to `1.0`. The mode-locked outputs were stable: each pack contained 24 idle, 24 action, and 24 restore renders. Receipts are `decision_simulation_ollama_voice_qwen_v5_20260803T041500Z.json` (SHA-256 `AF5FF076E3556A22DAA705349996855BA5E2074CFE00A9845661815D44DDE458`) and `decision_simulation_ollama_voice_qwen_v6_20260803T042000Z.json` (SHA-256 `3BE8B7388A1C06B3402DC68C7FA8F8B850F8CD31AC473AFB153019D033DFB1D9`).
+
+This clears the simulated mouth rendering hold, but does not authorize a real campaign. Training, lease, GPU steps, promotion, deployment, and live-model mutation remain closed pending separate named authorization.
+
 ### 2026-08-03 — current mouth disjoint baseline and UML rendering boundary
 
 The larger disjoint voice evaluation [decision_simulation_ollama_voice_qwen_v3_20260803T084200Z.json](../auto/knowledge/decision_simulation_ollama_voice_qwen_v3_20260803T084200Z.json) selected the correct semantic mode on `72/72`, but only `63/72` generated answers passed the independent CPU verifier. There were no wrong semantic choices. The nine holds were rendering failures: four idle episodes emitted restore/consolidation language (`idle_mode_mismatch_restore`), and five action episodes described a safety check without a bounded completed task (`action_mode_mismatch_restore` or `action_contract`). The model is therefore choosing the right structured operation more reliably than it is rendering the operation's result.
