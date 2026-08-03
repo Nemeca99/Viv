@@ -1024,6 +1024,25 @@
           "foundation_preflight": "PASS_1228_PARSED_21_SUITES_RUST_OK",
           "training_authorized": false,
           "live_model_changed": false
+        },
+        "cpu_reasoning_pipeline": {
+          "state": "VERIFIED_CPU_EVIDENCE_TO_RENDERER_PACKET",
+          "source": "foundation/lib/cpu_reasoning_pipeline.py",
+          "runtime_integration": "foundation/lib/agentic_runtime.py",
+          "regression": "foundation/scripts/test_cpu_reasoning_pipeline_v1.py",
+          "stages": ["ingress_normalization", "luna_response_plan", "verified_retrieval", "steel_judge", "containment", "renderer_packet"],
+          "states_verified": ["VERIFIED", "ABSTAIN", "DENIED"],
+          "live_task": {
+            "task_id": "t-050327dfd3",
+            "state": "VERIFIED",
+            "writes_performed": false,
+            "llm_authority": false,
+            "master_s_n_after": 0.5852
+          },
+          "gpu_or_api_role": "deferred_surface_renderer",
+          "foundation_preflight": "PASS_1230_PARSED_21_SUITES_RUST_OK",
+          "training_authorized": false,
+          "live_model_changed": false
         }
       }
     }

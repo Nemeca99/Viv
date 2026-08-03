@@ -100,6 +100,11 @@ def seed_curriculum(*, force: bool = False) -> dict[str, Any]:
         ("cpu_rid_observe", "CPU RID hold observe A", 40, {"settle_s": 1.2}),
         ("cpu_rid_observe", "CPU RID hold observe B", 41, {"settle_s": 1.2}),
         ("cpu_core_survey", "Survey governed CPU core adapters", 42, {}),
+        ("cpu_reasoning_probe", "Run CPU evidence-to-renderer reasoning probe", 43, {
+            "value": "What does the Alpha manual say about CPU mind and GPU mouth?",
+            "manual_only": True,
+            "top_k": 3,
+        }),
         ("voice_status", "Voice peripheral status", 50, {}),
         ("speak_brief", "Speak after curriculum", 55, {"query": "I dreamed, wrote code, and measured the plant"}),
     ]

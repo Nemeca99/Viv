@@ -382,6 +382,25 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_core_survey_error:{exc}"
 
+    if kind == "cpu_reasoning_probe":
+        value = payload.get("value")
+        if value is None:
+            return False, "missing_reasoning_input"
+        try:
+            from lib.cpu_reasoning_pipeline import compact, reason
+
+            result = reason(
+                value,
+                s_n=s_n,
+                manual_only=bool(payload.get("manual_only", False)),
+                top_k=int(payload.get("top_k") or 5),
+            )
+            if result.get("state") == "DENIED":
+                return False, compact(result)
+            return True, compact(result)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_reasoning_probe_error:{exc}"
+
     if kind == "cpu_rid_observe":
         # CPU-first teach tick — plant grades hold prediction; no GPU.
         try:

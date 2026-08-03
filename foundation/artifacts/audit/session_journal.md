@@ -3109,3 +3109,12 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Live `aios_main.py beat --max-tasks 1` executed task `t-e19cc04481` as `cpu_core_survey`: `18/18` adapter status probes passed, task status `done`, mode nominal, and Master `S_n` ended at `0.7516`. The same beat separately recorded a `security_ingress_denied` memory task as blocked without retrying, confirming fail-closed denial behavior remains active.
 - The live survey proves the CPU dispatch path and current adapter surfaces, not completion of the 33-core rebuild. No F:/ or D:/ source execution, training, lease, promotion, deployment, or live-model change occurred.
 - Canonical foundation preflight after this group passed: `1,228` Python files parsed, all configured suites returned zero, Triad architecture `914` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+
+## 2026-08-03 — autonomous CPU reasoning pipeline
+
+- Added `foundation/lib/cpu_reasoning_pipeline.py`: ingress normalization → deterministic Luna response plan → hash-verified manual or governed knowledge retrieval → non-persisting CPU Steel Judge evaluation → telemetry containment → renderer-ready packet.
+- The pipeline has explicit `VERIFIED`, `ABSTAIN`, and `DENIED` states. It never treats an LLM, adapter, or retrieved text as authority without the typed source packet and CPU judge; it performs no durable writes.
+- Added `foundation/scripts/test_cpu_reasoning_pipeline_v1.py` and integrated `cpu_reasoning_probe` into the autonomous task runtime/curriculum. Focused regression passed all three states.
+- Live beat task `t-050327dfd3` completed `cpu_reasoning_probe` with result `VERIFIED`, `writes_performed=false`, `llm_authority=false`; mode remained nominal and Master `S_n` ended at `0.5852`.
+- This is the first explicit CPU evidence-to-renderer decision path. The later standard LLM/API can be connected only at the final rendering boundary; no training, model load, promotion, deployment, or live-model change occurred.
+- Canonical foundation preflight after the reasoning pipeline passed: `1,230` Python files parsed, all configured suites returned zero, Triad architecture `916` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
