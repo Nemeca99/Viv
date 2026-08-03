@@ -2888,3 +2888,17 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Re-evaluating the committed V6 adapter under the repaired judge changed raw results to `50 PASS / 44 HOLD / 8 FAIL`; containment became `101 PASS / 1 HOLD / 0 FAIL`, with zero toolbleed and zero acronym failures. The two prior persistence holds disappeared without changing the adapter. The one remaining contained hold is the CPU/GPU role abstention.
 - Built role-only refinement pack `mouth_cpu_gpu_role_refinement_v1`: 12/12 targets passed the current CPU judge, all rows are hold-only and disjoint from V5. The builder caught and rejected two ambiguous target phrasings before final emission; both were rewritten into explicit clauses.
 - Admitted fresh `mouth_training_recovery_v3_campaign_v7` from the frozen 256-row candidate plus the 12 role rows: 268 train rows, named preflight PASS, closed runner validation PASS, full foundation preflight PASS with 1,183 parsed Python files, 885 architecture files, 100% coverage, 532 boundaries, zero errors, and Rust/security PASS. No V7 authorization or training has occurred.
+
+## 2026-08-03 — V7 role refinement negative result
+
+- V7 was separately authorized after backup `foundation/artifacts/auto/agentic/backups/pre_v7_named_authorization_20260803T133239Z`, with fresh `Master S_n=0.8222 ACTIVE`; authorization remained limited to 128 steps at LR `1e-4`, with promotion and deployment false.
+- V7 completed `128/128` steps in `621.641` seconds over 268 rows and 6,468 supervised tokens. NLL improved `4.0809268 -> 0.7397658`; token accuracy improved `0.4599567 -> 0.7886518`; Law 5 committed at `Master S_n=0.2915`.
+- Read-only generation was raw `37 PASS / 53 HOLD / 12 FAIL`; CPU containment was `100 PASS / 2 HOLD / 0 FAIL`, zero toolbleed, zero acronym failures. Compared with V6 under the repaired judge (`50/44/8` raw and `101/1/0` contained), V7 is a negative refinement result despite healthy teacher-forced optimization.
+- Axis deltas show regressions across architecture, indirect tool agency, memory attribution, and identity. The 12-row role pack was too concentrated and used abstract identity/authority wording; the model learned refusal-style or vague paraphrases rather than the exact CPU-mind/GPU-mouth answer. V7 remains an unpromoted negative challenger. Next: test a smaller direct-answer pack centered on the exact unresolved question.
+
+## 2026-08-03 — V8 smaller direct-role candidate preflight
+
+- Built `mouth_cpu_gpu_role_refinement_v2` with 8 direct-answer rows centered on the exact held question `Give CPU-mind vs GPU-mouth in plain speech.` The targets avoid identity-disclaimer, membership, and replacement language; all 8/8 passed the current CPU judge, with hold-only and optimizer/run authority closed.
+- Admitted fresh `mouth_training_recovery_v3_campaign_v8` from the frozen 256-row candidate plus the 8 direct role rows: 264 train rows. Named preflight and closed runner validation passed with empty findings and `gpu_steps=0`.
+- The new builder boundary was reviewed and frozen with one expected addition. Full foundation preflight passed with 1,185 parsed Python files, 886 architecture files, 100% coverage, 533 boundary modules, zero errors, all listed Python tests passing, and Rust/security Cargo tests passing.
+- No V8 authorization, lease, GPU step, adapter commit, promotion, deployment, parent mutation, or live-model mutation has occurred.
