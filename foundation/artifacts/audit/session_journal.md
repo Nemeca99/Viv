@@ -2965,3 +2965,12 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Root-cause evidence: the V9 train set contains 58 architecture-role rows out of 276, including eight newly added role-refinement rows with repeated formal CPU/GPU/AIOS targets. The CPU runtime already owns this axis and routes it deterministically. The added optimizer examples caused generic-response bias across unrelated packs.
 - Implemented a future admission guard in `foundation/scripts/admit_mouth_recovery_v3_campaign_v1.py`: `architecture_cpu_gpu_role` refinement rows are rejected from optimizer admission and remain hold-only for CPU gate validation. This does not alter V9, V6, the live model, or training authority.
 - Decision: reject V9 for promotion, retain V6, and do not authorize another GPU run until a new corpus candidate excludes runtime-owned role refinements and passes closed preflight plus a small behavior canary.
+
+## 2026-08-03 — simplified AIOS file-type boundary
+
+- Architect clarified the simplification target: AIOS implementation should primarily use Python, Rust, and JSON. XML is acceptable as an interoperability format when an external schema requires it, but it is not a second canonical state format.
+- Added `foundation/artifacts/auto/agentic/AIOS_FILE_TYPE_POLICY.json` and read-only validator `foundation/scripts/validate_aios_file_type_policy_v1.py`.
+- The validator checks 896 files under active implementation roots. Result: `PASS`; primary source extensions are `.py`, `.rs`, and `.json`.
+- Existing `.jsonl` datasets, XML interchange, Markdown journals, logs, model weights, Rust build outputs, operator PowerShell helpers, and sensor CSV are explicitly classified as supporting artifacts and were not renamed or deleted. This preserves the current training/evidence contracts while preventing those formats from becoming canonical AIOS source/state.
+- No training, lease, promotion, deployment, or live-model mutation occurred. The next candidate remains closed and must respect both the runtime-owned role guard and this file-type boundary.
+- The post-policy full foundation preflight was `INCONCLUSIVE`, not a policy failure: `test_cpu_semantic_judge.py` was denied by the existing Law 5 dormancy gate at `Master S_n=0.0057`; all other listed tests and Rust/security checks passed. No retry or override was used.
