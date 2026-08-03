@@ -831,10 +831,14 @@
       "pulse": "PASS",
       "quorum_selftest": "PASS",
       "rid_selftest": "PASS",
+      "triad_architecture": "PASS_897_FILES_100_PERCENT_539_BOUNDARIES",
+      "autonomous_once": "PASS_RUNTIME_TICK_AND_TASK_EXECUTION",
+      "organism_beat": "PASS_NOMINAL_CPU_RID_AUTO_UML_PATH",
+      "guardian_denial_semantics": "PASS_DENIAL_RECORDED_WITHOUT_ACTION",
       "gate_denial_is_runtime_state": true,
       "module_errors": false
     },
     "next_action": "build_and_test_cpu_neurosymbolic_authority_before_next_gpu_campaign"
   },
-  "updated_utc": "2026-08-03T21:54:35Z"
+  "updated_utc": "2026-08-03T22:03:36Z"
 }
