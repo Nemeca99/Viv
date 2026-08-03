@@ -3092,3 +3092,10 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added `foundation/scripts/test_luna_core_v1.py`. Initial regression caught and corrected an operator ranking sign error; the corrected test passed. It also verifies ordinary-mode telemetry containment and `llm_authority=false`.
 - Triad architecture passed after the new module/test: `908` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, and `registry_drift=false`.
 - This is a verified CPU planning boundary, not a complete Luna implementation or a voice-model integration. No training, lease, promotion, deployment, or live-model change occurred. The standard LLM/API remains deferred until the CPU cores and their gates are rebuilt.
+
+## 2026-08-03 — bulk core contract pass
+
+- Added `foundation/lib/carma_core.py` and its regression. It creates provenance-bearing memory fragments, deterministic concept lists, overlap links, and explicit consolidation packages without claiming semantic compression or allowing LLM authority.
+- Added `foundation/lib/core_contracts.py` and `foundation/scripts/test_core_contracts_v1.py` as the bulk rebuild skeleton for `33` manual-defined V1/V2 core contracts. The report currently observes `22` wired surfaces, `1` partial surface, and `10` source-only cores; this is an acceptance map, not a completion claim.
+- Verification passed: CARMA regression, bulk contract regression, and Triad architecture (`912` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, no registry drift).
+- The rebuild is still materially incomplete relative to the full historical AIOS size. The next implementation pass will bulk-port real core behavior from the three source planes into the contract map, then integrate and test in bounded groups. No training, lease, promotion, deployment, or live-model change occurred.
