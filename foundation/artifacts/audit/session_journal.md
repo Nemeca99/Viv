@@ -3060,3 +3060,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added `foundation/scripts/test_autonomous_task_loop_v1.py`. It passed priority selection, completion recording, and lowercase security-denial blocking: `AUTONOMOUS_TASK_LOOP_PASS priority_selection=true denial_blocks=true result_recorded=true`.
 - Triad kernel contracts passed with `17,366` ledger events. No training, model load, promotion, deployment, or live-model change occurred.
 - Next: continue strengthening the task-list agent around explicit task contracts and outcome/provenance records; semantic embedding remains a separate runtime compatibility gap.
+
+## 2026-08-03 — full-core rebuild milestone: RAG/ManualOracle packet
+
+- Reconciled the current V1/V2 registry: `11 wired`, `3 partial`, `8 deferred`, and `21 missing_source`; the active non-deferred queue identifies `V1/rag_core` as the next core.
+- Wired `query_manual_packet()` into `foundation/lib/aios_adapter_knowledge.py`. It exposes the active Alpha manual through the CPU typed retrieval packet, retaining source SHA-256, section SHA-256, line bounds, and logical root `L_VIV_FOUNDATION`.
+- Extended `foundation/scripts/test_knowledge_source_contract_v1.py`. Verification passed with `manual_packet_state=VERIFIED` and `manual_packet_hit_count=2`; the existing source/retrieval/mouth checks remained green.
+- This is a core rebuild slice, not a claim that all 20+ cores are complete. No training, model promotion, deployment, or live-model mutation occurred.
+- Next core: `consciousness_core` (pulse/fragments/hemispheres) after read-only three-source comparison and current-runtime boundary review.

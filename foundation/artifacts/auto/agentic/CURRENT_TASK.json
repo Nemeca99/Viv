@@ -931,6 +931,19 @@
         "live_beat": "PASS_GOAL_STEP_SELECTED_AND_EXECUTED; SECURITY_INGRESS_DENIAL_RECORDED",
         "training_authorized": false,
         "live_model_changed": false
+      },
+      "core_rebuild_rag_core_slice": {
+        "state": "VERIFIED_MANUAL_ORACLE_TYPED_PACKET",
+        "source": "foundation/lib/aios_adapter_knowledge.py",
+        "oracle": "foundation/lib/manual_oracle.py",
+        "regression": "foundation/scripts/test_knowledge_source_contract_v1.py",
+        "behavior": "active Alpha manual sections are returned as hash-verified L_VIV_FOUNDATION retrieval facts",
+        "manual_packet_state": "VERIFIED",
+        "manual_packet_hit_count": 2,
+        "source_contract_state": "PASS",
+        "training_authorized": false,
+        "live_model_changed": false,
+        "next_core": "consciousness_core"
       }
     }
   },

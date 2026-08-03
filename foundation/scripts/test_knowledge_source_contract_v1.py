@@ -18,7 +18,7 @@ from lib.knowledge_source_contract import (  # noqa: E402
     describe_file,
     sample_text_files,
 )
-from lib.aios_adapter_knowledge import query_packet  # noqa: E402
+from lib.aios_adapter_knowledge import query_manual_packet, query_packet  # noqa: E402
 from lib.knowledge_claim_alignment import align_claims  # noqa: E402
 from lib.knowledge_external_adapters import (  # noqa: E402
     compose_multi_source_packet,
@@ -85,6 +85,7 @@ def main() -> int:
     composed = compose_multi_source_packet("evolution", wikipedia_title="Evolution", include_runtime=True)
     alignment = align_claims("evolution", composed.get("packet", {}).get("facts") or [])
     retrieved = query_packet("evolution", k=2)
+    manual = query_manual_packet("architecture manual", k=2)
     mouth = build_intent_packet(
         query="What is evolution?",
         mode="converse",
@@ -118,6 +119,14 @@ def main() -> int:
             and "lib.viv_shadow_judge.semantic_compare" in alignment.get("judge_interfaces", [])
             and retrieved.get("ok")
             and retrieved.get("packet", {}).get("authority") == "knowledge_retrieval_v1"
+            and manual.get("ok")
+            and manual.get("state") == "VERIFIED"
+            and manual.get("packet", {}).get("facts")
+            and all(
+                (fact.get("source") or {}).get("root") == "L_VIV_FOUNDATION"
+                and (fact.get("source") or {}).get("sha256")
+                for fact in manual.get("packet", {}).get("facts") or []
+            )
             and mouth_knowledge.get("state") == "VERIFIED"
             and any(str(value).startswith("know=") for value in mouth.get("facts") or [])
             and all("master_s_n" not in str(value).lower() for value in mouth.get("facts") or [] if str(value).startswith("know="))
@@ -146,6 +155,8 @@ def main() -> int:
         "claim_alignment_judge": alignment.get("judge_interfaces"),
         "retrieval_packet_state": retrieved.get("packet", {}).get("state"),
         "retrieval_hit_count": len(retrieved.get("hits") or []),
+        "manual_packet_state": manual.get("packet", {}).get("state"),
+        "manual_packet_hit_count": len(manual.get("hits") or []),
         "mouth_knowledge_state": mouth_knowledge.get("state"),
         "mouth_knowledge_fact_count": sum(1 for value in mouth.get("facts") or [] if str(value).startswith("know=")),
         "ordinary_mouth_telemetry_absent": "master_s_n" not in mouth_wire.lower() and "<telemetry" not in mouth_wire.lower(),

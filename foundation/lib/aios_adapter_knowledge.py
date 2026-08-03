@@ -629,6 +629,54 @@ def query_packet(
     return {**result, "packet": packet_from_retrieval(text, result.get("hits") or [])}
 
 
+def query_manual_packet(text: str, k: int = 5) -> dict[str, Any]:
+    """Search the active manual through the hash-verified CPU ManualOracle."""
+    query_text = (text or "").strip()
+    if not query_text:
+        return {"ok": False, "state": "INSUFFICIENT", "error": "empty_query", "hits": [], "packet": packet_from_retrieval(text, [])}
+    try:
+        from lib.manual_oracle import ManualOracle
+
+        result = ManualOracle().search(query_text, top_k=k)
+    except Exception as exc:  # noqa: BLE001 — manual retrieval fails closed
+        return {
+            "ok": False,
+            "state": "ABSTAIN",
+            "error": f"manual_oracle:{type(exc).__name__}:{exc}",
+            "hits": [],
+            "packet": packet_from_retrieval(query_text, []),
+        }
+    hits: list[dict[str, Any]] = []
+    source = dict(result.get("source") or {})
+    for section in result.get("sections") or []:
+        hits.append(
+            {
+                "source": "manual_oracle",
+                "doc": source.get("path"),
+                "score": 1,
+                "text": section.get("text"),
+                "claim": f"manual_section:{section.get('anchor')}",
+                "source_ref": {
+                    "source_id": f"sha256:{source.get('sha256')}",
+                    "path": source.get("path"),
+                    "root": "L_VIV_FOUNDATION",
+                    "kind": "verified_manual_section",
+                    "sha256": section.get("sha256"),
+                    "source_sha256": source.get("sha256"),
+                    "start_line": section.get("start_line"),
+                    "end_line": section.get("end_line"),
+                },
+            }
+        )
+    return {
+        "ok": result.get("state") == "VERIFIED",
+        "state": result.get("state"),
+        "hits": hits,
+        "packet": packet_from_retrieval(query_text, hits),
+        "source": source,
+    }
+
+
 def status() -> dict[str, Any]:
     index = _load_index()
     chunks = index.get("chunks") or []
