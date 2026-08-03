@@ -999,7 +999,7 @@
           "source": "foundation/lib/core_contracts.py",
           "regression": "foundation/scripts/test_core_contracts_v1.py",
           "manual_core_contracts": 33,
-          "counts": {"wired": 22, "partial": 1, "source_only": 10},
+            "counts": {"wired": 23, "partial": 1, "source_only": 9},
           "meaning": "bulk acceptance map and current-surface inventory; not completion claim",
           "training_authorized": false,
           "live_model_changed": false
@@ -1103,6 +1103,13 @@
             "foundation_preflight": "PASS_1239_PARSED_21_SUITES_RUST_OK",
             "training_authorized": false,
             "live_model_changed": false
+          },
+          "contract_inventory_refresh": {
+            "state": "VERIFIED_FRACTAL_SURFACE_RECONCILED",
+            "source": "foundation/lib/core_contracts.py",
+            "regression": "foundation/scripts/test_core_contracts_v1.py",
+            "counts": {"wired": 23, "partial": 1, "source_only": 9},
+            "foundation_preflight": "PASS_1240_PARSED_21_SUITES_RUST_OK"
           },
           "training_authorized": false,
           "live_model_changed": false

@@ -3152,3 +3152,9 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Integrated the planner into `foundation/lib/aios_dream.py`; the existing security membrane remains responsible for every write. Added `foundation/scripts/test_cpu_dream_planner_v1.py` and verified normal, hot, dormancy, thin-memory, and forced cases.
 - Full foundation preflight passed: `1,239` Python files parsed, all configured suites returned zero, Triad architecture `922` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No dream cycle was executed, and no training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
+
+## 2026-08-03 — CPU contract inventory reconciliation
+
+- Updated `foundation/lib/core_contracts.py` so `fractal_core` records its verified Viv surfaces (`cpu_fractal_reasoner.py` and the CPU reasoning pipeline) instead of remaining falsely labeled source-only.
+- Contract regression now reports `23 wired`, `1 partial`, and `9 source-only` out of `33`; this changes inventory truth only and does not claim the full fractal core is complete.
+- Focused contract and Triad architecture checks passed. Full foundation preflight passed with `1,240` Python files parsed, all configured suites green, `922` architecture files at `100%` coverage, no direct bridge violations or registry drift, and Rust security passed.
