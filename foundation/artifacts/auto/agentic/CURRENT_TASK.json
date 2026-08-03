@@ -870,6 +870,21 @@
         "triad_architecture": "PASS_899_FILES_100_PERCENT_540_BOUNDARIES",
         "training_authorized": false,
         "live_model_changed": false
+      },
+      "cpu_model_catalog_repair": {
+        "state": "VERIFIED_CPU_WEIGHTS_INCLUDED_IN_IMMUTABLE_BACKUP_CATALOG",
+        "source": "foundation/lib/backup_core.py",
+        "backup": "foundation/artifacts/auto/agentic/backups/pre_cpu_model_catalog_repair_20260803T221119Z",
+        "catalog_count": 44,
+        "cpu_model_count": 3,
+        "cpu_models": [
+          "bert-base-uncased-Q8_0.gguf",
+          "goemotions-f16.gguf",
+          "populism_english_bert_base_uncased.f16.gguf"
+        ],
+        "loaded": false,
+        "training_authorized": false,
+        "live_model_changed": false
       }
     }
   },

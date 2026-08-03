@@ -3020,3 +3020,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added `foundation/scripts/test_manual_oracle_v1.py`: verified search, exact anchor lookup, section-hash consistency, and post-change abstention.
 - Verification passed: `MANUAL_ORACLE_PASS verified_lookup=true drift_abstain=true`; triad architecture passed with `899` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, and no registry drift.
 - No corpus mutation, training, lease, promotion, deployment, or live-model change occurred. Next CPU target is to connect this oracle to the governed typed retrieval packet without allowing unverified sections into speech.
+
+## 2026-08-03 — CPU specialist model backup boundary repair
+
+- The CPU model layer was verified at `foundation/models/cpu/`: BERT semantic geometry, GoEmotions, and populism classifier weights are present; the existing README and `model_config.json` identify them as CPU judge/sensor components rather than a chat soul.
+- Found and repaired `foundation/lib/backup_core.py`: `immutable_model_catalog_paths()` previously cataloged GPU `.gguf` files only, so CPU cognitive weights were absent from the immutable backup boundary. It now catalogs both CPU and GPU `.gguf` files.
+- Backed up the touched file at `foundation/artifacts/auto/agentic/backups/pre_cpu_model_catalog_repair_20260803T221119Z/`.
+- Verification without model loading: catalog count `44`; CPU model count `3`; all three expected CPU weights present. No training, model load, promotion, deployment, or live-model change occurred.
+- The CPU specialist outputs remain evidence to be checked by deterministic/UML authority; this repair changes backup coverage only.

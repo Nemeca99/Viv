@@ -239,7 +239,11 @@ def default_snapshot_roots() -> list[Path]:
 
 def immutable_model_catalog_paths() -> list[Path]:
     config = json.loads((FOUNDATION / "model_config.json").read_text(encoding="utf-8"))
-    paths = list((FOUNDATION / "models" / "gpu").glob("*.gguf"))
+    # CPU specialist weights are part of Viv's cognitive substrate and must
+    # receive the same immutable backup treatment as the replaceable voice
+    # weights.  Catalog only model files; loaders remain separate concerns.
+    paths = list((FOUNDATION / "models" / "cpu").glob("*.gguf"))
+    paths.extend((FOUNDATION / "models" / "gpu").glob("*.gguf"))
     hf_base = Path(str(config.get("voice", {}).get("hf_base") or ""))
     if hf_base.is_dir():
         paths.extend(path for path in hf_base.rglob("*") if path.is_file())
