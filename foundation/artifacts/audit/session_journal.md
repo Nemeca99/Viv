@@ -3003,3 +3003,12 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Next CPU slice: inspect the existing knowledge-absorb/RAG-core mission step and wire only the next verified provenance-preserving capability into the autonomous CPU queue. Do not copy the old AIOS tree wholesale.
 - A second bounded `aios_main beat --max-tasks 1` completed nominally at `2026-08-03T22:04:19Z`: CPU RID tick, runtime tick, agentic task, task board, and agent plan completion all returned `ok=true`; Master `S_n=0.6523`. The CPU goal `Absorb V1/V2 knowledge + steel judge into Viv from real AIOS systems registry` reached step `6/6` and status `done`.
 - The systems registry now identifies `V1/rag_core` (document RAG / ManualOracle) as the next partial CPU capability. This is the next implementation target; training remains paused and the GPU mouth remains peripheral.
+
+## 2026-08-03 — CPU RAG source-scope fallback repair
+
+- Backed up the adapter and relevance regression before editing at `foundation/artifacts/auto/agentic/backups/pre_rag_fallback_source_gate_20260803T220725Z/`.
+- Repaired `foundation/lib/aios_adapter_knowledge.py`: when the primary adapter index is empty and the legacy `aios_knowledge` fallback is used, a query with explicit `source_roots` now admits only hits carrying a matching provenance root. Unknown provenance fails closed instead of widening the source scope.
+- Extended `foundation/scripts/test_knowledge_relevance_gate_v1.py` with matching, unknown, and source-scoped fallback cases.
+- Verification passed: both files compiled; relevance gate passed; source-contract retrieval packet passed; CPU-to-mouth grounding passed with `grounding=True`, `verification=PASS`, and telemetry contained.
+- This is a CPU retrieval-boundary repair only. No source tree was copied, no corpus was mutated, no training/lease/promotion/deployment occurred, and no live model changed.
+- Next: continue the bounded `rag_core`/ManualOracle slice with read-only provenance and integrity behavior; keep GPU training paused.

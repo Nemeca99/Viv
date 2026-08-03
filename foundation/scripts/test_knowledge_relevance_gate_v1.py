@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+from unittest.mock import patch
 from pathlib import Path
 
 VIV = Path(__file__).resolve().parents[2]
@@ -22,6 +23,30 @@ def main() -> int:
         for hit in hits
     ), hits
     assert not any(str(hit.get("source") or "").startswith("live:") for hit in hits), hits
+
+    # The legacy fallback is allowed to serve unscoped evidence, but a
+    # source-scoped CPU query must fail closed on missing or mismatched
+    # provenance rather than widening into another source family.
+    legacy_hits = [
+        {"source": "legacy:unknown", "text": "requested fact", "score": 1},
+        {
+            "source": "legacy:dataset",
+            "source_ref": {"root": "F_AI_DATASETS"},
+            "text": "requested fact from dataset",
+            "score": 1,
+        },
+    ]
+    with patch("lib.aios_adapter_knowledge._load_index", return_value={"chunks": []}), patch(
+        "lib.aios_knowledge.keyword_retrieve", return_value=legacy_hits
+    ):
+        scoped = query("requested fact", k=5, source_roots=("F_AI_DATASETS",))
+    assert [hit.get("source") for hit in scoped.get("hits") or []] == ["legacy:dataset"], scoped
+
+    with patch("lib.aios_adapter_knowledge._load_index", return_value={"chunks": []}), patch(
+        "lib.aios_knowledge.keyword_retrieve", return_value=[legacy_hits[0]]
+    ):
+        unknown_scoped = query("requested fact", k=5, source_roots=("F_AI_DATASETS",))
+    assert unknown_scoped.get("hits") == [], unknown_scoped
     print(f"KNOWLEDGE_RELEVANCE_GATE_PASS hits={len(hits)} live_unrelated_rejected=true")
     return 0
 

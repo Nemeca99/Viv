@@ -845,8 +845,23 @@
       "role": "document RAG / ManualOracle",
       "status": "partial",
       "registry": "foundation/artifacts/auto/systems/AIOS_SYSTEMS_REGISTRY.md",
-      "rule": "port provenance-preserving retrieval behavior only; do not copy the legacy tree wholesale"
+      "rule": "port provenance-preserving retrieval behavior only; do not copy the legacy tree wholesale",
+      "latest_repair": {
+        "state": "VERIFIED_BOUNDED_SOURCE_SCOPE_GATE",
+        "source": "foundation/lib/aios_adapter_knowledge.py",
+        "regression": "foundation/scripts/test_knowledge_relevance_gate_v1.py",
+        "backup": "foundation/artifacts/auto/agentic/backups/pre_rag_fallback_source_gate_20260803T220725Z",
+        "behavior": "legacy fallback rejects unknown or mismatched provenance when source_roots is requested",
+        "focused_tests": [
+          "py_compile aios_adapter_knowledge.py test_knowledge_relevance_gate_v1.py",
+          "test_knowledge_relevance_gate_v1.py",
+          "test_knowledge_source_contract_v1.py",
+          "test_knowledge_mouth_end_to_end_v1.py"
+        ],
+        "training_authorized": false,
+        "live_model_changed": false
+      }
     }
   },
-  "updated_utc": "2026-08-03T22:04:19Z"
+  "updated_utc": "2026-08-03T22:07:25Z"
 }

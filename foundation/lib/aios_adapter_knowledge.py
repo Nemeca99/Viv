@@ -519,6 +519,14 @@ def query(
             from lib.aios_knowledge import keyword_retrieve
 
             legacy = keyword_retrieve(q, top=top)
+            if source_roots:
+                # A source-scoped query must never widen into an unscoped legacy
+                # result. Unknown provenance is not admissible when a caller has
+                # explicitly selected source families.
+                legacy = [
+                    hit for hit in legacy
+                    if str((hit.get("source_ref") or {}).get("root") or "") in source_roots
+                ]
             if legacy and legacy[0].get("text"):
                 return {
                     "ok": True,
