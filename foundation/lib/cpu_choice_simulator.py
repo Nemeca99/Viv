@@ -1,11 +1,39 @@
 """Bounded deterministic simulator for Viv's three-action CPU economy."""
 from __future__ import annotations
 
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
 MANUAL_SOURCE = "F:/AIOS_Clean/game_core"
 ACTIONS = ("idle", "action", "restore")
 MAX_STEPS = 256
+
+
+def choose_action(state: Mapping[str, Any]) -> str:
+    """Select the declared best action from an explicit CPU state snapshot."""
+    sn = max(0.0, min(float(state.get("s_n", 0.5)), 1.0))
+    queued = max(0, int(state.get("queued_work", 0) or 0))
+    memory_due = bool(state.get("memory_due") or state.get("restore_due"))
+    if memory_due and sn < 0.40:
+        return "restore"
+    if queued > 0 and sn >= 0.15:
+        return "action"
+    if sn < 0.15:
+        return "restore"
+    return "idle"
+
+
+def derive_oracle_actions(states: Iterable[Mapping[str, Any]]) -> list[str]:
+    """Derive a transparent reference sequence from declared state snapshots."""
+    return [choose_action(state) for state in states]
+
+
+def simulate_state_choices(states: Iterable[Mapping[str, Any]], choices: Iterable[str], **kwargs: Any) -> dict[str, Any]:
+    """Simulate choices against the deterministic state-derived reference policy."""
+    snapshots = [dict(state) for state in states]
+    result = simulate_choices(derive_oracle_actions(snapshots), choices, **kwargs)
+    result["state_policy"] = "cpu_choice_simulator.choose_action_v1"
+    result["state_snapshots"] = len(snapshots)
+    return result
 
 
 def simulate_choices(

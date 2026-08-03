@@ -106,7 +106,11 @@ def seed_curriculum(*, force: bool = False) -> dict[str, Any]:
             "top_k": 3,
         }),
         ("cpu_choice_simulation", "Simulate bounded three-action CPU choice economy", 44, {
-            "oracle_actions": ["restore", "action", "idle"],
+            "states": [
+                {"s_n": 0.20, "memory_due": True, "queued_work": 0},
+                {"s_n": 0.80, "memory_due": False, "queued_work": 1},
+                {"s_n": 0.90, "memory_due": False, "queued_work": 0},
+            ],
             "choices": ["restore", "action", "idle"],
             "max_steps": 3,
         }),

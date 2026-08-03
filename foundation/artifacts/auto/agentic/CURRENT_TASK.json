@@ -1156,6 +1156,8 @@
             "writes_performed": false,
             "llm_authority": false,
             "foundation_preflight": "PASS_1249_PARSED_21_SUITES_RUST_OK",
+            "state_policy": "foundation/lib/cpu_choice_simulator.py::choose_action",
+            "state_policy_cases": ["low_sn_restore_due=restore", "queued_work_with_capacity=action", "no_queued_work=idle"],
             "training_authorized": false,
             "live_model_changed": false
           },
@@ -1164,6 +1166,20 @@
             "source": "foundation/lib/core_contracts.py",
             "regression": "foundation/scripts/test_core_contracts_v1.py",
             "counts": {"wired": 25, "partial": 1, "source_only": 7}
+          },
+          "game_cpu_state_policy_refinement": {
+            "state": "VERIFIED_STATE_DERIVED_REFERENCE_POLICY",
+            "source": "foundation/lib/cpu_choice_simulator.py",
+            "runtime_integration": "foundation/lib/agentic_runtime.py",
+            "regression": "foundation/scripts/test_cpu_choice_simulator_v1.py",
+            "inputs": ["s_n", "memory_due", "restore_due", "queued_work"],
+            "outputs": ["restore", "action", "idle"],
+            "state_snapshots_tested": 3,
+            "state_policy_accuracy": 1.0,
+            "foundation_preflight": "PASS_1250_PARSED_21_SUITES_RUST_OK",
+            "master_s_n_changed": false,
+            "writes_performed": false,
+            "llm_authority": false
           },
           "training_authorized": false,
           "live_model_changed": false

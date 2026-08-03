@@ -404,11 +404,15 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
 
     if kind == "cpu_choice_simulation":
         try:
-            from lib.cpu_choice_simulator import simulate_choices
+            from lib.cpu_choice_simulator import simulate_choices, simulate_state_choices
 
             oracle = payload.get("oracle_actions") or []
             choices = payload.get("choices") or []
-            result = simulate_choices(oracle, choices, max_steps=int(payload.get("max_steps") or 256))
+            states = payload.get("states") or []
+            if states:
+                result = simulate_state_choices(states, choices, max_steps=int(payload.get("max_steps") or 256))
+            else:
+                result = simulate_choices(oracle, choices, max_steps=int(payload.get("max_steps") or 256))
             return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_choice_simulation_error:{exc}"
