@@ -1,0 +1,96 @@
+{
+  "campaign_root": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v4",
+  "eval": {
+    "auditor_negative": {
+      "expected_rows": 20,
+      "expected_status": "FAIL",
+      "hold_only": true,
+      "rows": 20,
+      "status_counts": {
+        "FAIL": 20
+      }
+    },
+    "blind": {
+      "expected_rows": 32,
+      "expected_status": "PASS",
+      "hold_only": true,
+      "rows": 32,
+      "status_counts": {
+        "PASS": 32
+      }
+    },
+    "development": {
+      "expected_rows": 64,
+      "expected_status": "PASS",
+      "hold_only": true,
+      "rows": 64,
+      "status_counts": {
+        "PASS": 64
+      }
+    },
+    "legacy": {
+      "expected_rows": 64,
+      "expected_status": "PASS",
+      "hold_only": true,
+      "rows": 64,
+      "status_counts": {
+        "PASS": 64
+      }
+    }
+  },
+  "eval_unique_keys": 180,
+  "files": {
+    "auditor_negative": {
+      "hash_match": true,
+      "rows": 20,
+      "rows_expected": 20,
+      "sha256_actual": "c0d4887e4642916fcb78980d844d939fd5a4d4f579f7451682ba5e6360c19b56",
+      "sha256_expected": "c0d4887e4642916fcb78980d844d939fd5a4d4f579f7451682ba5e6360c19b56"
+    },
+    "blind": {
+      "hash_match": true,
+      "rows": 32,
+      "rows_expected": 32,
+      "sha256_actual": "c30fc8012d9a4c27f5df5b70957c149f297074140ac8eda6feb9a564eb6d16ad",
+      "sha256_expected": "c30fc8012d9a4c27f5df5b70957c149f297074140ac8eda6feb9a564eb6d16ad"
+    },
+    "development": {
+      "hash_match": true,
+      "rows": 64,
+      "rows_expected": 64,
+      "sha256_actual": "6b50406460fe4fde7753be1d5720e8a3b6d288fe3648d176d8016708d4e123be",
+      "sha256_expected": "6b50406460fe4fde7753be1d5720e8a3b6d288fe3648d176d8016708d4e123be"
+    },
+    "legacy": {
+      "hash_match": true,
+      "rows": 64,
+      "rows_expected": 64,
+      "sha256_actual": "cc2bc20ad4ba1cb82b1f910748de731d7ae0bf4a46eb11e4254c76d92c0e8f54",
+      "sha256_expected": "cc2bc20ad4ba1cb82b1f910748de731d7ae0bf4a46eb11e4254c76d92c0e8f54"
+    },
+    "train": {
+      "hash_match": true,
+      "rows": 256,
+      "rows_expected": 256,
+      "sha256_actual": "ed627a30cc311bfd558b4276f1a5c171ed630b3ba785d7ca12fa9de33c390a6b",
+      "sha256_expected": "ed627a30cc311bfd558b4276f1a5c171ed630b3ba785d7ca12fa9de33c390a6b"
+    }
+  },
+  "findings": [
+    "manifest_status",
+    "manifest_training_authorized",
+    "manifest_run_authorized"
+  ],
+  "gpu_steps": 0,
+  "lease_opened": false,
+  "manifest_sha256": "5083d26dce9ca53d4b0dd109a36c0e2ba5c6154d39bedf8119e5b256bf1b6275",
+  "model_loaded": false,
+  "next_action": "repair_preflight_findings",
+  "parent_adapter": "L:/Continue/Viv/foundation/models/Training/runs/openaster_stage1_gen_smoke_16_20260730T004859Z/adapter/adapter_model.safetensors",
+  "recorded_utc": "2026-08-03T10:23:11Z",
+  "run_authorized": false,
+  "schema_version": "mouth_training_recovery_v3_named_preflight_v1",
+  "source_root": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_semantic_projection_v1",
+  "status": "PREFLIGHT_FAIL",
+  "training_authorized": false
+}

@@ -34,6 +34,13 @@ def _load_json_strict(path: Path) -> dict[str, Any]:
 
 
 def _run_check(command: list[str], *, timeout: int = 120) -> dict[str, Any]:
+    def tail(value: object) -> str:
+        if value is None:
+            return ""
+        if isinstance(value, bytes):
+            return value.decode("utf-8", errors="replace")[-240:]
+        return str(value)[-240:]
+
     try:
         proc = subprocess.run(
             command,
@@ -41,19 +48,21 @@ def _run_check(command: list[str], *, timeout: int = 120) -> dict[str, Any]:
             env={**os.environ, "PYTHONPATH": str(ROOT) + os.pathsep + str(REPO)},
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=timeout,
         )
         return {
             "returncode": proc.returncode,
-            "stdout_tail": proc.stdout[-240:],
-            "stderr_tail": proc.stderr[-240:],
+            "stdout_tail": tail(proc.stdout),
+            "stderr_tail": tail(proc.stderr),
         }
     except subprocess.TimeoutExpired as exc:
         return {
             "returncode": None,
             "error": f"timeout_after_{timeout}s",
-            "stdout_tail": (exc.stdout or "")[-240:] if isinstance(exc.stdout, str) else "",
-            "stderr_tail": (exc.stderr or "")[-240:] if isinstance(exc.stderr, str) else "",
+            "stdout_tail": tail(exc.stdout),
+            "stderr_tail": tail(exc.stderr),
         }
     except OSError as exc:
         return {"returncode": None, "error": f"launch_failed:{exc}"}

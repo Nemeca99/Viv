@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 880,
+  "generated_from_python_files": 882,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -1548,6 +1548,9 @@
     },
     "foundation/scripts/preflight_mouth_recovery_v3_campaign_v1.py": {
       "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/preflight_mouth_recovery_v3_named_campaign_v1.py": {
+      "filesystem_mutation:report_path.write_text": 1
     },
     "foundation/scripts/prepare_mouth_combined_candidate_v21_runner.py": {
       "filesystem_mutation:path.write_text": 1,

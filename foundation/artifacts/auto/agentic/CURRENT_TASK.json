@@ -53,6 +53,31 @@
     "deployment_authorized": false,
     "next_action": "do_not_retry_same_campaign; restore_or_raise_authoritative_s_n_before_new_named_campaign"
   },
+  "v4_staged_generation_evaluation": {
+    "state": "VERIFIED_READ_ONLY",
+    "raw_eval": {
+      "step_32": {"pass": 35, "hold": 51, "fail": 16},
+      "step_64": {"pass": 45, "hold": 40, "fail": 17},
+      "step_96": {"pass": 51, "hold": 41, "fail": 10},
+      "step_128": {"pass": 48, "hold": 41, "fail": 13}
+    },
+    "contained_eval": {
+      "step_96": {"pass": 99, "hold": 3, "fail": 0, "toolbleed": 0},
+      "step_128": {"pass": 101, "hold": 1, "fail": 0, "toolbleed": 0}
+    },
+    "evaluation_rows": 102,
+    "artifacts": [
+      "sandbox/mouth_training_recovery_v3_campaign_v4_step_96_semantic_eval.json",
+      "sandbox/mouth_training_recovery_v3_campaign_v4_step_128_semantic_eval.json",
+      "sandbox/mouth_training_recovery_v3_campaign_v4_step_96_runtime_shadow.json",
+      "sandbox/mouth_training_recovery_v3_campaign_v4_step_128_runtime_shadow.json"
+    ],
+    "interpretation": "raw_adapter_not_promotion_ready; CPU containment materially repairs output; one memory-attribution hold remains at step 128",
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_allowed": false,
+    "deployment_changed": false
+  },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
     "semantic_wikipedia_index": false,
