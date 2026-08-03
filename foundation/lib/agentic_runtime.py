@@ -420,10 +420,17 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
     if kind == "cpu_choice_live_probe":
         try:
             from lib.cpu_choice_simulator import evaluate_candidates
+            from lib.cpu_action_contract import build_contract, make_receipt, verify_contract
             from lib.cpu_state_snapshot import capture_live
 
             snapshot = capture_live()
             result = evaluate_candidates(snapshot)
+            contract = build_contract(task_id=task.task_id, action=result["reference_action"], state=snapshot)
+            verification = verify_contract(contract, snapshot)
+            result["contract"] = contract
+            result["verification"] = verification
+            result["receipt"] = make_receipt(contract, verification)
+            result["ok"] = bool(result.get("ok")) and bool(verification.get("ok"))
             return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_choice_live_probe_error:{exc}"

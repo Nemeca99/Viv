@@ -3160,6 +3160,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,255` Python files parsed, all configured suites returned zero, Triad architecture `929` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
 
+## 2026-08-04 — CPU action contract and verification receipt gate
+
+- Added `foundation/lib/cpu_action_contract.py` with `cpu_action_contract_v1`: every ranked action is bound to a canonical state hash, requires fresh state preconditions, and grants no execution authority or side effects.
+- Added `cpu_action_receipt_v1` containing a deterministic receipt hash and explicit `action_executed=false` / `writes_performed=false` fields.
+- Regression verified that an unchanged snapshot passes, a changed S_n/state snapshot is denied as drift, and the live probe returns both a contract and receipt.
+- Full foundation preflight passed: `1,256` Python files parsed, all configured suites returned zero, Triad architecture `930` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
+
 ## 2026-08-04 — deterministic CPU choice simulation boundary
 
 - Compared the F/D `game_core` implementations. They provide deterministic, state-based interaction and self-comparison concepts but do not implement the three-action CPU economy described by the AIOS design.

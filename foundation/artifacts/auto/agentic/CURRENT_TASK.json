@@ -1196,6 +1196,21 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "game_cpu_action_contract": {
+            "state": "VERIFIED_PRECONDITION_HASH_AND_RECEIPT_GATE",
+            "source": "foundation/lib/cpu_action_contract.py",
+            "runtime_integration": "foundation/lib/agentic_runtime.py",
+            "regression": "foundation/scripts/test_cpu_live_choice_probe_v1.py",
+            "contract_version": "cpu_action_contract_v1",
+            "receipt_version": "cpu_action_receipt_v1",
+            "unchanged_state": "VERIFIED",
+            "state_drift": "DENIED",
+            "action_executed": false,
+            "side_effects_allowed": false,
+            "foundation_preflight": "PASS_1256_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }
