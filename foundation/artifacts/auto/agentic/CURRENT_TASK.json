@@ -908,6 +908,20 @@
         "live_backend_execution": "not_claimed; source probe used provisional fallback when backend unavailable",
         "training_authorized": false,
         "live_model_changed": false
+      },
+      "cpu_semantic_live_runtime": {
+        "state": "INSTALLED_BUT_EMBEDDING_CAPABILITY_BLOCKED",
+        "ollama_model": "viv-embed:latest",
+        "ollama_model_id": "829712cb933a",
+        "ollama_architecture": "bert",
+        "ollama_embedding_length": 768,
+        "ollama_capabilities": ["completion"],
+        "comparison_result": "INCONCLUSIVE_HTTP_500_FROM_EMBEDDING_ENDPOINT",
+        "direct_gguf_adapter": "not_available_in_canonical_venv",
+        "training_needed": false,
+        "training_authorized": false,
+        "live_model_changed": false,
+        "next_action": "provide_compatible_cpu_gguf_embedding_runtime_or_use_a_verified_embedding_directory"
       }
     }
   },

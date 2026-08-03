@@ -3044,3 +3044,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added `foundation/scripts/test_cpu_semantic_runtime_v1.py`. Its mocked positive path and catalog-failure path both pass: `CPU_SEMANTIC_RUNTIME_PASS verified_observation=true fail_closed=true authority_cpu=true`.
 - Existing semantic backend regression passed `5` cases. The source-contract probe remained `INCONCLUSIVE` for semantic alignment and used the documented provisional fallback because no live embedding backend was available; no live model execution is claimed.
 - No model load, training, lease, promotion, deployment, or live-model change occurred. Next: exercise the actual `viv-embed`/GGUF runtime readiness path when Ollama is available, then measure retrieval latency and relevance on a bounded disjoint query pack.
+
+## 2026-08-03 — live CPU semantic runtime diagnosis
+
+- Registered the existing verified BERT GGUF with Ollama using `foundation/models/cpu/Modelfile.viv-embed`. Ollama now lists `viv-embed:latest` with model ID prefix `829712cb933a`, BERT architecture, 768-dimensional embedding length, and 117 MB size.
+- `ollama show viv-embed` reports capability `completion` only. The governed semantic comparison was exercised against the live endpoint and returned `INCONCLUSIVE` with HTTP 500 from the embedding route after `1551.61 ms`; no similarity score was admitted.
+- The canonical Python environment has `transformers`, `torch`, and `gguf`, but no `llama_cpp`, `sentence_transformers`, `onnxruntime`, or `ctransformers`. A binary-only `llama-cpp-python` install was attempted and had no compatible wheel; no source build was started.
+- This is a runtime compatibility limitation, not a corpus or training problem. No semantic model training is needed. The CPU specialist remains installed and catalog-verified, but semantic search is not yet runtime-verified.
+- Next: provide a compatible CPU GGUF embedding adapter or a verified local embedding directory, then run a bounded disjoint retrieval benchmark before enabling semantic alignment as evidence.
