@@ -3134,3 +3134,12 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Reused the existing `foundation/lib/knowledge_external_adapters.py` resolver and derived title sidecar rather than creating a competing corpus index. Query `Anarchism` returned a verified local article fact from `F_AI_DATASETS` with source hash and F-path containment.
 - Extended `foundation/lib/cpu_reasoning_pipeline.py` with bounded local-Wikipedia fallback when the active Viv knowledge index has no hits. The result is wrapped into the existing typed source packet and remains read-only; no embedding, CARMA admission, or training authority is granted.
 - Extended the pipeline regression to cover the local corpus path. Verified/manual retrieval, local Wikipedia retrieval, abstention, and denial all pass. No source tree or source index was modified.
+
+## 2026-08-03 — bounded recursive CPU fractal reasoning slice
+
+- Read the F/D `fractal_core` sources and preserved their relevant design intent: recursive decomposition, explicit depth control, and bounded state exploration. No legacy source tree was copied wholesale or executed.
+- Added `foundation/lib/cpu_fractal_reasoner.py` with deterministic recursive query decomposition capped at depth `3` and `64` nodes. It emits a planning tree and leaves only; it does not assert facts, retrieve authority, call an LLM, or write memory.
+- Added `foundation/scripts/test_cpu_fractal_reasoner_v1.py` and integrated the decomposition into `foundation/lib/cpu_reasoning_pipeline.py` as a renderer-planning artifact. Existing verified/abstain/deny CPU reasoning behavior remains intact.
+- Focused verification passed: Python compilation, recursive reasoner regression (`node_count=4`, `leaf_count=3`, bounded), and CPU reasoning pipeline regression (`VERIFIED`, `ABSTAIN`, `DENIED`, task execution).
+- Full foundation preflight passed: `1,236` Python files parsed, all configured suites returned zero, Triad architecture `920` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.

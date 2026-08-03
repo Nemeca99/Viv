@@ -1075,11 +1075,25 @@
             "live_model_changed": false
           },
           "claim_policy_preflight": "PASS_1233_PARSED_21_SUITES_RUST_OK",
+          "fractal_cpu_reasoner": {
+            "state": "VERIFIED_BOUNDED_RECURSIVE_CPU_DECOMPOSITION",
+            "source": "foundation/lib/cpu_fractal_reasoner.py",
+            "regression": "foundation/scripts/test_cpu_fractal_reasoner_v1.py",
+            "manual_source": "F:/AIOS_Clean/fractal_core",
+            "max_depth": 3,
+            "max_nodes": 64,
+            "facts_asserted": false,
+            "llm_authority": false,
+            "writes_performed": false,
+            "pipeline_integration": "foundation/lib/cpu_reasoning_pipeline.py",
+            "focused_tests": "PASS",
+            "foundation_preflight": "PASS_1236_PARSED_21_SUITES_RUST_OK"
+          },
           "training_authorized": false,
           "live_model_changed": false
         }
       }
     }
   },
-  "updated_utc": "2026-08-03T22:38:21Z"
+  "updated_utc": "2026-08-03T22:52:33Z"
 }
