@@ -30,6 +30,11 @@ from lib.aios_organism import (  # noqa: E402
     status as organism_status,
 )
 from lib.paths import AUTO_ARTIFACTS  # noqa: E402
+from lib.consciousness_core import (  # noqa: E402
+    identity_drift,
+    module_status,
+    select_soul_fragment,
+)
 
 ADAPTER_ID = "consciousness_core"
 REGISTRY_ID = "consciousness_core"
@@ -217,11 +222,31 @@ def plant_pulse() -> dict[str, Any]:
         }
 
 
+def consciousness_state(*, prompt: str = "") -> dict[str, Any]:
+    """Expose the rebuilt deterministic consciousness slice without writing state."""
+    fragment = select_soul_fragment(prompt)
+    drift = identity_drift(expected_name="Viv", observed_name="Viv", expected_fragment=fragment["selected"], observed_fragment=fragment["selected"])
+    return {
+        "ok": True,
+        "evidence": {
+            "adapter": ADAPTER_ID,
+            "op": "consciousness_state",
+            "at": _utc(),
+            "module": module_status(),
+            "fragment": fragment,
+            "identity_drift": drift,
+            "writes_performed": False,
+            "llm_authority": False,
+        },
+    }
+
+
 def run_smoke() -> dict[str, Any]:
     """Prove organism + plant read paths; assert no V2 biological execution."""
     st = status()
     beat = latest_beat()
     pulse = plant_pulse()
+    consciousness = consciousness_state(prompt="truthful system documentation")
     sev = st.get("evidence") or {}
     bev = beat.get("evidence") or {}
     pev = pulse.get("evidence") or {}
@@ -233,6 +258,9 @@ def run_smoke() -> dict[str, Any]:
         and bool(sev.get("organism_state_exists"))
         and bool(sev.get("latest_beat_exists"))
         and pev.get("master_s_n") is not None
+        and bool(consciousness.get("ok"))
+        and consciousness.get("evidence", {}).get("fragment", {}).get("selected") == "oracle"
+        and consciousness.get("evidence", {}).get("identity_drift", {}).get("drift") is False
         and v2.get("viv_executes_v2") is False
         and pev.get("viv_fake_cognition") is False
     )
@@ -254,6 +282,7 @@ def run_smoke() -> dict[str, Any]:
         "status": st,
         "latest_beat": beat,
         "plant_pulse": pulse,
+        "consciousness_state": consciousness,
     }
     try:
         EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)

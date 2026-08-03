@@ -3068,3 +3068,19 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Extended `foundation/scripts/test_knowledge_source_contract_v1.py`. Verification passed with `manual_packet_state=VERIFIED` and `manual_packet_hit_count=2`; the existing source/retrieval/mouth checks remained green.
 - This is a core rebuild slice, not a claim that all 20+ cores are complete. No training, model promotion, deployment, or live-model mutation occurred.
 - Next core: `consciousness_core` (pulse/fragments/hemispheres) after read-only three-source comparison and current-runtime boundary review.
+
+## 2026-08-03 — full-core rebuild audit: consciousness_core
+
+- Compared the V1/F consciousness source: 20 biological/heartbeat/reflection modules including brainstem, heart, hemispheres, memory, mirror, and drift monitoring. The configured V2 consciousness source is absent at `L:/Continue/FSAA/Luna/AIOS_V2/consciousness_core`.
+- Ran the active `foundation/lib/aios_adapter_consciousness.py` smoke. Result: `PASS`; organism beat mode `nominal`, current plant `Master S_n=0.6165`, `441` organism events, latest beat present, plant verdict `PASS`, and `viv_fake_cognition=false`.
+- The adapter explicitly does not execute the legacy biological loops or invent missing hemisphere cognition; it maps the current organism/RID pulse surfaces and remains `PARTIAL`.
+- No core source was copied wholesale, no training or deployment occurred, and no live model changed. Next core comparison is `luna_core`.
+
+## 2026-08-03 — full-core rebuild: deterministic consciousness slice
+
+- Backed up the touched adapter and frozen triad registry before editing at `foundation/artifacts/auto/agentic/backups/pre_consciousness_core_20260803T172825Z/`.
+- Added `foundation/lib/consciousness_core.py` as the first governed CPU rebuild slice for the manual's `consciousness_core`: seven deterministic soul fragments, bounded STM (`100` records; consolidation due at `80%`), explicit LTM commit preserving record IDs/previews, and measurable identity-drift status.
+- Added `foundation/scripts/test_consciousness_core_v1.py`; it passed fragment selection, STM/LTM lifecycle, drift detection, adapter exposure, and consciousness smoke. The slice performs no writes during selection and gives no LLM authority.
+- Extended `foundation/lib/aios_adapter_consciousness.py` with a read-only `consciousness_state()` surface. Adapter smoke passed with fragment `oracle`, identity drift `false`, organism/plant paths intact, and `viv_fake_cognition=false`.
+- Regression verification passed: `py_compile`, consciousness-core test, triad architecture (`906` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, no registry drift), current-task verification, and knowledge-source contract.
+- This is a verified partial rebuild, not completion of the consciousness core. Historical biological heartbeat loops, reflection/hemisphere semantics, and governed durable-memory integration remain. No training, lease, promotion, deployment, or live-model change occurred. Next slice: compare/rebuild `luna_core` communication and fragment boundaries.

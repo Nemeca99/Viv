@@ -944,8 +944,38 @@
         "training_authorized": false,
         "live_model_changed": false,
         "next_core": "consciousness_core"
+      },
+      "core_rebuild_consciousness_audit": {
+        "state": "VERIFIED_PARTIAL_DETERMINISTIC_CONSCIOUSNESS_SLICE",
+        "v1_source": "D:/LocalAi/AIOS_V1/consciousness_core",
+        "f_source": "F:/AIOS_Clean/consciousness_core",
+        "v2_source": "L:/Continue/FSAA/Luna/AIOS_V2/consciousness_core",
+        "v2_source_present": false,
+        "viv_adapter": "foundation/lib/aios_adapter_consciousness.py",
+        "slice": "foundation/lib/consciousness_core.py",
+        "regression": "foundation/scripts/test_consciousness_core_v1.py",
+        "smoke": "PASS",
+        "manual_requirements_implemented": [
+          "seven deterministic soul fragments",
+          "bounded STM capacity 100",
+          "STM consolidation threshold 80 percent",
+          "explicit LTM commit with source record preservation",
+          "identity drift measurement"
+        ],
+        "evidence": {
+          "mode": "nominal",
+          "master_s_n": 0.6165,
+          "organism_events": 441,
+          "viv_fake_cognition": false,
+          "v2_execution": false
+        },
+        "remaining": "legacy heartbeat/reflection/hemisphere semantics and governed durable memory integration are not yet rebuilt",
+        "training_authorized": false,
+        "live_model_changed": false,
+        "next_core": "luna_core",
+        "next_slice": "compare Luna source and rebuild communication/fragment boundary without GPU authority"
       }
     }
   },
-  "updated_utc": "2026-08-03T22:07:25Z"
+  "updated_utc": "2026-08-03T22:30:02Z"
 }
