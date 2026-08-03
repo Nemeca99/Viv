@@ -1253,6 +1253,20 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "live_cpu_action_dispatch_proof": {
+            "state": "VERIFIED_LIVE_READ_ONLY_CPU_ACTION_EXECUTION",
+            "task_id": "live-action-proof",
+            "action": "action",
+            "target_kind": "cpu_reasoning_probe",
+            "result": "EXECUTED",
+            "child_state": "VERIFIED",
+            "writes_performed": false,
+            "llm_authority": false,
+            "receipt_hash": "788195fb2ac79b82f4c76ab5153a4683617d512a8c8c9c80c05e05ca2c316805",
+            "source_mutation": false,
+            "training": false,
+            "deployment_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }

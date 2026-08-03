@@ -3160,6 +3160,13 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,255` Python files parsed, all configured suites returned zero, Triad architecture `929` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
 
+## 2026-08-04 — live contract-bound CPU action proof
+
+- Executed a real contract-bound `action` against the current local snapshot, targeting the allowlisted `cpu_reasoning_probe` task.
+- The child task returned `VERIFIED`; the parent action returned `EXECUTED` with receipt hash `788195fb2ac79b82f4c76ab5153a4683617d512a8c8c9c80c05e05ca2c316805`.
+- The proof recorded `writes_performed=false` and `llm_authority=false`; no files, memory, S_n, model, or deployment state changed.
+- This proves the governed read-only action path, not unrestricted autonomy or completion of the AIOS rebuild.
+
 ## 2026-08-04 — governed restore effect binding
 
 - Bound `restore` to the existing `foundation/lib/aios_dream.py::perform_dream_cycle` path only when the action contract explicitly includes `dream_consolidation` and sets `side_effects_allowed=true`.
