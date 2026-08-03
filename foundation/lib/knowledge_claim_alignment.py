@@ -34,11 +34,11 @@ def _jaccard(left: str, right: str) -> float:
 def _semantic_compare(left: str, right: str) -> tuple[float, str]:
     """Prefer local embeddings, then preserve the existing provisional bridge."""
     try:
-        from lib.knowledge_semantic_backend import semantic_compare
+        from lib.cpu_semantic_runtime import semantic_compare_verified
 
-        result = semantic_compare(left, right)
+        result = semantic_compare_verified(left, right)
         if result.get("ok"):
-            return float(result["score"]), "ollama_viv_embed"
+            return float(result["score"]), "cpu_specialist:semantic_geometry"
     except Exception:  # noqa: BLE001 — semantic backend remains optional and fail-closed
         pass
     try:

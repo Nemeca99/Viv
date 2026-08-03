@@ -3036,3 +3036,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Verification passed: `CPU_MODEL_REGISTRY_PASS specialists=3 hashes=verified authority=deterministic_cpu_aios`; the existing semantic backend regression also passed all five cases.
 - I did not route the GGUF file into the existing Hugging Face directory loader: that would be an invalid runtime claim. The catalog is verified, but the actual GGUF/CPU runtime adapter remains a distinct next implementation step.
 - No model was loaded, no training or deployment occurred, and no live model changed. Next: implement a read-only CPU GGUF/Ollama readiness adapter that validates the catalog before exposing specialist observations to the autonomous CPU.
+
+## 2026-08-03 — CPU semantic-search runtime gate
+
+- Added `foundation/lib/cpu_semantic_runtime.py` and routed `knowledge_claim_alignment` through it before semantic comparison.
+- The wrapper verifies the CPU specialist catalog first, attaches `specialist_id=semantic_geometry`, records the deterministic CPU authority, and explicitly marks specialist output as non-authoritative. Catalog failure returns `INCONCLUSIVE` before the backend call.
+- Added `foundation/scripts/test_cpu_semantic_runtime_v1.py`. Its mocked positive path and catalog-failure path both pass: `CPU_SEMANTIC_RUNTIME_PASS verified_observation=true fail_closed=true authority_cpu=true`.
+- Existing semantic backend regression passed `5` cases. The source-contract probe remained `INCONCLUSIVE` for semantic alignment and used the documented provisional fallback because no live embedding backend was available; no live model execution is claimed.
+- No model load, training, lease, promotion, deployment, or live-model change occurred. Next: exercise the actual `viv-embed`/GGUF runtime readiness path when Ollama is available, then measure retrieval latency and relevance on a bounded disjoint query pack.

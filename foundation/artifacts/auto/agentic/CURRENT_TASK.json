@@ -897,6 +897,17 @@
         "runtime_load": "NOT_WIRED; GGUF adapter remains separate",
         "training_authorized": false,
         "live_model_changed": false
+      },
+      "cpu_semantic_runtime_adapter": {
+        "state": "VERIFIED_CATALOG_GATED_SEMANTIC_OBSERVATION",
+        "runtime": "foundation/lib/cpu_semantic_runtime.py",
+        "alignment_route": "foundation/lib/knowledge_claim_alignment.py",
+        "regression": "foundation/scripts/test_cpu_semantic_runtime_v1.py",
+        "verified_output": "specialist_id=semantic_geometry; specialist_output_is_authority=false",
+        "catalog_failure": "INCONCLUSIVE_BEFORE_BACKEND_CALL",
+        "live_backend_execution": "not_claimed; source probe used provisional fallback when backend unavailable",
+        "training_authorized": false,
+        "live_model_changed": false
       }
     }
   },
