@@ -1089,6 +1089,21 @@
             "focused_tests": "PASS",
             "foundation_preflight": "PASS_1236_PARSED_21_SUITES_RUST_OK"
           },
+          "dream_cpu_planner": {
+            "state": "VERIFIED_DETERMINISTIC_READ_ONLY_DREAM_SCHEDULER",
+            "source": "foundation/lib/cpu_dream_planner.py",
+            "regression": "foundation/scripts/test_cpu_dream_planner_v1.py",
+            "manual_source": "F:/AIOS_Clean/dream_core",
+            "modes": ["cold_path", "hot_path"],
+            "gates": ["s_n_dormancy", "thin_live_memory", "force_explicit"],
+            "runtime_integration": "foundation/lib/aios_dream.py",
+            "writes_performed": false,
+            "llm_authority": false,
+            "focused_tests": "PASS",
+            "foundation_preflight": "PASS_1239_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }

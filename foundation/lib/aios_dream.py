@@ -14,6 +14,7 @@ from typing import Any
 from lib.master_rid import load_master_rid
 from lib.paths import AUTO_ARTIFACTS, CARMA_ARTIFACTS, VIV_ROOT
 from lib.security_membrane import tool_gate
+from lib.cpu_dream_planner import plan_dream_cycle
 
 # Prefer Viv's Law-7 home; keep CARMA dream provenance mirrored for retrieve.
 from lib.aios_sandbox import DREAM as SANDBOX_DREAM
@@ -139,20 +140,12 @@ def perform_dream_cycle(*, force: bool = False, min_live_chars: int = 80) -> dic
     except Exception:  # noqa: BLE001
         sn = 0.5
 
-    if sn < 0.37 and not force:
-        return {"ok": False, "skipped": "s_n_dormancy", "s_n": sn}
-
     state = _load_state()
     cycle = int(state.get("cycles") or 0) + 1
     corpus = _read_live_corpus()
-    if len(corpus.strip()) < min_live_chars and not force:
-        return {
-            "ok": True,
-            "skipped": "thin_live_memory",
-            "live_chars": len(corpus),
-            "s_n": sn,
-            "hint": "live longer or force=True",
-        }
+    plan = plan_dream_cycle(s_n=sn, live_chars=len(corpus), force=force, min_live_chars=min_live_chars)
+    if not plan["allowed"]:
+        return {"ok": False, "skipped": plan["reason"], "s_n": sn, "plan": plan}
 
     summary = _self_conversation(corpus, sn, cycle)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -196,6 +189,7 @@ def perform_dream_cycle(*, force: bool = False, min_live_chars: int = 80) -> dic
             "sandbox_home": "L:/Continue/Viv/sandbox/",
             "last_s_n": sn,
             "last_live_chars": len(corpus),
+            "last_plan": plan,
         }
     )
     _save_state(state)
@@ -205,6 +199,7 @@ def perform_dream_cycle(*, force: bool = False, min_live_chars: int = 80) -> dic
         "cycle": cycle,
         "s_n": sn,
         "live_chars": len(corpus),
+        "plan": plan,
         "sandbox": "L:/Continue/Viv/sandbox/",
         "dream_path": str(dream_path).replace("\\", "/"),
         "archive_path": str(archive_path).replace("\\", "/"),

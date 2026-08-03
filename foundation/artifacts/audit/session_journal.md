@@ -3143,3 +3143,12 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Focused verification passed: Python compilation, recursive reasoner regression (`node_count=4`, `leaf_count=3`, bounded), and CPU reasoning pipeline regression (`VERIFIED`, `ABSTAIN`, `DENIED`, task execution).
 - Full foundation preflight passed: `1,236` Python files parsed, all configured suites returned zero, Triad architecture `920` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
+
+## 2026-08-03 — deterministic dream scheduling slice
+
+- Compared the F/D `dream_core` implementations. Their intended behavior is pulse-aware consolidation with hot/cold paths, dormancy handling, and memory consolidation; the legacy implementation also mixes scheduling with file writes and model-era assumptions.
+- Backed up `foundation/lib/aios_dream.py` before editing at `foundation/artifacts/auto/agentic/backups/pre_dream_planner_20260803T175400Z/`.
+- Added `foundation/lib/cpu_dream_planner.py` as a read-only deterministic scheduler. It selects `cold_path` or `hot_path`, refuses low-S_n or thin-memory work unless explicitly forced, and exposes no write or LLM authority.
+- Integrated the planner into `foundation/lib/aios_dream.py`; the existing security membrane remains responsible for every write. Added `foundation/scripts/test_cpu_dream_planner_v1.py` and verified normal, hot, dormancy, thin-memory, and forced cases.
+- Full foundation preflight passed: `1,239` Python files parsed, all configured suites returned zero, Triad architecture `922` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No dream cycle was executed, and no training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
