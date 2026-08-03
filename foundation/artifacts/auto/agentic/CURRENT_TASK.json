@@ -1284,11 +1284,28 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "sandbox_cpu_boundary": {
+            "policy_role": "VERIFIED_READ_ONLY_NEUROSYMBOLIC_POLICY_BOUNDARY",
+            "source": "foundation/lib/cpu_sandbox_boundary.py",
+            "manual_sources": ["F:/AIOS_Clean/docs/SANDBOX_SECURITY_ARCHITECTURE.md", "F:/AIOS_Clean/main_core/audit_core/sandbox_security.py", "D:/LocalAi/AIOS_V1/containment/filesystem_guard.py"],
+            "existing_effect_surface": "foundation/lib/aios_coder.py",
+            "runtime_task": "cpu_sandbox_probe",
+            "regression": "foundation/scripts/test_cpu_sandbox_boundary_v1.py",
+            "checks": ["sandbox_path_containment", "extension_and_size_limits", "static_code_scan", "operation_allowlist", "backup_before_write_plan"],
+            "state": "VERIFIED_PLAN_ONLY",
+            "effect_authorized": false,
+            "writes_performed": false,
+            "executes": false,
+            "promotes": false,
+            "core_inventory": "27_wired_6_source_only",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }
       }
     }
   },
-  "updated_utc": "2026-08-04T06:15:00Z"
+  "updated_utc": "2026-08-04T06:45:00Z"
 }

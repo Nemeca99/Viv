@@ -56,7 +56,7 @@ CORE_CONTRACTS: tuple[CoreContract, ...] = (
     CoreContract("vision_core", "vision peripheral", ("input", "normalization", "sandbox"), ("F:/AIOS_Clean/vision_core", "D:/LocalAi/AIOS_V1/vision_core"), ("foundation/lib/aios_adapter_vision.py",), 35),
     CoreContract("dataset_core", "dataset indexing and provenance", ("manifest", "hash", "scope", "replay"), ("F:/AIOS_Clean/dataset_core", "D:/LocalAi/AIOS_V1/dataset_core"), ("foundation/lib/aios_adapter_dataset.py",), 10),
     CoreContract("knowledge_core", "knowledge absorption", ("source", "verify", "route", "abstain"), ("F:/AIOS_Clean/knowledge_core", "D:/LocalAi/AIOS_V1/knowledge_core"), ("foundation/lib/aios_knowledge.py",), 7),
-    CoreContract("sandbox_core", "contained execution", ("contain", "budget", "rollback", "evidence"), ("F:/AIOS_Clean/sandbox_core", "D:/LocalAi/AIOS_V1/sandbox_core"), ("sandbox",), 16),
+    CoreContract("sandbox_core", "contained execution", ("contain", "budget", "rollback", "evidence"), ("F:/AIOS_Clean/sandbox_core", "D:/LocalAi/AIOS_V1/sandbox_core", "F:/AIOS_Clean/main_core/audit_core/sandbox_security.py", "D:/LocalAi/AIOS_V1/containment/filesystem_guard.py"), ("sandbox", "foundation/lib/cpu_sandbox_boundary.py", "foundation/lib/aios_coder.py"), 16),
     CoreContract("steel_brain_core", "adversarial CPU judge", ("compare", "deny", "equilibrium", "non_authority"), ("F:/AIOS_Clean/steel_brain_core", "D:/LocalAi/AIOS_V1/steel_brain_core"), ("foundation/lib/steel_judge.py",), 4),
     CoreContract("governance_core", "authority and votes", ("quorum", "authority", "audit", "deny"), ("F:/AIOS_Clean/governance_core", "D:/LocalAi/AIOS_V1/governance_core"), ("foundation/lib/autonomy_gate.py",), 45),
     CoreContract("nox_forge_core", "Rust sensory governor", ("ffi", "hash", "safety", "rollback"), ("F:/AIOS_Clean/nox_forge_core", "D:/LocalAi/AIOS_V1/nox_forge_core"), ("foundation/lib/aios_adapter_nox.py",), 30),
@@ -67,9 +67,7 @@ CORE_CONTRACTS: tuple[CoreContract, ...] = (
 def _exists(relative: str) -> bool:
     if relative.startswith("foundation/"):
         return (VIV_ROOT / relative).exists()
-    if relative == "security_core":
-        return (VIV_ROOT / "security_core").exists()
-    return False
+    return (VIV_ROOT / relative).exists()
 
 
 def contract_report() -> dict[str, Any]:

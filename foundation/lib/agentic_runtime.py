@@ -453,6 +453,15 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_rid_shadow_probe_error:{exc}"
 
+    if kind == "cpu_sandbox_probe":
+        try:
+            from lib.cpu_sandbox_boundary import evaluate_request
+
+            result = evaluate_request(payload)
+            return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_sandbox_probe_error:{exc}"
+
     if kind == "cpu_action_execute":
         try:
             from lib.cpu_action_executor import execute_contract

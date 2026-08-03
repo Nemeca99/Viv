@@ -3152,6 +3152,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Focused regression passed: involution, phase gate, magnitude preservation, invalid-axis rejection, and side-effect assertions.
 - No live RID mutation, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
 
+## 2026-08-04 — neurosymbolic CPU sandbox boundary
+
+- Compared the F sandbox security architecture, its auditor sandbox manager/security modules, the D filesystem guard, and Viv's existing `aios_sandbox.py`/`aios_coder.py` surfaces.
+- Added `foundation/lib/cpu_sandbox_boundary.py` as a pure policy evaluator for sandbox paths, extensions, file-size limits, static code hazards, and operation allowlists.
+- Added `cpu_sandbox_probe` to the runtime and read-only CPU task-dispatch allowlist. A proposed write returns `VERIFIED_PLAN_ONLY`, requires backup before any effect, and grants no write, execute, or promotion authority.
+- Corrected `core_contracts.py` so non-foundation Viv surfaces are actually checked. Inventory now reports `27 wired` and `6 source-only` instead of falsely classifying the existing sandbox surface as absent.
+- Focused regressions passed; no sandbox file was written, executed, promoted, or deleted.
+
 ## 2026-08-04 — state-derived CPU action policy
 
 - Extended `foundation/lib/cpu_choice_simulator.py` with an explicit reference policy: low S_n with restoration due selects `restore`; queued work with sufficient S_n selects `action`; no queued work selects `idle`.
