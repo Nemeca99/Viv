@@ -1,18 +1,20 @@
 {
   "ok": true,
-  "at": "2026-08-03T18:29:59+00:00",
+  "at": "2026-08-03T18:52:55+00:00",
   "old_registry_sha256": "56a11543a1154717b27a61801a97cf5d377fdffd82cd700f1df0f8ef355beeb2",
-  "n_added": 0,
+  "n_added": 1,
   "n_removed": 0,
   "n_changed": 0,
-  "added": [],
+  "added": [
+    "foundation/scripts/build_mouth_cpu_gpu_role_refinement_v2.py"
+  ],
   "removed": [],
   "changed": [],
   "allow_changed": false,
   "note": "Intentional freeze of current inventory after review. Unexplained removals block freeze; changed signatures require --allow-changed.",
-  "backup": "L:/Continue/Viv/foundation/triad_boundary_registry.bak_20260803T182959Z.json",
-  "new_registry_sha256": "56a11543a1154717b27a61801a97cf5d377fdffd82cd700f1df0f8ef355beeb2",
+  "backup": "L:/Continue/Viv/foundation/triad_boundary_registry.bak_20260803T185255Z.json",
+  "new_registry_sha256": "264e36be0572a0e78e7a57f2cd7aa2a002aa9a1298cb6908912c1f56f3591f35",
   "freeze_ok": true,
-  "frozen_modules": 532,
+  "frozen_modules": 533,
   "review_artifact": "L:/Continue/Viv/foundation/artifacts/auto/triad/boundary_registry_review_latest.json"
 }

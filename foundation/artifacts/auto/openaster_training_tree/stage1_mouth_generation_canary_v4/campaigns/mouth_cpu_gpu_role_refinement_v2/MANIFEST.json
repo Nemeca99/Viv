@@ -1,0 +1,16 @@
+{
+  "all_targets_cpu_judge_pass": true,
+  "deployment_changed": false,
+  "disjoint_from_source_campaign": true,
+  "jsonl": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_cpu_gpu_role_refinement_v2/cpu_gpu_role_refinement_hold.jsonl",
+  "jsonl_sha256": "44eb3cd06fc2e2eb853b8356d8d253143df6b70bf21610e58e3eefbb436895d6",
+  "next_action": "separate_review_before_any_admission",
+  "optimizer_eligible_any": false,
+  "promotion_allowed": false,
+  "rows": 8,
+  "run_authorized": false,
+  "schema_version": "mouth_cpu_gpu_role_refinement_v2",
+  "source_campaign": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v5",
+  "status": "REFINEMENT_PACK_HOLD_ONLY",
+  "training_authorized": false
+}

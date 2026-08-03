@@ -1,19 +1,6 @@
 {
-  "authorization_scope": {
-    "campaign_id": "mouth_training_recovery_v3_campaign_v7",
-    "checkpoint_steps": [
-      32,
-      64,
-      96,
-      128
-    ],
-    "deployment_authorized": false,
-    "learning_rate": 0.0001,
-    "optimizer_steps": 128,
-    "promotion_authorized": false
-  },
-  "campaign_id": "mouth_training_recovery_v3_campaign_v7",
-  "created_utc": "2026-08-03T18:28:56Z",
+  "campaign_id": "mouth_training_recovery_v3_campaign_v8",
+  "created_utc": "2026-08-03T18:52:50Z",
   "deployment_allowed": false,
   "dpo_authorized": false,
   "eval_rows": {
@@ -22,7 +9,6 @@
     "development": 64,
     "legacy": 64
   },
-  "execution_success_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v7/EXECUTION_SUCCESS_REPORT.json",
   "files": {
     "auditor_negative": {
       "optimizer_eligible": false,
@@ -50,18 +36,18 @@
     },
     "train": {
       "optimizer_eligible": true,
-      "path": "train_268.jsonl",
-      "rows": 268,
-      "sha256": "118aee7a21feba79bfa5612744c64e53e43dcabd7636793d21b7c43182c04fe4"
+      "path": "train_264.jsonl",
+      "rows": 264,
+      "sha256": "ad2b5036cd376c7a8c193e284ffb07fa1587f934753d160c5063fae6ac54e594"
     }
   },
-  "gpu_steps": 128,
-  "lease_opened": true,
+  "gpu_steps": 0,
+  "lease_opened": false,
   "lora_authorized": false,
-  "next_action": "read_only_generation_validation_then_separate_promotion_review",
+  "next_action": "preflight_only_then_separate_execution_authorization",
   "promotion_allowed": false,
-  "run_authorized": true,
-  "schema_version": "mouth_training_recovery_v3_campaign_v7",
+  "run_authorized": false,
+  "schema_version": "mouth_training_recovery_v3_campaign_v8",
   "source_eval_rebuild": {
     "manifest_sha256": "27dd58a33a8fd024f26cafa8932b3799422fc4f2ba12e5707b21beee9130b01f",
     "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_eval_rebuild_v1"
@@ -72,11 +58,11 @@
     "sha256": "c948a33e1fae6ec7e91a62426fa4491cbf7bd7cef0f86fc4720de4730e220d57"
   },
   "source_train_refinement": {
-    "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_cpu_gpu_role_refinement_v1/cpu_gpu_role_refinement_hold.jsonl",
-    "rows": 12,
-    "sha256": "c704ab18f6f5e8e32b17fc6a092413f02e24b0f01e489b7912ed8e1d84804eca"
+    "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_cpu_gpu_role_refinement_v2/cpu_gpu_role_refinement_hold.jsonl",
+    "rows": 8,
+    "sha256": "44eb3cd06fc2e2eb853b8356d8d253143df6b70bf21610e58e3eefbb436895d6"
   },
-  "status": "CAMPAIGN_EXECUTION_COMPLETE",
-  "train_rows": 268,
-  "training_authorized": true
+  "status": "CAMPAIGN_ADMITTED_TRAINING_CLOSED",
+  "train_rows": 264,
+  "training_authorized": false
 }
