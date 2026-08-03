@@ -1,0 +1,14 @@
+{
+  "adapter_reloaded": true,
+  "adapter_saved": true,
+  "created_utc": "2026-08-03T19:30:31Z",
+  "gpu_steps": 0,
+  "model_kind": "random_initialized_tiny_qwen2",
+  "real_campaign_touched": false,
+  "real_parent_touched": false,
+  "run_authorized": false,
+  "schema_version": "trl_peft_tiny_qwen_smoke_v1",
+  "status": "PASS",
+  "train_steps": 1,
+  "training_authorized": false
+}

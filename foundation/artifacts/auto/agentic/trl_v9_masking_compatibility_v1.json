@@ -1,0 +1,18 @@
+{
+  "campaign_id": "mouth_training_recovery_v3_campaign_v9",
+  "completion_only_loss": true,
+  "created_utc": "2026-08-03T19:30:25Z",
+  "failures": [],
+  "gpu_steps": 0,
+  "model_loaded": false,
+  "peft_version": "0.19.1",
+  "rows_checked": 276,
+  "run_authorized": false,
+  "schema_version": "trl_v9_masking_compatibility_v1",
+  "status": "PASS",
+  "train_rows": 276,
+  "train_sha256": "a32c86b10b5560fdbe2cc2448dbdb8f3189ba0602b1db39c1316eed6004b5790",
+  "training_authorized": false,
+  "transformers_version": "4.51.3",
+  "trl_version": "0.17.0"
+}
