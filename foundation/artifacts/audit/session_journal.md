@@ -2810,6 +2810,7 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 
 - Fresh validation of `mouth_training_recovery_v3_campaign_v3` returned `VALIDATION_PASS_AUTH_CLOSED` with no findings. The package contains 256 admitted train rows and its four evaluation packs remain hash-bound; `gpu_steps=0`, `lease_opened=false`, `training_authorized=false`, `run_authorized=false`, and `next_action=preflight_only_then_separate_execution_authorization`.
 - This confirms the simulated mouth pass has not silently opened the real campaign. No model load, lease, GPU step, promotion, deployment, parent mutation, or live-model mutation occurred. The exact campaign is technically ready for a separate named authorization decision, not automatically authorized.
+- A fresh manifest integrity check recomputed every bound file: train 256/256, development 64/64, blind 32/32, legacy 64/64, and auditor-negative 20/20. All five SHA-256 values matched the manifest; findings were empty.
 
 ## 2026-08-03 — mode-locked mouth rendering repair
 
