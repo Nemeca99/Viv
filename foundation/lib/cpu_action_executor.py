@@ -30,7 +30,7 @@ def execute_contract(contract: Mapping[str, Any], state: Mapping[str, Any]) -> d
     elif action == "action" and contract.get("side_effects_allowed") and "task_dispatch" in effects:
         payload = contract.get("effect_payload") if isinstance(contract.get("effect_payload"), dict) else {}
         target_kind = str(payload.get("kind") or "").strip()
-        allowed = {"cpu_core_probe", "cpu_core_survey", "cpu_reasoning_probe", "cpu_choice_simulation", "cpu_choice_live_probe", "cpu_cleanup_plan", "cpu_rid_shadow_probe", "cpu_sandbox_probe", "cpu_infra_probe"}
+        allowed = {"cpu_core_probe", "cpu_core_survey", "cpu_reasoning_probe", "cpu_choice_simulation", "cpu_choice_live_probe", "cpu_cleanup_plan", "cpu_rid_shadow_probe", "cpu_sandbox_probe", "cpu_infra_probe", "cpu_enterprise_probe"}
         if target_kind not in allowed:
             result = {"ok": False, "state": "DENIED", "reason": "task_kind_not_allowlisted", "verification": verification, "action_executed": False, "writes_performed": False, "effect": "task_dispatch", "target_kind": target_kind}
         else:

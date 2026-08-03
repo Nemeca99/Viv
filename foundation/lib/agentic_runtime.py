@@ -471,6 +471,15 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_infra_probe_error:{exc}"
 
+    if kind == "cpu_enterprise_probe":
+        try:
+            from lib.cpu_enterprise_policy import probe
+
+            result = probe(payload)
+            return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_enterprise_probe_error:{exc}"
+
     if kind == "cpu_action_execute":
         try:
             from lib.cpu_action_executor import execute_contract

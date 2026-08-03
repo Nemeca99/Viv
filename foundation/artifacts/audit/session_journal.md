@@ -3168,6 +3168,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Focused tests and a runtime probe passed with all supplied SLOs passing. Contract inventory now reports `28 wired` and `5 source-only` cores.
 - No deployment, rollback, training, model load, lease, promotion, or source mutation occurred.
 
+## 2026-08-04 — fail-closed enterprise CPU policy surface
+
+- Compared the F enterprise implementation. Its network, key-generation, and broad automation behaviors were not imported into the CPU authority path.
+- Added `foundation/lib/cpu_enterprise_policy.py` for deterministic operation classification, consent/Architect authority checks, audit digests, and explicit denial of external effects.
+- Added `cpu_enterprise_probe` to the governed runtime and read-only task-dispatch allowlist. Read/audit can be evaluated; integration, administration, export, and key rotation require explicit consent and Architect authority, while the probe itself still performs no effect.
+- Focused tests passed. Contract inventory now reports `29 wired` and `4 source-only` cores.
+- No external integration, data export, key rotation, training, deployment, or source mutation occurred.
+
 ## 2026-08-04 — state-derived CPU action policy
 
 - Extended `foundation/lib/cpu_choice_simulator.py` with an explicit reference policy: low S_n with restoration due selects `restore`; queued work with sufficient S_n selects `action`; no queued work selects `idle`.

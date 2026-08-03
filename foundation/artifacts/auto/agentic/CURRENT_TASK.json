@@ -1318,11 +1318,27 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "enterprise_cpu_policy": {
+            "state": "VERIFIED_FAIL_CLOSED_POLICY_AND_AUDIT_SURFACE",
+            "source": "foundation/lib/cpu_enterprise_policy.py",
+            "manual_source": "F:/AIOS_Clean/enterprise_core",
+            "runtime_task": "cpu_enterprise_probe",
+            "regression": "foundation/scripts/test_cpu_enterprise_policy_v1.py",
+            "checks": ["operation_allowlist", "architect_consent_gate", "audit_digest", "external_effect_denial"],
+            "read_and_audit": "allowed_without_external_effect",
+            "integrate_admin_export_key_rotation": "consent_and_architect_authority_required",
+            "writes_performed": false,
+            "external_effect": false,
+            "llm_authority": false,
+            "core_inventory": "29_wired_4_source_only",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }
       }
     }
   },
-  "updated_utc": "2026-08-04T07:15:00Z"
+  "updated_utc": "2026-08-04T07:35:00Z"
 }
