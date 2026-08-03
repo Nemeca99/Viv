@@ -3160,6 +3160,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Corrected `core_contracts.py` so non-foundation Viv surfaces are actually checked. Inventory now reports `27 wired` and `6 source-only` instead of falsely classifying the existing sandbox surface as absent.
 - Focused regressions passed; no sandbox file was written, executed, promoted, or deleted.
 
+## 2026-08-04 — deterministic CPU infrastructure operations judge
+
+- Compared the F/D `infra_core` deployment and baseline material with Viv's existing foundation health gate. Deployment/cloud tooling remains outside the CPU authority path.
+- Added `foundation/lib/cpu_infra_ops_judge.py` for read-only foundation health observation, explicit SLO comparison, fail-closed missing-data handling, and rollback recommendation.
+- Added `cpu_infra_probe` to the governed runtime and read-only task-dispatch allowlist. Stress testing is disabled by default to avoid unnecessary WMI/CPU load; no deployment or rollback effect is implemented.
+- Focused tests and a runtime probe passed with all supplied SLOs passing. Contract inventory now reports `28 wired` and `5 source-only` cores.
+- No deployment, rollback, training, model load, lease, promotion, or source mutation occurred.
+
 ## 2026-08-04 — state-derived CPU action policy
 
 - Extended `foundation/lib/cpu_choice_simulator.py` with an explicit reference policy: low S_n with restoration due selects `restore`; queued work with sufficient S_n selects `action`; no queued work selects `idle`.

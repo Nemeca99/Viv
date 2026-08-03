@@ -1301,11 +1301,28 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "infra_cpu_ops_judge": {
+            "state": "VERIFIED_READ_ONLY_HEALTH_SLO_ROLLBACK_RECOMMENDER",
+            "source": "foundation/lib/cpu_infra_ops_judge.py",
+            "manual_source": "F:/AIOS_Clean/infra_core/ops/baseline.yaml",
+            "runtime_task": "cpu_infra_probe",
+            "regression": "foundation/scripts/test_cpu_infra_ops_judge_v1.py",
+            "checks": ["foundation_health_gate", "explicit_slo_comparison", "missing_data_inconclusive", "rollback_recommendation"],
+            "stress_default": false,
+            "wmi_polling": false,
+            "deployment_changed": false,
+            "rollback_performed": false,
+            "writes_performed": false,
+            "llm_authority": false,
+            "core_inventory": "28_wired_5_source_only",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }
       }
     }
   },
-  "updated_utc": "2026-08-04T06:45:00Z"
+  "updated_utc": "2026-08-04T07:15:00Z"
 }
