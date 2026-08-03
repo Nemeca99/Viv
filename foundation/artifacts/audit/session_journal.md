@@ -3160,6 +3160,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,255` Python files parsed, all configured suites returned zero, Triad architecture `929` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
 
+## 2026-08-04 — governed restore effect binding
+
+- Bound `restore` to the existing `foundation/lib/aios_dream.py::perform_dream_cycle` path only when the action contract explicitly includes `dream_consolidation` and sets `side_effects_allowed=true`.
+- The effect path remains behind the existing dream write gates. The focused regression used a mocked dream result and did not execute a real dream cycle or write artifacts.
+- `action` remains denied with `effect_binding_closed`; missing restore effect authorization is also denied.
+- Full foundation preflight passed: `1,262` Python files parsed, all configured suites returned zero, Triad architecture `932` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No real dream cycle, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
+
 ## 2026-08-04 — fail-closed CPU action executor
 
 - Added `foundation/lib/cpu_action_executor.py` and the autonomous `cpu_action_execute` task. It re-verifies the contract against the current live snapshot before any execution path.

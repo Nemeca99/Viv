@@ -1225,6 +1225,21 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "game_cpu_restore_effect_binding": {
+            "state": "VERIFIED_GOVERNED_DREAM_CONSOLIDATION_BINDING",
+            "source": "foundation/lib/cpu_action_executor.py",
+            "effect": "dream_consolidation",
+            "underlying_path": "foundation/lib/aios_dream.py::perform_dream_cycle",
+            "contract_requirement": "side_effects_allowed=true_and_allowed_effects_contains_dream_consolidation",
+            "focused_regression": "PASS_WITH_MOCKED_DREAM_RESULT",
+            "real_dream_cycle_executed": false,
+            "action_binding": "restore",
+            "action_binding_state": "OPEN_ONLY_WITH_EXPLICIT_EFFECT_CONTRACT",
+            "action_binding_other": "action remains closed",
+            "foundation_preflight": "PASS_1262_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+from unittest.mock import patch
 from pathlib import Path
 
 FOUNDATION = Path(__file__).resolve().parents[1]
@@ -23,6 +24,10 @@ def main() -> int:
     action = build_contract(task_id="action", action="action", state=state)
     closed = execute_contract(action, state)
     assert closed["ok"] is False and closed["reason"] == "effect_binding_closed"
+    restore = build_contract(task_id="restore", action="restore", state=state, allowed_effects=("dream_consolidation",), side_effects_allowed=True)
+    with patch("lib.aios_dream.perform_dream_cycle", return_value={"ok": True, "cycle": 1}) as dream:
+        restored = execute_contract(restore, state)
+    assert restored["ok"] is True and restored["state"] == "EXECUTED" and restored["writes_performed"] is True and dream.called
     drift = execute_contract(idle, dict(state, s_n=0.2))
     assert drift["ok"] is False and drift["reason"] == "contract_verification_failed"
     live = capture_live()
