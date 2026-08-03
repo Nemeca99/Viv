@@ -973,7 +973,18 @@
         "training_authorized": false,
         "live_model_changed": false,
         "next_core": "luna_core",
-        "next_slice": "compare Luna source and rebuild communication/fragment boundary without GPU authority"
+        "next_slice": "compare Luna source and rebuild communication/fragment boundary without GPU authority",
+        "luna_slice": {
+          "state": "VERIFIED_DETERMINISTIC_CPU_RESPONSE_PLANNER",
+          "source": "foundation/lib/luna_core.py",
+          "regression": "foundation/scripts/test_luna_core_v1.py",
+          "behavior": "trait classification, linguistic operator, token budget, soul routing, and telemetry containment plan",
+          "gpu_or_api_role": "surface_rendering_only",
+          "fact_authority": "retrieval_or_explicit_user_input",
+          "llm_authority": false,
+          "training_authorized": false,
+          "live_model_changed": false
+        }
       }
     }
   },

@@ -3084,3 +3084,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Extended `foundation/lib/aios_adapter_consciousness.py` with a read-only `consciousness_state()` surface. Adapter smoke passed with fragment `oracle`, identity drift `false`, organism/plant paths intact, and `viv_fake_cognition=false`.
 - Regression verification passed: `py_compile`, consciousness-core test, triad architecture (`906` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, no registry drift), current-task verification, and knowledge-source contract.
 - This is a verified partial rebuild, not completion of the consciousness core. Historical biological heartbeat loops, reflection/hemisphere semantics, and governed durable-memory integration remain. No training, lease, promotion, deployment, or live-model change occurred. Next slice: compare/rebuild `luna_core` communication and fragment boundaries.
+
+## 2026-08-03 — full-core rebuild: Luna CPU response boundary
+
+- Compared `F:/AIOS_Clean/luna_core` and `D:/LocalAi/AIOS_V1/luna_core` against the manual. The source defines personality, soul selection, linguistic calculus, response-value/token budgeting, and response quality assessment; GPU/model generation is treated as a renderer in the rebuilt boundary.
+- Added `foundation/lib/luna_core.py` without copying the legacy tree. It builds a deterministic response plan containing trait classification, interrogative operator selection, minimal-sufficient token budget, soul-fragment routing, grounding authority, and telemetry containment policy.
+- Added `foundation/scripts/test_luna_core_v1.py`. Initial regression caught and corrected an operator ranking sign error; the corrected test passed. It also verifies ordinary-mode telemetry containment and `llm_authority=false`.
+- Triad architecture passed after the new module/test: `908` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, and `registry_drift=false`.
+- This is a verified CPU planning boundary, not a complete Luna implementation or a voice-model integration. No training, lease, promotion, deployment, or live-model change occurred. The standard LLM/API remains deferred until the CPU cores and their gates are rebuilt.
