@@ -3144,6 +3144,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,236` Python files parsed, all configured suites returned zero, Triad architecture `920` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
 
+## 2026-08-04 — recursive RID integrity shadow
+
+- Reviewed the supplied Monte Carlo experiment. The useful deterministic property is the normalized pairwise-product involution; the bell-like starting distribution is not treated as a stability predictor.
+- Added `foundation/lib/rid_recursive_shadow.py` as a read-only CPU shadow. It verifies normalized triad -> transform -> transform round-trips, preserves the original magnitude separately, and optionally enforces an A/B heartbeat phase.
+- Added `cpu_rid_shadow_probe` to the runtime and to the allowlisted read-only CPU task-dispatch surface. It rejects zero/non-finite axes, invalid phases, and involution mismatches. It does not read, write, replace, or mutate RID telemetry or Master S_n.
+- Focused regression passed: involution, phase gate, magnitude preservation, invalid-axis rejection, and side-effect assertions.
+- No live RID mutation, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
+
 ## 2026-08-04 — state-derived CPU action policy
 
 - Extended `foundation/lib/cpu_choice_simulator.py` with an explicit reference policy: low S_n with restoration due selects `restore`; queued work with sufficient S_n selects `action`; no queued work selects `idle`.

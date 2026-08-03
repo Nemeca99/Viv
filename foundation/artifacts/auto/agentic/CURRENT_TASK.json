@@ -1267,11 +1267,28 @@
             "training": false,
             "deployment_changed": false
           },
+          "rid_recursive_shadow": {
+            "state": "VERIFIED_READ_ONLY_INVOLUTION_HEARTBEAT_SHADOW",
+            "source": "foundation/lib/rid_recursive_shadow.py",
+            "attachment_source": "C:/Users/nemec/.codex/attachments/cb93bb7e-f82f-4b54-b1bc-496587385ade/pasted-text.txt",
+            "runtime_task": "cpu_rid_shadow_probe",
+            "regression": "foundation/scripts/test_rid_recursive_shadow_v1.py",
+            "checks": ["normalized_pairwise_product_involution", "two_phase_heartbeat", "magnitude_preserved_separately", "zero_axis_rejection"],
+            "role": "recursive_integrity_and_heartbeat_shadow",
+            "predictor": false,
+            "replaces_master_s_n": false,
+            "mutates_rid_or_master": false,
+            "writes_performed": false,
+            "llm_authority": false,
+            "focused_regression": "PASS",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }
       }
     }
   },
-  "updated_utc": "2026-08-03T22:52:33Z"
+  "updated_utc": "2026-08-04T06:15:00Z"
 }
