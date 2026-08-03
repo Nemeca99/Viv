@@ -121,6 +121,31 @@
     "deployment_changed": false,
     "next_action": "separate_named_authorization_then_bounded_execution"
   },
+  "v6_campaign_execution": {
+    "state": "COMMITTED_NO_PROMOTION_READ_ONLY_EVALUATION_COMPLETE",
+    "campaign_id": "mouth_training_recovery_v3_campaign_v6",
+    "run_id": "mouth_training_recovery_v3_campaign_v6_20260803T175508Z",
+    "success_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v6/EXECUTION_SUCCESS_REPORT.json",
+    "success_report_sha256": "B81333F33F5557B25CB01E8366CAEF84040A598C460243279E5820F66F340509",
+    "adapter": "foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter",
+    "optimizer_steps": 128,
+    "elapsed_s": 1155.282,
+    "initial_mean_response_nll": 4.114769303531789,
+    "final_mean_response_nll": 0.7423137758872402,
+    "initial_token_accuracy": 0.4530593180756656,
+    "final_token_accuracy": 0.7839016036120193,
+    "supervised_tokens": 6423,
+    "nll_reduction_fraction": 0.8195977171186494,
+    "law5_commit_allowed": true,
+    "commit_master_s_n": 0.2864,
+    "raw_generation": {"pass": 48, "hold": 46, "fail": 8, "rows": 102, "toolbleed": 0},
+    "contained_generation": {"pass": 99, "hold": 3, "fail": 0, "rows": 102, "toolbleed": 0, "acronym_failures": 0},
+    "semantic_artifact": "sandbox/mouth_training_recovery_v3_campaign_v6_semantic_eval.json",
+    "runtime_shadow_artifact": "sandbox/mouth_training_recovery_v3_campaign_v6_runtime_shadow.json",
+    "promotion_allowed": false,
+    "deployment_changed": false,
+    "next_action": "retain_v6_as_challenger; repair_three_specific_holds_before_separate_promotion_review"
+  },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
     "semantic_wikipedia_index": false,
@@ -515,5 +540,5 @@
   "task_list_sha256": null,
   "total_tasks": 0,
   "trace_id": "9deaa1c4cd7c4d63b324819ede977599",
-  "updated_utc": "2026-08-03T17:53:49Z"
+  "updated_utc": "2026-08-03T18:21:16Z"
 }

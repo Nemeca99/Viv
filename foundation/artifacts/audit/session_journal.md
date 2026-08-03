@@ -2872,3 +2872,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Named preflight returned `PREFLIGHT_PASS_TRAINING_CLOSED`; closed runner validation returned `VALIDATION_PASS_AUTH_CLOSED`; both had empty findings, `gpu_steps=0`, `lease_opened=false`, `training_authorized=false`, and `run_authorized=false`.
 - Fresh authority at `2026-08-03T17:53:49Z` was `Master S_n=0.6721`, `ACTIVE`. Full foundation preflight then passed with 1,178 parsed Python files, 883 architecture files, 100% coverage, 531 boundary modules, zero errors, all listed Python tests passing, and Rust/security Cargo tests passing.
 - No V6 lease, optimizer step, adapter commit, promotion, deployment, parent mutation, or live-model mutation has occurred. The next action is a separately recorded one-time authorization for this exact named V6 campaign, if the current authority remains valid.
+
+## 2026-08-03 — V6 execution and read-only generation evaluation
+
+- Fresh named authorization was recorded after a pre-authorization backup at `foundation/artifacts/auto/agentic/backups/pre_v6_named_authorization_20260803T125503Z`. The exact campaign was authorized for 128 steps at LR `1e-4`; promotion and deployment remained false.
+- V6 completed `128/128` optimizer steps in `1,155.282` seconds over 268 rows and 6,423 supervised tokens. Mean response NLL improved `4.1147693 -> 0.7423138`; token accuracy improved `0.4530593 -> 0.7839016`; NLL reduction fraction was `0.8195977`.
+- Law 5 allowed commit at `Master S_n=0.2864` with reason `OK`. Success receipt SHA-256 is `B81333F33F5557B25CB01E8366CAEF84040A598C460243279E5820F66F340509`. Adapter: `foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter`.
+- Read-only generated-output evaluation on 102 cases was raw `48 PASS / 46 HOLD / 8 FAIL`, with zero toolbleed. CPU runtime containment produced `99 PASS / 3 HOLD / 0 FAIL`, zero toolbleed, and zero acronym failures.
+- Remaining holds are narrow: one CPU-vs-GPU role prompt abstention and two memory/persistence service-attribution prompts whose wording was semantically close but did not satisfy the exact CPU judge. V6 is retained as a challenger; no promotion, deployment, parent mutation, or live-model mutation occurred.

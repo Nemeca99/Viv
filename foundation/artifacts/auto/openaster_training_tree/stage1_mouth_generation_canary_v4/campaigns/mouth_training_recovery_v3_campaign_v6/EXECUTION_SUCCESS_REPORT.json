@@ -1,0 +1,114 @@
+{
+  "adapter_final": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter",
+  "adapter_staging": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter",
+  "authority": {
+    "deployment_authorized": false,
+    "promotion_authorized": false,
+    "run_authorized": true,
+    "training_authorized": true
+  },
+  "campaign_id": "mouth_training_recovery_v3_campaign_v6",
+  "deployment_changed": false,
+  "gpu_steps": 128,
+  "lease_opened": true,
+  "promotion_allowed": false,
+  "recorded_utc": "2026-08-03T18:15:55Z",
+  "run_id": "mouth_training_recovery_v3_campaign_v6_20260803T175508Z",
+  "schema_version": "execution_success_report_v1",
+  "security_commit": {
+    "allowed": true,
+    "decision_id": "55a16b5816c738e172cb1c838f093242",
+    "disposition": "ALLOW",
+    "final_root": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z",
+    "hard_threshold": 0.37,
+    "lease_token": null,
+    "manifest_hash": "903ce44399aea08f15fc3c79e2ba9bef3c0023ceed4a2cd73765a83d7ab1c7f1",
+    "master_rid": {
+      "master_s_n": 0.2864,
+      "n_subsystems": 3,
+      "status": "DORMANT",
+      "timestamp": "2026-08-03T18:15:53.770942+00:00"
+    },
+    "master_s_n": 0.2864,
+    "normalized_paths": [
+      "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z"
+    ],
+    "payload": null,
+    "policy_version": "0.2.9",
+    "quarantine_id": null,
+    "reason": "OK",
+    "rule": "training_lease_commit",
+    "staging_root": null,
+    "training_soft_band": true,
+    "training_soft_floor": 0.25
+  },
+  "status": "EXECUTION_COMMITTED_NO_PROMOTION",
+  "training": {
+    "adapter_final": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter",
+    "adapter_staging": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter",
+    "checkpoint_saves": [
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_32",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_32",
+        "step": 32
+      },
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_64",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_64",
+        "step": 64
+      },
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_96",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_96",
+        "step": 96
+      },
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_128",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v6_20260803T175508Z/adapter_step_128",
+        "step": 128
+      }
+    ],
+    "deployment_changed": false,
+    "elapsed_s": 1155.282,
+    "final_teacher_forced": {
+      "examples": 268,
+      "finite": true,
+      "max_response_nll": 2.2790920734405518,
+      "mean_response_nll": 0.7423137758872402,
+      "min_response_nll": 0.07000328600406647,
+      "supervised_tokens": 6423,
+      "token_accuracy": 0.7839016036120193
+    },
+    "initial_teacher_forced": {
+      "examples": 268,
+      "finite": true,
+      "max_response_nll": 7.643118381500244,
+      "mean_response_nll": 4.114769303531789,
+      "min_response_nll": 0.8001651763916016,
+      "supervised_tokens": 6423,
+      "token_accuracy": 0.4530593180756656
+    },
+    "microbatches": 512,
+    "nested_lease": false,
+    "nll_reduction_fraction": 0.8195977171186494,
+    "ok": true,
+    "optimizer_steps": 128,
+    "schema_version": "mouth_v3_r2_1_targeted_patch_train_v1"
+  },
+  "validation": {
+    "campaign_root": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v6",
+    "findings": [],
+    "gpu_steps": 0,
+    "lease_opened": false,
+    "model_loaded": false,
+    "parent_adapter": "L:/Continue/Viv/foundation/models/Training/runs/openaster_stage1_gen_smoke_16_20260730T004859Z/adapter",
+    "parent_sha256": "a951ad3fe3f433b6de636aae3284761de0586bd85e1f830112470fda42a55ccd",
+    "recorded_utc": "2026-08-03T17:55:08Z",
+    "run_authorized": true,
+    "schema_version": "mouth_training_recovery_v3_runner_validation_v1",
+    "status": "VALIDATION_PASS_AUTH_CLOSED",
+    "train_rows": 268,
+    "train_sha256": "0793d356dd6fd44e462770462c01af118afeec0325346ca2feabf170ae901df8",
+    "training_authorized": true
+  }
+}
