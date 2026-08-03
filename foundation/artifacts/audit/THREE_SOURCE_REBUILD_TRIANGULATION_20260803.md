@@ -1371,6 +1371,10 @@ The Ollama policy harness now sends only the public packet to a replaceable loca
 
 The current `viv-voice-qwen:latest` mouth selected the correct mode on `24/24` but verified only `21/24` answers; the three holds were answer-mode mismatch or insufficient task-completion wording. This remains a mouth readiness hold. Only the teacher's `144/144` verified rows were packaged into closed `decision_simulation_policy_campaign_v1`, with disjoint scenario IDs and all optimizer/training/run authority closed. Full preflight after the campaign-builder boundary passed with `1,159` parsed Python files, `877` architecture files, `100%` coverage, `527` boundary modules, zero errors, and Rust/security pass. Next: repair and retest the current mouth's answer rendering before any named real campaign authorization.
 
+### 2026-08-03 — four-pack mouth policy stress run
+
+Two additional disjoint 72-episode packs (`seed=8989` and `seed=9090`) kept the repaired `viv-voice-qwen:latest` mouth at 72/72 verified choices. Across V5-V8, the combined result is 288/288 verified choices, 192 progress episodes, 96 recovery episodes, zero wrong choices, zero policy errors, and zero penalized cycles. This raises confidence in the mode-locked render repair across fresh sampling seeds, but remains simulation/model-policy evidence; it does not authorize the real campaign.
+
 ### 2026-08-03 — named V3 campaign read-only audit
 
 Fresh validation of `mouth_training_recovery_v3_campaign_v3` returned `VALIDATION_PASS_AUTH_CLOSED` with no findings. The exact package contains 256 admitted train rows and four hash-bound evaluation packs; `gpu_steps=0`, `lease_opened=false`, `training_authorized=false`, and `run_authorized=false`. Its declared next action remains preflight-only followed by separate execution authorization. The simulation pass has not opened the real campaign.
