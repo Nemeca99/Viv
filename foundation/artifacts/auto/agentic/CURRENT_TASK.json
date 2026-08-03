@@ -255,6 +255,22 @@
     "comparison_to_v6": "negative; contained pass fell 101->100 and hold rose 1->2; exact role answer produced malformed GPU-Speech label",
     "next_action": "retain_v6_as_best_challenger; do_not promote V7 or V8; redesign role intervention before another full run"
   },
+  "acronym_compound_membrane_repair": {
+    "state": "VERIFIED_FAIL_CLOSED",
+    "backup": "foundation/artifacts/auto/agentic/backups/pre_acronym_compound_membrane_repair_20260803T140954Z",
+    "source": "voice_core/acronym_registry.py",
+    "regression": "foundation/scripts/test_mouth_acronym_compound_membrane_v1.py",
+    "case": "GPU-Speech",
+    "behavior": "capitalized hyphenated invented compounds remain unresolved and regenerate through deterministic CPU speech",
+    "v8_shadow_recheck": "sandbox/mouth_training_recovery_v3_campaign_v8_runtime_shadow_v2.json",
+    "v8_shadow_final": {"pass": 100, "hold": 2, "fail": 0, "rows": 102, "toolbleed": 0, "acronym_failures": 0},
+    "full_foundation_preflight": "PASS; parsed_python_files=1189; architecture_files=887; coverage_pct=100.0; boundary_modules=533; errors=0; rust_security=PASS",
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_allowed": false,
+    "deployment_changed": false,
+    "next_action": "redesign role intervention; preserve V6 as best challenger"
+  },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
     "semantic_wikipedia_index": false,

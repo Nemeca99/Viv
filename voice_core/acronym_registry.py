@@ -145,6 +145,13 @@ def repair_acronym_usage(text: str) -> dict[str, object]:
         match = token_pattern.search(repaired)
         if match is None:
             continue
+        # Do not expand an approved token embedded in an invented capitalized
+        # hyphenated label such as ``GPU-Speech``.  That is a compound form,
+        # not a bare acronym use; leave it unresolved so the runtime can
+        # regenerate through the deterministic contract.
+        compound_tail = re.match(r"-[A-Z][A-Za-z0-9]*\b", repaired[match.end():])
+        if compound_tail is not None:
+            continue
         replacement = f"{spec.expansion} ({token})"
         repaired = repaired[: match.start()] + replacement + repaired[match.end() :]
         repairs.append({"kind": "expand_first_use", "token": token, "count": "1"})
@@ -157,6 +164,13 @@ def repair_acronym_usage(text: str) -> dict[str, object]:
         r"\b(?:AIOS|GPU|CPU|AI(?!OS)|SGI|EOS)[A-Za-z][A-Za-z0-9]*\b"
     )
     for match in compound_pattern.finditer(repaired):
+        token = match.group(0)
+        if not any(item.get("kind") == "compound_approved_prefix" and item.get("token") == token for item in unresolved):
+            unresolved.append({"kind": "compound_approved_prefix", "token": token})
+    hyphenated_compound_pattern = re.compile(
+        r"\b(?:AIOS|GPU|CPU|AI|SGI|EOS)-[A-Z][A-Za-z0-9]*\b"
+    )
+    for match in hyphenated_compound_pattern.finditer(repaired):
         token = match.group(0)
         if not any(item.get("kind") == "compound_approved_prefix" and item.get("token") == token for item in unresolved):
             unresolved.append({"kind": "compound_approved_prefix", "token": token})

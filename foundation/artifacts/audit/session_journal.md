@@ -2909,3 +2909,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - V8 completed `128/128` steps in `427.391` seconds over 264 rows and 6,282 supervised tokens. NLL improved `4.0777410 -> 0.7265788`; token accuracy improved `0.4576568 -> 0.7929004`; Law 5 committed at `Master S_n=0.2737`.
 - Read-only generation was raw `49 PASS / 40 HOLD / 13 FAIL`; CPU containment was `100 PASS / 2 HOLD / 0 FAIL`, zero toolbleed, zero acronym failures. Compared with V6 under the repaired judge (`50/44/8` raw and `101/1/0` contained), V8 is also a negative refinement result despite healthy optimization.
 - The exact CPU-mind/GPU-mouth case no longer abstained, but emitted the invented label `GPU-Speech`, triggering the acronym contract. A separate sealed-memory case also became a hold. V8 remains unpromoted; V6 is the best measured challenger. Do not promote V7 or V8; redesign the role intervention before another full run.
+
+## 2026-08-03 — acronym compound membrane repair
+
+- V8 exposed a containment defect: acronym repair expanded the bare `GPU` inside invented capitalized compound `GPU-Speech`, producing a malformed phrase that was incorrectly treated as repaired.
+- Backed up `voice_core/acronym_registry.py` and `voice_core/runtime_contract.py` at `foundation/artifacts/auto/agentic/backups/pre_acronym_compound_membrane_repair_20260803T140954Z`.
+- Added a fail-closed compound rule and regression `test_mouth_acronym_compound_membrane_v1.py`. `GPU-Speech` now remains unresolved and regenerates through the deterministic CPU contract instead of being accepted or losslessly expanded.
+- V8 shadow recheck remains `100 PASS / 2 HOLD / 0 FAIL`, zero toolbleed, zero acronym failures; the score did not improve, but the containment evidence is now semantically honest. Full foundation preflight passes with 1,189 parsed Python files, 887 architecture files, 100% coverage, 533 boundaries, zero errors, and Rust/security PASS.
+- V6 remains the best challenger at `101 PASS / 1 HOLD / 0 FAIL` under the repaired persistence judge. V7 and V8 remain negative training experiments; no promotion or deployment is authorized.
