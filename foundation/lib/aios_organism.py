@@ -114,6 +114,7 @@ def seed_curriculum(*, force: bool = False) -> dict[str, Any]:
             "choices": ["restore", "action", "idle"],
             "max_steps": 3,
         }),
+        ("cpu_choice_live_probe", "Rank CPU actions from a read-only live state snapshot", 45, {}),
         ("voice_status", "Voice peripheral status", 50, {}),
         ("speak_brief", "Speak after curriculum", 55, {"query": "I dreamed, wrote code, and measured the plant"}),
     ]

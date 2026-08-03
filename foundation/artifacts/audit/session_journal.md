@@ -3152,6 +3152,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,250` Python files parsed, all configured suites returned zero, Triad architecture `927` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No live action, Master S_n mutation, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
 
+## 2026-08-04 — read-only live CPU choice probe
+
+- Added `foundation/lib/cpu_state_snapshot.py` to read current Master S_n, bounded ready/running queue count, and declared dream restoration flags without mutating any source or runtime state.
+- Added `evaluate_candidates()` and the autonomous `cpu_choice_live_probe` task. It ranks `idle`, `action`, and `restore` against the transparent state-derived reference policy and reports the decision evidence without executing the selected action.
+- Regression passed with a fixture state and a real local runtime snapshot; both reported read-only behavior and no Master S_n change.
+- Full foundation preflight passed: `1,255` Python files parsed, all configured suites returned zero, Triad architecture `929` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
+
 ## 2026-08-04 — deterministic CPU choice simulation boundary
 
 - Compared the F/D `game_core` implementations. They provide deterministic, state-based interaction and self-comparison concepts but do not implement the three-action CPU economy described by the AIOS design.

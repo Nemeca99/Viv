@@ -36,6 +36,17 @@ def simulate_state_choices(states: Iterable[Mapping[str, Any]], choices: Iterabl
     return result
 
 
+def evaluate_candidates(state: Mapping[str, Any]) -> dict[str, Any]:
+    """Rank the three candidates against the deterministic reference policy."""
+    reference = choose_action(state)
+    candidates = []
+    for candidate in ACTIONS:
+        replay = simulate_choices([reference], [candidate], initial_s_n=float(state.get("s_n", 0.5)), max_steps=1)
+        candidates.append({"action": candidate, "matches_reference": candidate == reference, "simulated_final_s_n": replay["final_s_n"], "penalty": replay["loop_penalty_total"]})
+    candidates.sort(key=lambda row: (not row["matches_reference"], ACTIONS.index(row["action"])))
+    return {"ok": True, "reference_action": reference, "candidates": candidates, "state": dict(state), "read_only": True, "writes_performed": False, "master_s_n_changed": False, "llm_authority": False}
+
+
 def simulate_choices(
     oracle_actions: Iterable[str],
     choices: Iterable[str],

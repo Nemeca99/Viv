@@ -1181,6 +1181,21 @@
             "writes_performed": false,
             "llm_authority": false
           },
+          "game_cpu_live_state_probe": {
+            "state": "VERIFIED_READ_ONLY_LIVE_CPU_CHOICE_RANKING",
+            "snapshot_source": "foundation/lib/cpu_state_snapshot.py",
+            "ranking_source": "foundation/lib/cpu_choice_simulator.py::evaluate_candidates",
+            "runtime_task": "cpu_choice_live_probe",
+            "regression": "foundation/scripts/test_cpu_live_choice_probe_v1.py",
+            "live_inputs": ["master_rid", "agentic_task_queue", "dream_state"],
+            "candidate_actions": ["idle", "action", "restore"],
+            "writes_performed": false,
+            "master_s_n_changed": false,
+            "llm_authority": false,
+            "foundation_preflight": "PASS_1255_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }

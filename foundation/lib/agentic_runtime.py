@@ -417,6 +417,17 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_choice_simulation_error:{exc}"
 
+    if kind == "cpu_choice_live_probe":
+        try:
+            from lib.cpu_choice_simulator import evaluate_candidates
+            from lib.cpu_state_snapshot import capture_live
+
+            snapshot = capture_live()
+            result = evaluate_candidates(snapshot)
+            return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_choice_live_probe_error:{exc}"
+
     if kind == "cpu_rid_observe":
         # CPU-first teach tick — plant grades hold prediction; no GPU.
         try:
