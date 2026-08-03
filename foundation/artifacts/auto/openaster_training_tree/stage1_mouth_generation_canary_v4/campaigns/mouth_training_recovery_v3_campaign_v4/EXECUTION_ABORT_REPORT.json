@@ -1,0 +1,96 @@
+{
+  "authority": {
+    "deployment_authorized": false,
+    "lease_opened": true,
+    "promotion_authorized": false,
+    "run_authorized": true,
+    "training_authorized": true
+  },
+  "campaign_id": "mouth_training_recovery_v3_campaign_v4",
+  "commit_verdict": {
+    "allowed": false,
+    "decision_id": "76a8a0f699e5f14d0168da14dcc0ee08",
+    "disposition": "DENY",
+    "final_root": null,
+    "hard_threshold": 0.37,
+    "lease_token": null,
+    "manifest_hash": "5083d26dce9ca53d4b0dd109a36c0e2ba5c6154d39bedf8119e5b256bf1b6275",
+    "master_rid": {
+      "master_s_n": 0.0039,
+      "n_subsystems": 3,
+      "status": "DORMANT",
+      "timestamp": "2026-08-03T09:31:19.120224+00:00"
+    },
+    "master_s_n": 0.0039,
+    "normalized_paths": [],
+    "payload": null,
+    "policy_version": "0.2.9",
+    "quarantine_id": null,
+    "reason": "Master S_n 0.0039 is below 0.2500",
+    "rule": "law5_stability",
+    "staging_root": null,
+    "training_soft_band": false,
+    "training_soft_floor": 0.25
+  },
+  "exception_message": "security_commit_denied:{'allowed': False, 'disposition': 'DENY', 'reason': 'Master S_n 0.0039 is below 0.2500', 'rule': 'law5_stability', 'decision_id': '76a8a0f699e5f14d0168da14dcc0ee08', 'policy_version': '0.2.9', 'manifest_hash': '5083d26dce9ca53d4b0dd109a36c0e2ba5c6154d39bedf8119e5b256bf1b6275', 'normalized_paths': [], 'lease_token': None, 'staging_root': None, 'final_root': None, 'quarantine_id': None, 'payload': None, 'training_soft_band': False, 'master_s_n': 0.0039, 'training_soft_floor': 0.25, 'hard_threshold': 0.37, 'master_rid': {'timestamp': '2026-08-03T09:31:19.120224+00:00', 'master_s_n': 0.0039, 'status': 'DORMANT', 'n_subsystems': 3}}",
+  "exception_type": "PermissionError",
+  "quarantine_root": null,
+  "recorded_utc": "2026-08-03T09:31:19+00:00",
+  "run_id": "mouth_training_recovery_v3_campaign_v4_20260803T092157Z",
+  "schema_version": "execution_abort_report_v1",
+  "stage": "run_experiment",
+  "status": "ABORT_NO_PROMOTION",
+  "traceback": "Traceback (most recent call last):\n  File \"L:\\Continue\\Viv\\foundation\\scripts\\mouth_training_recovery_v3_runner.py\", line 283, in run_experiment\n    raise PermissionError(f\"security_commit_denied:{commit}\")\nPermissionError: security_commit_denied:{'allowed': False, 'disposition': 'DENY', 'reason': 'Master S_n 0.0039 is below 0.2500', 'rule': 'law5_stability', 'decision_id': '76a8a0f699e5f14d0168da14dcc0ee08', 'policy_version': '0.2.9', 'manifest_hash': '5083d26dce9ca53d4b0dd109a36c0e2ba5c6154d39bedf8119e5b256bf1b6275', 'normalized_paths': [], 'lease_token': None, 'staging_root': None, 'final_root': None, 'quarantine_id': None, 'payload': None, 'training_soft_band': False, 'master_s_n': 0.0039, 'training_soft_floor': 0.25, 'hard_threshold': 0.37, 'master_rid': {'timestamp': '2026-08-03T09:31:19.120224+00:00', 'master_s_n': 0.0039, 'status': 'DORMANT', 'n_subsystems': 3}}\n",
+  "trained_result": {
+    "adapter_final": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter",
+    "adapter_staging": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter",
+    "checkpoint_saves": [
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_32",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_32",
+        "step": 32
+      },
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_64",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_64",
+        "step": 64
+      },
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_96",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_96",
+        "step": 96
+      },
+      {
+        "final_path": "L:/Continue/Viv/foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_128",
+        "path": "L:/Continue/Viv/sandbox/training_staging/mouth_training_recovery_v3_campaign_v4_20260803T092157Z/adapter_step_128",
+        "step": 128
+      }
+    ],
+    "deployment_changed": false,
+    "elapsed_s": 499.094,
+    "final_teacher_forced": {
+      "examples": 256,
+      "finite": true,
+      "max_response_nll": 2.0483293533325195,
+      "mean_response_nll": 0.7210625485749915,
+      "min_response_nll": 0.061610147356987,
+      "supervised_tokens": 6031,
+      "token_accuracy": 0.7919084728900679
+    },
+    "initial_teacher_forced": {
+      "examples": 256,
+      "finite": true,
+      "max_response_nll": 7.643118381500244,
+      "mean_response_nll": 4.090474838856608,
+      "min_response_nll": 0.8001651763916016,
+      "supervised_tokens": 6031,
+      "token_accuracy": 0.4558116398607196
+    },
+    "microbatches": 512,
+    "nested_lease": false,
+    "nll_reduction_fraction": 0.823721553858391,
+    "ok": true,
+    "optimizer_steps": 128,
+    "schema_version": "mouth_v3_r2_1_targeted_patch_train_v1"
+  }
+}

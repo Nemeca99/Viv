@@ -26,23 +26,32 @@
     "trace_id": "9deaa1c4cd7c4d63b324819ede977599"
   },
   "last_training_evidence": {
-    "campaign_id": "mouth_training_recovery_v3_campaign_v2",
+    "campaign_id": "mouth_training_recovery_v3_campaign_v4",
     "status": "ABORT_NO_PROMOTION",
     "trained_optimizer_steps": 128,
-    "elapsed_s": 450.531,
-    "initial_mean_response_nll": 4.131955523276702,
-    "final_mean_response_nll": 0.7277076215978013,
-    "initial_token_accuracy": 0.45133477035317526,
-    "final_token_accuracy": 0.7934007627259161,
-    "abort_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v2/EXECUTION_ABORT_REPORT.json",
-    "abort_report_sha256": "a237096c311f3bc91e441e5f4366d6fface8433fef468500968845cfa83c3599",
+    "elapsed_s": 499.094,
+    "initial_mean_response_nll": 4.090474838856608,
+    "final_mean_response_nll": 0.7210625485749915,
+    "initial_token_accuracy": 0.4558116398607196,
+    "final_token_accuracy": 0.7919084728900679,
+    "abort_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v4/EXECUTION_ABORT_REPORT.json",
+    "abort_report_sha256": "b50faffd11abd4ca34e3eb65b13fd745cbc4626136e54ece1ebaa6ff0b97f4fe",
     "published_gpu_steps": 0,
-    "master_s_n": 0.3229,
-    "required_master_s_n": 0.37,
+    "master_s_n": 0.0039,
+    "required_master_s_n": 0.25,
     "training_authorized": false,
     "run_authorized": false,
     "deployment_changed": false,
     "retrain_same_campaign": false
+  },
+  "latest_execution": {
+    "campaign_id": "mouth_training_recovery_v3_campaign_v4",
+    "result": "128_optimizer_steps_completed_then_law5_commit_denied",
+    "commit_reason": "Master S_n 0.0039 below training soft floor 0.2500",
+    "adapter_committed": false,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "next_action": "do_not_retry_same_campaign; restore_or_raise_authoritative_s_n_before_new_named_campaign"
   },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
@@ -438,5 +447,5 @@
   "task_list_sha256": null,
   "total_tasks": 0,
   "trace_id": "9deaa1c4cd7c4d63b324819ede977599",
-  "updated_utc": "2026-08-03T09:12:58Z"
+  "updated_utc": "2026-08-03T09:31:19Z"
 }

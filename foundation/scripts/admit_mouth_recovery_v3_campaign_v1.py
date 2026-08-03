@@ -61,6 +61,7 @@ def main() -> int:
             "hold_only": False,
             "optimizer_eligible": True,
             "response_only_loss_allowed": True,
+            "split": "train",
             "admitted_index": index,
             "training_authorized": False,
             "run_authorized": False,
