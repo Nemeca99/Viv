@@ -2857,3 +2857,10 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added durable `EXECUTION_SUCCESS_REPORT.json` and repaired the runner to persist success receipts and mark completed manifests with `gpu_steps=128`. The one-off V5 receipt is SHA-256 `66226061f22f3357249c5f8cb5e9b436e0917bfc9900b230d6e7b91346aa81eb`.
 - Remaining hold: one memory-attribution relationship wording case after containment. Next: preserve V5 as a committed challenger, repair the one residual memory-service curriculum gap, and require separate fresh promotion authorization before any live change.
 - Post-commit validation initially exposed a runner bookkeeping gap: completed manifests were rejected by the closed-only validator. The validator now recognizes `CAMPAIGN_EXECUTION_COMPLETE` only when the success receipt, `gpu_steps=128`, lease state, and committed adapter are all present. Direct validation now passes as `VALIDATION_PASS_EXECUTION_COMPLETE`; full foundation preflight also passes after the reviewed boundary signature freeze.
+
+## 2026-08-03 — memory-attribution refinement pack
+
+- Isolated the one remaining contained V5 hold: `v121-sealed-memory_ownership_and_service_attribution-07`, where the mouth separated speech from persistence but did not explicitly attribute persistence to CPU-side AIOS services.
+- Added `build_mouth_memory_attribution_refinement_v1.py`, which generates 12 disjoint paraphrases and refuses to emit the pack unless every target passes the production CPU evaluator. The first draft correctly rejected two vague targets; both were repaired to state explicit service ownership/management.
+- Final hold-only pack passed `12/12` target judgments, is disjoint from all V5 train/evaluation keys, and has `optimizer_eligible=false`, `training_authorized=false`, and `run_authorized=false`. No training, lease, promotion, deployment, or live-model mutation occurred.
+- Artifact: `mouth_memory_attribution_refinement_v1/MANIFEST.json`; next step is separate admission review. Do not mix these rows into the V5 holdout or retroactively change the committed V5 campaign.

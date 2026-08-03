@@ -90,6 +90,18 @@
     "deployment_changed": false,
     "next_action": "resolve_one_memory_attribution_hold_and_obtain_separate_promotion_authorization"
   },
+  "memory_attribution_refinement": {
+    "state": "VERIFIED_HOLD_ONLY",
+    "rows": 12,
+    "artifact": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_memory_attribution_refinement_v1/memory_attribution_refinement_hold.jsonl",
+    "manifest": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_memory_attribution_refinement_v1/MANIFEST.json",
+    "all_targets_cpu_judge_pass": true,
+    "disjoint_from_v5_campaign": true,
+    "optimizer_eligible": false,
+    "training_authorized": false,
+    "run_authorized": false,
+    "next_action": "separate_admission_review; do_not_mix_with_v5_holdout"
+  },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
     "semantic_wikipedia_index": false,
@@ -484,5 +496,5 @@
   "task_list_sha256": null,
   "total_tasks": 0,
   "trace_id": "9deaa1c4cd7c4d63b324819ede977599",
-  "updated_utc": "2026-08-03T10:54:38Z"
+  "updated_utc": "2026-08-03T10:58:13Z"
 }

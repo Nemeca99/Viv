@@ -1,0 +1,16 @@
+{
+  "all_targets_cpu_judge_pass": true,
+  "deployment_changed": false,
+  "disjoint_from_source_campaign": true,
+  "jsonl": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_memory_attribution_refinement_v1/memory_attribution_refinement_hold.jsonl",
+  "jsonl_sha256": "7ceb08e1433ef41f760074839d55dc2e6409e77cea4d33d9a657448c33eda75a",
+  "next_action": "separate_review_before_any_admission",
+  "optimizer_eligible_any": false,
+  "promotion_allowed": false,
+  "rows": 12,
+  "run_authorized": false,
+  "schema_version": "mouth_memory_attribution_refinement_v1",
+  "source_campaign": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v5",
+  "status": "REFINEMENT_PACK_HOLD_ONLY",
+  "training_authorized": false
+}
