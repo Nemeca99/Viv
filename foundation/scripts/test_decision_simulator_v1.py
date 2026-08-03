@@ -14,12 +14,18 @@ from lib.aios_decision_simulator import LoopState, build_scenarios, run_policy, 
 def main() -> int:
     scenarios = build_scenarios(9, seed=7)
     assert all(packet.public_packet().get("oracle_hidden") for packet in scenarios)
+    for packet in scenarios:
+        public = packet.public_packet()
+        assert "correct_choice_id" not in public
+        assert "expected_answer" not in public
+        assert all("expected_progress" not in choice for choice in public["choices"])
+        assert all("expected_recovery" not in choice for choice in public["choices"])
 
     def honest(packet):
         text = f"{packet['goal']} {packet['context']}".lower()
         mode = "restore" if "consolid" in text or "evidence" in text else "idle" if "no worthwhile" in text else "action"
         choice = next(row for row in packet["choices"] if row["mode"] == mode)
-        return {"choice_id": choice["choice_id"], "answer": "verified", "answer_verified": True, "verified_progress": choice["expected_progress"]}
+        return {"choice_id": choice["choice_id"], "answer": "verified", "answer_verified": True, "verified_progress": 1.0}
 
     good = run_policy(scenarios, honest)
     assert good["verified_choice"] == 9
@@ -46,6 +52,11 @@ def main() -> int:
     assert guarded["verified_choice"] == 0
     assert guarded["verified_progress"] == 0
     assert guarded["sn_final"] <= guarded["sn_start"]
+
+    malformed = run_verified_policy(scenarios[:1], lambda packet: {"choice_id": "", "answer": ""})
+    assert malformed["receipts"][0]["verdict"] == "MALFORMED_CHOICE"
+    assert malformed["verified_choice"] == 0
+    assert malformed["sn_final"] < malformed["sn_start"]
     print("PASS decision_simulator hidden_oracle idle_recovery legitimate_cycle adversarial_cycle")
     return 0
 

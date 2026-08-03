@@ -1,0 +1,413 @@
+{
+  "api": "http://127.0.0.1:11434/api/generate",
+  "cpu_verifier_owns_reward": true,
+  "episodes": 12,
+  "live_mutation": false,
+  "live_s_n_read": false,
+  "model": "viv-qwen-teacher:latest",
+  "policy_errors": 0,
+  "policy_events": [
+    {
+      "error": null,
+      "latency_s": 7.421,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00000"
+    },
+    {
+      "error": null,
+      "latency_s": 0.427,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00001"
+    },
+    {
+      "error": null,
+      "latency_s": 0.377,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00002"
+    },
+    {
+      "error": null,
+      "latency_s": 0.413,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00003"
+    },
+    {
+      "error": null,
+      "latency_s": 0.39,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00004"
+    },
+    {
+      "error": null,
+      "latency_s": 0.381,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00005"
+    },
+    {
+      "error": null,
+      "latency_s": 0.461,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00006"
+    },
+    {
+      "error": null,
+      "latency_s": 0.396,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00007"
+    },
+    {
+      "error": null,
+      "latency_s": 0.428,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00008"
+    },
+    {
+      "error": null,
+      "latency_s": 0.381,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00009"
+    },
+    {
+      "error": null,
+      "latency_s": 0.406,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00010"
+    },
+    {
+      "error": null,
+      "latency_s": 0.381,
+      "model": "viv-qwen-teacher:latest",
+      "scenario_id": "sim_909_00011"
+    }
+  ],
+  "receipts": [
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_0",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "restore_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 0,
+      "cycle_penalty": 0.0,
+      "mode": "restore",
+      "net_sn": -0.05,
+      "oracle_commitment": "d64aaefa1a7075cdc3faee6af14c1ec9b1852cd5b2e4cdc609c9d8595998c56a",
+      "recorded_utc": "2026-08-03T08:26:46+00:00",
+      "scenario_id": "sim_909_00000",
+      "sn_after": 0.45,
+      "sn_before": 0.5,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.0
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_0",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 0,
+      "cycle_penalty": 0.0,
+      "mode": "action",
+      "net_sn": -0.08,
+      "oracle_commitment": "c1301b24e5de63d33163fccf7512315fc3fa2e67bacd73f2463c22651629ec2f",
+      "recorded_utc": "2026-08-03T08:26:46+00:00",
+      "scenario_id": "sim_909_00001",
+      "sn_after": 0.37,
+      "sn_before": 0.45,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.0
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_2",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 0,
+      "cycle_penalty": 0.0,
+      "mode": "idle",
+      "net_sn": -0.01,
+      "oracle_commitment": "40cc5822030bab2185547b12ed06dee2823ab0f90519664052d936185cc2acf2",
+      "recorded_utc": "2026-08-03T08:26:47+00:00",
+      "scenario_id": "sim_909_00002",
+      "sn_after": 0.36,
+      "sn_before": 0.37,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.0
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_2",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "restore_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 0,
+      "cycle_penalty": 0.0,
+      "mode": "restore",
+      "net_sn": -0.05,
+      "oracle_commitment": "71e2dac01865a01e60e815d3382ffedfb5b22b252620c3b605634db75af8418b",
+      "recorded_utc": "2026-08-03T08:26:47+00:00",
+      "scenario_id": "sim_909_00003",
+      "sn_after": 0.31,
+      "sn_before": 0.36,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.0
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_2",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 0,
+      "cycle_penalty": 0.0,
+      "mode": "action",
+      "net_sn": -0.08,
+      "oracle_commitment": "ec0c5be932ff133aa4238fd9396eacbd27fa8553189d7477e4aa247c9affd729",
+      "recorded_utc": "2026-08-03T08:26:47+00:00",
+      "scenario_id": "sim_909_00004",
+      "sn_after": 0.23,
+      "sn_before": 0.31,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.0
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_0",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 3,
+      "cycle_penalty": 0.06,
+      "mode": "idle",
+      "net_sn": -0.07,
+      "oracle_commitment": "a3e6299c80b6b89a41472c58fe34343acd0033f47aecd93db13db23310c54da1",
+      "recorded_utc": "2026-08-03T08:26:48+00:00",
+      "scenario_id": "sim_909_00005",
+      "sn_after": 0.16,
+      "sn_before": 0.23,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.03
+    },
+    {
+      "answer_verified": true,
+      "choice_correct": true,
+      "choice_id": "choice_0",
+      "cpu_verification": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      },
+      "cycle_length": 3,
+      "cycle_penalty": 0.0,
+      "mode": "restore",
+      "net_sn": 0.18,
+      "oracle_commitment": "0428cd659dfe0c0af36e30ccad4c952775341c5628d888434280c4f2156a9d15",
+      "recorded_utc": "2026-08-03T08:26:48+00:00",
+      "scenario_id": "sim_909_00006",
+      "sn_after": 0.34,
+      "sn_before": 0.16,
+      "verdict": "VERIFIED_PROGRESS",
+      "verified_choice": true,
+      "verified_progress": 0.6,
+      "verified_recovery": 0.12,
+      "wake_debt": 0.0
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_1",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 3,
+      "cycle_penalty": 0.06,
+      "mode": "action",
+      "net_sn": -0.14,
+      "oracle_commitment": "bf860905dad118a8fac4e199c03813373654b30ec42afde68c8413eeec8332db",
+      "recorded_utc": "2026-08-03T08:26:49+00:00",
+      "scenario_id": "sim_909_00007",
+      "sn_after": 0.2,
+      "sn_before": 0.34,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.03
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_1",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 3,
+      "cycle_penalty": 0.12,
+      "mode": "idle",
+      "net_sn": -0.13,
+      "oracle_commitment": "bce7c19439fdc63f1a30f34aef190c33fa90d4fdefd606d3e2deb7c89af07d01",
+      "recorded_utc": "2026-08-03T08:26:49+00:00",
+      "scenario_id": "sim_909_00008",
+      "sn_after": 0.07,
+      "sn_before": 0.2,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.06
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_2",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "restore_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 3,
+      "cycle_penalty": 0.18,
+      "mode": "restore",
+      "net_sn": -0.07,
+      "oracle_commitment": "8f62fb16e3daef094a16c7a79637415aa920aac335217cb1414c417cbc4d4e57",
+      "recorded_utc": "2026-08-03T08:26:50+00:00",
+      "scenario_id": "sim_909_00009",
+      "sn_after": 0.0,
+      "sn_before": 0.07,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.09
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_0",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 3,
+      "cycle_penalty": 0.24,
+      "mode": "action",
+      "net_sn": 0.0,
+      "oracle_commitment": "8d607fadb74725c018f8bfdd4386d4200a1ff593f00a587cd651d28908e689a3",
+      "recorded_utc": "2026-08-03T08:26:50+00:00",
+      "scenario_id": "sim_909_00010",
+      "sn_after": 0.0,
+      "sn_before": 0.0,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.12
+    },
+    {
+      "answer_verified": false,
+      "choice_correct": true,
+      "choice_id": "choice_2",
+      "cpu_verification": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      },
+      "cycle_length": 3,
+      "cycle_penalty": 0.3,
+      "mode": "idle",
+      "net_sn": 0.0,
+      "oracle_commitment": "859dc8ea9137f1a776be325956d6189760e9d67f0be0061f25e65411f4ca36da",
+      "recorded_utc": "2026-08-03T08:26:50+00:00",
+      "scenario_id": "sim_909_00011",
+      "sn_after": 0.0,
+      "sn_before": 0.0,
+      "verdict": "ANSWER_UNVERIFIED",
+      "verified_choice": false,
+      "verified_progress": 0.0,
+      "verified_recovery": 0.0,
+      "wake_debt": 0.15
+    }
+  ],
+  "recorded_utc": "2026-08-03T08:26:50+00:00",
+  "run_authorized": false,
+  "schema_version": "aios_decision_simulation_ollama_evaluation_v1",
+  "seed": 909,
+  "status": "HOLD",
+  "training_authorized": false,
+  "verified_summary": {
+    "episodes": 12,
+    "penalized_cycles": 6,
+    "sn_final": 0.0,
+    "sn_start": 0.5,
+    "verified_choice": 1,
+    "verified_progress": 1,
+    "verified_recovery": 0,
+    "wrong_choice": 0
+  }
+}

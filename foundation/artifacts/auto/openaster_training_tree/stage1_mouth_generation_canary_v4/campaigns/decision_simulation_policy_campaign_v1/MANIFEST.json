@@ -1,0 +1,33 @@
+{
+  "campaign_id": "decision_simulation_policy_campaign_v1",
+  "created_utc": "2026-08-03T08:39:08+00:00",
+  "dataset": {
+    "path": "simulation_verified_144.jsonl",
+    "rows": 144,
+    "sha256": "132078f4161733988a18f008eb1158cde034a0ea6eff63422dde5972fc0b9ea7"
+  },
+  "disjoint_scenario_ids": true,
+  "gpu_steps": 0,
+  "lease_opened": false,
+  "live_mutation": false,
+  "model_loaded": false,
+  "next_action": "Review the closed simulation campaign and its disjoint provenance; do not train until a separate named authorization exists.",
+  "optimizer_eligible_any": false,
+  "rows": 144,
+  "run_authorized": false,
+  "schema_version": "aios_decision_simulation_campaign_manifest_v1",
+  "source_files": [
+    {
+      "episodes": 72,
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/knowledge/decision_simulation_ollama_v12_20260803T083800Z.json",
+      "sha256": "e6669e40cae5bc8a365d4fd72c09a74ef2b1a22d59875b5d41e0b3ecac774698"
+    },
+    {
+      "episodes": 72,
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/knowledge/decision_simulation_ollama_v13_20260803T083900Z.json",
+      "sha256": "add330ea61fa6ffe24e22f102dbe35fd7d9bb760f6735fc57a7258117d924280"
+    }
+  ],
+  "status": "SIMULATION_CAMPAIGN_CLOSED",
+  "training_authorized": false
+}

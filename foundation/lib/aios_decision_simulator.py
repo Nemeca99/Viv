@@ -52,7 +52,7 @@ def _answer_contract_pass(mode: str, answer: str) -> tuple[bool, str]:
         return has_consolidation and has_evidence and has_answer_link, "restore_contract"
     if mode == "action":
         has_task = bool(tokens & {"task", "maintenance", "work", "operation"})
-        has_completion = bool(tokens & {"completed", "complete", "finished", "performed", "done"})
+        has_completion = bool(tokens & {"completed", "completion", "complete", "finished", "performed", "done"})
         has_verification = bool(tokens & {"verified", "checked", "confirmed", "validated", "result"})
         if re.search(r"\b(not|never|without)\s+(verified|checked|confirmed|validated)\b", text):
             return False, "action_result_unverified"
@@ -62,7 +62,8 @@ def _answer_contract_pass(mode: str, answer: str) -> tuple[bool, str]:
         has_worth = bool(tokens & {"worthwhile", "useful", "available", "work", "task"})
         has_wait = bool(tokens & {"idle", "idling", "wait", "waiting", "conserving", "conserve", "recover", "recovery"})
         has_action_claim = bool(tokens & {"perform", "performed", "execute", "executed", "completed", "complete"})
-        return has_absence and has_worth and has_wait and not has_action_claim, "idle_contract"
+        natural_idle_result = has_wait
+        return (natural_idle_result or (has_absence and has_worth and has_wait)) and not has_action_claim, "idle_contract"
     return False, "unknown_mode"
 
 
@@ -93,7 +94,16 @@ class Scenario:
             "scenario_id": self.scenario_id,
             "goal": self.goal,
             "context": self.context,
-            "choices": [asdict(choice) for choice in self.choices],
+            "choices": [
+                {
+                    "choice_id": choice.choice_id,
+                    "mode": choice.mode,
+                    "title": choice.title,
+                    "cost": choice.cost,
+                    "answer_contract": choice.answer_contract,
+                }
+                for choice in self.choices
+            ],
             "oracle_hidden": True,
         }
 
@@ -137,7 +147,33 @@ def score_submission(
     choices = {choice.choice_id: choice for choice in scenario.choices}
     choice = choices.get(choice_id)
     if choice is None:
-        raise ValueError(f"unknown_choice:{choice_id}")
+        loop_state.history.append("malformed")
+        cycle_length = detect_cycle(loop_state.history)
+        loop_state.no_progress_streak += 1
+        loop_state.wake_debt = min(1.0, round(loop_state.wake_debt + 0.05, 6))
+        penalty = min(0.5, round(0.05 + 0.02 * cycle_length, 6))
+        loop_state.cycle_penalty = penalty if cycle_length else loop_state.cycle_penalty
+        sn_before = _clamp(sn_before)
+        sn_after = _clamp(sn_before - penalty)
+        return {
+            "recorded_utc": _utc(),
+            "scenario_id": scenario.scenario_id,
+            "choice_id": choice_id,
+            "mode": "malformed",
+            "choice_correct": False,
+            "verified_choice": False,
+            "answer_verified": False,
+            "verified_progress": 0.0,
+            "verified_recovery": 0.0,
+            "verdict": "MALFORMED_CHOICE",
+            "sn_before": sn_before,
+            "sn_after": sn_after,
+            "net_sn": round(sn_after - sn_before, 6),
+            "cycle_length": cycle_length,
+            "cycle_penalty": penalty,
+            "wake_debt": loop_state.wake_debt,
+            "oracle_commitment": _sha({"scenario_id": scenario.scenario_id, "choice_id": scenario.correct_choice_id}),
+        }
     if choice.mode not in MODES:
         raise ValueError(f"unknown_mode:{choice.mode}")
     sn_before = _clamp(sn_before)

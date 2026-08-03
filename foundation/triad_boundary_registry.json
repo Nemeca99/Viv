@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 875,
+  "generated_from_python_files": 877,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -720,6 +720,9 @@
       "filesystem_mutation:MANIFEST.write_text": 1,
       "filesystem_mutation:TREE.write_text": 1,
       "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_decision_simulation_campaign_v1.py": {
+      "filesystem_mutation:dataset.write_text": 1
     },
     "foundation/scripts/build_fresh_base_tag_campaign_v1.py": {
       "filesystem_mutation:dst.write_bytes": 1
@@ -1822,6 +1825,10 @@
     "foundation/scripts/run_mouth_semantic_regression_v1.py": {
       "filesystem_mutation:OUT.write_text": 1,
       "process:subprocess.run": 1
+    },
+    "foundation/scripts/run_ollama_decision_policy_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1,
+      "network:urllib.request.urlopen": 1
     },
     "foundation/scripts/run_verified_decision_simulation_v1.py": {
       "filesystem_mutation:args.output.write_text": 1

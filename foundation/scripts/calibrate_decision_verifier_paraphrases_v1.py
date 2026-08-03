@@ -18,7 +18,7 @@ sys.path.insert(0, str(FOUNDATION))
 from lib.aios_decision_simulator import build_scenarios, verify_generated_answer  # noqa: E402
 
 
-OUT = FOUNDATION / "artifacts/auto/knowledge/decision_verifier_paraphrases_v3_20260803.json"
+OUT = FOUNDATION / "artifacts/auto/knowledge/decision_verifier_paraphrases_v6_20260803.json"
 
 
 POSITIVE = {
@@ -33,12 +33,15 @@ POSITIVE = {
         "The task is complete; I confirmed the result afterward.",
         "I performed the operation, completed the task, and validated its result.",
         "The maintenance task was done and its outcome was verified.",
+        "I verified the completion of the bounded maintenance task and its result was confirmed.",
     ],
     "idle": [
         "There is no useful work available, so I will wait and conserve resources.",
         "Nothing worthwhile is available right now; idling preserves capacity.",
         "No task is currently available, so I am waiting rather than acting.",
         "Useful work is unavailable at present, and recovery through idling is appropriate.",
+        "I idle and recover.",
+        "I am conserving resources by waiting and recovering.",
     ],
 }
 
@@ -95,7 +98,7 @@ def main() -> int:
         })
     matches = sum(bool(case["expected_verified"]) == bool(case["observed"]["answer_verified"]) for case in cases)
     report = {
-        "schema_version": "aios_decision_verifier_paraphrases_v3",
+        "schema_version": "aios_decision_verifier_paraphrases_v6",
         "recorded_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "seed": 20260803,
         "scenarios": len(scenarios),
