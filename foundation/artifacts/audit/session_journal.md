@@ -3099,3 +3099,13 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added `foundation/lib/core_contracts.py` and `foundation/scripts/test_core_contracts_v1.py` as the bulk rebuild skeleton for `33` manual-defined V1/V2 core contracts. The report currently observes `22` wired surfaces, `1` partial surface, and `10` source-only cores; this is an acceptance map, not a completion claim.
 - Verification passed: CARMA regression, bulk contract regression, and Triad architecture (`912` Python files, `100%` coverage, `540` boundary modules, zero direct bridge violations, no registry drift).
 - The rebuild is still materially incomplete relative to the full historical AIOS size. The next implementation pass will bulk-port real core behavior from the three source planes into the contract map, then integrate and test in bounded groups. No training, lease, promotion, deployment, or live-model change occurred.
+
+## 2026-08-03 — autonomous CPU core dispatch and live survey
+
+- Backed up `foundation/lib/agentic_runtime.py`, `foundation/lib/aios_organism.py`, and the current task file at `foundation/artifacts/auto/agentic/backups/pre_cpu_core_dispatch_20260803T173645Z/` and `pre_cpu_core_survey_20260803T173736Z/` before integration.
+- Added `foundation/lib/cpu_core_dispatch.py` with an allowlist of `18` Viv CPU adapters. It imports only Viv foundation modules, never executes F:/ or D:/ source trees, permits only `status`/`run_smoke`, and labels adapter output as non-authoritative observation.
+- Added `cpu_core_probe` and `cpu_core_survey` task kinds to `foundation/lib/agentic_runtime.py`; the survey is bounded and returns structured PASS/INCONCLUSIVE counts without granting model or adapter authority.
+- Added the survey to the organism curriculum and regression coverage. Focused dispatch and autonomous-task tests passed.
+- Live `aios_main.py beat --max-tasks 1` executed task `t-e19cc04481` as `cpu_core_survey`: `18/18` adapter status probes passed, task status `done`, mode nominal, and Master `S_n` ended at `0.7516`. The same beat separately recorded a `security_ingress_denied` memory task as blocked without retrying, confirming fail-closed denial behavior remains active.
+- The live survey proves the CPU dispatch path and current adapter surfaces, not completion of the 33-core rebuild. No F:/ or D:/ source execution, training, lease, promotion, deployment, or live-model change occurred.
+- Canonical foundation preflight after this group passed: `1,228` Python files parsed, all configured suites returned zero, Triad architecture `914` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.

@@ -358,6 +358,30 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
         except Exception as exc:  # noqa: BLE001
             return False, f"memory_retrieve_error:{exc}"
 
+    if kind == "cpu_core_probe":
+        core_id = str(payload.get("core_id") or "").strip()
+        operation = str(payload.get("operation") or "status").strip().casefold()
+        if not core_id:
+            return False, "missing_core_id"
+        try:
+            from lib.cpu_core_dispatch import probe
+
+            result = probe(core_id, operation=operation)
+            if result.get("state") == "DENIED":
+                return False, str(result.get("reason") or "cpu_core_probe_denied")
+            return result.get("state") == "PASS", json.dumps(result, sort_keys=True, default=str)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_core_probe_error:{exc}"
+
+    if kind == "cpu_core_survey":
+        try:
+            from lib.cpu_core_dispatch import available_cores, probe_many
+
+            result = probe_many(available_cores(), operation="status")
+            return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_core_survey_error:{exc}"
+
     if kind == "cpu_rid_observe":
         # CPU-first teach tick — plant grades hold prediction; no GPU.
         try:

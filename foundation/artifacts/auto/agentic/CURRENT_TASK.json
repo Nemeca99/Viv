@@ -1003,9 +1003,30 @@
           "meaning": "bulk acceptance map and current-surface inventory; not completion claim",
           "training_authorized": false,
           "live_model_changed": false
+        },
+        "cpu_core_dispatch": {
+          "state": "VERIFIED_ALLOWLISTED_AUTONOMOUS_CPU_DISPATCH",
+          "source": "foundation/lib/cpu_core_dispatch.py",
+          "runtime_integration": "foundation/lib/agentic_runtime.py",
+          "regression": "foundation/scripts/test_cpu_core_dispatch_v1.py",
+          "adapter_count": 18,
+          "operations": ["status", "run_smoke"],
+          "authority_boundary": "adapter_output_is_authority=false",
+          "source_planes_executed": false,
+          "live_survey": {
+            "task_kind": "cpu_core_survey",
+            "task_id": "t-e19cc04481",
+            "state": "PASS",
+            "count": 18,
+            "pass_count": 18,
+            "master_s_n_after": 0.7516
+          },
+          "foundation_preflight": "PASS_1228_PARSED_21_SUITES_RUST_OK",
+          "training_authorized": false,
+          "live_model_changed": false
         }
       }
     }
   },
-  "updated_utc": "2026-08-03T22:30:02Z"
+  "updated_utc": "2026-08-03T22:38:21Z"
 }
