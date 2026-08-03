@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 889,
+  "generated_from_python_files": 891,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -1943,6 +1943,12 @@
     },
     "foundation/scripts/test_training_security_contracts.py": {
       "process:subprocess.Popen": 1
+    },
+    "foundation/scripts/test_trl_peft_tiny_qwen_smoke_v1.py": {
+      "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/scripts/test_trl_v9_masking_compatibility_v1.py": {
+      "filesystem_mutation:OUTPUT.write_text": 1
     },
     "foundation/scripts/train_fresh_base_tag_campaign_v1.py": {
       "filesystem_mutation:path.write_text": 2

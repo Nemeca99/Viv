@@ -2933,3 +2933,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Built `mouth_memory_and_cpu_gpu_refinement_v1` from two hash-verified hold-only packs: 12 memory-attribution rows plus 8 direct CPU/GPU role rows, 20 unique rows total, combined JSONL SHA-256 `904b6764dfaf6c1e00ab62345f277fca40a3fea76ade901851194d42126ec5f1`.
 - Admitted separately named `mouth_training_recovery_v3_campaign_v9`: 276 train rows, train SHA-256 `a32c86b10b5560fdbe2cc2448dbdb8f3189ba0602b1db39c1316eed6004b5790`. Named preflight passed and closed runner validation passed with `gpu_steps=0`, `model_loaded=false`, `training_authorized=false`, `run_authorized=false`, promotion false, and deployment false.
 - Next: obtain separate named authorization before any GPU execution; if authorized, create a fresh pre-execution backup and run exactly the bounded campaign, then compare raw and contained behavior against V6. No promotion or deployment is implied.
+
+## 2026-08-03 — open-source trainer compatibility pass
+
+- Installed TRL `0.17.0` into the canonical environment without changing Transformers `4.51.3`, PEFT `0.19.1`, PyTorch `2.6.0+cu124`, or the live model.
+- TRL completion-only masking matched the admitted V9 response token sequences on all 276 rows, including EOS: `PASS`, zero failures. Receipt: `foundation/artifacts/auto/agentic/trl_v9_masking_compatibility_v1.json`.
+- A disposable one-step random-initialized tiny Qwen2 + PEFT LoRA smoke run completed, saved an adapter, and reloaded it successfully. Receipt: `foundation/artifacts/auto/agentic/trl_peft_tiny_qwen_smoke_v1.json`. It touched no real parent or campaign and performed zero governed GPU steps.
+- The initial automatic prompt/completion path emitted a tokenizer-boundary mismatch warning under this local Qwen tokenizer. The corrected harness uses pretokenized `input_ids` plus an explicit `completion_mask`, matching the verified AIOS response-only representation. The corrected smoke run passed without that mismatch warning.
+- Conclusion: standard TRL/PEFT mechanics are compatible, but the real campaign must bypass automatic ChatML conversion and use the pretokenized completion-mask path. Next: build the governed real-model adapter runner and compare it against the existing trainer only after separate named authorization.

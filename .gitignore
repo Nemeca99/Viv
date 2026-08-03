@@ -62,6 +62,7 @@ foundation/artifacts/auto/
 # Additional generated runtime state
 sandbox/work/
 sandbox/training_staging/
+foundation/sandbox/
 foundation/artifacts/carma/
 foundation/artifacts/rid/
 foundation/artifacts/carma/live/

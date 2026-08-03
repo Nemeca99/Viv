@@ -695,5 +695,21 @@
     "promotion_allowed": false,
     "deployment_allowed": false
   },
-  "updated_utc": "2026-08-03T19:23:00Z"
+  "trl_compatibility": {
+    "trl_version": "0.17.0",
+    "transformers_version": "4.51.3",
+    "peft_version": "0.19.1",
+    "masking_rows_checked": 276,
+    "masking_status": "PASS",
+    "masking_artifact": "foundation/artifacts/auto/agentic/trl_v9_masking_compatibility_v1.json",
+    "tiny_qwen_lora_smoke": "PASS",
+    "tiny_qwen_smoke_artifact": "foundation/artifacts/auto/agentic/trl_peft_tiny_qwen_smoke_v1.json",
+    "adapter_reload": true,
+    "real_parent_touched": false,
+    "real_campaign_touched": false,
+    "training_authorized": false,
+    "run_authorized": false,
+    "next": "use_pretokenized_completion_mask_for_real_v9; no automatic_chat_template_conversion"
+  },
+  "updated_utc": "2026-08-03T19:30:00Z"
 }
