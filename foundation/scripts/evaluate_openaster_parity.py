@@ -142,7 +142,9 @@ def packet_for(case: dict[str, Any], dialogue: list[dict[str, str]] | None = Non
     facts = list(case.get("facts") or [])
     return {
         "version": "1.0", "s_n": float(case.get("sn") or 0.45),
-        "status": "ACTIVE", "mode": "converse", "tone": "calm",
+        # Ordinary conversation must not carry plant telemetry into the
+        # packet.  A bare internal status also trips the acronym membrane.
+        "status": "ordinary", "mode": "converse", "tone": "calm",
         "directive": "Speak from verified facts only. Do not invent or decide.",
         "personality": "Warm, direct, grounded; shield not sword.",
         "facts": facts, "memory": [], "dialogue": dialogue or [],
@@ -212,18 +214,19 @@ class OpenAsterBackend:
     name = "openaster_hf_lora_native"
     model_role = PARITY_EVAL_MODEL_ROLE
 
-    def __init__(self, adapter: Path, max_new_tokens: int = 160) -> None:
+    def __init__(self, adapter: Path, max_new_tokens: int = 160, base_model: Path | None = None) -> None:
         import torch
         from peft import PeftModel
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
         self.torch = torch
         self.max_new_tokens = max_new_tokens
-        tokenizer_source = adapter if (adapter / "tokenizer_config.json").is_file() else BASE
+        model_base = Path(base_model) if base_model is not None else BASE
+        tokenizer_source = adapter if (adapter / "tokenizer_config.json").is_file() else model_base
         self.tok = AutoTokenizer.from_pretrained(str(tokenizer_source), trust_remote_code=True)
         if self.tok.pad_token is None:
             self.tok.pad_token = self.tok.eos_token
-        base = AutoModelForCausalLM.from_pretrained(str(BASE), torch_dtype=torch.float16, trust_remote_code=True)
+        base = AutoModelForCausalLM.from_pretrained(str(model_base), torch_dtype=torch.float16, trust_remote_code=True)
         self.model = PeftModel.from_pretrained(base, str(adapter)).to("cuda").eval()
 
     def generate(self, packet: dict[str, Any]) -> dict[str, Any]:

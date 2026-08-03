@@ -672,15 +672,15 @@
     "next": "separate_named_campaign_authorization_review"
   },
   "mode": "live",
-    "next_action": "Three-source rebuild remains active and provider-agnostic. Exact-title, normalized natural-language title, redirect, and bounded source-faithful routing are wired across the full 12.8M-article corpus. The clean read-only semantic shard combines 192 source-hash-verified rows and is the default adapter artifact. The clean 40-query pack is target presence 39/40, top-1 37/40, MRR 0.945833; the disjoint eight-query family is 8/8 target presence and 8/8 top-1, with zero source revalidation rejections. AU now resolves canonically to the Au disambiguation article, so ambiguous meaning is preserved rather than guessed. The clean-default mouth matrix passes 4/4 for ordinary grounding, telemetry containment, AU clarification, and explicit health mode. The stale V3 campaign abort was traced to a pre-contract train package containing a row without split=train; it is retained as ABORT_NO_PROMOTION. A new combined memory-plus-direct-role candidate mouth_training_recovery_v3_campaign_v9 is admitted with 276 rows, named preflight PASS, and closed runner validation PASS; no model was loaded and gpu_steps=0. The CPU-only decision simulator now has independent verifier calibration and a replaceable Ollama policy path; viv-qwen-teacher passed 144/144 across two disjoint 72-episode packs, and viv-voice-qwen passed 288/288 across four disjoint 72-episode packs after mode-locked rendering repair. Closed decision_simulation_policy_campaign_v1 contains only 144 verified rows with disjoint scenario IDs and all authority closed. The supplied uml_calculator-12.py matches the canonical UML engine on 11/11 correctness and verification cases; the canonical verifier false-negative was repaired and the UML-versus-source benchmark is 8/8 on both authoritative capability families. UML remains a candidate deterministic fast path, not a mandatory detour; route by measured correctness, latency, and abstention. No persistent semantic index, CARMA admission, training, lease, promotion, deployment, or live-model mutation is authorized. V104 remains read-only and closed: V19 parent hash locked, 148 train rows, 96 disjoint holdout rows, gpu_steps=0, model_loaded=false, and all authority closed. Next: preserve the verified V9 candidate and review separate named authorization; do not start it without explicit authorization.",
+    "next_action": "Three-source rebuild remains active and provider-agnostic. Exact-title, normalized natural-language title, redirect, and bounded source-faithful routing are wired across the full 12.8M-article corpus. The clean read-only semantic shard combines 192 source-hash-verified rows and is the default adapter artifact. The clean 40-query pack is target presence 39/40, top-1 37/40, MRR 0.945833; the disjoint eight-query family is 8/8 target presence and 8/8 top-1, with zero source revalidation rejections. AU now resolves canonically to the Au disambiguation article, so ambiguous meaning is preserved rather than guessed. The clean-default mouth matrix passes 4/4 for ordinary grounding, telemetry containment, AU clarification, and explicit health mode. V9 was authorized and committed through the open-source TRL/PEFT runner at 128 steps, but remains unpromoted. The corrected bounded smoke comparison signaled a regression against the incumbent; the full 900-generation gate is inconclusive because it exceeded the bounded runtime. Fix evaluator throughput and obtain a valid full comparison before any promotion decision. No persistent semantic index, CARMA admission, promotion, deployment, or live-model mutation is authorized.",
   "objective": "Progressively train and validate Viv's tagged prompt adapter under AIOS governance; do not promote without fresh evidence.",
-  "phase": "three_source_rebuild_provider_agnostic_staged_semantic_runtime_wired_knowledge_to_mouth_containment_verified_v104_closed_authorization_pending",
+  "phase": "three_source_rebuild_provider_agnostic_staged_semantic_runtime_wired_v9_committed_unpromoted_evaluation_inconclusive",
   "schema_version": "viv_current_task_v1",
   "started_utc": "2026-08-02T05:51:21Z",
   "status": "IN_PROGRESS",
   "task_list": null,
   "task_list_sha256": null,
-  "total_tasks": 0,
+  "total_tasks": 6,
   "trace_id": "9deaa1c4cd7c4d63b324819ede977599",
   "campaign_v9_preflight": {
     "campaign_id": "mouth_training_recovery_v3_campaign_v9",
@@ -721,5 +721,46 @@
       "deployment_allowed": false
     }
   },
-  "updated_utc": "2026-08-03T19:35:00Z"
+  "v9_open_source_execution": {
+    "state": "COMMITTED_NO_PROMOTION",
+    "campaign_id": "mouth_training_recovery_v3_campaign_v9",
+    "run_id": "mouth_training_recovery_v3_campaign_v9_trl_20260803T202234Z",
+    "engine": "trl_peft",
+    "train_rows": 276,
+    "optimizer_steps": 128,
+    "train_loss": 1.79940951988101,
+    "success_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v9/EXECUTION_SUCCESS_REPORT_TRL.json",
+    "adapter": "foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v9_trl_20260803T202234Z/adapter",
+    "commit_allowed": true,
+    "commit_master_s_n": 0.3689,
+    "hard_threshold": 0.37,
+    "soft_floor": 0.25,
+    "training_soft_band": true,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "live_model_changed": false,
+    "failed_attempts_preserved": [
+      "mouth_training_recovery_v3_campaign_v9_trl_20260803T200307Z",
+      "mouth_training_recovery_v3_campaign_v9_trl_20260803T201047Z",
+      "mouth_training_recovery_v3_campaign_v9_trl_20260803T202002Z"
+    ],
+    "next_action": "read_only_behavior_evaluation_then_separate_promotion_review"
+  },
+  "v9_evaluation": {
+    "state": "SMOKE_COMPLETE_FULL_GATE_INCONCLUSIVE",
+    "full_gate_artifact": "foundation/models/Training/runs/mouth_training_recovery_v3_campaign_v9_trl_20260803T202234Z/generated_output_evaluation_attempt1_inconclusive.json",
+    "full_gate_reason": "initial evaluator used wrong base; corrected full run exceeded 15 minute bound; no full-gate promotion decision",
+    "smoke_rows_per_adapter": 16,
+    "smoke_token_cap": 64,
+    "incumbent_mind_pass_rate": 0.4167,
+    "v9_mind_pass_rate": 0.0,
+    "incumbent_valid_speech_rate": 1.0,
+    "v9_valid_speech_rate": 1.0,
+    "incumbent_content_denials": 4,
+    "v9_content_denials": 4,
+    "interpretation": "V9 is not promotion-ready from this smoke; the small sample is evidence of a regression signal, not a final campaign verdict",
+    "promotion_authorized": false,
+    "deployment_authorized": false
+  },
+  "updated_utc": "2026-08-03T20:45:00Z"
 }

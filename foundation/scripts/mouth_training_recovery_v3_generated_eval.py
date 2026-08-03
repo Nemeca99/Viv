@@ -12,8 +12,10 @@ if str(FOUNDATION) not in sys.path:
     sys.path.insert(0, str(FOUNDATION))
 
 from scripts import evaluate_openaster_parity as parity  # noqa: E402
+from models.Training.code.train_pairwise_lora import LOCAL_BASE  # noqa: E402
 
 PACKS = ("development", "blind", "legacy", "auditor_negative")
+INCUMBENT_ADAPTER = FOUNDATION / "models/Training/runs/openaster_stage1_gen_smoke_16_20260730T004859Z/adapter"
 RATE_THRESHOLDS = {
     "mind_pass_rate": 0.68,
     "valid_speech_rate": 0.95,
@@ -43,7 +45,7 @@ def _load_pack(root: Path, name: str) -> list[dict[str, Any]]:
 
 
 def _evaluate_adapter(adapter: Path, campaign_root: Path, role: str, checkpoint_step: int | None) -> dict[str, Any]:
-    backend = parity.OpenAsterBackend(adapter=adapter, max_new_tokens=160)
+    backend = parity.OpenAsterBackend(adapter=adapter, max_new_tokens=160, base_model=LOCAL_BASE)
     reports: dict[str, Any] = {}
     try:
         for name in PACKS:
@@ -95,7 +97,10 @@ def evaluate_campaign(
     del plan
     root = Path(campaign_root)
     out = Path(output_root)
-    parent = _evaluate_adapter(parity.BASE, root, "incumbent", None)
+    # OpenAsterBackend loads the raw HF base and then attaches a PEFT adapter;
+    # parity.BASE is therefore not a valid incumbent adapter path.  Compare
+    # against the governed parent adapter used by the named campaign.
+    parent = _evaluate_adapter(INCUMBENT_ADAPTER, root, "incumbent", None)
     checkpoints = [_evaluate_adapter(out / f"adapter_step_{step}", root, "checkpoint", step) for step in checkpoint_steps]
     reports = [parent, *checkpoints]
     gates = [_gate_report(report) for report in reports]

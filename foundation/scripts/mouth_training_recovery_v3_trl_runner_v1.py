@@ -43,6 +43,7 @@ from scripts.mouth_training_recovery_v3_runner import (  # noqa: E402
 
 GRADIENT_ACCUMULATION = 4
 SEQUENCE_CAP = 384
+FORBIDDEN_STAGING_EXTENSIONS = {".txt", ".bin", ".py", ".exe", ".dll"}
 
 
 def load_rows(root: Path) -> tuple[dict[str, Any], Path, list[dict[str, Any]]]:
@@ -75,6 +76,16 @@ def build_pretokenized_dataset(rows: list[dict[str, Any]], tokenizer: Any, eos_i
             "pair_id": row["pair_id"],
         })
     return Dataset.from_list(examples)
+
+
+def assert_safe_staging_tree(root: Path) -> None:
+    forbidden = sorted(
+        str(path).replace("\\", "/")
+        for path in Path(root).rglob("*")
+        if path.is_file() and path.suffix.casefold() in FORBIDDEN_STAGING_EXTENSIONS
+    )
+    if forbidden:
+        raise ValueError(f"forbidden_staging_extensions:{forbidden[:8]}")
 
 
 def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, Any]:
@@ -127,15 +138,17 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
         model.enable_input_require_grads()
         model.gradient_checkpointing_enable()
 
-        final_root = Path(lease.final_root)
         staging_root = Path(lease.staging_root)
         trainer_root = staging_root / "trl_trainer"
 
         class AdapterCheckpointCallback(TrainerCallback):
-            def on_save(self, args: Any, state: Any, control: Any, model: Any = None, **kwargs: Any) -> Any:
+            def on_step_end(self, args: Any, state: Any, control: Any, model: Any = None, **kwargs: Any) -> Any:
                 step = int(state.global_step)
                 if model is not None and step in CHECKPOINT_STEPS:
-                    model.save_pretrained(final_root / f"adapter_step_{step}")
+                    # The Rust lease commits by atomically renaming staging_root
+                    # to final_root.  Writing final_root before commit causes a
+                    # run-collision denial and would violate the lease boundary.
+                    model.save_pretrained(staging_root / f"adapter_step_{step}", safe_serialization=True)
                 return control
 
         trainer = SFTTrainer(
@@ -148,9 +161,7 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
                 learning_rate=LEARNING_RATE,
                 warmup_ratio=WARMUP_RATIO,
                 logging_steps=1,
-                save_strategy="steps",
-                save_steps=min(CHECKPOINT_STEPS),
-                save_total_limit=None,
+                save_strategy="no",
                 report_to=[],
                 completion_only_loss=True,
                 dataset_kwargs={"skip_prepare_dataset": True},
@@ -164,21 +175,22 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
             callbacks=[AdapterCheckpointCallback()],
         )
         train_result = trainer.train()
-        final_adapter = final_root / "adapter"
-        trainer.save_model(str(final_adapter))
+        staging_adapter = staging_root / "adapter"
+        model.save_pretrained(staging_adapter, safe_serialization=True)
         trained = {
             "engine": "trl_peft",
             "global_step": int(trainer.state.global_step),
             "train_loss": float(train_result.training_loss),
             "train_rows": len(rows),
             "train_sha256": sha256(train_path),
-            "adapter_final": str(final_adapter).replace("\\", "/"),
-            "checkpoint_steps": {str(step): (final_root / f"adapter_step_{step}").is_dir() for step in CHECKPOINT_STEPS},
+            "adapter_staging": str(staging_adapter).replace("\\", "/"),
+            "checkpoint_steps": {str(step): (staging_root / f"adapter_step_{step}").is_dir() for step in CHECKPOINT_STEPS},
             "completion_only_loss": True,
             "automatic_chat_template_conversion": False,
         }
         if int(trainer.state.global_step) != OPTIMIZER_STEPS:
             raise RuntimeError(f"optimizer_steps:{trainer.state.global_step}:{OPTIMIZER_STEPS}")
+        assert_safe_staging_tree(staging_root)
         commit = lease.commit()
         if not commit.get("allowed"):
             raise PermissionError(f"security_commit_denied:{commit}")
@@ -187,7 +199,7 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
             target_root = Path(output_root)
             target_root.mkdir(parents=True, exist_ok=True)
             for step in CHECKPOINT_STEPS:
-                source = final_root / f"adapter_step_{step}"
+                source = Path(lease.final_root) / f"adapter_step_{step}"
                 target = target_root / f"adapter_step_{step}"
                 if source.is_dir() and not target.exists():
                     shutil.copytree(source, target)
@@ -205,7 +217,7 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
             "engine": "trl_peft",
             "gpu_steps": OPTIMIZER_STEPS,
             "lease_opened": True,
-            "adapter_final": trained["adapter_final"],
+            "adapter_final": str((Path(lease.final_root) / "adapter")).replace("\\", "/"),
             "training": trained,
             "security_commit": commit,
         }, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
@@ -249,5 +261,5 @@ if __name__ == "__main__":
     if args.execute:
         print(json.dumps(run_experiment(root=args.campaign_root, output_root=args.output_root), indent=2, sort_keys=True))
     else:
-        report = validate_campaign(args.campaign_root)
+        report = validate_campaign(args.campaign_root, allow_authorized=True)
         print(json.dumps({"ok": True, "status": report["status"], "findings": report["findings"], "engine": "trl_peft", "training_authorized": False, "run_authorized": False, "gpu_steps": 0}, sort_keys=True))
