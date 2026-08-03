@@ -51,18 +51,24 @@ def _answer_contract_pass(mode: str, answer: str) -> tuple[bool, str]:
         has_answer_link = bool(tokens & {"answer", "answered", "answering", "responded", "responding", "response"})
         return has_consolidation and has_evidence and has_answer_link, "restore_contract"
     if mode == "action":
+        has_restore_claim = bool(tokens & {"consolidate", "consolidated", "consolidation", "merged", "summarized", "summary", "integrated", "synthesized"})
         has_task = bool(tokens & {"task", "maintenance", "work", "operation"})
         has_completion = bool(tokens & {"completed", "completion", "complete", "finished", "performed", "done"})
         has_verification = bool(tokens & {"verified", "checked", "confirmed", "validated", "result"})
         if re.search(r"\b(not|never|without)\s+(verified|checked|confirmed|validated)\b", text):
             return False, "action_result_unverified"
+        if has_restore_claim and not has_task:
+            return False, "action_mode_mismatch_restore"
         return has_task and has_completion and has_verification, "action_contract"
     if mode == "idle":
+        has_restore_claim = bool(tokens & {"consolidate", "consolidated", "consolidation", "merged", "summarized", "summary", "integrated", "synthesized"})
         has_absence = bool(tokens & {"no", "none", "nothing", "unavailable"})
         has_worth = bool(tokens & {"worthwhile", "useful", "available", "work", "task"})
         has_wait = bool(tokens & {"idle", "idling", "wait", "waiting", "conserving", "conserve", "recover", "recovery"})
         has_action_claim = bool(tokens & {"perform", "performed", "execute", "executed", "completed", "complete"})
         natural_idle_result = has_wait
+        if has_restore_claim and not has_wait:
+            return False, "idle_mode_mismatch_restore"
         return (natural_idle_result or (has_absence and has_worth and has_wait)) and not has_action_claim, "idle_contract"
     return False, "unknown_mode"
 

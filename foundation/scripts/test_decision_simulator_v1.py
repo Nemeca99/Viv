@@ -8,7 +8,7 @@ from pathlib import Path
 FOUNDATION = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(FOUNDATION))
 
-from lib.aios_decision_simulator import LoopState, build_scenarios, run_policy, run_verified_policy, score_submission
+from lib.aios_decision_simulator import LoopState, build_scenarios, run_policy, run_verified_policy, score_submission, verify_generated_answer
 
 
 def main() -> int:
@@ -57,6 +57,9 @@ def main() -> int:
     assert malformed["receipts"][0]["verdict"] == "MALFORMED_CHOICE"
     assert malformed["verified_choice"] == 0
     assert malformed["sn_final"] < malformed["sn_start"]
+
+    idle_scenario = next(s for s in scenarios if next(c for c in s.choices if c.choice_id == s.correct_choice_id).mode == "idle")
+    assert verify_generated_answer(idle_scenario, choice_id=idle_scenario.correct_choice_id, answer="I consolidated the verified evidence before answering.")["reason"] == "idle_mode_mismatch_restore"
     print("PASS decision_simulator hidden_oracle idle_recovery legitimate_cycle adversarial_cycle")
     return 0
 
