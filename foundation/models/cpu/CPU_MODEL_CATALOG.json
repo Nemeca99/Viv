@@ -1,0 +1,37 @@
+{
+  "schema_version": "viv_cpu_specialist_catalog_v1",
+  "authority": "deterministic_cpu_aios",
+  "specialists": [
+    {
+      "id": "semantic_geometry",
+      "role": "bounded semantic similarity evidence",
+      "file": "bert-base-uncased-Q8_0.gguf",
+      "sha256": "D03FA752E9930130CE03358A8E22ECD4F3F1DBA4EC37149218EF1E310CE72460",
+      "required_for": ["knowledge_alignment", "retrieval_ranking"],
+      "authority": false
+    },
+    {
+      "id": "emotion_observer",
+      "role": "bounded emotion-category observation",
+      "file": "goemotions-f16.gguf",
+      "sha256": "1146E4790B14665F585E5151D2DF59A7F40C712DA2E02430EC7CB8C0788708A4",
+      "required_for": ["tone_observation"],
+      "authority": false
+    },
+    {
+      "id": "persuasion_observer",
+      "role": "bounded persuasion/populism-category observation",
+      "file": "populism_english_bert_base_uncased.f16.gguf",
+      "sha256": "3C61AA622BEE9067608B822451D7E93DEF614198C433B260D41A5B2C96BF46E8",
+      "required_for": ["rhetoric_observation"],
+      "authority": false
+    }
+  ],
+  "policy": {
+    "residency": "cpu",
+    "read_only_source": true,
+    "hash_required_before_use": true,
+    "specialist_output_is_authority": false,
+    "decision_authority": "deterministic_cpu_aios_and_rust_security"
+  }
+}
