@@ -838,7 +838,15 @@
       "gate_denial_is_runtime_state": true,
       "module_errors": false
     },
-    "next_action": "build_and_test_cpu_neurosymbolic_authority_before_next_gpu_campaign"
+    "next_action": "continue_cpu_autonomous_rag_core_slice_before_next_gpu_campaign",
+    "cpu_next_target": {
+      "generation": "V1",
+      "id": "rag_core",
+      "role": "document RAG / ManualOracle",
+      "status": "partial",
+      "registry": "foundation/artifacts/auto/systems/AIOS_SYSTEMS_REGISTRY.md",
+      "rule": "port provenance-preserving retrieval behavior only; do not copy the legacy tree wholesale"
+    }
   },
-  "updated_utc": "2026-08-03T22:03:36Z"
+  "updated_utc": "2026-08-03T22:04:19Z"
 }
