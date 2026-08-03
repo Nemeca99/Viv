@@ -1128,6 +1128,20 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "live_cpu_beat_after_privacy_surface": {
+            "state": "VERIFIED_NOMINAL_READ_ONLY_CPU_BEAT",
+            "command": "foundation/aios_main.py beat --max-tasks 1",
+            "timestamp": "2026-08-03T23:01:26Z",
+            "mode": "nominal",
+            "master_s_n": 0.7873,
+            "runtime_task": "t-b94420e8bd",
+            "runtime_task_kind": "cpu_rid_observe",
+            "runtime_task_status": "done",
+            "security_denial_recorded": true,
+            "training": false,
+            "deployment_changed": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }

@@ -3144,6 +3144,12 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,236` Python files parsed, all configured suites returned zero, Triad architecture `920` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
 
+## 2026-08-04 — live CPU autonomy beat after privacy surface
+
+- Ran `foundation/aios_main.py beat --max-tasks 1` after the privacy adapter integration. The live beat returned `ok=true`, `mode=nominal`, and `Master S_n=0.7873`.
+- The runtime completed task `t-b94420e8bd` (`cpu_rid_observe`) as `done`; the separate agent attempt to remember was denied at `security_ingress_denied` and did not mutate memory. The task board remained bounded with `4` ready and `1` blocked task.
+- This is runtime evidence that the CPU autonomy loop remains online; it is not evidence that all AIOS cores are rebuilt. No training, model load, promotion, deployment, or live-model change occurred.
+
 ## 2026-08-03 — deterministic dream scheduling slice
 
 - Compared the F/D `dream_core` implementations. Their intended behavior is pulse-aware consolidation with hot/cold paths, dormancy handling, and memory consolidation; the legacy implementation also mixes scheduling with file writes and model-era assumptions.
