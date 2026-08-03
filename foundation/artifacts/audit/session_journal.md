@@ -2902,3 +2902,10 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Admitted fresh `mouth_training_recovery_v3_campaign_v8` from the frozen 256-row candidate plus the 8 direct role rows: 264 train rows. Named preflight and closed runner validation passed with empty findings and `gpu_steps=0`.
 - The new builder boundary was reviewed and frozen with one expected addition. Full foundation preflight passed with 1,185 parsed Python files, 886 architecture files, 100% coverage, 533 boundary modules, zero errors, all listed Python tests passing, and Rust/security Cargo tests passing.
 - No V8 authorization, lease, GPU step, adapter commit, promotion, deployment, parent mutation, or live-model mutation has occurred.
+
+## 2026-08-03 — V8 smaller direct-role refinement negative result
+
+- V8 was authorized after backup `foundation/artifacts/auto/agentic/backups/pre_v8_named_authorization_20260803T135453Z`, with fresh `Master S_n=0.8599 ACTIVE`; authorization remained 128 steps at LR `1e-4`, promotion false, deployment false.
+- V8 completed `128/128` steps in `427.391` seconds over 264 rows and 6,282 supervised tokens. NLL improved `4.0777410 -> 0.7265788`; token accuracy improved `0.4576568 -> 0.7929004`; Law 5 committed at `Master S_n=0.2737`.
+- Read-only generation was raw `49 PASS / 40 HOLD / 13 FAIL`; CPU containment was `100 PASS / 2 HOLD / 0 FAIL`, zero toolbleed, zero acronym failures. Compared with V6 under the repaired judge (`50/44/8` raw and `101/1/0` contained), V8 is also a negative refinement result despite healthy optimization.
+- The exact CPU-mind/GPU-mouth case no longer abstained, but emitted the invented label `GPU-Speech`, triggering the acronym contract. A separate sealed-memory case also became a hold. V8 remains unpromoted; V6 is the best measured challenger. Do not promote V7 or V8; redesign the role intervention before another full run.

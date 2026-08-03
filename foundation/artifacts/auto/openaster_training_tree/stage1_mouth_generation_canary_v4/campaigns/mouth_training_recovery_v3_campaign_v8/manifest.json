@@ -1,4 +1,17 @@
 {
+  "authorization_scope": {
+    "campaign_id": "mouth_training_recovery_v3_campaign_v8",
+    "checkpoint_steps": [
+      32,
+      64,
+      96,
+      128
+    ],
+    "deployment_authorized": false,
+    "learning_rate": 0.0001,
+    "optimizer_steps": 128,
+    "promotion_authorized": false
+  },
   "campaign_id": "mouth_training_recovery_v3_campaign_v8",
   "created_utc": "2026-08-03T18:52:50Z",
   "deployment_allowed": false,
@@ -9,6 +22,7 @@
     "development": 64,
     "legacy": 64
   },
+  "execution_success_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v8/EXECUTION_SUCCESS_REPORT.json",
   "files": {
     "auditor_negative": {
       "optimizer_eligible": false,
@@ -41,12 +55,12 @@
       "sha256": "ad2b5036cd376c7a8c193e284ffb07fa1587f934753d160c5063fae6ac54e594"
     }
   },
-  "gpu_steps": 0,
-  "lease_opened": false,
+  "gpu_steps": 128,
+  "lease_opened": true,
   "lora_authorized": false,
-  "next_action": "preflight_only_then_separate_execution_authorization",
+  "next_action": "read_only_generation_validation_then_separate_promotion_review",
   "promotion_allowed": false,
-  "run_authorized": false,
+  "run_authorized": true,
   "schema_version": "mouth_training_recovery_v3_campaign_v8",
   "source_eval_rebuild": {
     "manifest_sha256": "27dd58a33a8fd024f26cafa8932b3799422fc4f2ba12e5707b21beee9130b01f",
@@ -62,7 +76,7 @@
     "rows": 8,
     "sha256": "44eb3cd06fc2e2eb853b8356d8d253143df6b70bf21610e58e3eefbb436895d6"
   },
-  "status": "CAMPAIGN_ADMITTED_TRAINING_CLOSED",
+  "status": "CAMPAIGN_EXECUTION_COMPLETE",
   "train_rows": 264,
-  "training_authorized": false
+  "training_authorized": true
 }
