@@ -1,0 +1,64 @@
+# authored_by=architect_rebuild at=2026-07-21T22:10:00+00:00 tool=adapter_input
+# law4=source_as_txt run=python_stdin rebuild_tranche=input_core
+# REBUILD ADAPTER input — callable status/normalize over inbox + ingress_gate (no V2 multimodal port)
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_input import normalize, run_smoke, status  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    v2 = sev.get("v2") or {}
+    inbox = sev.get("inbox") or {}
+    print(
+        "ADAPTER_INPUT status ok="
+        + str(bool(st.get("ok")))
+        + " inbox="
+        + str(inbox.get("inbox_exists"))
+        + " multimodal_port="
+        + str(v2.get("viv_ports_v2_multimodal"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_INPUT ok="
+        + str(bool(result.get("ok")))
+        + " text="
+        + str(ev.get("normalize_text_ok"))
+        + " event="
+        + str(ev.get("normalize_event_ok"))
+        + " empty_denied="
+        + str(ev.get("empty_denied"))
+        + " dormancy_deny="
+        + str(ev.get("dormancy_deny_ok"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "marker": ev.get("marker"),
+                "normalize_text_ok": ev.get("normalize_text_ok"),
+                "normalize_event_ok": ev.get("normalize_event_ok"),
+                "empty_denied": ev.get("empty_denied"),
+                "dormancy_deny_ok": ev.get("dormancy_deny_ok"),
+                "viv_ports_v2_multimodal": ev.get("viv_ports_v2_multimodal"),
+                "inbox_exists": ev.get("inbox_exists"),
+                "live_s_n": ev.get("live_s_n"),
+                "s_n": ev.get("s_n"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    _ = normalize
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

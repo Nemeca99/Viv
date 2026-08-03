@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-07-16T05:38:10.330204+00:00",
+  "ok": true,
+  "link": "A_continued_prt_not_moe",
+  "adapter_r": 21,
+  "collect_this_run": {
+    "cycles": 26,
+    "REWARD": 0,
+    "NEUTRAL": 0,
+    "PUNISH": 26,
+    "reward_rate": 0.0,
+    "by_act": {
+      "observe": {
+        "PUNISH": 13
+      },
+      "life": {
+        "PUNISH": 9
+      },
+      "speak": {
+        "PUNISH": 4
+      }
+    },
+    "err_mean_by_act": {
+      "observe": 0.3722,
+      "life": 0.3105,
+      "speak": 0.3443
+    }
+  },
+  "train": {
+    "steps": 140,
+    "lr": 8e-05,
+    "continue_adapter": true
+  },
+  "growth": {
+    "pending_growth": true,
+    "pending_delta_r": 2,
+    "applied": false,
+    "note": "held \u2014 no widen this round"
+  },
+  "thermal_window": {
+    "monitor_frames": 511,
+    "monitor_total_lines": 556,
+    "cpu_package_c": {
+      "min": 53.0,
+      "max": 64.0,
+      "mean": 58.1213,
+      "n": 511
+    },
+    "coolant_c": {
+      "min": 34.5,
+      "max": 35.6,
+      "mean": 35.0137,
+      "n": 511
+    },
+    "pkg_minus_coolant_c": {
+      "min": 17.4,
+      "max": 29.3,
+      "mean": 23.1076,
+      "n": 511
+    },
+    "master_s_n": {
+      "min": 0.0109,
+      "max": 0.4753,
+      "mean": 0.3316,
+      "n": 511
+    },
+    "hot_core_near_idle_frames": 155
+  },
+  "vs_round1": {
+    "round1_reward_rate": 0.0,
+    "note": "round1 was 22/22 PUNISH"
+  },
+  "verdict": "PASS_round2_complete",
+  "moe_actuator": false,
+  "log": "artifacts/audit/prt_crystallize_r21_round2.log"
+}

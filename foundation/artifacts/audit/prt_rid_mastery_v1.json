@@ -1,0 +1,17 @@
+{
+  "experiment_id": "prt_rid_mastery_v1",
+  "timestamp_utc": "2026-07-19T01:15:00+00:00",
+  "operator_intent": "Master RID (RSR/LTP/RLE/S_n) before any other training. Pass = 99–100% hit rate — treated as math/plant truth, not soft progress.",
+  "pass_gate": {
+    "metric": "observe cycles REWARD rate",
+    "threshold": 0.99,
+    "min_valid_cycles": 200,
+    "scaffold": "phase 1 full (no blanks) until pass; then reintroduce fade",
+    "acts": ["observe"]
+  },
+  "halt": {
+    "default": "force-kill apply/overnight tree (seconds)",
+    "soft": "prt_main.py night halt --soft"
+  },
+  "rollback": "Clear rid_mastery_mode; restore scaffold_phase 2 only after pass_gate evidence"
+}

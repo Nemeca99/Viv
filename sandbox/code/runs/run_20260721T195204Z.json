@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/plant_digest_current.txt",
+  "stdout": "PLANT_DIGEST sn=0.42 status=ACTIVE\n",
+  "stderr": "",
+  "s_n": 0.42,
+  "at": "2026-07-21T19:52:04+00:00"
+}

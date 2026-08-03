@@ -1,0 +1,17 @@
+[
+  {
+    "task_id": "create_transactional_normalized_copy",
+    "kind": "prebuilt_tool",
+    "tool": "normalize_artifact",
+    "operator_approved": true,
+    "args": {
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/agentic/local_coder_live_smoke_v1/queue_summary.json",
+      "output_name": "rollback_probe_normalized_20260801.json"
+    }
+  },
+  {
+    "task_id": "force_downstream_failure",
+    "kind": "read_only_check",
+    "path": "${ARTIFACT_ROOT}/missing_after_mutation.json"
+  }
+]

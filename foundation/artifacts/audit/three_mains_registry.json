@@ -1,0 +1,299 @@
+{
+  "run_id": "three_mains_phase0_20260704_0325",
+  "phase": "phase0_registry",
+  "status": "complete",
+  "updated_at": "2026-07-04 03:25:00",
+  "scope": {
+    "canonical_alpha_root": "L:/Continue/Viv",
+    "mutation_policy": "Only mutate L:/Continue/Viv during Alpha. Other L:/Continue roots are read for absorption inventory and marked housekeeping_later unless vendored into Viv.",
+    "pillar_mains": {
+      "rid": "L:/Continue/Viv/foundation/rid_main.py",
+      "auto": "L:/Continue/Viv/foundation/auto_main.py",
+      "uml": "L:/Continue/Viv/foundation/uml_main.py"
+    }
+  },
+  "classification_legend": {
+    "absorb_into_rid": "Frequent/default RID surface to become a rid_main.py command.",
+    "absorb_into_auto": "Frequent/default agentic surface to become an auto_main.py command or Viv-local lib used by it.",
+    "absorb_into_uml": "Frequent/default language/calculator surface to become a uml_main.py command.",
+    "keep_in_lib": "Implementation library. Mains and consumers import it; it is not an operator CLI surface.",
+    "bridge_temp": "External code still used during Alpha, target is vendor/reimplement into Viv later.",
+    "housekeeping_later": "External duplicate/default to clean after Alpha, not during this phase.",
+    "edge_only": "Demo/visual/test path not core to the Alpha default.",
+    "deprecate": "Viv-local duplicate entry after absorption; leave stub temporarily."
+  },
+  "entries": [
+    {
+      "path": "L:/Continue/Viv/foundation/rid_stability_main.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "Phone ridv14 stability capture is a canonical RID proof and currently has its own entry point.",
+      "current_default_caller": "rid_main stability delegates to this module; direct __main__ also exists.",
+      "target_main_command": "rid_main.py stability and rid_main.py capture --kind coolant",
+      "alpha_action": "Move command handler/run surface into rid_main; keep reusable sampling helpers in lib if needed; add Master S_n columns."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/plant_master_capture.py",
+      "pillar": "rid",
+      "classification": "keep_in_lib",
+      "reason": "Canonical Master S_n capture implementation already lives in Viv lib.",
+      "current_default_caller": "rid_main coupled-capture, rid_main core-spread-capture",
+      "target_main_command": "rid_main.py capture --kind coupled|core_spread",
+      "alpha_action": "Keep implementation in lib; expose one unified capture command in rid_main."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/scripts/foundation_health.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "Foundation health is plant/RID/piston status and is a frequent operator check.",
+      "current_default_caller": "Direct script; auto_main foundation uses lib/foundation_health.",
+      "target_main_command": "rid_main.py status",
+      "alpha_action": "Expose status in rid_main; keep lib/foundation_health implementation."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/scripts/plant_capture_status.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "Plant capture verdict lookup is core RID evidence inspection.",
+      "current_default_caller": "Manual operator script.",
+      "target_main_command": "rid_main.py status",
+      "alpha_action": "Fold status display into rid_main."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/piston_core.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "Piston halt/resume/govern/status are core RID containment/governance operations.",
+      "current_default_caller": "Manual operator CLI.",
+      "target_main_command": "rid_main.py piston halt|resume|govern|status",
+      "alpha_action": "Move operator commands to rid_main; keep control implementation in lib/piston_engine.py and lib/cpu_governor.py."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/black_hole_main.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "Black-hole CPU/GPU/coupled plant science is registered in cpu_config and used as RID plant proof tooling.",
+      "current_default_caller": "cpu_config.black_hole.entry; manual operator CLI.",
+      "target_main_command": "rid_main.py collapse|coupled-run|gpu-triad|visual",
+      "alpha_action": "Move operator command surface into rid_main; engines remain in lib."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/gpu_triad_main.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "GPU triad is RID plant telemetry and currently only reachable through black_hole path.",
+      "current_default_caller": "black_hole_main gpu-triad",
+      "target_main_command": "rid_main.py gpu-triad",
+      "alpha_action": "Absorb into rid_main and keep GPU implementation in lib."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/rid_plot_main.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "RID plotting is a core operator tool; master CSV support is missing.",
+      "current_default_caller": "rid_main plot delegates; direct __main__ exists.",
+      "target_main_command": "rid_main.py plot --master",
+      "alpha_action": "Move/keep plotting under rid_main; add Master S_n/subsystem plotting."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/rid_cube_main.py",
+      "pillar": "rid",
+      "classification": "absorb_into_rid",
+      "reason": "RID cube is a core RID visualization command.",
+      "current_default_caller": "rid_main cube delegates; direct __main__ exists.",
+      "target_main_command": "rid_main.py cube",
+      "alpha_action": "Absorb command surface; leave reusable functions only."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/rid_benchmark.py",
+      "pillar": "rid",
+      "classification": "deprecate",
+      "reason": "Benchmark is already exposed by rid_main; direct __main__ is duplicate.",
+      "current_default_caller": "rid_main benchmark and direct module invocation.",
+      "target_main_command": "rid_main.py benchmark",
+      "alpha_action": "Keep implementation in lib; deprecate direct CLI."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/rid_feed.py",
+      "pillar": "rid",
+      "classification": "keep_in_lib",
+      "reason": "Shared live sample implementation. auto_main and rid_main both import it; not an operator CLI.",
+      "current_default_caller": "auto_main pulse/autonomous; rid_main feed/sample",
+      "target_main_command": "N/A",
+      "alpha_action": "Keep in lib."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/master_rid.py",
+      "pillar": "rid",
+      "classification": "keep_in_lib",
+      "reason": "Shared hierarchical Master S_n implementation consumed by auto_main and capture paths.",
+      "current_default_caller": "auto_main autonomous; auto_rid_journal; plant_master_capture",
+      "target_main_command": "N/A",
+      "alpha_action": "Keep in lib."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/plant_piston_bridge.py",
+      "pillar": "rid",
+      "classification": "keep_in_lib",
+      "reason": "Artifact bridge: captures publish plant verdict; gates read it.",
+      "current_default_caller": "rid_stability_main, plant_master_capture, foundation_health, autonomous_operator",
+      "target_main_command": "N/A",
+      "alpha_action": "Keep in lib."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/auto_run.py",
+      "pillar": "auto",
+      "classification": "absorb_into_auto",
+      "reason": "Legacy run/loop path lacks latest Master S_n/background piston behavior.",
+      "current_default_caller": "auto_main run/loop",
+      "target_main_command": "auto_main.py autonomous",
+      "alpha_action": "Fold or deprecate run/loop so autonomous is the only default loop."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/autonomous_operator.py",
+      "pillar": "auto",
+      "classification": "keep_in_lib",
+      "reason": "Viv-local implementation of autonomous beat/loop.",
+      "current_default_caller": "auto_main autonomous",
+      "target_main_command": "N/A",
+      "alpha_action": "Keep in lib; auto_main remains CLI surface."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/autonomy_gate.py",
+      "pillar": "auto",
+      "classification": "keep_in_lib",
+      "reason": "Tiered authority implementation for autonomous loop.",
+      "current_default_caller": "autonomous_operator",
+      "target_main_command": "N/A",
+      "alpha_action": "Keep in lib."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/auto_rid_journal.py",
+      "pillar": "auto",
+      "classification": "bridge_temp",
+      "reason": "Writes to external automation/3_body supervisor logs. Needed during Alpha, target is Viv-local journal/supervisor later.",
+      "current_default_caller": "auto_main pulse/autonomous",
+      "target_main_command": "auto_main.py autonomous",
+      "alpha_action": "Keep bridge for now; mark vendor/rebuild of 3_body semantics into Viv as later Alpha step."
+    },
+    {
+      "path": "L:/Continue/FSAA/scripts/agentic_runtime.py",
+      "pillar": "auto",
+      "classification": "bridge_temp",
+      "reason": "FSAA task executor is ticked by auto_main. Canonical Alpha should vendor/reimplement it under Viv.",
+      "current_default_caller": "auto_main runtime/autonomous via lib/auto_run.runtime_tick",
+      "target_main_command": "auto_main.py runtime tick|status",
+      "alpha_action": "Add complete auto_main command surface; then vendor shared runtime ops into Viv/foundation/lib."
+    },
+    {
+      "path": "L:/Continue/FSAA/scripts/agentic_worker_cli.py",
+      "pillar": "auto",
+      "classification": "bridge_temp",
+      "reason": "Worker pause/resume/status/enqueue is operator-facing and currently external.",
+      "current_default_caller": "autonomy_gate.ensure_runtime_ready subprocess resume; manual operator CLI",
+      "target_main_command": "auto_main.py worker resume|pause|status|enqueue",
+      "alpha_action": "Absorb command surface into auto_main; vendor worker helpers into Viv lib."
+    },
+    {
+      "path": "L:/Continue/FSAA/scripts/agentic_supervisor.py",
+      "pillar": "auto",
+      "classification": "bridge_temp",
+      "reason": "Stall watchdog belongs with autonomous operation but is not wired.",
+      "current_default_caller": "Direct script only.",
+      "target_main_command": "auto_main.py supervisor watch",
+      "alpha_action": "Vendor or reimplement stall watch under Viv and expose through auto_main."
+    },
+    {
+      "path": "L:/Continue/automation/headless_replacement_runner.py",
+      "pillar": "auto",
+      "classification": "housekeeping_later",
+      "reason": "Parallel automation queue outside Canonical Alpha. Inventory only; do not mutate until housekeeping.",
+      "current_default_caller": "run_headless_replacement.ps1",
+      "target_main_command": "auto_main.py queue status (read-only visibility during Alpha)",
+      "alpha_action": "Read status if useful; defer launcher/file cleanup."
+    },
+    {
+      "path": "L:/Continue/automation/master_ai_heartbeat_service.py",
+      "pillar": "auto",
+      "classification": "bridge_temp",
+      "reason": "Heartbeat service is used by Luna/Aria bring-up; Alpha should expose or vendor a heartbeat path in auto_main.",
+      "current_default_caller": "auto_main heartbeat delegates; run_master_ai_heartbeat.bat",
+      "target_main_command": "auto_main.py heartbeat",
+      "alpha_action": "Absorb command implementation into auto_main/Viv lib; defer external bat housekeeping."
+    },
+    {
+      "path": "L:/Continue/automation/check_automation.ps1",
+      "pillar": "auto",
+      "classification": "housekeeping_later",
+      "reason": "External validation wrapper. Alpha should extend auto_main check, but do not edit PS1 yet.",
+      "current_default_caller": "Manual operator.",
+      "target_main_command": "auto_main.py check",
+      "alpha_action": "Mirror needed checks in Viv; defer wrapper update."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/uml_engine.py",
+      "pillar": "uml",
+      "classification": "keep_in_lib",
+      "reason": "Canonical Viv UML engine. uml_main should expose more of it, not duplicate it.",
+      "current_default_caller": "uml_main; guardian_v2; direct __main__ duplicate",
+      "target_main_command": "uml_main.py eval|verify|trace|b52",
+      "alpha_action": "Keep engine; deprecate direct __main__; expose rich CLI in uml_main."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/train_corpus.py",
+      "pillar": "uml",
+      "classification": "absorb_into_uml",
+      "reason": "Written language/corpus generation belongs under UML language pillar.",
+      "current_default_caller": "Direct import only.",
+      "target_main_command": "uml_main.py corpus build",
+      "alpha_action": "Add corpus command to uml_main."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/model_main.py",
+      "pillar": "uml",
+      "classification": "edge_only",
+      "reason": "Optional voice/model lane is deferred. Voice-corpus can move under uml later, but not core Alpha now.",
+      "current_default_caller": "Manual operator.",
+      "target_main_command": "uml_main.py voice-corpus (future)",
+      "alpha_action": "Document deferral."
+    },
+    {
+      "path": "L:/Continue/FSAA/Luna/AIOS_V2/rid_core/chain.py",
+      "pillar": "uml",
+      "classification": "housekeeping_later",
+      "reason": "Uses external Steel_Brain UML engine. Fix after Canonical Alpha when Luna lane is rebuilt.",
+      "current_default_caller": "AIOS_V2 chain runtime.",
+      "target_main_command": "N/A",
+      "alpha_action": "Inventory only."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/guardian_v2.py",
+      "pillar": "uml",
+      "classification": "keep_in_lib",
+      "reason": "Guardian consumes uml_engine.evaluate; it is not itself UML CLI.",
+      "current_default_caller": "guardian_main; reasoning_check; AIOS_V2 guardian bridge",
+      "target_main_command": "N/A",
+      "alpha_action": "Keep in lib."
+    },
+    {
+      "path": "L:/Continue/Viv/foundation/lib/auto_narrator.py",
+      "pillar": "auto",
+      "classification": "keep_in_lib",
+      "reason": "Operational narration wrapper, not UML language pillar.",
+      "current_default_caller": "auto_main narrator/autonomous optional narrator",
+      "target_main_command": "auto_main.py narrator",
+      "alpha_action": "Keep in lib."
+    }
+  ],
+  "summary": {
+    "absorb_into_rid": 9,
+    "absorb_into_auto": 1,
+    "absorb_into_uml": 1,
+    "bridge_temp": 5,
+    "keep_in_lib": 8,
+    "housekeeping_later": 4,
+    "edge_only": 1,
+    "deprecate": 1
+  },
+  "next_phase": "phase1_rid_absorption"
+}

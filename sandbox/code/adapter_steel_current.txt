@@ -1,0 +1,60 @@
+# authored_by=architect_rebuild at=2026-07-21T21:48:00+00:00 tool=adapter_steel
+# law4=source_as_txt run=python_stdin rebuild_tranche=steel_brain
+# REBUILD ADAPTER steel — callable judge/status via foundation wrap (real steel_judge)
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_steel import judge, status, run_smoke  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    ref = sev.get("refinery") or {}
+    print(
+        "ADAPTER_STEEL status ok="
+        + str(bool(st.get("ok")))
+        + " mode="
+        + str(ref.get("viv_mode"))
+        + " viv_3llm="
+        + str(ref.get("viv_3llm_refinery"))
+        + " eq="
+        + str(sev.get("equilibrium_exists"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_STEEL ok="
+        + str(bool(result.get("ok")))
+        + " judge_ok="
+        + str(ev.get("judge_ok"))
+        + " passed="
+        + str(ev.get("passed"))
+        + " rsr="
+        + str(ev.get("structural_rsr"))
+        + " viv_3llm="
+        + str(ev.get("viv_3llm_refinery"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "marker": ev.get("marker"),
+                "passed": ev.get("passed"),
+                "structural_rsr": ev.get("structural_rsr"),
+                "viv_3llm_refinery": ev.get("viv_3llm_refinery"),
+                "viv_mode": ev.get("viv_mode"),
+                "source": ev.get("source"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

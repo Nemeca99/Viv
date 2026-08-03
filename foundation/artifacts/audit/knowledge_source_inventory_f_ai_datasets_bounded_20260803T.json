@@ -1,0 +1,36 @@
+{
+  "schema_version": "knowledge_source_inventory_v1",
+  "read_only": true,
+  "content_hashed": false,
+  "started_utc": "2026-08-02T22:46:12.996503+00:00",
+  "finished_utc": "2026-08-02T22:46:33.337497+00:00",
+  "roots": {
+    "F_AI_DATASETS": {
+      "label": "F_AI_DATASETS",
+      "root": "F:/AI_Datasets",
+      "exists": true,
+      "complete": false,
+      "files": 445344,
+      "directories": 1296,
+      "bytes": 2099652768,
+      "extensions": {
+        ".txt": 445342,
+        ".db": 1,
+        ".json": 1
+      },
+      "top_level_entries": {
+        "wikipedia_deduplicated": 446634,
+        "AIOS_Database": 1,
+        "advanced_ai_knowledge": 1,
+        "cybersecurity": 1,
+        "mass_effect": 1,
+        "personal": 1,
+        "psychology": 1
+      },
+      "errors": [],
+      "error_count": 0,
+      "limit_reached": "max_seconds",
+      "elapsed_s": 20.344
+    }
+  }
+}

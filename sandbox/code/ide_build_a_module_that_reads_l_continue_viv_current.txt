@@ -1,0 +1,10 @@
+# Viv IDE authored tool — ide_build_a_module_that_reads_l_continue_viv
+# Goal: build a module that reads L:/Continue/Viv/sandbox/work/aios_build/AIOS_BUILD_PLAN.md and prints section count
+from pathlib import Path
+import json
+p = Path('L:/Continue/Viv/sandbox/work/aios_build/AIOS_BUILD_PLAN.md')
+text = p.read_text(encoding='utf-8') if p.is_file() else ''
+heads = [ln[3:].strip() for ln in text.splitlines() if ln.startswith('## ')]
+print('path=' + str(p))
+print('chars=' + str(len(text)) + ' sections=' + str(len(heads)))
+print('systems=' + str(heads[:8]))

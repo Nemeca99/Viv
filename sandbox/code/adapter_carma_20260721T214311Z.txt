@@ -1,0 +1,42 @@
+# authored_by=viv_cpu at=2026-07-21T21:43:11+00:00 s_n=0.5000 tool=adapter_carma
+# law4=source_as_txt run=python_stdin foundation_immutable=true
+# REBUILD ADAPTER carma — callable remember/recall/status via foundation wrap
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_carma import remember, recall, status, run_smoke  # noqa: E402
+
+
+def main() -> int:
+    result = run_smoke()
+    rem = result.get("evidence", {}).get("remember") or {}
+    rec = result.get("evidence", {}).get("recall") or {}
+    print(
+        "ADAPTER_CARMA ok="
+        + str(bool(result.get("ok")))
+        + " remember="
+        + str(bool(rem.get("ok")))
+        + " recall_hits="
+        + str((rec.get("evidence") or {}).get("n_hits", 0))
+        + " found="
+        + str((result.get("evidence") or {}).get("found"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "marker": (result.get("evidence") or {}).get("marker"),
+                "found": (result.get("evidence") or {}).get("found"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

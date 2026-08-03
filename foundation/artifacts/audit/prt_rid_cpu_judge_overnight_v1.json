@@ -1,0 +1,14 @@
+{
+  "experiment_id": "prt_rid_cpu_judge_overnight_v1",
+  "timestamp_utc": "2026-07-19T08:25:00+00:00",
+  "parent": "prt_rid_mastery_v1",
+  "baseline_mastery_5r": {"reward_rate": 0.1429, "n": 105, "verdict": "FAIL"},
+  "changes": {
+    "cpu_judge_retry": true,
+    "cpu_judge_madlibs": true,
+    "collect": "observe-only phase-1",
+    "overnight": "prt_overnight_config_rid_cpu_judge.json"
+  },
+  "pass_gate": {"reward_rate": 0.99, "min_observe_cycles": 200},
+  "halt": "prt_main.py night halt  (force, ~1s)"
+}

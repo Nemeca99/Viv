@@ -1,0 +1,51 @@
+# authored_by=viv_cpu at=2026-07-21T21:54:09+00:00 s_n=0.5000 tool=plant_trend
+# law4=source_as_txt run=python_stdin foundation_immutable=security_core
+# REBUILD SCORECARD plant_trend — callable trend over plant/RID S_n / dormancy / load
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.plant_trend_scorecard import run_smoke  # noqa: E402
+
+
+def main() -> int:
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    trend = ev.get("trend") or {}
+    sn = trend.get("s_n") or {}
+    print(
+        "PLANT_TREND verdict="
+        + str(result.get("verdict"))
+        + " ok="
+        + str(bool(result.get("ok")))
+        + " n_s_n="
+        + str(ev.get("n_s_n"))
+        + " source="
+        + str(ev.get("primary_source"))
+        + " last="
+        + str(sn.get("last"))
+        + " delta="
+        + str(sn.get("delta"))
+        + " evidence="
+        + str(ev.get("evidence_path"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "verdict": result.get("verdict"),
+                "n_s_n": ev.get("n_s_n"),
+                "primary_source": ev.get("primary_source"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if str(result.get("verdict")) in {"PASS", "INCONCLUSIVE"} else 1
+
+
+raise SystemExit(main())

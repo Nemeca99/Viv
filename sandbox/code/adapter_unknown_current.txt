@@ -1,0 +1,8 @@
+# Viv IDE authored tool — adapter_unknown
+# Goal: Self-ingest: I sampled file Viv/foundation/artifacts/auto/knowledge/docs/081608e5c4b9_VOICE_DOCTRINE.txt. Verified facts only: path=Viv/foundation/artifacts/auto/knowledge/docs/081608e5c4b9_VOICE_DOCTRINE.txt; suffix=.txt; bytes=487; kind=doctrine; fingerprint=0e75fbc9658e94cf; top_tokens=voice_doct
+from pathlib import Path
+import json
+reg = Path(r"L:/Continue/Viv/foundation/artifacts/auto/systems/AIOS_SYSTEMS_REGISTRY.json")
+spine = Path(r"L:/Continue/Viv/sandbox/work/aios_build/REBUILD_SPINE.md")
+print('ADAPTER_FALLBACK registry=' + str(reg.is_file()) + ' spine=' + str(spine.is_file()))
+print('ticket_error=' + 'empty_next')

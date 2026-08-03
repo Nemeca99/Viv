@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/goal_board_status_current.txt",
+  "stdout": "GOAL_BOARD n=3 updated=2026-07-21T20:14:58+00:00\n  [done] g-e9eaedb51f p=20 steps=6/6 :: Maintain plant brief, consolidate dream, keep sandbox healthy\n  [handed_off] g-d0474285fb p=40 steps=5/6 :: Maintain plant brief, keep sandbox healthy, and consolidate memory when live mat\n  [active] g-115249e7bc p=5 steps=2/6 :: Build the next AIOS capability module in sandbox: invent novel tool, run it, rec\n",
+  "stderr": "",
+  "s_n": 0.4614,
+  "at": "2026-07-21T20:15:01+00:00"
+}

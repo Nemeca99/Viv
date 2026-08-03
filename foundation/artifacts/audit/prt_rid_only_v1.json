@@ -1,0 +1,12 @@
+{
+  "experiment_id": "prt_rid_only_v1",
+  "timestamp_utc": "2026-07-19T00:50:00+00:00",
+  "diagnosis": "Task scalars ~74% REWARD; triad blanks ~2-8% fill; headline 4.9% depressed by incomplete RID JSON. She needs RID-only focus.",
+  "changes": {
+    "rid_only_train": true,
+    "sft": "PHYSICS_GOLD boosted; STRUCTURE_GOLD triad blanks only; labeled observe only; no voice/thermo gold",
+    "collect_profile": "prt_overnight_config_rid_only.json — observe_cycles=21, life/speak/pulse=0"
+  },
+  "success": "complete-triad REWARD ≥10% over ≥200 observe cycles; triad blank fill ≥25%",
+  "rollback": "Set rid_only_train=false; resume mixed overnight config"
+}

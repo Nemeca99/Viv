@@ -1,0 +1,15 @@
+{
+  "run_id": "voice_smoke_phase1",
+  "timestamp": "2026-07-15T06:03:27+00:00",
+  "verdict": "PASS",
+  "checks": {
+    "status_offline_silent": true,
+    "stub_speak_roundtrip": true,
+    "packet_carma_s_n": true,
+    "security_out_allowed": true,
+    "model_main_speak_alias": true,
+    "status_after_stop_silent": true
+  },
+  "events_path": "L:/Continue/Viv/foundation/artifacts/auto/voice_events.jsonl",
+  "python": "L:/Continue/.venv/Scripts/python.exe"
+}

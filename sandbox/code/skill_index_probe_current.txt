@@ -1,0 +1,7 @@
+# authored_by=viv_cpu at=2026-07-21T20:36:17+00:00 s_n=0.4676 tool=skill_index_probe
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# PRT expand - skill_index_probe
+from pathlib import Path
+root = Path(r"L:/.cursor/skills")
+skills = sorted(p.name for p in root.iterdir() if p.is_dir()) if root.is_dir() else []
+print(f"SKILL_PROBE n={len(skills)} sample={skills[:8]}")

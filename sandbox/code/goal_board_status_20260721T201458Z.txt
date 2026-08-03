@@ -1,0 +1,17 @@
+# authored_by=viv_cpu at=2026-07-21T20:14:58+00:00 s_n=0.4766 tool=goal_board_status
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv AIOS build - goal_board_status
+import json
+from pathlib import Path
+p = Path(r"L:/Continue/Viv/sandbox/work/goals.json")
+if not p.is_file():
+    print("GOAL_BOARD missing")
+else:
+    data = json.loads(p.read_text(encoding="utf-8"))
+    goals = data.get("goals") or []
+    print(f"GOAL_BOARD n={len(goals)} updated={data.get('updated_at')}")
+    for g in goals:
+        plan = g.get("plan") or []
+        done = sum(1 for s in plan if s.get("status") == "done")
+        print(f"  [{g.get('status')}] {g.get('goal_id')} p={g.get('priority')} "
+              f"steps={done}/{len(plan)} :: {(g.get('objective') or '')[:80]}")

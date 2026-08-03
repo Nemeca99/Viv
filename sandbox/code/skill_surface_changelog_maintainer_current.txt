@@ -1,0 +1,9 @@
+# authored_by=viv_cpu at=2026-07-21T23:43:01+00:00 s_n=0.4618 tool=skill_surface_changelog_maintainer
+# law4=source_as_txt run=python_stdin foundation_immutable=true
+# PRT expand - skill_surface_changelog_maintainer
+from pathlib import Path
+skill = Path(r"L:/.cursor/skills/changelog-maintainer")
+skill_md = skill / "SKILL.md"
+ok = skill_md.is_file()
+text = skill_md.read_text(encoding="utf-8")[:240] if ok else ""
+print(f"SKILL_SURFACE name=changelog-maintainer ok={ok} chars={len(text)}")

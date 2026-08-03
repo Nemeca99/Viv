@@ -1,0 +1,38 @@
+{
+  "experiment": "prt_stage2_structure_gold_train_v1",
+  "created": "2026-07-16T02:03:29-05:00",
+  "change": "STRUCTURE_GOLD rows (75 cycles x4) in PRT build + 120 continue steps on r=21 adapter",
+  "baseline": {
+    "file": "prt_scaffold_phase2_batch3.json",
+    "n": 30,
+    "labels": {
+      "PUNISH": 20,
+      "NEUTRAL": 10
+    },
+    "reward_rate": 0.0,
+    "self_emit_rate": 0.0
+  },
+  "pilot": {
+    "file": "prt_scaffold_phase2_batch4.json",
+    "n": 30,
+    "labels": {
+      "PUNISH": 22,
+      "NEUTRAL": 7,
+      "REWARD": 1
+    },
+    "reward_rate": 0.0333,
+    "self_emit_rate": 0.1333
+  },
+  "deltas": {
+    "reward_rate": 0.0333,
+    "self_emit_rate": 0.1333
+  },
+  "notes": [
+    "All 4 self-emit hits: life act, predicted_live_cells blank, parse=json, prior_filled=false, triad_complete=true",
+    "One full both-reward life cycle (first REWARD at phase 2)",
+    "live frac_error on self-emitted counts still high (mean 1.38 in life loop) - structure before accuracy",
+    "n=30 per window: directional, below apex gates (reward>=0.4, self_emit>=0.5); verdict PROMISING_INCONCLUSIVE"
+  ],
+  "verdict": "PROMISING_INCONCLUSIVE",
+  "runtime_health": "no stalls; train 232s; batches ~315s each; halt flag clear"
+}

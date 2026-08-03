@@ -1,0 +1,8 @@
+[
+  {
+    "task_id": "draft_governed_schedule_executor",
+    "kind": "draft_code",
+    "draft_name": "draft_governed_schedule_executor.txt",
+    "prompt": "Draft a Python standard-library module for a foreman review of an overnight AI training schedule. It may validate JSON run entries, enforce unique run IDs, verify sorted checkpoint steps, require one authorization-file path per run, record per-run status, and write a human-readable summary. It must not execute shell commands, load models, open leases, authorize runs, train, retry, deploy, or mutate repository files. Return code only, preferably inside a Python code fence."
+  }
+]

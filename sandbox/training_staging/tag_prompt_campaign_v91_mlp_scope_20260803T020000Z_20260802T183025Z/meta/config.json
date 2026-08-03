@@ -1,0 +1,23 @@
+{
+  "schema_version": "mouth_v3_r2_1_targeted_patch_train_v1",
+  "learning_rate": 5e-09,
+  "gradient_accumulation": 74,
+  "max_steps": 2,
+  "checkpoint_steps": [
+    2
+  ],
+  "precision": "bf16",
+  "parent_adapter": "L:/Continue/Viv/foundation/models/Training/runs/tag_prompt_campaign_v19_contractcanary16_20260802T074153Z/adapter",
+  "anchor_strength": 0.8,
+  "contract_token_weight": 1.0,
+  "contrastive_weight": 0.0,
+  "contrastive_margin": 0.0,
+  "pairwise_weight": 0.0,
+  "pairwise_beta": 1.0,
+  "pairwise_margin": 0.2,
+  "train_jsonl_sha256": "f7025f57915100a937b9a7c354258e03aa6737ae7c4d2488add13007c97d8305",
+  "optimizer_rows": 148,
+  "seed": 42,
+  "staging_root": "L:/Continue/Viv/sandbox/training_staging/tag_prompt_campaign_v91_mlp_scope_20260803T020000Z_20260802T183025Z",
+  "final_root": "L:/Continue/Viv/foundation/models/Training/runs/tag_prompt_campaign_v91_mlp_scope_20260803T020000Z_20260802T183025Z"
+}

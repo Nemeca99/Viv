@@ -1,0 +1,326 @@
+{
+  "ok": true,
+  "elapsed_s": 211.1,
+  "n": 20,
+  "labels": {
+    "NEUTRAL": 8,
+    "REWARD": 8,
+    "PUNISH": 4
+  },
+  "reward_rate": 0.4,
+  "by_act": {
+    "observe": {
+      "n": 10,
+      "labels": {
+        "NEUTRAL": 5,
+        "REWARD": 4,
+        "PUNISH": 1
+      },
+      "triad_complete": 10,
+      "prior_filled": 10,
+      "ok": 10
+    },
+    "speak": {
+      "n": 5,
+      "labels": {
+        "REWARD": 4,
+        "NEUTRAL": 1
+      },
+      "triad_complete": 5,
+      "prior_filled": 5,
+      "ok": 5
+    },
+    "life": {
+      "n": 5,
+      "labels": {
+        "PUNISH": 3,
+        "NEUTRAL": 2
+      },
+      "triad_complete": 5,
+      "prior_filled": 5,
+      "ok": 5
+    }
+  },
+  "act_deltas": {
+    "observe": {
+      "master_rsr": 0.006,
+      "master_ltp": -0.0053,
+      "master_rle": -0.0073,
+      "master_s_n": -0.0038
+    },
+    "speak": {
+      "master_rsr": 0.0063,
+      "master_ltp": 0.0013,
+      "master_rle": -0.0572,
+      "master_s_n": -0.0284
+    },
+    "life": {
+      "master_rsr": -0.0214,
+      "master_ltp": -0.0047,
+      "master_rle": -0.0121,
+      "master_s_n": -0.0239
+    }
+  },
+  "act_delta_ns": {
+    "observe": {
+      "master_rsr_n": 117,
+      "master_ltp_n": 117,
+      "master_rle_n": 117,
+      "master_s_n_n": 117
+    },
+    "speak": {
+      "master_rsr_n": 51,
+      "master_ltp_n": 51,
+      "master_rle_n": 51,
+      "master_s_n_n": 51
+    },
+    "life": {
+      "master_rsr_n": 71,
+      "master_ltp_n": 71,
+      "master_rle_n": 71,
+      "master_s_n_n": 71
+    }
+  },
+  "cycles": [
+    {
+      "i": 1,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 2,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 3,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 4,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 5,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 6,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 7,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 8,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 9,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 10,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 1,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 2,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 3,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 4,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "REWARD",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 5,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 1,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 2,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 3,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 4,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    },
+    {
+      "i": 5,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "version": "0.4.0"
+    }
+  ]
+}

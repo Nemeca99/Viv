@@ -1,0 +1,33 @@
+# authored_by=viv_cpu at=2026-07-21T21:34:09+00:00 s_n=0.4183 tool=bridge_utils_core
+# law4=source_as_txt run=python_stdin foundation_immutable=true
+# PRT expand - bridge_utils_core
+# Bridge for AIOS system utils_core (legacy) — Law 7 sandbox only.
+import json
+from pathlib import Path
+from datetime import datetime, timezone
+sys_id = 'utils_core'
+role = 'bridges / monitoring utils'
+src = Path('D:/LocalAi/AIOS_V1/utils_core')
+viv_map = ''
+out_dir = Path(r"L:/Continue/Viv/sandbox/work/aios_build/system_bridges")
+out_dir.mkdir(parents=True, exist_ok=True)
+files = []
+if src.is_dir():
+    files = sorted(p.name for p in src.iterdir())[:24]
+elif src.is_file():
+    files = [src.name]
+now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+note = {
+    'at': now,
+    'system_id': sys_id,
+    'role': role,
+    'source_path': str(src).replace('\\', '/'),
+    'on_disk': src.exists(),
+    'file_sample': files,
+    'viv_map': viv_map,
+    'status': 'legacy',
+    'action': 'bridge_inventory',
+}
+dest = out_dir / (sys_id + '_bridge.json')
+dest.write_text(json.dumps(note, indent=2), encoding='utf-8')
+print('BRIDGE ok id=' + sys_id + ' on_disk=' + str(src.exists()) + ' files=' + str(len(files)) + ' dest=' + dest.name)

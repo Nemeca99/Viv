@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-07-16T04:50:58.827295+00:00",
+  "ok": true,
+  "security_core": "0.2.5",
+  "calibrate": {
+    "baseline_master_s_n": 0.4374,
+    "target_master_s_n": 0.4074
+  },
+  "strain_45s": {
+    "final_strain": 0.0029,
+    "pending_growth": false,
+    "note": "plant stayed above target; no fire"
+  },
+  "widen": {
+    "old_r": 16,
+    "new_r": 20,
+    "widened_tensors": 144,
+    "backup": "models/gpu/viv_voice_lora_pre_grow_20260716T045030Z"
+  },
+  "gates": {
+    "cooldown_blocks": true,
+    "ceiling_blocks_r70": true,
+    "moe_denied": true,
+    "rust_ok": true
+  },
+  "voice_speak": false,
+  "apply_on_overnight": false,
+  "refinement": [
+    "Strain rarely fires when Master S_n > target; calibrate under load or lower margin for stress windows",
+    "45s run stdout was empty without PYTHONUNBUFFERED \u2014 flush=True added"
+  ]
+}

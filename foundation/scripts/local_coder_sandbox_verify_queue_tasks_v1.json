@@ -1,0 +1,11 @@
+[
+  {
+    "task_id": "verify_staged_hash_helper",
+    "kind": "prebuilt_tool",
+    "tool": "sandbox_verify_stage",
+    "args": {
+      "path": "L:/Continue/Viv/sandbox/code/local_coder_hash_helper_stage_v2.txt",
+      "expected_sha256": "a5c49e1d850d2a04b631cacf57e0a454ee534716eb5b46ea64e00f6eff1363ef"
+    }
+  }
+]

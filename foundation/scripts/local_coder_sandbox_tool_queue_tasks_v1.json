@@ -1,0 +1,17 @@
+[
+  {
+    "task_id": "sandbox_inventory",
+    "kind": "prebuilt_tool",
+    "tool": "sandbox_state",
+    "args": {}
+  },
+  {
+    "task_id": "campaign_authority_check",
+    "kind": "prebuilt_tool",
+    "tool": "authority_state",
+    "args": {
+      "campaign_root": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v1"
+    },
+    "if_previous_status": "success"
+  }
+]

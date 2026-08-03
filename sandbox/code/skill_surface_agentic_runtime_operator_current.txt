@@ -1,0 +1,9 @@
+# authored_by=viv_cpu at=2026-07-21T23:39:22+00:00 s_n=0.4513 tool=skill_surface_agentic_runtime_operator
+# law4=source_as_txt run=python_stdin foundation_immutable=true
+# PRT expand - skill_surface_agentic_runtime_operator
+from pathlib import Path
+skill = Path(r"L:/.cursor/skills/agentic-runtime-operator")
+skill_md = skill / "SKILL.md"
+ok = skill_md.is_file()
+text = skill_md.read_text(encoding="utf-8")[:240] if ok else ""
+print(f"SKILL_SURFACE name=agentic-runtime-operator ok={ok} chars={len(text)}")

@@ -1,0 +1,9 @@
+[
+  {
+    "task_id": "draft_marker_failure",
+    "kind": "draft_code",
+    "draft_name": "draft_marker_failure.txt",
+    "required_markers": ["FOREMAN_REQUIRED_MARKER_9f4a"],
+    "prompt": "Return a single Python comment containing the word draft."
+  }
+]

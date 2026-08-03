@@ -1,0 +1,9 @@
+{
+  "schema_version": "week1.v1",
+  "adapter_type": "mouth-alignment-rule-adapter",
+  "trained_on_utterances": 3,
+  "label_distribution": {
+    "vowel-heavy": 3
+  },
+  "mean_confidence": 0.9
+}

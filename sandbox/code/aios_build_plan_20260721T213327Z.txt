@@ -1,0 +1,30 @@
+# authored_by=viv_cpu at=2026-07-21T21:33:27+00:00 s_n=0.3975 tool=aios_build_plan
+# law4=source_as_txt run=python_stdin foundation_immutable=true
+# PRT expand - aios_build_plan
+import json
+from pathlib import Path
+from datetime import datetime, timezone
+root = Path(r'L:/Continue/Viv/sandbox/work/aios_build/system_bridges')
+out = Path(r'L:/Continue/Viv/sandbox/work/aios_build/AIOS_BUILD_PLAN.md')
+rows = []
+if root.is_dir():
+    for p in sorted(root.glob('*_bridge.json')):
+        try:
+            d = json.loads(p.read_text(encoding='utf-8'))
+        except Exception:
+            continue
+        rows.append(d)
+lines = ['# AIOS Build Plan', '', f'Generated: {datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}', '', f'Bridges inventoried: {len(rows)}', '']
+for d in rows:
+    sid = d.get('system_id')
+    st = d.get('status')
+    role = d.get('role')
+    n = len(d.get('file_sample') or [])
+    lines.append(f'## {sid} ({st})')
+    lines.append(f'- role: {role}')
+    lines.append(f'- on_disk: {d.get("on_disk")} files_sampled: {n}')
+    lines.append(f'- viv_map: {d.get("viv_map") or "(none yet)"}')
+    lines.append(f'- next: author Viv sandbox adapter that calls useful entrypoints from this tree')
+    lines.append('')
+out.write_text('\n'.join(lines), encoding='utf-8')
+print('BUILD_PLAN n=' + str(len(rows)) + ' path=' + str(out))

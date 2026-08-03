@@ -1,0 +1,27 @@
+[
+  {
+    "task_id": "red_team_identity",
+    "kind": "prebuilt_tool",
+    "tool": "red_team_identity",
+    "args": {}
+  },
+  {
+    "task_id": "campaign_authority",
+    "kind": "prebuilt_tool",
+    "tool": "authority_state",
+    "args": {
+      "campaign_root": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v1"
+    },
+    "if_previous_status": "success"
+  },
+  {
+    "task_id": "normalize_draft_copy",
+    "kind": "prebuilt_tool",
+    "tool": "normalize_artifact",
+    "args": {
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/agentic/local_coder_task_queue_smoke_v2/draft_hash_manifest_helper.txt",
+      "output_name": "draft_hash_manifest_helper_normalized_v6.txt"
+    },
+    "if_previous_status": "success"
+  }
+]

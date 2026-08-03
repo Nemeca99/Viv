@@ -1,0 +1,697 @@
+{
+  "ok": true,
+  "elapsed_s": 357.0,
+  "n": 27,
+  "scaffold_phase": 2,
+  "labels": {
+    "PUNISH": 19,
+    "NEUTRAL": 8
+  },
+  "reward_rate": 0.0,
+  "self_emit_rate": 0.0,
+  "self_emit_n": 27,
+  "self_emit_hits": 0,
+  "by_act": {
+    "observe": {
+      "n": 4,
+      "labels": {
+        "PUNISH": 4
+      },
+      "triad_complete": 0,
+      "prior_filled": 4,
+      "self_emit_ok": 0,
+      "ok": 4
+    },
+    "speak": {
+      "n": 3,
+      "labels": {
+        "PUNISH": 3
+      },
+      "triad_complete": 0,
+      "prior_filled": 3,
+      "self_emit_ok": 0,
+      "ok": 3
+    },
+    "life": {
+      "n": 12,
+      "labels": {
+        "PUNISH": 7,
+        "NEUTRAL": 5
+      },
+      "triad_complete": 5,
+      "prior_filled": 12,
+      "self_emit_ok": 0,
+      "ok": 12
+    },
+    "pulse": {
+      "n": 8,
+      "labels": {
+        "PUNISH": 5,
+        "NEUTRAL": 3
+      },
+      "triad_complete": 3,
+      "prior_filled": 8,
+      "self_emit_ok": 0,
+      "ok": 8
+    }
+  },
+  "life_loop_convergence": {
+    "n": 6,
+    "both_reward": 0,
+    "both_non_punish": 0,
+    "both_reward_rate": 0.0,
+    "both_non_punish_rate": 0.0,
+    "mean_live_frac_error": 0.0275,
+    "life_survival_priors": {
+      "glider": 1.0,
+      "blinker": 1.0,
+      "pulsar_seed": 1.5,
+      "random": 0.4487,
+      "dense": 0.2497
+    },
+    "detail": [
+      {
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "combined": "PUNISH",
+        "both_reward": false,
+        "both_non_punish": false,
+        "frac_error": 0.0,
+        "pattern": "glider",
+        "pred_live": 5
+      },
+      {
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "combined": "PUNISH",
+        "both_reward": false,
+        "both_non_punish": false,
+        "frac_error": 0.0,
+        "pattern": "pulsar_seed",
+        "pred_live": 12
+      },
+      {
+        "stability": "PUNISH",
+        "task": "NEUTRAL",
+        "combined": "PUNISH",
+        "both_reward": false,
+        "both_non_punish": false,
+        "frac_error": 0.128065,
+        "pattern": "dense",
+        "pred_live": 320
+      },
+      {
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "combined": "PUNISH",
+        "both_reward": false,
+        "both_non_punish": false,
+        "frac_error": 0.0,
+        "pattern": "blinker",
+        "pred_live": 3
+      },
+      {
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "combined": "PUNISH",
+        "both_reward": false,
+        "both_non_punish": false,
+        "frac_error": 0.037143,
+        "pattern": "random",
+        "pred_live": 363
+      },
+      {
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "combined": "PUNISH",
+        "both_reward": false,
+        "both_non_punish": false,
+        "frac_error": 0.0,
+        "pattern": "glider",
+        "pred_live": 5
+      }
+    ]
+  },
+  "act_deltas": {
+    "observe": {
+      "master_rsr": 0.0147,
+      "master_ltp": -0.003,
+      "master_rle": -0.0085,
+      "master_s_n": 0.0023
+    },
+    "speak": {
+      "master_rsr": -0.0078,
+      "master_ltp": -0.014,
+      "master_rle": -0.0635,
+      "master_s_n": -0.0393
+    },
+    "life": {
+      "master_rsr": -0.0128,
+      "master_ltp": -0.0104,
+      "master_rle": -0.0206,
+      "master_s_n": -0.0199
+    },
+    "pulse": {
+      "master_rsr": -0.005,
+      "master_ltp": -0.02,
+      "master_rle": -0.02,
+      "master_s_n": -0.02
+    }
+  },
+  "cycles": [
+    {
+      "i": 1,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "json+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rsr"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 2,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_ltp"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 3,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": null,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rle"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 4,
+      "act": "observe",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rsr"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 1,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": null,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rsr"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 2,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_ltp"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 3,
+      "act": "speak",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": null,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rle"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 1,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rsr"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0",
+      "life_convergence": {
+        "both_reward": false,
+        "both_non_punish": false,
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "frac_error": 0.0,
+        "pattern": "glider"
+      }
+    },
+    {
+      "i": 2,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_ltp"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 3,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": null,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rle"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0",
+      "life_convergence": {
+        "both_reward": false,
+        "both_non_punish": false,
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "frac_error": 0.0,
+        "pattern": "pulsar_seed"
+      }
+    },
+    {
+      "i": 4,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_live_cells"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 5,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_ltp"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0",
+      "life_convergence": {
+        "both_reward": false,
+        "both_non_punish": false,
+        "stability": "PUNISH",
+        "task": "NEUTRAL",
+        "frac_error": 0.128065,
+        "pattern": "dense"
+      }
+    },
+    {
+      "i": 6,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_live_cells"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 7,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rsr"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0",
+      "life_convergence": {
+        "both_reward": false,
+        "both_non_punish": false,
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "frac_error": 0.0,
+        "pattern": "blinker"
+      }
+    },
+    {
+      "i": 8,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_live_cells"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 9,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": null,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rle"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0",
+      "life_convergence": {
+        "both_reward": false,
+        "both_non_punish": false,
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "frac_error": 0.037143,
+        "pattern": "random"
+      }
+    },
+    {
+      "i": 10,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_live_cells"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 11,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_ltp"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0",
+      "life_convergence": {
+        "both_reward": false,
+        "both_non_punish": false,
+        "stability": "PUNISH",
+        "task": "REWARD",
+        "frac_error": 0.0,
+        "pattern": "glider"
+      }
+    },
+    {
+      "i": 12,
+      "act": "life",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_live_cells"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 1,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rsr"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 2,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "REWARD",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_mean_load_pct"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 3,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": null,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rle"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 4,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_mean_load_pct"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 5,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_ltp"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 6,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "NEUTRAL",
+      "stability_label": "NEUTRAL",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_mean_load_pct"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 7,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": null,
+      "parse": "empty+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_rsr"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    },
+    {
+      "i": 8,
+      "act": "pulse",
+      "ok": true,
+      "excluded": false,
+      "label": "PUNISH",
+      "stability_label": "PUNISH",
+      "triad_complete": false,
+      "parse": "regex_sn_only+prior_fill",
+      "prior_filled": true,
+      "scaffold_phase": 2,
+      "blanked": [
+        "predicted_master_ltp"
+      ],
+      "self_emit_ok": false,
+      "structure_ok": false,
+      "version": "0.5.0"
+    }
+  ]
+}

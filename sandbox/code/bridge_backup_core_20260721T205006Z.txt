@@ -1,0 +1,33 @@
+# authored_by=viv_cpu at=2026-07-21T20:50:06+00:00 s_n=0.5500 tool=bridge_backup_core
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# PRT expand - bridge_backup_core
+# Bridge stub for AIOS system backup_core (legacy) — Law 7 sandbox only.
+import json
+from pathlib import Path
+from datetime import datetime, timezone
+
+sys_id = 'backup_core'
+role = 'self-heal / LKG backups'
+src = Path('D:/LocalAi/AIOS_V1/backup_core')
+viv_map = ''
+out_dir = Path(r"L:/Continue/Viv/sandbox/work/aios_build/system_bridges")
+out_dir.mkdir(parents=True, exist_ok=True)
+files = []
+if src.is_dir():
+    files = sorted(p.name for p in src.iterdir())[:24]
+elif src.is_file():
+    files = [src.name]
+note = {
+    "at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+    "system_id": sys_id,
+    "role": role,
+    "source_path": str(src).replace("\\", "/"),
+    "on_disk": src.exists(),
+    "file_sample": files,
+    "viv_map": viv_map,
+    "status": 'legacy',
+    "action": "bridge_inventory",
+}
+dest = out_dir / f"{sys_id}_bridge.json"
+dest.write_text(json.dumps(note, indent=2), encoding="utf-8")
+print(f"BRIDGE ok id={sys_id} on_disk={src.exists()} files={len(files)} dest={dest.name}")

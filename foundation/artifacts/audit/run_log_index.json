@@ -1,0 +1,14 @@
+{
+  "run_id": "carma_phase1_20260715T055648Z",
+  "phase": "plain_text_carma_phase_1",
+  "status": "complete",
+  "updated_at": "2026-07-15T05:56:48Z",
+  "verdict": "PASS",
+  "security_core_version": "0.2.3",
+  "memory_smoke_path": "L:/Continue/Viv/foundation/artifacts/audit/memory_smoke_30s.json",
+  "carma_root": "L:/Continue/Viv/foundation/artifacts/carma/",
+  "latest_run_manifest_path": "L:/Continue/Viv/foundation/artifacts/audit/security_redteam_latest.json",
+  "latest_summary_path": "L:/Continue/Viv/foundation/artifacts/audit/memory_smoke_30s.md",
+  "latest_actions_log_path": "L:/Continue/Viv/foundation/artifacts/audit/session_journal.md",
+  "next_phase": "gpu_voice_or_carma_phase2_dream_wiki"
+}

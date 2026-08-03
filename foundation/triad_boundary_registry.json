@@ -1,0 +1,1987 @@
+{
+  "schema_version": "viv_triad_architecture_v1",
+  "triad_contract_version": "viv_triad_contract_v1",
+  "generated_from_python_files": 874,
+  "boundaries": {
+    "foundation/auto_main.py": {
+      "filesystem_mutation:out.write_text": 2,
+      "filesystem_mutation:path.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/cpu_verify.py": {
+      "filesystem_mutation:out.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/gpu_triad_main.py": {
+      "filesystem_mutation:summary_path.write_text": 1
+    },
+    "foundation/growth_main.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/_ledger_campaign_tail.py": {
+      "filesystem_mutation:md.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/_splice_ledger_tail.py": {
+      "filesystem_mutation:main.write_text": 1,
+      "filesystem_mutation:tail.unlink": 1
+    },
+    "foundation/lib/agentic_runtime.py": {
+      "filesystem_mutation:QUEUE_PATH.write_text": 1,
+      "filesystem_mutation:target.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 2
+    },
+    "foundation/lib/aifl_gpu_guard.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/lib/aifl_holdout_split.py": {
+      "filesystem_mutation:DEPLOY_TEST_BAN_PATH.write_text": 1,
+      "filesystem_mutation:DEPLOY_TEST_REGISTRY_PATH.write_text": 1,
+      "filesystem_mutation:HOLDOUT_BAN_PATH.write_text": 1,
+      "filesystem_mutation:HOLDOUT_REGISTRY_PATH.write_text": 1
+    },
+    "foundation/lib/aios_absorb.py": {
+      "filesystem_mutation:note.write_text": 2,
+      "filesystem_mutation:stub.write_text": 1
+    },
+    "foundation/lib/aios_adapter_audit.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_consciousness.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_dataset.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/aios_adapter_dream.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_input.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_knowledge.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1,
+      "filesystem_mutation:ADAPTER_INDEX.write_text": 1,
+      "filesystem_mutation:doc_path.write_text": 1,
+      "filesystem_mutation:dst.write_text": 2
+    },
+    "foundation/lib/aios_adapter_luna.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_mirror.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_nox.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_rid.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_support.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_utils.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_adapter_vision.py": {
+      "filesystem_mutation:ADAPTER_EVIDENCE.write_text": 1
+    },
+    "foundation/lib/aios_agent.py": {
+      "filesystem_mutation:AGENT_STATE.write_text": 3,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/aios_builder.py": {
+      "filesystem_mutation:MANIFEST.write_text": 2,
+      "filesystem_mutation:SCORECARD.write_text": 1
+    },
+    "foundation/lib/aios_coder.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/lib/aios_dream.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/lib/aios_goals.py": {
+      "filesystem_mutation:GOALS_PATH.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/lib/aios_inbox.py": {
+      "filesystem_mutation:INBOX_PATH.write_text": 2,
+      "filesystem_mutation:TASK_BOARD_JSON.write_text": 1,
+      "filesystem_mutation:TASK_BOARD_MD.write_text": 1
+    },
+    "foundation/lib/aios_knowledge.py": {
+      "filesystem_mutation:INDEX_JSON.write_text": 2,
+      "filesystem_mutation:dst.write_text": 1
+    },
+    "foundation/lib/aios_missions.py": {
+      "filesystem_mutation:ACTIVITY_MD.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/lib/aios_organism.py": {
+      "filesystem_mutation:HALT_FLAG.unlink": 2,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/lib/aios_personality.py": {
+      "filesystem_mutation:LUNA_MIRROR.write_text": 1
+    },
+    "foundation/lib/aios_sandbox.py": {
+      "filesystem_mutation:HOME_MARK.write_text": 1,
+      "filesystem_mutation:dest.write_text": 1
+    },
+    "foundation/lib/aios_self.py": {
+      "filesystem_mutation:LIFE_STATE.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/aios_systems.py": {
+      "filesystem_mutation:REGISTRY_JSON.write_text": 1,
+      "filesystem_mutation:REGISTRY_MD.write_text": 1
+    },
+    "foundation/lib/auto_gate.py": {
+      "filesystem_mutation:FOUNDATION_GATE_PATH.write_text": 1,
+      "filesystem_mutation:OPERATOR_PATH.write_text": 1
+    },
+    "foundation/lib/auto_rid_journal.py": {
+      "filesystem_mutation:BEAT_PATH.write_text": 1,
+      "filesystem_mutation:HEARTBEAT_PATH.write_text": 1
+    },
+    "foundation/lib/auto_run.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/autonomous_operator.py": {
+      "filesystem_mutation:ctr_path.write_text": 1,
+      "filesystem_mutation:pulse_path.write_text": 1
+    },
+    "foundation/lib/autonomous_session_log.py": {
+      "filesystem_mutation:SESSION_JSONL_ARCHIVE_PATH.write_text": 1,
+      "filesystem_mutation:SESSION_LOG_JSONL.unlink": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/lib/autonomy_gate.py": {
+      "filesystem_mutation:AUTONOMOUS_STATE_PATH.write_text": 1
+    },
+    "foundation/lib/backup_core.py": {
+      "filesystem_mutation:target.unlink": 1,
+      "filesystem_mutation:temp.unlink": 3
+    },
+    "foundation/lib/black_hole_engine.py": {
+      "filesystem_mutation:STATE_PATH.write_text": 1
+    },
+    "foundation/lib/coupled_black_hole.py": {
+      "filesystem_mutation:COUPLED_STATE_PATH.write_text": 1
+    },
+    "foundation/lib/coupled_plant_capture.py": {
+      "filesystem_mutation:summary_path.write_text": 1
+    },
+    "foundation/lib/coupled_report.py": {
+      "filesystem_mutation:out_csv.write_text": 1
+    },
+    "foundation/lib/cpu_rid_tick.py": {
+      "filesystem_mutation:CPU_RID_LATEST.write_text": 1
+    },
+    "foundation/lib/cpu_semantic_judge.py": {
+      "network:request.urlopen": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/lib/dormancy_config.py": {
+      "filesystem_mutation:BENCHMARK_LATEST.write_text": 1,
+      "filesystem_mutation:THRESHOLD_PATH.write_text": 1,
+      "filesystem_mutation:cfg_path.write_text": 1
+    },
+    "foundation/lib/engineering_governor.py": {
+      "filesystem_mutation:temp.unlink": 1
+    },
+    "foundation/lib/governor_params.py": {
+      "filesystem_mutation:PARAMS_BACKUP_PATH.write_text": 1,
+      "filesystem_mutation:PARAMS_PATH.write_text": 1
+    },
+    "foundation/lib/gpu_black_hole_engine.py": {
+      "filesystem_mutation:GPU_STATE_PATH.write_text": 1
+    },
+    "foundation/lib/gpu_plant.py": {
+      "process:subprocess.check_output": 1
+    },
+    "foundation/lib/growth_chamber_ledger.py": {
+      "filesystem_mutation:CHAMBERS_PATH.write_text": 1
+    },
+    "foundation/lib/growth_lora_widen.py": {
+      "filesystem_mutation:cfg_path.write_text": 1
+    },
+    "foundation/lib/growth_strain.py": {
+      "filesystem_mutation:BASELINE_PATH.write_text": 1,
+      "filesystem_mutation:GROWTH_CONFIG.write_text": 1,
+      "filesystem_mutation:STATE_PATH.write_text": 1
+    },
+    "foundation/lib/integrity_review.py": {
+      "filesystem_mutation:INTEGRITY_LATEST.write_text": 1
+    },
+    "foundation/lib/knowledge_external_adapters.py": {
+      "network:urllib.request.urlopen": 1
+    },
+    "foundation/lib/knowledge_semantic_backend.py": {
+      "network:urllib.request.urlopen": 1
+    },
+    "foundation/lib/master_rid.py": {
+      "filesystem_mutation:MASTER_RID_PATH.write_text": 1,
+      "filesystem_mutation:SUPERVISOR_PATH.write_text": 1
+    },
+    "foundation/lib/piston_engine.py": {
+      "filesystem_mutation:HALT_FLAG.unlink": 1,
+      "filesystem_mutation:HALT_FLAG.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/lib/piston_stress.py": {
+      "process:subprocess.Popen": 2
+    },
+    "foundation/lib/plant_master_capture.py": {
+      "filesystem_mutation:out_json.write_text": 1,
+      "filesystem_mutation:poll_log_path.write_text": 1
+    },
+    "foundation/lib/plant_piston_bridge.py": {
+      "filesystem_mutation:LAST_CAPTURE_PATH.write_text": 1,
+      "filesystem_mutation:SUPERVISOR_PATH.write_text": 1,
+      "filesystem_mutation:summary_path.write_text": 1
+    },
+    "foundation/lib/plant_trend_scorecard.py": {
+      "filesystem_mutation:EVIDENCE_LATEST.write_text": 1,
+      "filesystem_mutation:EVIDENCE_PATH.write_text": 1
+    },
+    "foundation/lib/prt_capability_expand.py": {
+      "filesystem_mutation:EXPAND_SKIP.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/prt_cycle.py": {
+      "filesystem_mutation:PRT_SUMMARY_PATH.write_text": 1
+    },
+    "foundation/lib/prt_overnight.py": {
+      "filesystem_mutation:LOCK_PATH.unlink": 3,
+      "filesystem_mutation:LOCK_PATH.write_text": 1,
+      "filesystem_mutation:OVERNIGHT_HALT.unlink": 1,
+      "filesystem_mutation:OVERNIGHT_HALT.write_text": 1,
+      "filesystem_mutation:STATE_PATH.write_text": 1,
+      "process:subprocess.Popen": 1,
+      "process:subprocess.run": 2
+    },
+    "foundation/lib/prt_stage.py": {
+      "filesystem_mutation:STAGE_STATE_PATH.write_text": 1
+    },
+    "foundation/lib/prt_thermo_guide.py": {
+      "filesystem_mutation:BUILD_SUMMARY.write_text": 1
+    },
+    "foundation/lib/prt_train.py": {
+      "filesystem_mutation:PRT_BUILD_SUMMARY.write_text": 1
+    },
+    "foundation/lib/reasoning_check.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/lib/rid_benchmark.py": {
+      "filesystem_mutation:open": 2,
+      "filesystem_mutation:probe.unlink": 1,
+      "filesystem_mutation:probe.write_text": 1,
+      "process:subprocess.Popen": 1
+    },
+    "foundation/lib/rid_cross_compare.py": {
+      "filesystem_mutation:out_json.write_text": 1,
+      "filesystem_mutation:out_md.write_text": 1
+    },
+    "foundation/lib/rid_electrical_accounting_ops.py": {
+      "filesystem_mutation:d_json.write_text": 1,
+      "filesystem_mutation:path_json.write_text": 1,
+      "filesystem_mutation:path_md.write_text": 1,
+      "filesystem_mutation:r_json.write_text": 1,
+      "filesystem_mutation:s_json.write_text": 1
+    },
+    "foundation/lib/rid_electrical_admission.py": {
+      "filesystem_mutation:LATEST_MULTI.write_text": 1,
+      "filesystem_mutation:md_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:stamped.write_text": 1
+    },
+    "foundation/lib/rid_electrical_capture.py": {
+      "filesystem_mutation:self.meta_path.write_text": 2
+    },
+    "foundation/lib/rid_electrical_decomposition_corpus_freeze.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/lib/rid_electrical_decomposition_eval.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/lib/rid_electrical_ledger_campaign.py": {
+      "filesystem_mutation:md.write_text": 1,
+      "filesystem_mutation:out_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1,
+      "network:urllib.request.urlopen": 1
+    },
+    "foundation/lib/rid_electrical_ledger_controls.py": {
+      "filesystem_mutation:out_path.write_text": 1,
+      "network:urllib.request.urlopen": 2
+    },
+    "foundation/lib/rid_electrical_pre_action_action_contract.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_campaign.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_campaign_status.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_corpus.py": {
+      "filesystem_mutation:THROUGHPUT_SEED_JSON.write_text": 1,
+      "filesystem_mutation:freeze_json.write_text": 1,
+      "filesystem_mutation:freeze_md.write_text": 1,
+      "filesystem_mutation:ready_json.write_text": 1,
+      "filesystem_mutation:ready_md.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_monitor_lock.py": {
+      "filesystem_mutation:MONITOR_LOCK.write_text": 1,
+      "filesystem_mutation:OPS_STATUS_JSON.write_text": 2,
+      "filesystem_mutation:OPS_STATUS_MD.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_oracle_audit.py": {
+      "filesystem_mutation:out_json.write_text": 1,
+      "filesystem_mutation:out_md.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_shadow.py": {
+      "filesystem_mutation:SHADOW_JSON.write_text": 1,
+      "filesystem_mutation:SHADOW_MD.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_snapshot.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/rid_electrical_pre_action_train.py": {
+      "filesystem_mutation:base_json.write_text": 1,
+      "filesystem_mutation:base_md.write_text": 1,
+      "filesystem_mutation:head_json.write_text": 1,
+      "filesystem_mutation:lock_path.write_text": 2,
+      "filesystem_mutation:model_path.write_bytes": 2,
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:train_json.write_text": 1,
+      "filesystem_mutation:train_md.write_text": 1
+    },
+    "foundation/lib/rid_electrical_registry_health.py": {
+      "filesystem_mutation:HEALTH_JSON.write_text": 1,
+      "filesystem_mutation:HEALTH_MD.write_text": 1
+    },
+    "foundation/lib/rid_electrical_token_matrix.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/lib/rid_electrical_v1_staleness_review.py": {
+      "filesystem_mutation:DECISION_JSON.write_text": 1,
+      "filesystem_mutation:DIAG_JSON.write_text": 1,
+      "filesystem_mutation:ELIG_JSON.write_text": 1,
+      "filesystem_mutation:ELIG_MD.write_text": 1,
+      "filesystem_mutation:REVAL_JSON.write_text": 1,
+      "filesystem_mutation:REVAL_MD.write_text": 1,
+      "filesystem_mutation:REVIEW_JSON.write_text": 1,
+      "filesystem_mutation:REVIEW_MD.write_text": 1,
+      "filesystem_mutation:TRIGGER_JSON.write_text": 1,
+      "filesystem_mutation:ops_path.write_text": 1
+    },
+    "foundation/lib/rid_electrical_v2_drift.py": {
+      "filesystem_mutation:BASELINE_PATH.write_text": 1
+    },
+    "foundation/lib/rid_electrical_v2_uncertainty.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/rid_electrical_workloads.py": {
+      "process:subprocess.Popen": 1
+    },
+    "foundation/lib/rid_pid_loop.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/lib/rid_stressor.py": {
+      "process:subprocess.Popen": 1
+    },
+    "foundation/lib/rid_telemetry.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/rid_trajectory_plot.py": {
+      "filesystem_mutation:json_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/steel_judge.py": {
+      "filesystem_mutation:EQUILIBRIUM.write_text": 1,
+      "filesystem_mutation:MEMORY.write_text": 1
+    },
+    "foundation/lib/training_home.py": {
+      "filesystem_mutation:target.unlink": 1,
+      "process:subprocess.run": 2
+    },
+    "foundation/lib/training_security.py": {
+      "filesystem_mutation:temp.unlink": 1
+    },
+    "foundation/lib/triad_architecture.py": {
+      "filesystem_mutation:BOUNDARY_REGISTRY.write_text": 1
+    },
+    "foundation/lib/triad_kernel.py": {
+      "filesystem_mutation:TRIAD_LOCK.unlink": 1
+    },
+    "foundation/lib/viv_aifl.py": {
+      "filesystem_mutation:RUN_LATEST.write_text": 1
+    },
+    "foundation/lib/viv_aifl_ingest.py": {
+      "filesystem_mutation:PATTERNS_JSON.write_text": 1
+    },
+    "foundation/lib/viv_ide.py": {
+      "filesystem_mutation:IDE_STATE.write_text": 1,
+      "filesystem_mutation:INBOX.write_text": 1,
+      "filesystem_mutation:SESSION_STATE.write_text": 1,
+      "filesystem_mutation:p.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/lib/viv_judge_train_gate.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/lib/viv_shadow_judge.py": {
+      "filesystem_mutation:CRITERIA_PATH.write_text": 2
+    },
+    "foundation/lib/vllm_launcher.py": {
+      "process:subprocess.call": 1
+    },
+    "foundation/lib/voice_bootstrap.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/model_main.py": {
+      "network:urllib.request.urlopen": 1,
+      "process:subprocess.call": 1
+    },
+    "foundation/models/Training/code/aifl_auto_train_cycle.py": {
+      "filesystem_mutation:RESULT.write_text": 1
+    },
+    "foundation/models/Training/code/aifl_train_ladder.py": {
+      "filesystem_mutation:LATEST.write_text": 1,
+      "filesystem_mutation:TRAIN_READY_SIGNAL.unlink": 1,
+      "filesystem_mutation:TRAIN_READY_SIGNAL.write_text": 1
+    },
+    "foundation/models/Training/code/aifl_unattended_loop.py": {
+      "filesystem_mutation:LATEST.write_text": 1,
+      "process:subprocess.run": 3
+    },
+    "foundation/models/Training/code/build_combo_r_rehearsal_mix_v1.py": {
+      "filesystem_mutation:OUT_MANIFEST.write_text": 1
+    },
+    "foundation/models/Training/code/build_mind_lift_sft_mix_v1.py": {
+      "filesystem_mutation:OUT_MANIFEST.write_text": 1
+    },
+    "foundation/models/Training/code/epistemic_metrics.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/code/plot_train_metrics.py": {
+      "filesystem_mutation:out_json.write_text": 1
+    },
+    "foundation/models/Training/code/rescore_frozen_probe_goal_synonymy.py": {
+      "filesystem_mutation:OUT_PATH.write_text": 1
+    },
+    "foundation/models/Training/code/run_mind_lift_cut.py": {
+      "filesystem_mutation:mix_builder.OUT_MANIFEST.write_text": 1
+    },
+    "foundation/models/Training/code/train_forensics.py": {
+      "filesystem_mutation:summary_path.write_text": 1
+    },
+    "foundation/models/Training/code/train_judge_lora.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/models/Training/code/train_pairwise_lora.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/models/Training/code/train_stage1_mouth_generation_canary.py": {
+      "filesystem_mutation:POSTMORTEM_MD.write_text": 1,
+      "filesystem_mutation:claim.unlink": 1,
+      "filesystem_mutation:md_path.write_text": 1,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/models/Training/code/validate_judge_adapter.py": {
+      "filesystem_mutation:dest.write_text": 2,
+      "filesystem_mutation:latest.write_text": 1,
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/prt_main.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/rid_main.py": {
+      "filesystem_mutation:open": 2
+    },
+    "foundation/rid_stability_main.py": {
+      "filesystem_mutation:out_json.write_text": 2,
+      "filesystem_mutation:poll_log_path.write_text": 1
+    },
+    "foundation/scripts/_fix_changelog_hwinfo.py": {
+      "filesystem_mutation:p.write_text": 1
+    },
+    "foundation/scripts/_log_igpu_ohm.py": {
+      "filesystem_mutation:cl.write_text": 2,
+      "filesystem_mutation:idx.write_text": 1,
+      "filesystem_mutation:sj.write_text": 2
+    },
+    "foundation/scripts/_log_info_gain.py": {
+      "filesystem_mutation:cl.write_text": 2,
+      "filesystem_mutation:idx.write_text": 1,
+      "filesystem_mutation:sj.write_text": 1
+    },
+    "foundation/scripts/_log_shadow_ab_v2.py": {
+      "filesystem_mutation:cl.write_text": 2,
+      "filesystem_mutation:idx.write_text": 1,
+      "filesystem_mutation:sj.write_text": 1
+    },
+    "foundation/scripts/ab_piston_ghost_vs_live.py": {
+      "filesystem_mutation:GHOST_SUMMARY.write_text": 1,
+      "filesystem_mutation:OUT_JSON.write_text": 1,
+      "filesystem_mutation:OUT_MD.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_arch_tool_repair_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_chatbot_consolidation_v2.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_chatbot_consolidation_v3_v2_6.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_chatbot_consolidation_v3_v2_8.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_cross_axis_micro_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_identity_refinement_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_identity_repair_preservation_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/adjudicate_mouth_recovery_v2_holds.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/admit_local_coder_draft_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/admit_mouth_recovery_v3_campaign_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/admit_mouth_v21_positive_308.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/scripts/admit_mouth_v3_corpus_r2_1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/admit_tag_prompt_training_campaign_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/aggregate_wikipedia_staged_baseline_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/aifl_auto_train_cycle.py": {
+      "process:subprocess.call": 1
+    },
+    "foundation/scripts/aifl_collect_until_ready.py": {
+      "filesystem_mutation:LATEST.write_text": 1
+    },
+    "foundation/scripts/aifl_deploy_test_pack_p0.py": {
+      "filesystem_mutation:OUT.write_text": 5
+    },
+    "foundation/scripts/aifl_holdout_disjoint_p0.py": {
+      "filesystem_mutation:OUT.write_text": 4
+    },
+    "foundation/scripts/aifl_overnight_loop.py": {
+      "process:subprocess.run": 3
+    },
+    "foundation/scripts/aifl_path_a_collect.py": {
+      "filesystem_mutation:LATEST.write_text": 1
+    },
+    "foundation/scripts/aifl_post_quarantine_rearm.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/aifl_train_ladder.py": {
+      "process:subprocess.call": 1
+    },
+    "foundation/scripts/analyze_validation_failures.py": {
+      "filesystem_mutation:output.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_acronym_failure_repairability_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_acronym_surface_regression_v2.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_acronym_surface_regression_v3.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_acronym_surface_regression_v4.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_combined_candidate_quality_v1.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_combined_candidate_v20.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_combined_candidate_v20_runner_compatibility.py": {
+      "filesystem_mutation:output.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_combined_candidate_v9.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_compound_identity_roles_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_entity_we_candidate_admission_v5.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_entity_we_candidate_runtime_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_full_run_entity_we_v2.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_full_run_entity_we_v2_postrun.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_reason_provenance_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_recovery_anchor_coverage_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_recovery_v3_campaign_feasibility_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_assertion_scope_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_bundle_quality_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_bundle_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_coverage_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_natural_completion_plan_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_provenance_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_recovery_tokenization_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_recovery_trainer_contract_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_refinement_v22_admission.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_repair_hold_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_repair_hold_v2.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_sft_candidate_projection_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_sft_candidate_projection_v2.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantic_training_handoff_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantics_blind_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantics_calibration_v2.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantics_calibration_v3.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_semantics_calibration_v4.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/audit_mouth_v20_positive_hold_quality.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_acronym_contract_fixup_datasets_v1.py": {
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/build_boundary_hold_fixup_datasets_v1.py": {
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/build_curriculum_tree_v1.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:TREE.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_fresh_base_tag_campaign_v1.py": {
+      "filesystem_mutation:dst.write_bytes": 1
+    },
+    "foundation/scripts/build_identity_memory_generalization_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_acronym_contract_examples_v1.py": {
+      "filesystem_mutation:train_path.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_acronym_contract_matrix_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_acronym_failure_delta_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_acronym_surface_regression_v2.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:source.write_text": 1
+    },
+    "foundation/scripts/build_mouth_acronym_surface_regression_v3.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:source.write_text": 1
+    },
+    "foundation/scripts/build_mouth_acronym_surface_regression_v4.py": {
+      "filesystem_mutation:mp.write_text": 1,
+      "filesystem_mutation:src.write_text": 1
+    },
+    "foundation/scripts/build_mouth_arch_tool_repair_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_balanced_repair_micro_v1.py": {
+      "filesystem_mutation:train_path.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_chatbot_consolidation_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:train_path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_chatbot_consolidation_v3.py": {
+      "filesystem_mutation:tp.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v10.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v11.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v12.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v14.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v18.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v19.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v8.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_combined_candidate_corpus_v9.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_cross_axis_micro_v1.py": {
+      "filesystem_mutation:tp.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_candidate_corpus_v5.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_candidate_corpus_v6.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_candidate_corpus_v7.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_contract_examples_v1.py": {
+      "filesystem_mutation:jsonl.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_expansion_v1.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_expansion_v2.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_expansion_v3.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_expansion_v4.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_expansion_v5.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_expansion_v6.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_matrix_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_matrix_v2.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_entity_we_matrix_v3.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_eval_rebuild_deterministic_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_eval_rebuild_legacy_worker_v1.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1,
+      "network:urllib.request.urlopen": 1
+    },
+    "foundation/scripts/build_mouth_evidence_uncertainty_matrix_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_evidence_uncertainty_matrix_v2.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_final_hold_repair_v1.py": {
+      "filesystem_mutation:train.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_full_run_entity_we_v1.py": {
+      "filesystem_mutation:TRAIN.write_text": 1,
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:replacement_path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_full_run_entity_we_v2.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:train.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_candidate_v8.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v1.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v2.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v3.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v4.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v5.py": {
+      "filesystem_mutation:N.write_text": 1,
+      "filesystem_mutation:O.write_text": 1,
+      "filesystem_mutation:P.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v6.py": {
+      "filesystem_mutation:N.write_text": 1,
+      "filesystem_mutation:O.write_text": 1,
+      "filesystem_mutation:P.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v7.py": {
+      "filesystem_mutation:N.write_text": 1,
+      "filesystem_mutation:O.write_text": 1,
+      "filesystem_mutation:P.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v8.py": {
+      "filesystem_mutation:N.write_text": 1,
+      "filesystem_mutation:O.write_text": 1,
+      "filesystem_mutation:P.write_text": 1
+    },
+    "foundation/scripts/build_mouth_governance_semantics_expansion_v9.py": {
+      "filesystem_mutation:NEG.write_text": 1,
+      "filesystem_mutation:POS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_hold_repair_continuation_v1.py": {
+      "filesystem_mutation:train.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_identity_anchor_repair_v1.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/build_mouth_identity_refinement_v1.py": {
+      "filesystem_mutation:tp.write_text": 1
+    },
+    "foundation/scripts/build_mouth_identity_refinement_v2.py": {
+      "filesystem_mutation:tp.write_text": 1
+    },
+    "foundation/scripts/build_mouth_recovery_v2_anchor_corpus.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/build_mouth_refinement_corpus_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:output_path.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_relationship_repair_micro_v4.py": {
+      "filesystem_mutation:train.write_bytes": 1
+    },
+    "foundation/scripts/build_mouth_semantic_adversarial_v22.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_coverage_pack_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_coverage_pack_v2.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_minimal_pairs_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_minimal_pairs_v2.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_natural_completion_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_natural_expansion_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_operator_closure_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_operator_grid_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_recovery_campaign_input_v1.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:TRAIN_CANDIDATE.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_refinement_v22.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_repair_hold_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_repair_hold_v2.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_repair_refinement_v2.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantic_residual_pack_v1.py": {
+      "filesystem_mutation:JSONL.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_blind_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:source.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_blind_v2.py": {
+      "filesystem_mutation:GOLD.write_text": 1,
+      "filesystem_mutation:PROMPTS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_blind_v3.py": {
+      "filesystem_mutation:GOLD.write_text": 1,
+      "filesystem_mutation:PROMPTS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_blind_v4.py": {
+      "filesystem_mutation:GOLD.write_text": 1,
+      "filesystem_mutation:PROMPTS.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_calibration_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_calibration_v2.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_calibration_v3.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_calibration_v4.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:source.write_text": 1
+    },
+    "foundation/scripts/build_mouth_semantics_calibration_v5.py": {
+      "filesystem_mutation:OUT.write_text": 1,
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/build_openaster_curriculum_v2.py": {
+      "filesystem_mutation:ACCEPTED.write_text": 2,
+      "filesystem_mutation:CORPUS.write_text": 1,
+      "filesystem_mutation:DEV_PACK.write_text": 1,
+      "filesystem_mutation:DEV_REGISTRY.write_text": 1,
+      "filesystem_mutation:ITEMS.write_text": 1,
+      "filesystem_mutation:MANIFEST.write_text": 2,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/build_openaster_stabilization_v3.py": {
+      "filesystem_mutation:MANIFEST.write_text": 2,
+      "filesystem_mutation:SELECTION_AUDIT.write_text": 1,
+      "filesystem_mutation:SMOKE_REGISTRY.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_runtime_acronym_identity_guard_v1.py": {
+      "filesystem_mutation:path.write_bytes": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_runtime_aligned_mouth_curriculum_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/build_runtime_identity_discretion_v1.py": {
+      "filesystem_mutation:path.write_bytes": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_runtime_negative_contract_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/build_tag_prompt_datasets_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1,
+      "filesystem_mutation:templates_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_datasets_v2.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1,
+      "filesystem_mutation:templates_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_datasets_v3.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1,
+      "filesystem_mutation:templates_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_hybrid_datasets_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/build_tag_prompt_identity_discretion_campaign_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_identity_evalaligned_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_residual_campaign_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v100_identity_synthetic_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v102_pairwise_boundary_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v103_clean_sft_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v104_runtime_repaired_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v48_acronym_boundary_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v57_dual_format_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v59_canonical_distill_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v61_dual_residual_replay_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v62_contract_weighted_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v63_cpu_teacher_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v64_minimal_contract_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v65_runtime_aligned_general_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v66_contrastive_failure_repair_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v67_contrastive_with_replay_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v68_route_aware_16step_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v69_packet_teacher_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v73_pairwise_preference_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:target.write_bytes": 1
+    },
+    "foundation/scripts/build_tag_prompt_v75_authored_repaired_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v77_authored_rehearsal_mix_v1.py": {
+      "filesystem_mutation:holdout_path.write_text": 1,
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:train_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v78_broad_disjoint_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v79_production_aligned_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v80_continuation_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v81_hard_negative_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:train_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v82_concise_v19_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:train_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v83_identity_repair_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:train_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v84_balanced_corpus_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v85_shadow_interface_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_tag_prompt_v87_lm_head_continuation_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_uml_tariff_dictionary.py": {
+      "filesystem_mutation:out.write_text": 1
+    },
+    "foundation/scripts/build_v19_strict_acronym_repair_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/build_viv_voice_modelfile.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_bounded_title_map_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_clean_semantic_shard_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_lexical_canary_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_redirect_aware_manifest_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_redirect_resolved_staged_vectors_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_semantic_canary_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_semantic_shard_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/build_wikipedia_staged_source_manifest_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/calibrate_decision_verifier_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/compile_mouth_identity_claim_patterns_v1.py": {
+      "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/scripts/compile_mouth_identity_claim_patterns_v2.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/compile_mouth_identity_ledger_report_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/consolidate_mouth_full_run_entity_we_eval_v1.py": {
+      "filesystem_mutation:TARGET.write_text": 1
+    },
+    "foundation/scripts/construct_mouth_v20_positive_308_selection.py": {
+      "filesystem_mutation:MANIFEST.write_text": 1,
+      "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/scripts/construct_mouth_v3_candidates_r2.py": {
+      "filesystem_mutation:repl_path.write_text": 1
+    },
+    "foundation/scripts/construct_mouth_v3_candidates_r2_1.py": {
+      "filesystem_mutation:repl_path.write_text": 1
+    },
+    "foundation/scripts/corpus_overlap_audit_v3.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:report_json.write_text": 1
+    },
+    "foundation/scripts/decide_openaster_parity.py": {
+      "filesystem_mutation:OUT.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/decide_openaster_stabilization.py": {
+      "filesystem_mutation:DECISION.write_text": 1
+    },
+    "foundation/scripts/decide_openaster_v3.py": {
+      "filesystem_mutation:CONFIG.write_text": 1,
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/evaluate_clean_default_mouth_matrix_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_hf_lora_shadow_route_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_adapter_blend_alpha05_full96.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_adapter_blends_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_arch_tool_repair_v1.py": {
+      "filesystem_mutation:target.write_text": 2
+    },
+    "foundation/scripts/evaluate_mouth_chatbot_consolidation_v2.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_chatbot_consolidation_v3.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_combined_candidate_v21.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_cross_axis_micro_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_cross_axis_micro_v1_exact_identity_fact.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_cross_axis_micro_v1_for_viv_route.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_cross_axis_micro_v1_identity_contract.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_cross_axis_micro_v1_prompt_v5.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_full_run_entity_we_v1.py": {
+      "filesystem_mutation:REPORT.write_text": 1,
+      "filesystem_mutation:checkpoint_path.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_anchor_repair_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_bridge_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_complete_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_complete_v2.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_gap_micro_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_preserved_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_refinement_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_refinement_v2.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_identity_repair_preservation_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_recovery_v2_staged.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_runtime_contract_shadow_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_runtime_visible_batch_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_semantic_batch_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_mouth_semantic_batch_v85_shadow_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_openaster_parity.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/evaluate_tag_campaign_combined_gate_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_tag_prompt_campaign_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_tag_prompt_v79_raw_semantic_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_wikipedia_generic_coverage_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_wikipedia_semantic_disjoint_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_wikipedia_semantic_shard_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_wikipedia_staged_retrieval_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluate_wikipedia_training_semantic_overlap_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/evaluator_v2_1_cpu_rescore_and_hidden_pack.py": {
+      "filesystem_mutation:path.write_text": 2,
+      "filesystem_mutation:plan_path.write_text": 1
+    },
+    "foundation/scripts/evaluator_v2_2_build_calibrate_blind_eval.py": {
+      "filesystem_mutation:path.write_text": 2,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:proposal_md.write_text": 1
+    },
+    "foundation/scripts/execution_abort_report.py": {
+      "filesystem_mutation:os.unlink": 1
+    },
+    "foundation/scripts/file_index_system.py": {
+      "filesystem_mutation:path.write_text": 4
+    },
+    "foundation/scripts/finalize_backup_core_milestone.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/finalize_mouth_combined_candidate_v21_decision.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/finalize_mouth_recovery_v2_decision.py": {
+      "filesystem_mutation:md.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/finalize_training_tree_milestone.py": {
+      "process:subprocess.run": 2
+    },
+    "foundation/scripts/finalize_triad_governor_milestone.py": {
+      "filesystem_mutation:temp.unlink": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/growth_strain_under_load.py": {
+      "process:subprocess.call": 1
+    },
+    "foundation/scripts/inventory_knowledge_sources_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/local_coder_task_queue_v1.py": {
+      "filesystem_mutation:path.unlink": 1,
+      "filesystem_mutation:path.write_text": 1,
+      "network:urllib.request.urlopen": 1
+    },
+    "foundation/scripts/local_coder_tool_registry_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/measure_token_cost.py": {
+      "filesystem_mutation:out.write_text": 1,
+      "network:urllib.request.urlopen": 1,
+      "process:subprocess.check_output": 1
+    },
+    "foundation/scripts/measure_token_scaling.py": {
+      "filesystem_mutation:out.write_text": 1
+    },
+    "foundation/scripts/memory_smoke_30s.py": {
+      "filesystem_mutation:_OUT.write_text": 1,
+      "filesystem_mutation:md.write_text": 1,
+      "process:subprocess.Popen": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/mouth_training_anchor_coverage_v1.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/mouth_training_recovery_execute.py": {
+      "filesystem_mutation:CURSOR_HANDOFF.write_text": 1,
+      "filesystem_mutation:FINAL_STOP_MD.write_text": 1,
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/mouth_training_recovery_lr_micro_v1.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:probe_path.write_text": 1,
+      "filesystem_mutation:temp.write_text": 1
+    },
+    "foundation/scripts/mouth_training_recovery_v1.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/mouth_training_recovery_v1_2.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/mouth_training_recovery_v1_2_1.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/mouth_training_recovery_v1_2_2.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/mouth_training_recovery_v1_2_3.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/mouth_training_recovery_v1_2_4.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/mouth_training_recovery_v3_generated_eval.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/mouth_training_recovery_v3_runner.py": {
+      "filesystem_mutation:manifest_path.write_bytes": 1,
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:receipt_path.unlink": 1,
+      "filesystem_mutation:receipt_path.write_text": 1,
+      "filesystem_mutation:stage.write_text": 1
+    },
+    "foundation/scripts/mouth_v3_r2_1_postrun_failure_attribution.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/mouth_v3_r2_1_production_runner.py": {
+      "filesystem_mutation:p.unlink": 1,
+      "filesystem_mutation:plan_path.write_bytes": 1,
+      "filesystem_mutation:staged_plan.write_text": 1,
+      "filesystem_mutation:staged_status.write_text": 1,
+      "filesystem_mutation:staged_token.write_text": 1,
+      "filesystem_mutation:status_path.write_bytes": 1,
+      "filesystem_mutation:token_path.unlink": 1
+    },
+    "foundation/scripts/mouth_v3_r2_1_targeted_patch_experiment.py": {
+      "filesystem_mutation:claim.unlink": 1,
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "foundation/scripts/plan_wikipedia_next_batch_checkpoint_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/plan_wikipedia_staged_ingestion_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/plot_train_metrics.py": {
+      "process:subprocess.call": 1
+    },
+    "foundation/scripts/preflight_mouth_recovery_v3_campaign_v1.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/prepare_mouth_combined_candidate_v21_runner.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:result_path.write_text": 1,
+      "filesystem_mutation:staged.write_text": 1,
+      "filesystem_mutation:staged_token.write_text": 1
+    },
+    "foundation/scripts/prepare_mouth_full_run_entity_we_v1.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:result_path.write_text": 1,
+      "filesystem_mutation:staged.write_text": 1,
+      "filesystem_mutation:staged_token.write_text": 1
+    },
+    "foundation/scripts/prepare_mouth_recovery_v2_runner.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:result_path.write_text": 1,
+      "filesystem_mutation:staged.write_text": 1,
+      "filesystem_mutation:staged_token.write_text": 1,
+      "filesystem_mutation:status_path.write_text": 1
+    },
+    "foundation/scripts/prt_pattern_cycle_batch.py": {
+      "filesystem_mutation:args.out.write_text": 1
+    },
+    "foundation/scripts/reaudit_mouth_full_run_entity_we_v2_v5.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/recover_mouth_chatbot_consolidation_abort_v1.py": {
+      "filesystem_mutation:plan_path.write_text": 1
+    },
+    "foundation/scripts/repair_training_ledger_fork_20260723.py": {
+      "filesystem_mutation:temp.unlink": 1
+    },
+    "foundation/scripts/rescore_mouth_chatbot_consolidation_v3_v2_6.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_chatbot_consolidation_v3_v2_7.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_chatbot_consolidation_v3_v2_8.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_cross_axis_micro_v1_v2_9.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_cross_axis_micro_v1_v3_0.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_cross_axis_micro_v1_v4.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_cross_axis_micro_v1_v5.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_cross_axis_micro_v1_v6.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_recovery_v2_staged_v3.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/rescore_mouth_recovery_v2_staged_v4.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/review_local_coder_drafts_v1.py": {
+      "filesystem_mutation:report_path.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_ablation.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_accounting_registry_freeze.py": {
+      "filesystem_mutation:RELEASE_JSON.write_text": 1,
+      "filesystem_mutation:RELEASE_MD.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_action_ledger.py": {
+      "filesystem_mutation:LEDGER_JSON.write_text": 1,
+      "filesystem_mutation:LEDGER_MD.write_text": 1,
+      "filesystem_mutation:PROFILES_JSON.write_text": 1,
+      "filesystem_mutation:PROFILES_MD.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_advisory_route.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_boundary_registry_review.py": {
+      "filesystem_mutation:review_path.write_text": 2
+    },
+    "foundation/scripts/rid_electrical_calib_net_resolution.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_close_prediction_branch.py": {
+      "filesystem_mutation:DECISIVE_JSON.write_text": 1,
+      "filesystem_mutation:DECISIVE_MD.write_text": 1,
+      "filesystem_mutation:ROLE_JSON.write_text": 1,
+      "filesystem_mutation:ROLE_MD.write_text": 1,
+      "filesystem_mutation:cpath.write_text": 1,
+      "filesystem_mutation:md.write_text": 1,
+      "filesystem_mutation:meta_path.write_text": 2,
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/rid_electrical_closed_rejected_strata_lock.py": {
+      "filesystem_mutation:PATH.write_text": 1,
+      "filesystem_mutation:PATH_MD.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_cost_decomposition_campaign.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 2,
+      "filesystem_mutation:progress_path.write_text": 1,
+      "filesystem_mutation:wpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_decisive_campaign.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:meta_path.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_energy_ledger_summarize.py": {
+      "filesystem_mutation:d_json.write_text": 1,
+      "filesystem_mutation:d_md.write_text": 1,
+      "filesystem_mutation:r_json.write_text": 1,
+      "filesystem_mutation:r_md.write_text": 1,
+      "filesystem_mutation:s_json.write_text": 1,
+      "filesystem_mutation:s_md.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_eval_duration_validation.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1,
+      "filesystem_mutation:progress_path.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_explanatory_audit.py": {
+      "filesystem_mutation:FREEZE_PATH.write_text": 1,
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_forensic_tokens_short.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_freeze_predictor_v1.py": {
+      "filesystem_mutation:FREEZE.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_ledger_campaign.py": {
+      "filesystem_mutation:LATEST.write_text": 1,
+      "filesystem_mutation:LATEST_MD.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_ledger_campaign_sequential.py": {
+      "process:subprocess.run": 2
+    },
+    "foundation/scripts/rid_electrical_live_accounting_validate.py": {
+      "filesystem_mutation:DRIFT_LOG_PATH.write_text": 1,
+      "filesystem_mutation:LATEST_JSON.write_text": 1,
+      "filesystem_mutation:LATEST_MD.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_lock_predictor.py": {
+      "filesystem_mutation:LOCK_PATH.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_master_canary.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_meter_inventory.py": {
+      "filesystem_mutation:LATEST.write_text": 1,
+      "filesystem_mutation:stamped.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/rid_electrical_observe.py": {
+      "filesystem_mutation:LATEST.write_text": 1,
+      "filesystem_mutation:stamped.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_outcomes_observe.py": {
+      "filesystem_mutation:LATEST.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_pre_action_action_contract_shadow.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/rid_electrical_pre_action_training_env.py": {
+      "filesystem_mutation:ENV_LOCK.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/rid_electrical_predictor_review.py": {
+      "filesystem_mutation:REVIEW_JSON.write_text": 1,
+      "filesystem_mutation:REVIEW_MD.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_refresh_warm_validation_report.py": {
+      "filesystem_mutation:p.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_role_decision.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_shadow_ab.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_shadow_ab_v3.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_token_matrix_v2.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1,
+      "filesystem_mutation:progress_path.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_v2_approval_review.py": {
+      "filesystem_mutation:apath.write_text": 1,
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_v2_fit_review.py": {
+      "filesystem_mutation:cand_path.write_text": 1,
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1,
+      "filesystem_mutation:reject.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_v2_justification_review.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_v2_live_shadow_campaign.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1,
+      "filesystem_mutation:progress.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_v2_prospective_regrade.py": {
+      "filesystem_mutation:cpath.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_v2_prospective_validation.py": {
+      "filesystem_mutation:cpath.write_text": 1,
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1,
+      "filesystem_mutation:progress.write_text": 1
+    },
+    "foundation/scripts/rid_electrical_validate_warm_repeat.py": {
+      "filesystem_mutation:jpath.write_text": 1,
+      "filesystem_mutation:mpath.write_text": 1
+    },
+    "foundation/scripts/run_decision_simulation_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/run_foundation_preflight.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/run_mouth_anchor_calibration_v2.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/run_mouth_arch_tool_repair_v1.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:stage.write_text": 1,
+      "filesystem_mutation:token_stage.write_text": 1
+    },
+    "foundation/scripts/run_mouth_chatbot_consolidation_v1.py": {
+      "filesystem_mutation:p.write_text": 1,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:stage.write_text": 1,
+      "filesystem_mutation:token_stage.write_text": 1
+    },
+    "foundation/scripts/run_mouth_identity_anchor_repair_v1.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:plan_path.write_text": 1,
+      "filesystem_mutation:stage.write_text": 1,
+      "filesystem_mutation:token_stage.write_text": 1
+    },
+    "foundation/scripts/run_mouth_identity_refinement_v1.py": {
+      "filesystem_mutation:p.write_text": 1,
+      "filesystem_mutation:pp.write_text": 1,
+      "filesystem_mutation:stage.write_text": 1,
+      "filesystem_mutation:ts.write_text": 1
+    },
+    "foundation/scripts/run_mouth_real_test_chat_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/run_mouth_semantic_refinement_v1.py": {
+      "filesystem_mutation:p.write_text": 1,
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:staged.write_text": 1,
+      "filesystem_mutation:ts.write_text": 1
+    },
+    "foundation/scripts/run_mouth_semantic_regression_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/run_verified_decision_simulation_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/run_wikipedia_32_article_canary_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/select_openaster_checkpoint.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/stage1_mouth_identity_judge.py": {
+      "network:urlrequest.urlopen": 1
+    },
+    "foundation/scripts/stage1_rejection_postmortem.py": {
+      "filesystem_mutation:OUT_JSON.write_text": 1,
+      "filesystem_mutation:OUT_MD.write_text": 1
+    },
+    "foundation/scripts/stage_local_coder_draft_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/stress_test_decision_simulation_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/test_corpus_overlap_audit_v3.py": {
+      "filesystem_mutation:blind_v22.write_text": 1,
+      "filesystem_mutation:design_path.write_text": 1,
+      "filesystem_mutation:hidden_v1.write_text": 1,
+      "filesystem_mutation:hidden_v22.write_text": 1,
+      "filesystem_mutation:neg_path.write_text": 1,
+      "filesystem_mutation:pos_path.write_text": 1
+    },
+    "foundation/scripts/test_file_index_system.py": {
+      "filesystem_mutation:path.write_bytes": 1
+    },
+    "foundation/scripts/test_hwinfo_telemetry.py": {
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:path2.write_text": 1
+    },
+    "foundation/scripts/test_local_coder_task_queue_v1.py": {
+      "filesystem_mutation:bad.write_text": 1,
+      "filesystem_mutation:checked.write_text": 1,
+      "filesystem_mutation:dry_tasks.write_text": 1,
+      "filesystem_mutation:duplicate_tasks.write_text": 1,
+      "filesystem_mutation:fail_tasks.write_text": 1,
+      "filesystem_mutation:live_tasks.write_text": 1,
+      "filesystem_mutation:mismatch_tasks.write_text": 1,
+      "filesystem_mutation:occupied_tasks.write_text": 1,
+      "filesystem_mutation:prompt_guard.write_text": 1,
+      "filesystem_mutation:recovery_checked.write_text": 1,
+      "filesystem_mutation:recovery_tasks.write_text": 1,
+      "filesystem_mutation:tampered_log.write_text": 1,
+      "filesystem_mutation:tasks.write_text": 1,
+      "filesystem_mutation:too_many.write_text": 1
+    },
+    "foundation/scripts/test_mouth_canary_hard_stop_gate.py": {
+      "filesystem_mutation:decision_32.write_text": 1,
+      "filesystem_mutation:path.write_text": 2,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/test_mouth_canary_named_unlock_gentle32.py": {
+      "filesystem_mutation:corrupt_path.write_text": 1,
+      "filesystem_mutation:path.unlink": 1,
+      "filesystem_mutation:path.write_text": 2,
+      "process:subprocess.run": 2
+    },
+    "foundation/scripts/test_mouth_combined_candidate_v20_runner_compatibility.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/test_mouth_entity_we_contract_v1.py": {
+      "filesystem_mutation:path.unlink": 1
+    },
+    "foundation/scripts/test_mouth_v3_corpus_admission.py": {
+      "filesystem_mutation:bad_audit.write_text": 1,
+      "filesystem_mutation:manifest.write_text": 1,
+      "filesystem_mutation:src.write_text": 1
+    },
+    "foundation/scripts/test_rid_electrical_auditable_ledger.py": {
+      "filesystem_mutation:tmp.unlink": 2
+    },
+    "foundation/scripts/test_rid_electrical_pre_action_hardening.py": {
+      "filesystem_mutation:lock.write_text": 1,
+      "filesystem_mutation:model.write_bytes": 1
+    },
+    "foundation/scripts/test_rid_electrical_predictor_review.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/test_rid_electrical_v2_candidate.py": {
+      "filesystem_mutation:tmp.unlink": 1
+    },
+    "foundation/scripts/test_training_security_contracts.py": {
+      "process:subprocess.Popen": 1
+    },
+    "foundation/scripts/train_fresh_base_tag_campaign_v1.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/scripts/train_judge_lora.py": {
+      "process:subprocess.call": 1
+    },
+    "foundation/scripts/train_tag_prompt_campaign_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 2,
+      "filesystem_mutation:path.write_text": 1,
+      "filesystem_mutation:receipt.write_text": 1
+    },
+    "foundation/scripts/training_tree.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/validate_judge_adapter.py": {
+      "process:subprocess.call": 1
+    },
+    "foundation/scripts/validate_mouth_training_schedule_v1.py": {
+      "filesystem_mutation:report_path.write_text": 1
+    },
+    "foundation/scripts/validate_wikipedia_32_article_canary_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/validate_wikipedia_staged_admission_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/validate_wikipedia_training_disjointness_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/verify_mouth_semantic_readiness_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/scripts/verify_mouth_training_anchor_coverage_v1.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "foundation/scripts/write_mouth_entity_we_contract_report_v1.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/write_mouth_full_run_entity_we_readiness_v1.py": {
+      "filesystem_mutation:REPORT.write_text": 1
+    },
+    "foundation/scripts/write_mouth_training_diminishing_returns_report_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
+    },
+    "foundation/tools/week1/scripts/align_labels.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/tools/week1/scripts/eval_adapter.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/tools/week1/scripts/train_adapter.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/tools/week1/scripts/validate_alignment.py": {
+      "filesystem_mutation:report_path.write_text": 1
+    },
+    "memory_core/gate.py": {
+      "filesystem_mutation:target.write_text": 1
+    },
+    "memory_core/semantic_memory.py": {
+      "filesystem_mutation:CURRENT_TXT.write_text": 1,
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "memory_core/split.py": {
+      "filesystem_mutation:path.unlink": 1
+    },
+    "memory_core/tags.py": {
+      "filesystem_mutation:tmp.write_text": 1
+    },
+    "voice_core/client.py": {
+      "network:urllib.request.urlopen": 3
+    }
+  }
+}

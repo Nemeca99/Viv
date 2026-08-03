@@ -1,0 +1,12 @@
+# authored_by=viv_cpu at=2026-07-21T19:52:04+00:00 s_n=0.4200 tool=plant_digest
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv self-build - plant_digest (stability watch)
+import json
+from pathlib import Path
+
+p = Path(r"L:/Continue/Viv/foundation/artifacts/auto/master_rid.json")
+if p.is_file():
+    d = json.loads(p.read_text(encoding="utf-8"))
+    print(f"PLANT_DIGEST sn={d.get('master_s_n')} status={d.get('status')}")
+else:
+    print("PLANT_DIGEST unavailable")

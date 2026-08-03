@@ -1,0 +1,62 @@
+# authored_by=architect_rebuild at=2026-07-21T21:45:00+00:00 tool=adapter_knowledge
+# law4=source_as_txt run=python_stdin rebuild_tranche=rag_knowledge
+# REAL callable knowledge adapter smoke — not bridge inventory JSON.
+import json
+import sys
+from pathlib import Path
+
+FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(FOUNDATION))
+
+from lib.aios_adapter_knowledge import ingest_path, query, run_smoke, status
+
+st = status()
+print(
+    "ADAPTER_KNOWLEDGE status ok=%s chunks=%s with_text=%s v1=%s v2=%s"
+    % (
+        st.get("ok"),
+        st.get("chunk_count"),
+        st.get("chunks_with_text"),
+        st.get("v1_rag_readable"),
+        st.get("v2_knowledge_readable"),
+    )
+)
+
+probe = FOUNDATION / "FOUNDATION_ROADMAP.md"
+ing = ingest_path(probe, s_n=0.5)
+print(
+    "INGEST ok=%s chunks_added=%s chunk_count=%s mirrored=%s err=%s"
+    % (
+        ing.get("ok"),
+        ing.get("chunks_added"),
+        ing.get("chunk_count"),
+        ing.get("mirrored"),
+        (ing.get("error") or "")[:120],
+    )
+)
+
+q = query("foundation roadmap plant RID absorb knowledge", k=3)
+hits = q.get("hits") or []
+print(
+    "QUERY ok=%s silence=%s hits=%s mode=%s"
+    % (q.get("ok"), q.get("silence"), len(hits), q.get("mode"))
+)
+for h in hits[:3]:
+    preview = (h.get("text") or "").replace("\n", " ")[:80]
+    preview = preview.encode("ascii", errors="replace").decode("ascii")
+    print("  hit source=%s score=%s :: %s" % (h.get("source"), h.get("score"), preview))
+
+smoke = run_smoke(s_n=0.5)
+print(
+    "SMOKE ok=%s evidence=%s hit_count=%s"
+    % (
+        smoke.get("ok"),
+        smoke.get("evidence_path"),
+        smoke.get("query", {}).get("hit_count"),
+    )
+)
+print(
+    "ADAPTER_KNOWLEDGE_DONE "
+    + json.dumps({"ok": bool(smoke.get("ok")), "chunks": (status().get("chunk_count") or 0)})
+)

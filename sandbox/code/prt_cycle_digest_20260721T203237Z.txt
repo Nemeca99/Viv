@@ -1,0 +1,17 @@
+# authored_by=viv_cpu at=2026-07-21T20:32:37+00:00 s_n=0.4587 tool=prt_cycle_digest
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# PRT expand - prt_cycle_digest
+import json
+from pathlib import Path
+p = Path(r"L:/Continue/Viv/foundation/artifacts/models/prt_cycles.jsonl")
+if not p.is_file():
+    print("PRT_DIGEST missing")
+else:
+    rows = [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    rewards = sum(
+        1
+        for r in rows[-80:]
+        if str(r.get("grade") or r.get("label") or "").upper().find("REWARD") >= 0
+        or r.get("reward") is True
+    )
+    print(f"PRT_DIGEST n={len(rows)} tail80_rewardish={rewards}")

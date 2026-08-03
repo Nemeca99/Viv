@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-07-21T18:23:10+00:00",
+  "experiment_id": "cpu_autonomy_live_v1",
+  "objective": "CPU-first AI + autonomous RID teach without long GPU tests",
+  "verdict": "PASS_SHORT",
+  "evidence": {
+    "prt_cpu_hold_5": {"reward": 5, "cycles": 5, "command": "prt_main.py collect --cycles 5 --act observe --cpu-hold --settle 1.5"},
+    "recent_cpu_rid_ticks": {"n": 8, "REWARD": 7, "NEUTRAL": 1, "path": "L:/Continue/Viv/foundation/artifacts/auto/cpu_rid_ticks.jsonl"},
+    "viv_agentic": {"cpu_rid_observe": true, "autofill": true, "ready_target": 3},
+    "fsaa": {"seed": "agentic_seed_queue_cpu_first.py", "health": "done", "context": "done", "requires_operator_resume": false},
+    "gpu_overnight": "PARKED"
+  },
+  "changes": [
+    "prt_main.py --cpu-hold",
+    "lib/cpu_rid_tick.py",
+    "lib/autonomous_operator.py cpu_rid_tick step",
+    "lib/agentic_runtime.py cpu_rid_observe + ensure_cpu_work_queue",
+    "cpu_config autonomy.cpu_rid_autofill",
+    "FSAA agentic soft-fail local_model_smoke + cpu-first seed"
+  ],
+  "next": "Short autonomous loops; improve CPU Mad Libs teach vs hold; do not re-enable GPU overnight"
+}

@@ -1,0 +1,84 @@
+# authored_by=architect_rebuild at=2026-07-21T22:01:19+00:00 tool=adapter_mirror
+# law4=source_as_txt run=python_stdin rebuild_tranche=mirror_core
+# REBUILD ADAPTER mirror — callable status/introspect/plant_snapshot via Viv organism+self wrap
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_mirror import (  # noqa: E402
+    introspect,
+    plant_snapshot,
+    run_smoke,
+    status,
+)
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    v2 = sev.get("v2") or {}
+    print(
+        "ADAPTER_MIRROR status ok="
+        + str(bool(st.get("ok")))
+        + " organism="
+        + str(sev.get("organism_state_exists"))
+        + " beat="
+        + str(sev.get("latest_beat_exists"))
+        + " v2="
+        + str(v2.get("v2_mirror_readable"))
+        + " socket="
+        + str(v2.get("viv_opens_steel_socket"))
+    )
+    inn = introspect()
+    iev = inn.get("evidence") or {}
+    print(
+        "INTROSPECT ok="
+        + str(bool(inn.get("ok")))
+        + " tools="
+        + str(iev.get("tools_authored_n"))
+        + " understanding="
+        + str(iev.get("understanding"))
+    )
+    plant = plant_snapshot()
+    pev = plant.get("evidence") or {}
+    print(
+        "PLANT ok="
+        + str(bool(plant.get("ok")))
+        + " s_n="
+        + str(pev.get("master_s_n"))
+        + " status="
+        + str(pev.get("status"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_MIRROR ok="
+        + str(bool(result.get("ok")))
+        + " plant_s_n="
+        + str(ev.get("plant_s_n"))
+        + " exec_v2="
+        + str(ev.get("viv_executes_v2"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "understanding": ev.get("understanding"),
+                "tools_authored_n": ev.get("tools_authored_n"),
+                "plant_s_n": ev.get("plant_s_n"),
+                "plant_status": ev.get("plant_status"),
+                "viv_executes_v2": ev.get("viv_executes_v2"),
+                "viv_opens_steel_socket": ev.get("viv_opens_steel_socket"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

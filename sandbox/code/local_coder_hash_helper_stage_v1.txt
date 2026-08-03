@@ -1,0 +1,17 @@
+# staged_by=foreman local_coder=true law4=source_as_txt
+# draft_sha256=7502a5f95047ff725d73b4a95cb010008eaba8d756e519765e98c7c47959bc47 execution=not_performed
+
+import hashlib
+
+def hash_file(path):
+    """
+    Returns the SHA-256 hex digest of a given file.
+
+    :param path: The path to the file.
+    :return: A string representing the SHA-256 hash of the file's contents.
+    """
+    sha_signature = hashlib.sha256()
+    with open(path, 'rb') as f:
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha_signature.update(byte_block)
+    return sha_signature.hexdigest()

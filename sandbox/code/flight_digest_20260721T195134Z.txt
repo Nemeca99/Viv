@@ -1,0 +1,13 @@
+# authored_by=viv_cpu at=2026-07-21T19:51:34+00:00 s_n=0.4061 tool=flight_digest
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv self-build - flight_digest
+from pathlib import Path
+
+p = Path(r"L:/Continue/Viv/sandbox/journal/flight_recorder.jsonl")
+if not p.is_file():
+    print("FLIGHT_DIGEST empty")
+else:
+    lines = p.read_text(encoding="utf-8", errors="replace").splitlines()
+    n = len(lines)
+    last = lines[-1][:200] if lines else ""
+    print(f"FLIGHT_DIGEST events={n} last={last}")

@@ -1,0 +1,17 @@
+{
+  "experiment_id": "prt_cpu_first_rid_v1",
+  "timestamp_utc": "2026-07-21T18:15:00+00:00",
+  "doctrine": "CPU mind first; GPU draft optional; gpu_overnight_enabled=false",
+  "changes": [
+    "cpu_config.doctrine.cpu_first + gpu_overnight PARKED",
+    "Always-on CPU Mad Libs in predict prompt (prt_cpu_teacher)",
+    "Judge raw GPU draft before prior_fill; far_tol=0.05",
+    "run_overnight refuses start unless gpu_overnight_enabled=true"
+  ],
+  "pass_gate": 0.99,
+  "next": [
+    "CPU hold baseline probe (no LoRA train)",
+    "Short GPU collect only to verify madlibs/judge fire",
+    "Mint CHOICE_GOLD from CPU hold offline"
+  ]
+}

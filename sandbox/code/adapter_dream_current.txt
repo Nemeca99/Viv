@@ -1,0 +1,73 @@
+# authored_by=architect_rebuild at=2026-07-21T22:00:00+00:00 tool=adapter_dream
+# law4=source_as_txt run=python_stdin rebuild_tranche=dream_core
+# REBUILD ADAPTER dream — callable status/latest/list_recent via Viv aios_dream wrap
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_dream import latest, list_recent, run_smoke, status  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    v2 = sev.get("v2") or {}
+    print(
+        "ADAPTER_DREAM status ok="
+        + str(bool(st.get("ok")))
+        + " cycles="
+        + str(sev.get("cycles"))
+        + " files="
+        + str(sev.get("dream_file_count"))
+        + " v2="
+        + str(v2.get("v2_dream_readable"))
+        + " exec_v2="
+        + str(v2.get("viv_executes_v2"))
+    )
+    lat = latest()
+    lev = lat.get("evidence") or {}
+    print(
+        "LATEST ok="
+        + str(bool(lat.get("ok")))
+        + " source="
+        + str(lev.get("source"))
+        + " chars="
+        + str(lev.get("chars"))
+    )
+    recent = list_recent(3)
+    rev = recent.get("evidence") or {}
+    print("LIST ok=" + str(bool(recent.get("ok"))) + " n=" + str(rev.get("n_returned")))
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_DREAM ok="
+        + str(bool(result.get("ok")))
+        + " files="
+        + str(ev.get("dream_file_count"))
+        + " list_n="
+        + str(ev.get("n_returned"))
+        + " latest_source="
+        + str(ev.get("latest_source"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "dream_file_count": ev.get("dream_file_count"),
+                "n_returned": ev.get("n_returned"),
+                "latest_source": ev.get("latest_source"),
+                "latest_path": ev.get("latest_path"),
+                "cycles": ev.get("cycles"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

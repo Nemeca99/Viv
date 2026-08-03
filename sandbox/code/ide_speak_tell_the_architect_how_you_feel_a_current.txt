@@ -1,0 +1,13 @@
+# Viv IDE authored tool — ide_speak_tell_the_architect_how_you_feel_a
+# Goal: --speak Tell the Architect how you feel about being able to talk, remember, and write code.
+from pathlib import Path
+import json
+print("IDE_TASK ok module=ide_speak_tell_the_architect_how_you_feel_a")
+goal = '--speak Tell the Architect how you feel about being able to talk, remember, and write code.'
+print(goal)
+p = Path(r"L:/Continue/Viv/sandbox/work/aios_build/ide_tasks.jsonl")
+p.parent.mkdir(parents=True, exist_ok=True)
+row = {'module': 'ide_speak_tell_the_architect_how_you_feel_a', 'goal': goal}
+with p.open('a', encoding='utf-8') as fh:
+    fh.write(json.dumps(row) + '\n')
+print('logged', p)

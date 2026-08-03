@@ -1,0 +1,13 @@
+# Viv IDE authored tool — ide_build_a_sandbox_module_that_lists_skill
+# Goal: build a sandbox module that lists skill count under L:/.cursor/skills
+from pathlib import Path
+import json
+root = Path(r"L:/.cursor/skills")
+skills = sorted(p.name for p in root.iterdir() if p.is_dir()) if root.is_dir() else []
+print('SKILLS n=' + str(len(skills)))
+print('sample=' + str(skills[:12]))
+out = Path(r"L:/Continue/Viv/sandbox/work/aios_build/skill_census.json")
+out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text(json.dumps({'n': len(skills), 'skills': skills}, indent=2), encoding='utf-8')
+print('wrote', out)
+print('REFINED ok')

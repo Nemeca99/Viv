@@ -1,0 +1,8 @@
+[
+  {
+    "task_id": "draft_hash_manifest_helper",
+    "kind": "draft_code",
+    "draft_name": "draft_hash_manifest_helper.txt",
+    "prompt": "Write one small Python standard-library function named hash_manifest(path) that returns a SHA-256 hex digest for a file. Return code only. Do not use shell commands, network access, or third-party packages."
+  }
+]

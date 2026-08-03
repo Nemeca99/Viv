@@ -1,0 +1,70 @@
+# authored_by=architect_rebuild at=2026-07-21T22:10:00+00:00 tool=adapter_support
+# law4=source_as_txt run=python_stdin rebuild_tranche=support_core
+# REBUILD ADAPTER support — callable status/health; V1 D: read-mirror only; Viv foundation_health bus
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_support import health, run_smoke, status  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    v1 = sev.get("v1") or {}
+    print(
+        "ADAPTER_SUPPORT status ok="
+        + str(bool(st.get("ok")))
+        + " v1_on_disk="
+        + str(v1.get("v1_on_disk"))
+        + " read_mirror="
+        + str(v1.get("v1_read_mirror_only"))
+        + " executes_v1="
+        + str(v1.get("viv_executes_v1"))
+    )
+    hv = health()
+    hev = hv.get("evidence") or {}
+    print(
+        "HEALTH ok="
+        + str(bool(hv.get("ok")))
+        + " foundation_allow="
+        + str(hev.get("foundation_allow"))
+        + " failed="
+        + str(hev.get("foundation_failed"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_SUPPORT ok="
+        + str(bool(result.get("ok")))
+        + " health="
+        + str(ev.get("health_ok"))
+        + " v1_mirror="
+        + str(ev.get("v1_read_mirror_only"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "status_ok": ev.get("status_ok"),
+                "health_ok": ev.get("health_ok"),
+                "foundation_allow": ev.get("foundation_allow"),
+                "foundation_failed": ev.get("foundation_failed"),
+                "v1_on_disk": ev.get("v1_on_disk"),
+                "v1_read_mirror_only": ev.get("v1_read_mirror_only"),
+                "viv_executes_v1": ev.get("viv_executes_v1"),
+                "sandbox_entries": ev.get("sandbox_entries"),
+                "s_n": ev.get("s_n"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

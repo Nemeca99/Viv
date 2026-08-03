@@ -1,0 +1,10 @@
+[
+  {
+    "task_id": "draft_hash_helper_with_contract",
+    "kind": "draft_code",
+    "draft_name": "draft_hash_helper_with_contract.txt",
+    "required_markers": ["hashlib", "sha256"],
+    "forbidden_markers": ["subprocess", "urllib"],
+    "prompt": "Draft one small Python standard-library function hash_file(path) that returns a SHA-256 hex digest for a file. Include the hashlib import and sha256 call. Return code only. Do not use shell commands, network access, or third-party packages."
+  }
+]

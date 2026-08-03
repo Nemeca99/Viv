@@ -1,0 +1,20 @@
+# authored_by=viv_cpu at=2026-07-21T20:17:04+00:00 s_n=0.4044 tool=plant_trend
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv AIOS build - plant_trend
+from pathlib import Path
+import re
+p = Path(r"L:/Continue/Viv/sandbox/work/plant_brief.txt")
+if not p.is_file():
+    print("PLANT_TREND missing")
+else:
+    sns = []
+    for line in p.read_text(encoding="utf-8").splitlines():
+        m = re.search(r"S_n=([0-9.]+)", line)
+        if m:
+            sns.append(float(m.group(1)))
+    if not sns:
+        print("PLANT_TREND empty")
+    else:
+        print(f"PLANT_TREND n={len(sns)} last={sns[-1]:.4f} "
+              f"min={min(sns):.4f} max={max(sns):.4f} "
+              f"delta={sns[-1]-sns[0]:+.4f}")

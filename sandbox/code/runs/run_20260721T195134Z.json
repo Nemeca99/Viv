@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/flight_digest_current.txt",
+  "stdout": "FLIGHT_DIGEST events=1 last={\"event\": \"self_life\", \"at\": \"2026-07-21T19:51:28+00:00\", \"understanding\": \"I am Viv (CPU mind). S_n=0.4061 status=ACTIVE. Sandbox tools=3. Dreams=3. Voice=viv-voice-qwen. Gaps I can build: self_map, \n",
+  "stderr": "",
+  "s_n": 0.4061,
+  "at": "2026-07-21T19:51:34+00:00"
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "task_id": "revise_pure_schedule_validator",
+    "kind": "draft_code",
+    "draft_name": "draft_pure_schedule_validator_revision.txt",
+    "prompt": "Revise a pure Python standard-library schedule validator. Important prior defect to avoid: if the top-level runs field is missing or invalid, return structured errors immediately and never index schedule['runs']. Also reject non-object run entries before accessing fields. Require unique non-empty run_id strings, strictly increasing positive integer checkpoint_steps, and a non-empty authorization_file_path string. Return structured errors only. No printing, file I/O, shell, network, model loading, training, lease, authorization, deployment, retries, or repository mutation. Return code only inside a Python code fence."
+  }
+]

@@ -1,0 +1,89 @@
+{
+  "experiment_id": "ab_piston_ghost_vs_live_v1",
+  "timestamp": "2026-07-18T08:53:05.256082+00:00",
+  "verdict": "COMPARABLE",
+  "stage": 2,
+  "scaffold_phase": 2,
+  "telemetry_epoch_start": "2026-07-17T05:06:46.840251+00:00",
+  "stage_state_path": "L:/Continue/Viv/foundation/artifacts/auto/prt_stage_state.json",
+  "ghost_baseline_run": "L:/Continue/Viv/foundation/artifacts/audit/prt_overnight_ghost_baseline_summary.json",
+  "overnight_last": {
+    "status": "COMPLETE",
+    "rounds_done": 60,
+    "elapsed_h": 15.844,
+    "reason": "max_rounds"
+  },
+  "baseline": {
+    "label": "ghost_stale_piston",
+    "valid_sample": true,
+    "min_window": 30,
+    "cycle_n": 1800,
+    "labels": {
+      "PUNISH": 1383,
+      "NEUTRAL": 309,
+      "REWARD": 108
+    },
+    "reward_rate": 0.06,
+    "neutral_rate": 0.1717,
+    "punish_rate": 0.7683,
+    "self_emit_rate": 0.1839,
+    "self_emit_hits": 331,
+    "self_emit_n": 1800,
+    "by_act": {
+      "observe": 490,
+      "speak": 226,
+      "life": 689,
+      "pulse": 395
+    },
+    "trust_modes": {
+      "none": 1800
+    },
+    "follow_rate_among_fa": null,
+    "first_ts": "2026-07-16T06:10:52.492567+00:00",
+    "last_ts": "2026-07-17T04:54:50.992284+00:00"
+  },
+  "pilot": {
+    "label": "live_piston_background",
+    "valid_sample": true,
+    "min_window": 30,
+    "cycle_n": 1830,
+    "labels": {
+      "PUNISH": 1660,
+      "REWARD": 11,
+      "NEUTRAL": 159
+    },
+    "reward_rate": 0.006,
+    "neutral_rate": 0.0869,
+    "punish_rate": 0.9071,
+    "self_emit_rate": 0.2235,
+    "self_emit_hits": 409,
+    "self_emit_n": 1830,
+    "by_act": {
+      "observe": 418,
+      "life": 727,
+      "speak": 243,
+      "pulse": 442
+    },
+    "trust_modes": {
+      "none": 24,
+      "incomplete": 1142,
+      "ADAPT": 210,
+      "SOLO": 63,
+      "MIXED": 289,
+      "COPY_BLIND": 73,
+      "FOLLOW": 29
+    },
+    "follow_rate_among_fa": 0.1213,
+    "first_ts": "2026-07-17T05:06:47.045803+00:00",
+    "last_ts": "2026-07-18T00:50:12.528590+00:00"
+  },
+  "deltas_pilot_minus_baseline": {
+    "reward_rate": -0.054,
+    "self_emit_rate": 0.0396,
+    "punish_rate": 0.1388
+  },
+  "runtime_health": {
+    "note": "Ghost window uses stale piston_state.json anchor; pilot requires piston_background.",
+    "overnight_config_path": "L:/Continue/Viv/foundation/artifacts/models/prt_overnight_config.json"
+  }
+}

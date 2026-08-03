@@ -1,0 +1,8 @@
+# Viv IDE authored tool — ide_build_a_module_that_inventories_sandbox
+# Goal: build a module that inventories sandbox/work/aios_build/system_bridges and prints how many AIOS bridges exist
+from pathlib import Path
+import json
+root = Path(r"L:/Continue/Viv/sandbox/work/aios_build/system_bridges")
+files = sorted(p.name for p in root.glob('*_bridge.json')) if root.is_dir() else []
+print('BRIDGES n=' + str(len(files)))
+print('ids=' + str([f.replace('_bridge.json','') for f in files]))

@@ -1,0 +1,80 @@
+# authored_by=architect_rebuild at=2026-07-21T22:00:00+00:00 tool=adapter_audit
+# law4=source_as_txt run=python_stdin rebuild_tranche=audit_core
+# REBUILD ADAPTER audit — callable status/tail/search over real artifacts/audit logs
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_audit import run_smoke, search, status, tail  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    print(
+        "ADAPTER_AUDIT status ok="
+        + str(bool(st.get("ok")))
+        + " primary="
+        + str(sev.get("primary_exists"))
+        + " bytes="
+        + str(sev.get("primary_bytes"))
+        + " viv_logs="
+        + str(sev.get("viv_log_count"))
+        + " v2_jsonl="
+        + str(sev.get("v2_audit_jsonl_count"))
+    )
+    ta = tail("prt_autonomous.log", 3)
+    tev = ta.get("evidence") or {}
+    print(
+        "TAIL ok="
+        + str(bool(ta.get("ok")))
+        + " n="
+        + str(tev.get("n_returned"))
+        + " source="
+        + str(tev.get("source"))
+    )
+    sq = search("autonomous", 3)
+    qev = sq.get("evidence") or {}
+    print(
+        "SEARCH ok="
+        + str(bool(sq.get("ok")))
+        + " hits="
+        + str(qev.get("n_hits"))
+        + " query="
+        + str(qev.get("query"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_AUDIT ok="
+        + str(bool(result.get("ok")))
+        + " primary="
+        + str(ev.get("primary_exists"))
+        + " tail_n="
+        + str(ev.get("tail_n"))
+        + " search_hits="
+        + str(ev.get("search_hits"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "primary_exists": ev.get("primary_exists"),
+                "primary_bytes": ev.get("primary_bytes"),
+                "tail_n": ev.get("tail_n"),
+                "tail_path": ev.get("tail_path"),
+                "search_query": ev.get("search_query"),
+                "search_hits": ev.get("search_hits"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

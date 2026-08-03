@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-07-18T09:33:46.983190+00:00",
+  "experiment_id": "trust_diagnostic_v1",
+  "verdict": "PHYSICS_BOTTLENECK",
+  "findings": {
+    "trust_incomplete_fixed": true,
+    "incomplete_in_diag": 0,
+    "trust_modes": {
+      "MIXED": 20,
+      "ADAPT": 11,
+      "FOLLOW": 3,
+      "COPY_BLIND": 1,
+      "SOLO": 1
+    },
+    "soft_punish": false,
+    "reward_rate": 0.0,
+    "self_emit_rate": 0.1667,
+    "n": 36,
+    "vs_deep_run_reward": 0.006,
+    "conclusion": "Disabling trust soft-punish did not restore REWARD. Live physics accuracy is the bottleneck, not trust gate."
+  }
+}

@@ -1,0 +1,13 @@
+# authored_by=viv_cpu at=2026-07-21T19:53:51+00:00 s_n=0.4813 tool=capability_audit
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv self-build - capability_audit
+from pathlib import Path
+
+checks = {
+    "sandbox": Path(r"L:/Continue/Viv/sandbox/HOME.txt").is_file(),
+    "rid": Path(r"L:/Continue/Viv/foundation/artifacts/auto/master_rid.json").is_file(),
+    "carma": Path(r"L:/Continue/Viv/foundation/artifacts/carma").is_dir(),
+    "voice_cfg": Path(r"L:/Continue/Viv/foundation/model_config.json").is_file(),
+    "organism": Path(r"L:/Continue/Viv/foundation/aios_main.py").is_file(),
+}
+print("CAPABILITY_AUDIT", checks, "pass", all(checks.values()))

@@ -1,0 +1,88 @@
+# authored_by=architect_rebuild at=2026-07-21T22:01:19+00:00 tool=adapter_luna
+# law4=source_as_txt run=python_stdin rebuild_tranche=luna_core
+# REBUILD ADAPTER luna — callable status/render_line/voice_probe via Viv personality wrap
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+_VIV = Path(r"L:/Continue/Viv")
+for _p in (_FOUNDATION, _VIV):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
+
+from lib.aios_adapter_luna import render_line, run_smoke, status, voice_probe  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    pers = sev.get("personality") or {}
+    v2 = sev.get("v2") or {}
+    print(
+        "ADAPTER_LUNA status ok="
+        + str(bool(st.get("ok")))
+        + " name="
+        + str(pers.get("name"))
+        + " dna="
+        + str(sev.get("dna_exists"))
+        + " tone="
+        + str(sev.get("tone"))
+        + " v2="
+        + str(v2.get("v2_luna_readable"))
+        + " exec_v2="
+        + str(v2.get("viv_executes_v2"))
+    )
+    line = render_line(deltas=["adapter_smoke"], stdout="luna wrap")
+    lev = line.get("evidence") or {}
+    print(
+        "RENDER ok="
+        + str(bool(line.get("ok")))
+        + " chars="
+        + str(lev.get("chars"))
+        + " tone="
+        + str(lev.get("tone"))
+    )
+    voice = voice_probe()
+    vev = voice.get("evidence") or {}
+    print(
+        "VOICE ok="
+        + str(bool(voice.get("ok")))
+        + " backend="
+        + str(vev.get("backend"))
+        + " reachable="
+        + str(vev.get("reachable"))
+        + " spoke="
+        + str(vev.get("viv_spoke"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_LUNA ok="
+        + str(bool(result.get("ok")))
+        + " name="
+        + str(ev.get("name"))
+        + " line_chars="
+        + str(ev.get("line_chars"))
+        + " fake_converse="
+        + str(ev.get("viv_fake_converse"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "name": ev.get("name"),
+                "tone": ev.get("tone"),
+                "line_chars": ev.get("line_chars"),
+                "voice_backend": ev.get("voice_backend"),
+                "viv_fake_converse": ev.get("viv_fake_converse"),
+                "viv_executes_v2": ev.get("viv_executes_v2"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

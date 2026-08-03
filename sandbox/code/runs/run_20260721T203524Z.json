@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/prt_integrity_snapshot_current.txt",
+  "stdout": "PRT_INTEGRITY_SNAP ok=1 note=run_via_integrity_review_in_loop\n",
+  "stderr": "",
+  "s_n": 0.4222,
+  "at": "2026-07-21T20:35:24+00:00"
+}

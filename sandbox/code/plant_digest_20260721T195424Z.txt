@@ -1,0 +1,17 @@
+# authored_by=viv_cpu at=2026-07-21T19:54:24+00:00 s_n=0.4625 tool=plant_digest
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv sandbox tool - plant_digest (CPU authored)
+# Summarize Master RID if present; else print unavailable.
+import json
+from pathlib import Path
+
+p = Path(r"L:/Continue/Viv/foundation/artifacts/auto/master_rid.json")
+if not p.is_file():
+    p = Path(r"L:/Continue/Viv/foundation/artifacts/auto/pulse.json")
+if p.is_file():
+    data = json.loads(p.read_text(encoding="utf-8"))
+    sn = data.get("master_s_n") or data.get("s_n") or (data.get("master") or {}).get("master_s_n")
+    status = data.get("status") or data.get("mode") or "?"
+    print(f"PLANT_DIGEST sn={sn} status={status} source={p.name}")
+else:
+    print("PLANT_DIGEST unavailable")

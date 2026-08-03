@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/attempt_replay_current.txt",
+  "stdout": "ATTEMPT_REPLAY n=22\n  2026-07-21T20:11:09+00:00 step step=sandbox_health ok=True goal=g-d0474285fb\n  2026-07-21T20:11:13+00:00 step step=remember ok=True goal=g-d0474285fb\n  2026-07-21T20:14:50+00:00 step step=survey_gaps ok=True goal=g-115249e7bc\n  2026-07-21T20:14:53+00:00 handoff step=None ok=None goal=g-115249e7bc\n  2026-07-21T20:14:58+00:00 step step=invent_module ok=True goal=g-115249e7bc\n  2026-07-21T20:15:01+00:00 step step=run_module ok=True goal=g-115249e7bc\n  2026-07-21T20:15:05+00:00 step step=write_build_manifest ok=True goal=g-115249e7bc\n  2026-07-21T20:15:09+00:00 step step=remember ok=True goal=g-115249e7bc\n  2026-07-21T20:15:13+00:00 step step=verify_build ok=True goal=g-115249e7bc\n  2026-07-21T20:15:16+00:00 goal_done step=None ok=None goal=g-115249e7bc\n  2026-07-21T20:15:22+00:00 step step=survey_gaps ok=True goal=g-79677663bf\n  2026-07-21T20:15:25+00:00 step step=invent_module ok=True goal=g-79677663bf\n",
+  "stderr": "",
+  "s_n": 0.3794,
+  "at": "2026-07-21T20:16:36+00:00"
+}

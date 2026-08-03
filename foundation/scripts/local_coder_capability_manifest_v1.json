@@ -1,0 +1,56 @@
+{
+  "schema_version": "local_coder_capability_manifest_v1",
+  "default_mode": "dry_run",
+  "local_only": true,
+  "network": false,
+  "shell": false,
+  "approval_policy": "mutations_require_run_and_task_approval",
+  "capabilities": {
+    "draft_code": {
+      "risk_tier": "sandbox_write",
+      "mutating": true,
+      "requires_approval": true,
+      "allowed_target": "artifact_draft_only",
+      "rollback": "remove_new_artifact_on_downstream_failure",
+      "timeout_seconds_max": 600
+    },
+    "read_only_check": {
+      "risk_tier": "read_only",
+      "mutating": false,
+      "requires_approval": false,
+      "allowed_target": "foundation_or_queue_artifact",
+      "rollback": "not_applicable",
+      "timeout_seconds_max": 30
+    },
+    "prebuilt_tool": {
+      "risk_tier": "tool_specific",
+      "mutating": "registry_declared",
+      "requires_approval": "registry_declared",
+      "allowed_target": "allowlisted_registry_only",
+      "rollback": "tool_declared_or_queue_transaction",
+      "timeout_seconds_max": 600
+    }
+  },
+  "forbidden_capabilities": [
+    "shell",
+    "training",
+    "lease",
+    "authorization",
+    "deployment",
+    "promotion",
+    "unrestricted_source_write",
+    "network_egress"
+  ],
+  "registry_tools": {
+    "authority_state": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "campaign_validation": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "hash_file": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "judge_text": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "normalize_artifact": {"risk_tier": "artifact_mutation", "mutating": true, "requires_approval": true, "rollback": "queue_transaction"},
+    "red_team_identity": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "review_drafts": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "sandbox_state": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "sandbox_verify_stage": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"},
+    "schedule_validation": {"risk_tier": "read_only", "mutating": false, "requires_approval": false, "rollback": "not_applicable"}
+  }
+}

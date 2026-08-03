@@ -1,0 +1,17 @@
+[
+  {
+    "task_id": "draft_pure_schedule_validator_reviewed",
+    "kind": "draft_code",
+    "draft_name": "draft_pure_schedule_validator_reviewed.txt",
+    "prompt": "Draft a pure Python standard-library function validate_schedule(schedule) for the exact schema: schedule is a dict with a runs list; every run is a dict containing a unique non-empty string run_id, a checkpoint_steps list of strictly increasing positive integers, and a non-empty authorization_file_path string. Return structured validation errors only. Guard invalid top-level and run types before indexing. Do not simplify field names, move fields, print, write files, use shell or network, load models, train, open leases, authorize, deploy, retry, or mutate repositories. Return code only inside a Python code fence."
+  },
+  {
+    "task_id": "static_review_generated_draft",
+    "kind": "prebuilt_tool",
+    "tool": "review_drafts",
+    "args": {
+      "root": "${ARTIFACT_ROOT}"
+    },
+    "if_previous_status": "success"
+  }
+]

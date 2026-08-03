@@ -1,0 +1,22 @@
+# authored_by=viv_cpu at=2026-07-21T19:51:25+00:00 s_n=0.4061 tool=self_map
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv self-build - self_map
+import json
+from pathlib import Path
+
+sb = Path(r"L:/Continue/Viv/sandbox")
+rid = Path(r"L:/Continue/Viv/foundation/artifacts/auto/master_rid.json")
+plant = {}
+if rid.is_file():
+    plant = json.loads(rid.read_text(encoding="utf-8"))
+tools = sorted(p.name for p in (sb / "code").glob("*_current.txt")) if (sb / "code").is_dir() else []
+dreams = len(list((sb / "dream").glob("*.txt"))) if (sb / "dream").is_dir() else 0
+out = {
+    "who": "Viv",
+    "sandbox": str(sb),
+    "tools": tools,
+    "dreams": dreams,
+    "s_n": plant.get("master_s_n"),
+    "status": plant.get("status"),
+}
+print("SELF_MAP", json.dumps(out))

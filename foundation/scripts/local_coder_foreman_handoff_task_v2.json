@@ -1,0 +1,19 @@
+[
+  {
+    "task_id": "draft_task_result_summarizer_v2",
+    "kind": "draft_code",
+    "draft_name": "draft_task_result_summarizer_v2.txt",
+    "required_markers": ["status", "results"],
+    "forbidden_markers": ["subprocess", "write_text", "open("],
+    "prompt": "Draft a pure Python standard-library function summarize_task_results(results) for a foreman handoff. Input is a list of dictionaries. Return a new dictionary with total count, counts by status, failed task IDs, and a boolean all_safe that is true only when every row has training false, lease_opened false, authorization_changed false, deployment_changed false, and status in success or skipped_condition. Do not mutate inputs. The implementation must use the input variable named results and inspect each row's status. Return code only inside a Python code fence. No file I/O, shell, network, execution, training, lease, authorization, deployment, or retries."
+  },
+  {
+    "task_id": "review_task_result_summarizer_v2",
+    "kind": "prebuilt_tool",
+    "tool": "review_drafts",
+    "args": {
+      "root": "${ARTIFACT_ROOT}"
+    },
+    "if_previous_status": "success"
+  }
+]

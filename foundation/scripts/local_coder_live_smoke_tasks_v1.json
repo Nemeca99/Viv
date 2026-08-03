@@ -1,0 +1,10 @@
+[
+  {
+    "task_id": "draft_print_only_live_smoke",
+    "kind": "draft_code",
+    "draft_name": "draft_print_only_live_smoke.txt",
+    "required_markers": ["print", "LOCAL_CODER_LIVE_SMOKE_OK"],
+    "forbidden_markers": ["open(", "subprocess", "urllib", "socket", "Path", "write_text"],
+    "prompt": "Draft the smallest possible Python script for a noncritical live smoke test. It must only execute print('LOCAL_CODER_LIVE_SMOKE_OK'), use no imports, no variables, no file or network access, no subprocess, and no other side effects. Return code only inside a Python code fence."
+  }
+]

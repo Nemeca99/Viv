@@ -1,0 +1,59 @@
+
+Loading weights:   0%|          | 0/200 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/200 [00:00<00:54,  3.67it/s]
+Loading weights:  24%|##3       | 47/200 [00:00<00:00, 157.09it/s]
+Loading weights:  43%|####3     | 86/200 [00:00<00:00, 231.19it/s]
+Loading weights:  60%|######    | 121/200 [00:00<00:00, 265.32it/s]
+Loading weights:  78%|#######8  | 157/200 [00:00<00:00, 274.59it/s]
+Loading weights:  98%|#########8| 196/200 [00:00<00:00, 305.50it/s]
+Loading weights: 100%|##########| 200/200 [00:00<00:00, 246.14it/s]
+{
+  "ok": true,
+  "silent": false,
+  "text": "Master stability is 0.4597. I am ACTIVE. Plant is PASS. Piston mode is unknown. 4 subsystems report. Recent memory: [cpu][nsai][2026-07-15T05:53:27+00:00] first real memory for CPU AI. I translate facts only; I do not decide.",
+  "blocked": false,
+  "voice_source": "deterministic_after_lora_fail",
+  "packet": {
+    "version": "1.0",
+    "timestamp": "2026-07-15T06:38:00.305468+00:00",
+    "s_n": 0.4597,
+    "status": "ACTIVE",
+    "mode": "translate",
+    "tone": "measured",
+    "directive": "Translate facts only. Do not invent. Do not decide.",
+    "facts": [
+      "master_s_n=0.4597",
+      "status=ACTIVE",
+      "n_subsystems=4",
+      "piston_mode=unknown",
+      "plant=PASS"
+    ],
+    "memory": [
+      {
+        "score": 1.0,
+        "text": "[live][cpu][nsai][2026-07-15T05:53:27+00:00] first real memory for CPU AI",
+        "path": "L:/Continue/Viv/foundation/artifacts/carma/live/current.txt"
+      },
+      {
+        "score": 1.0,
+        "text": "[live][smoke][2026-07-15T05:53:33+00:00] smoke test note carma_smoke_0e49bd23",
+        "path": "L:/Continue/Viv/foundation/artifacts/carma/live/current.txt"
+      },
+      {
+        "score": 1.0,
+        "text": "[live][2026-07-15T05:55:35+00:00] dormant flight recorder",
+        "path": "L:/Continue/Viv/foundation/artifacts/carma/live/current.txt"
+      }
+    ],
+    "query": "state summary"
+  },
+  "egress": {
+    "allowed": true,
+    "direction": "OUT",
+    "stage": "security_out",
+    "reason": "OK",
+    "s_n": 0.4597,
+    "version": "0.2.3"
+  },
+  "events_path": "L:/Continue/Viv/foundation/artifacts/auto/voice_events.jsonl"
+}

@@ -1,0 +1,45 @@
+{
+  "expectation_suite_name": "aligned_speech_labels_suite",
+  "meta": {
+    "notes": "Local-first checks for week1 aligned speech labels."
+  },
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "utterance_id"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "audio_path"
+      }
+    },
+    {
+      "expectation_type": "expect_column_pair_values_A_to_be_less_than_B",
+      "kwargs": {
+        "column": "start_ms",
+        "column_B": "end_ms"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "confidence",
+        "min_value": 0.0,
+        "max_value": 1.0
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "label",
+        "value_set": [
+          "vowel-heavy",
+          "consonant-heavy"
+        ]
+      }
+    }
+  ]
+}

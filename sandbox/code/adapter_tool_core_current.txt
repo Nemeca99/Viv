@@ -1,0 +1,77 @@
+# authored_by=architect_rebuild at=2026-07-21T21:50:50+00:00 tool=adapter_tool_core
+# law4=source_as_txt run=python_stdin rebuild_tranche=tool_core
+# REBUILD ADAPTER tool_core — REAL callable gated list/read/write/run (no V2 ToolExecutor / no TCP)
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_tool import (  # noqa: E402
+    list_dir,
+    read_file,
+    run_shell,
+    run_smoke,
+    status,
+    write_file,
+)
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    print(
+        "ADAPTER_TOOL status ok="
+        + str(bool(st.get("ok")))
+        + " viv_root="
+        + str(sev.get("viv_root"))
+        + " v2_exec="
+        + str(sev.get("v2_tool_executor"))
+        + " tcp="
+        + str(sev.get("bridge_client_tcp"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_TOOL ok="
+        + str(bool(result.get("ok")))
+        + " list="
+        + str(ev.get("list_ok"))
+        + " write="
+        + str(ev.get("write_ok"))
+        + " read="
+        + str(ev.get("read_ok"))
+        + " found="
+        + str(ev.get("found"))
+        + " shell="
+        + str(ev.get("shell_ok"))
+        + " outside_denied="
+        + str(ev.get("outside_viv_denied"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "marker": ev.get("marker"),
+                "smoke_path": ev.get("smoke_path"),
+                "list_ok": ev.get("list_ok"),
+                "write_ok": ev.get("write_ok"),
+                "read_ok": ev.get("read_ok"),
+                "found": ev.get("found"),
+                "shell_ok": ev.get("shell_ok"),
+                "outside_viv_denied": ev.get("outside_viv_denied"),
+                "v2_tool_executor": ev.get("v2_tool_executor"),
+                "bridge_client_tcp": ev.get("bridge_client_tcp"),
+                "s_n": ev.get("s_n"),
+            },
+            default=str,
+        )
+    )
+    # Keep symbols referenced for Law-4 surface documentation
+    _ = (list_dir, read_file, write_file, run_shell)
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

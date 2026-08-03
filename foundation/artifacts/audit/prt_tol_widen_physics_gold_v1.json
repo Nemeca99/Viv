@@ -1,0 +1,33 @@
+{
+  "experiment_id": "prt_tol_widen_physics_gold_v1",
+  "timestamp_utc_note": "Curriculum pivot after deep-live PHYSICS_BOTTLENECK",
+  "diagnosis": {
+    "median_channel_abs_err": 0.0528,
+    "reward_tol_was": 0.05,
+    "fraction_all3_within_0.05": 0.043,
+    "fraction_all3_within_0.08": 0.104,
+    "fraction_struct_and_all3_within_0.08": 0.064,
+    "conclusion": "She was at the tolerance wall, not failing to learn. PUNISH exclusion starved physics SFT."
+  },
+  "changes": {
+    "reward_tol_override": 0.08,
+    "punish_tol_override": 0.18,
+    "physics_gold": "measured triad completion from runtime-shaped prompts; 4x on PUNISH, 2x else",
+    "trust_soft_punish": false,
+    "cpu_sample_triad_noise": 0.005,
+    "stage_ladder_unchanged": true
+  },
+  "overnight": {
+    "config": "artifacts/models/prt_overnight_config_tol_widen_8h.json",
+    "min_hours": 8,
+    "max_hours": 10,
+    "max_rounds": 35
+  },
+  "success_signals": [
+    "live reward_rate >> 0.006 (target directional: >=0.05)",
+    "PHYSICS_GOLD present in build summary",
+    "self_emit holds or improves vs deep late window 10%",
+    "trust incomplete near 0"
+  ],
+  "rollback": "Clear cpu_config.prt.reward_tol_override / punish_tol_override / experiment_id; set physics_gold=false in build if needed"
+}

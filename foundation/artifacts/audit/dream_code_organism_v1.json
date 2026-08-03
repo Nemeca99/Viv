@@ -1,0 +1,14 @@
+{
+  "at": "2026-07-21T14:38:35",
+  "verdict": "PASS_PARTIAL",
+  "note": "Dream+sandbox self-code+speak live in organism. Not full foundation self-mutation (Law 4).",
+  "dream": "lib/aios_dream.py",
+  "coder": "lib/aios_coder.py",
+  "prove": "aios_main.py run --beats 3 --speak-every 1",
+  "artifacts": {
+    "dream": "L:/Continue/Viv/foundation/artifacts/carma/dream/",
+    "code": "L:/Continue/Viv/sandbox/code/",
+    "dreams_log": "L:/Continue/Viv/foundation/artifacts/auto/organism/dreams.jsonl",
+    "code_log": "L:/Continue/Viv/foundation/artifacts/auto/organism/code_writes.jsonl"
+  }
+}

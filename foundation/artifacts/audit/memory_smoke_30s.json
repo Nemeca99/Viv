@@ -1,0 +1,57 @@
+{
+  "started_at": "2026-07-15T05:57:24.317956+00:00",
+  "token": "carma_smoke_36e0a755",
+  "steps": [
+    {
+      "remember": {
+        "cmd": [
+          "L:\\Continue\\Viv\\memory_core\\memory_main.py",
+          "remember",
+          "smoke test note carma_smoke_36e0a755",
+          "--tags",
+          "smoke"
+        ],
+        "code": 0,
+        "stdout": "{\n  \"ok\": true,\n  \"id\": \"m-65c0d35803\",\n  \"path\": \"L:/Continue/Viv/foundation/artifacts/carma/live/current.txt\",\n  \"provenance\": \"live\",\n  \"split\": null,\n  \"s_n\": 0.4231\n}",
+        "stderr": ""
+      }
+    },
+    {
+      "retrieve": {
+        "cmd": [
+          "L:\\Continue\\Viv\\memory_core\\memory_main.py",
+          "retrieve",
+          "carma_smoke_36e0a755",
+          "--top",
+          "3"
+        ],
+        "code": 0,
+        "stdout": "{\n  \"query\": \"carma_smoke_36e0a755\",\n  \"hits\": [\n    {\n      \"score\": 1.0,\n      \"path\": \"L:/Continue/Viv/foundation/artifacts/carma/live/current.txt\",\n      \"line_no\": 52,\n      \"text\": \"[live][smoke][2026-07-15T05:57:24+00:00] smoke test note carma_smoke_36e0a755\"\n    }\n  ]\n}",
+        "stderr": ""
+      }
+    },
+    {
+      "autonomous_30s": "terminated_after_30s"
+    },
+    {
+      "retrieve_final": {
+        "cmd": [
+          "L:\\Continue\\Viv\\memory_core\\memory_main.py",
+          "retrieve",
+          "carma_smoke_36e0a755",
+          "--top",
+          "1"
+        ],
+        "code": 0,
+        "stdout": "{\n  \"query\": \"carma_smoke_36e0a755\",\n  \"hits\": [\n    {\n      \"score\": 1.0,\n      \"path\": \"L:/Continue/Viv/foundation/artifacts/carma/live/current.txt\",\n      \"line_no\": 52,\n      \"text\": \"[live][smoke][2026-07-15T05:57:24+00:00] smoke test note carma_smoke_36e0a755\"\n    }\n  ]\n}",
+        "stderr": ""
+      }
+    }
+  ],
+  "passed": true,
+  "heartbeat_before": 53,
+  "heartbeat_after": 76,
+  "heartbeat_delta": 23,
+  "autonomous_memory": "active_appends_observed",
+  "finished_at": "2026-07-15T05:57:54.828464+00:00"
+}

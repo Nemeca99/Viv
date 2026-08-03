@@ -1,0 +1,100 @@
+# authored_by=architect_rebuild at=2026-07-21T22:03:00+00:00 tool=adapter_rid
+# law4=source_as_txt run=python_stdin rebuild_tranche=rid_core
+# REBUILD ADAPTER rid — callable status/snapshot/align_check via master_rid + plant (read-only)
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_rid import (  # noqa: E402
+    align_check,
+    run_smoke,
+    snapshot,
+    status,
+)
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    v2 = sev.get("v2") or {}
+    print(
+        "ADAPTER_RID status ok="
+        + str(bool(st.get("ok")))
+        + " master="
+        + str(sev.get("master_rid_exists"))
+        + " plant="
+        + str(sev.get("plant_dir_exists"))
+        + " brief_n="
+        + str(sev.get("plant_brief_n"))
+        + " v2="
+        + str(v2.get("v2_rid_readable"))
+        + " exec_v2="
+        + str(v2.get("viv_executes_v2"))
+    )
+    snap = snapshot()
+    nev = snap.get("evidence") or {}
+    print(
+        "SNAPSHOT ok="
+        + str(bool(snap.get("ok")))
+        + " s_n="
+        + str(nev.get("master_s_n"))
+        + " rsr="
+        + str(nev.get("rsr"))
+        + " ltp="
+        + str(nev.get("ltp"))
+        + " rle="
+        + str(nev.get("rle"))
+        + " status="
+        + str(nev.get("status"))
+        + " src="
+        + str(nev.get("source"))
+    )
+    align = align_check()
+    aev = align.get("evidence") or {}
+    print(
+        "ALIGN ok="
+        + str(bool(align.get("ok")))
+        + " verdict="
+        + str(aev.get("verdict"))
+        + " brief_n="
+        + str(aev.get("brief_n"))
+        + " deltas="
+        + str(aev.get("deltas"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_RID ok="
+        + str(bool(result.get("ok")))
+        + " master_s_n="
+        + str(ev.get("master_s_n"))
+        + " align="
+        + str(ev.get("align_verdict"))
+        + " exec_v2="
+        + str(ev.get("viv_executes_v2"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "master_s_n": ev.get("master_s_n"),
+                "master_status": ev.get("master_status"),
+                "align_verdict": ev.get("align_verdict"),
+                "brief_n": ev.get("brief_n"),
+                "deltas": ev.get("deltas"),
+                "viv_executes_v2": ev.get("viv_executes_v2"),
+                "viv_replaces_foundation_math": ev.get("viv_replaces_foundation_math"),
+                "mutates_security_core": ev.get("mutates_security_core"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

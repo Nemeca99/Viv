@@ -1,0 +1,13 @@
+# Viv IDE authored tool — ide_write_a_python_module_that_prints_hello
+# Goal: Write a Python module that prints HELLO_VIV and the live Master S_n.
+from pathlib import Path
+import json
+print('HELLO_VIV')
+p = Path(r"L:/Continue/Viv/foundation/artifacts/auto/master_rid.json")
+if p.is_file():
+    data = json.loads(p.read_text(encoding='utf-8'))
+    sn = data.get('master_s_n') or data.get('s_n')
+    print('Master_S_n=' + str(sn))
+else:
+    print('Master_S_n=unavailable')
+print('REFINED ok')

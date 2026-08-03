@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/capability_audit_current.txt",
+  "stdout": "CAPABILITY_AUDIT {'sandbox': True, 'rid': True, 'carma': True, 'voice_cfg': True, 'organism': True} pass True\n",
+  "stderr": "",
+  "s_n": 0.4812,
+  "at": "2026-07-21T19:53:57+00:00"
+}

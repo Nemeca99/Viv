@@ -1,0 +1,8 @@
+[
+  {
+    "task_id": "draft_pure_schedule_validator",
+    "kind": "draft_code",
+    "draft_name": "draft_pure_schedule_validator.txt",
+    "prompt": "Draft a Python standard-library module containing pure functions only for validating a JSON-compatible overnight training schedule object. Require a top-level runs list, unique non-empty run_id strings, strictly increasing positive integer checkpoint_steps, and a non-empty authorization_file_path string. Return structured validation errors rather than printing or writing anything. Do not include main code, file I/O, shell commands, network access, model loading, training, leases, authorization, deployment, retries, or repository mutation. Return code only inside a Python code fence."
+  }
+]

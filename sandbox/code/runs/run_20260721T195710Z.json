@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/memory_census_current.txt",
+  "stdout": "MEMORY_CENSUS {'live': {'files': 1, 'bytes': 97857}, 'dream': {'files': 16, 'bytes': 139908}, 'simulation': {'files': 0, 'bytes': 0}}\n",
+  "stderr": "",
+  "s_n": 0.4279,
+  "at": "2026-07-21T19:57:10+00:00"
+}

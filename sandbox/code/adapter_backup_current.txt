@@ -1,0 +1,79 @@
+# authored_by=architect_rebuild at=2026-07-21T22:15:00+00:00 tool=adapter_backup
+# law4=source_as_txt run=python_stdin rebuild_tranche=backup_core
+# REBUILD ADAPTER backup — Viv artifact list + legacy tracking RO; no D: write / zip create
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_backup import legacy_tracking, list_artifacts, run_smoke, status  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    print(
+        "ADAPTER_BACKUP status ok="
+        + str(bool(st.get("ok")))
+        + " viv_n="
+        + str(sev.get("viv_backupish_count"))
+        + " v1="
+        + str((sev.get("v1") or {}).get("on_disk"))
+        + " v2="
+        + str((sev.get("v2") or {}).get("on_disk"))
+        + " writes_d="
+        + str(sev.get("viv_writes_d"))
+    )
+    la = list_artifacts(8)
+    aev = la.get("evidence") or {}
+    print(
+        "LIST ok="
+        + str(bool(la.get("ok")))
+        + " n="
+        + str(aev.get("n_returned"))
+    )
+    lt = legacy_tracking()
+    tev = lt.get("evidence") or {}
+    tracking = tev.get("v2_tracking") or tev.get("v1_tracking") or {}
+    print(
+        "TRACK ok="
+        + str(bool(lt.get("ok")))
+        + " date="
+        + str(tracking.get("backup_date"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_BACKUP ok="
+        + str(bool(result.get("ok")))
+        + " n_artifacts="
+        + str(ev.get("n_artifacts"))
+        + " date="
+        + str(ev.get("backup_date"))
+        + " creates_zip="
+        + str(ev.get("viv_creates_zip"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "n_artifacts": ev.get("n_artifacts"),
+                "sample_path": ev.get("sample_path"),
+                "backup_date": ev.get("backup_date"),
+                "v1_on_disk": ev.get("v1_on_disk"),
+                "v2_on_disk": ev.get("v2_on_disk"),
+                "viv_writes_d": ev.get("viv_writes_d"),
+                "viv_creates_zip": ev.get("viv_creates_zip"),
+                "s_n": ev.get("s_n"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

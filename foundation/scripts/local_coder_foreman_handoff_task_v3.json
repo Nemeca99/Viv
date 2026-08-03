@@ -1,0 +1,10 @@
+[
+  {
+    "task_id": "revise_task_result_summarizer_v3",
+    "kind": "draft_code",
+    "draft_name": "draft_task_result_summarizer_v3.txt",
+    "required_markers": ["task_id", "all_safe", "skipped_condition"],
+    "forbidden_markers": ["subprocess", "write_text", "open("],
+    "prompt": "Revise summarize_task_results(results), a pure Python function. Fix these prior defects: failed_task_ids must read row.get('task_id'), never row['id']; all_safe must be false whenever any row has training true, lease_opened true, authorization_changed true, or deployment_changed true, regardless of status. It may be true only when every row has all four safety flags false and status exactly success or skipped_condition. Return total_count, counts_by_status, failed_task_ids, and all_safe. Do not mutate inputs. No file I/O, shell, network, execution, training, lease, authorization, deployment, or retries. Return code only inside a Python code fence."
+  }
+]

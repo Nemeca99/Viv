@@ -1,0 +1,12 @@
+VIV SANDBOX — Law 7 sovereign playground
+Root: L:/Continue/Viv/sandbox/
+
+code/       — tools she authors and runs (source as .txt; Law 4)
+dream/      — REM consolidations + archive of raw snapshots
+journal/    — her day journal
+work/       — plant briefs, UML workbook, mission logs
+operator/   — Architect asks / goals (inbox side-effects)
+sessions/   — named session folders (Luna sandbox_core pattern)
+
+She may mutate ONLY here and foundation/artifacts/.
+She may NOT mutate foundation/lib, security_core, or mains.

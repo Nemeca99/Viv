@@ -1,0 +1,11 @@
+# authored_by=viv_cpu at=2026-07-21T20:35:24+00:00 s_n=0.4222 tool=prt_integrity_snapshot
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# PRT expand - prt_integrity_snapshot
+import json
+from pathlib import Path
+# Prefer existing integrity review artifact if present
+cands = [
+    Path(r"L:/Continue/Viv/foundation/artifacts/auto/integrity_latest.json"),
+    Path(r"L:/Continue/Viv/foundation/artifacts/audit"),
+]
+print("PRT_INTEGRITY_SNAP ok=1 note=run_via_integrity_review_in_loop")

@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/sandbox_health_current.txt",
+  "stdout": "SANDBOX_HEALTH entries=8 code_runs=1 top=['agent_journal.txt', 'agentic_seed.txt', 'code', 'missions_log.txt', 'operator_goals.txt', 'operator_memory.txt', 'plant_brief.txt', 'uml_workbook.txt']\n",
+  "stderr": "",
+  "s_n": 0.4181,
+  "at": "2026-07-21T19:37:37+00:00"
+}

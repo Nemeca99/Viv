@@ -1,0 +1,57 @@
+{
+  "version": "1.1.0",
+  "plant_id": "aios_viv_host",
+  "binding": "plant_bound",
+  "binding_note": "Canonical host inventory. PRT/guides tailored here first; hardware-agnostic deferred.",
+  "source": "live WMIC 2026-07-18 + RID.md cooler/telemetry contract",
+  "compare_against": "Use these specs when judging whether a reading or option is plausible on THIS plant.",
+  "cpu": {
+    "name": "11th Gen Intel Core i7-11700F @ 2.50GHz",
+    "short": "i7-11700F",
+    "cores_physical": 8,
+    "cores_logical": 16,
+    "base_ghz": 2.5,
+    "socket_class": "desktop_lga1200",
+    "notes": "F-SKU: no iGPU. Stress captures use up to 16 workers."
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3060 Ti",
+    "short": "RTX 3060 Ti",
+    "cooling": "air",
+    "telemetry": "NVML (not Corsair GPU temp columns)",
+    "power_class_w": "~200 board partner typical TGP class",
+    "notes": "Die temp via NVML; air cooler — expect GPU temp dynamics unlike H100i flat hold."
+  },
+  "cooler": {
+    "cpu_loop": "Corsair H100i",
+    "type": "liquid_aio",
+    "telemetry": "Corsair iCUE CSV — package + coolant",
+    "notes": "PASS_FLAT under 100% CPU blast is valid on this loop (temps can hold flat while load proven)."
+  },
+  "board": {
+    "manufacturer": "Gigabyte Technology Co., Ltd.",
+    "product": "B560 DS3H AC-Y1",
+    "chipset_class": "B560"
+  },
+  "memory": {
+    "total_bytes": 34222510080,
+    "approx_gib": 32
+  },
+  "os": {
+    "family": "Windows 11",
+    "python": "L:/Continue/.venv (3.12)"
+  },
+  "telemetry_contract": {
+    "cpu_package_coolant": "Corsair iCUE CSV",
+    "gpu_die": "NVIDIA NVML",
+    "poll_hz_default": 1.0,
+    "rid_workers_stress": 16
+  },
+  "absurd_rejects": [
+    "Threadripper / EPYC core counts",
+    "Apple Silicon",
+    "RTX 4090 / H100 class",
+    "no discrete NVIDIA GPU",
+    "CPU liquid flat-hold proof applied to GPU air die"
+  ]
+}

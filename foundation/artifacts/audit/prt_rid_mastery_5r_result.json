@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-07-19T03:05:17.522611+00:00",
+  "overnight": {
+    "status": "COMPLETE",
+    "rounds_done": 5,
+    "reason": "max_rounds",
+    "elapsed_h": 1.728,
+    "started_at": "2026-07-19T01:21:28.414251+00:00",
+    "finished_at": "2026-07-19T03:05:10.910603+00:00"
+  },
+  "profile": "live_rid_mastery_5r",
+  "observe_n": 105,
+  "labels": {
+    "NEUTRAL": 28,
+    "PUNISH": 62,
+    "REWARD": 15
+  },
+  "reward_rate": 0.1429,
+  "pass_gate": 0.99,
+  "verdict": "FAIL",
+  "scaffold_phase_counts": {
+    "1": 105
+  },
+  "cycles_with_blanks": 0,
+  "smoke5_prior": {
+    "n": 5,
+    "reward_rate": 0.6,
+    "path": "artifacts/audit/prt_rid_mastery_smoke5.json"
+  },
+  "note": "Canonical result from completed live_rid_mastery_5r. Earlier abort-waiter artifact was stale and discarded."
+}

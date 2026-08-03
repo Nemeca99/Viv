@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-07-18T08:53:05.256082+00:00",
+  "experiment_id": "ab_piston_ghost_vs_live_v1",
+  "ghost_baseline": {
+    "label": "ghost_stale_piston",
+    "valid_sample": true,
+    "min_window": 30,
+    "cycle_n": 1800,
+    "labels": {
+      "PUNISH": 1383,
+      "NEUTRAL": 309,
+      "REWARD": 108
+    },
+    "reward_rate": 0.06,
+    "neutral_rate": 0.1717,
+    "punish_rate": 0.7683,
+    "self_emit_rate": 0.1839,
+    "self_emit_hits": 331,
+    "self_emit_n": 1800,
+    "by_act": {
+      "observe": 490,
+      "speak": 226,
+      "life": 689,
+      "pulse": 395
+    },
+    "trust_modes": {
+      "none": 1800
+    },
+    "follow_rate_among_fa": null,
+    "first_ts": "2026-07-16T06:10:52.492567+00:00",
+    "last_ts": "2026-07-17T04:54:50.992284+00:00"
+  },
+  "overnight_last": {
+    "status": "COMPLETE",
+    "rounds_done": 60,
+    "elapsed_h": 15.844,
+    "reason": "max_rounds"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "note": "pattern_frame+prior_fill",
+  "cycles": [
+    {
+      "act": "observe",
+      "baseline": true,
+      "ok": true,
+      "version": "0.4.0",
+      "triad_complete": true,
+      "parse": "baseline",
+      "prior_filled": null,
+      "label": "REWARD",
+      "pred": {
+        "predicted_master_rsr": 0.5335,
+        "predicted_master_ltp": 0.4479,
+        "predicted_master_rle": 0.3095,
+        "predicted_master_s_n": 0.4198,
+        "predicted_live_cells": null
+      },
+      "raw_head": "act_prior"
+    },
+    {
+      "act": "observe",
+      "baseline": false,
+      "ok": true,
+      "version": "0.4.0",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": [
+        "predicted_master_rsr",
+        "predicted_master_ltp",
+        "predicted_master_rle"
+      ],
+      "label": "NEUTRAL",
+      "pred": {
+        "predicted_master_rsr": 0.557,
+        "predicted_master_ltp": 0.4479,
+        "predicted_master_rle": 0.3097,
+        "predicted_master_s_n": 0.4259,
+        "predicted_live_cells": null
+      },
+      "raw_head": "{\"predicted_master_RSR\": 0.6787,\" predicted_master_LTP\": \uff10--\", \"predicted_master.RLE\": \uff2f\u2015}\nOutcome: True atmosphere meas"
+    },
+    {
+      "act": "speak",
+      "baseline": false,
+      "ok": true,
+      "version": "0.4.0",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": [
+        "predicted_master_rsr",
+        "predicted_master_ltp",
+        "predicted_master_rle"
+      ],
+      "label": "REWARD",
+      "pred": {
+        "predicted_master_rsr": 0.5787,
+        "predicted_master_ltp": 0.4519,
+        "predicted_master_rle": 0.197,
+        "predicted_master_s_n": 0.3721,
+        "predicted_live_cells": null
+      },
+      "raw_head": "{\"predicted_master_RSR\": 0.6875, \"predicted_master_LTP\": \uff10\uff0e\uff16\uff18\uff17\uff15, \u201cpredicted_master-RLE\u201d: \uff10.\uff13\uff17\uff12, \u201cconfidence\u201d: \uff4f\u3002\uff14 \uff2d\uff0d.}\nO"
+    },
+    {
+      "act": "life",
+      "baseline": false,
+      "ok": true,
+      "version": "0.4.0",
+      "triad_complete": true,
+      "parse": "empty+prior_fill",
+      "prior_filled": [
+        "predicted_master_rsr",
+        "predicted_master_ltp",
+        "predicted_master_rle",
+        "predicted_live_cells"
+      ],
+      "label": "PUNISH",
+      "pred": {
+        "predicted_master_rsr": 0.5523,
+        "predicted_master_ltp": 0.4379,
+        "predicted_master_rle": 0.2354,
+        "predicted_master_s_n": 0.3847,
+        "predicted_live_cells": 3
+      },
+      "raw_head": "{\"predicted_master_RSR\": \"0.6857\", \"predicted_master_LTP\": \" zero of observed least squares, measured in the direction o"
+    }
+  ]
+}

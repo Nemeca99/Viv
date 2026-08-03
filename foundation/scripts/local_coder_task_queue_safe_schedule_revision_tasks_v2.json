@@ -1,0 +1,8 @@
+[
+  {
+    "task_id": "revise_pure_schedule_validator_v2",
+    "kind": "draft_code",
+    "draft_name": "draft_pure_schedule_validator_revision_v2.txt",
+    "prompt": "Write only a pure Python function validate_schedule(schedule) and return a list of error strings; return an empty list only for valid input. Implement this exact acceptance contract without simplifying or renaming fields: (1) reject non-dict schedule; (2) read schedule.get('runs'), require a non-empty list; (3) each run must be a dict with run_id, checkpoint_steps, and authorization_file_path; (4) run_id must be a non-empty string and unique across runs using a seen set; (5) checkpoint_steps must be a non-empty list, every item must be an int greater than zero, and each item must be strictly greater than the previous item; (6) authorization_file_path must be a non-empty string. Guard every type before iterating or indexing. No printing, file I/O, shell, network, model loading, training, leases, authorization, deployment, retries, or repository mutation. Return code only inside a Python code fence."
+  }
+]

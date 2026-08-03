@@ -1,0 +1,39 @@
+{
+  "schema_version": "week1.v1",
+  "created_by": "foundation.tools.week1.align_labels",
+  "utterances": [
+    {
+      "utterance_id": "utt-001",
+      "audio_path": "local_audio/utt-001.wav",
+      "start_ms": 0,
+      "end_ms": 1540,
+      "label": "vowel-heavy",
+      "confidence": 0.9,
+      "transcript": "hello viv align mouth shapes",
+      "alignment_engine": "week1-local-rule",
+      "sequence_idx": 0
+    },
+    {
+      "utterance_id": "utt-002",
+      "audio_path": "local_audio/utt-002.wav",
+      "start_ms": 0,
+      "end_ms": 1375,
+      "label": "vowel-heavy",
+      "confidence": 0.9,
+      "transcript": "sync lip motion carefully",
+      "alignment_engine": "week1-local-rule",
+      "sequence_idx": 1
+    },
+    {
+      "utterance_id": "utt-003",
+      "audio_path": "local_audio/utt-003.wav",
+      "start_ms": 0,
+      "end_ms": 1705,
+      "label": "vowel-heavy",
+      "confidence": 0.9,
+      "transcript": "precise articulation for vowels",
+      "alignment_engine": "week1-local-rule",
+      "sequence_idx": 2
+    }
+  ]
+}

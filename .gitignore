@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Local environments and tooling
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+.cursor/
+.vscode/
+*.code-workspace
+
+# Secrets, credentials, and local state
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+local_config.*
+
+# Rust
+target/
+Cargo.lock
+
+# Large external inputs and model material
+*.gguf
+*.ggml
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.parquet
+*.arrow
+*.sqlite
+*.db
+*.db-*
+datasets/
+models/
+checkpoints/
+
+# Machine indexes and generated runtime evidence that are too large for Git
+artifacts/file_index/
+artifacts/auto/
+foundation/artifacts/auto/knowledge/*.sqlite
+foundation/artifacts/rid/*.jsonl
+foundation/artifacts/auto/
+
+# Additional generated runtime state
+sandbox/work/
+foundation/artifacts/carma/
+foundation/artifacts/rid/
+foundation/artifacts/carma/live/
+foundation/artifacts/carma/heartbeat.jsonl
+foundation/artifacts/audit/*events.jsonl
+foundation/artifacts/audit/security_training_ledger_recovery/
+foundation/triad_boundary_registry.bak_*.json
+
+# Keep the active task pointer under version control for cross-session work.
+!foundation/artifacts/auto/
+foundation/artifacts/auto/*
+!foundation/artifacts/auto/agentic/
+foundation/artifacts/auto/agentic/*
+!foundation/artifacts/auto/agentic/CURRENT_TASK.json
+
+# Generated logs, temporary files, and dumps
+*.log
+*.out
+*.err
+*.tmp
+*.bak
+*.dmp
+*.prof
+*.pyc
+*.CSV
+Thumbs.db
+desktop.ini
+
+# Keep governed source documentation and receipts trackable. Generated files
+# are ignored only when they use conventional cache/temp names above.

@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-07-21T18:33:30+00:00",
+  "experiment_id": "cpu_qwen_voice_v1",
+  "objective": "Qwen2.5-3B Abliterated speak-only + CPU teach lift",
+  "verdict": "PASS_SHORT",
+  "voice": {
+    "model": "viv-voice-qwen",
+    "gguf": "L:/Continue/Viv/foundation/models/gpu/Qwen2.5-3B-Instruct-Abliterated.Q8_0.gguf",
+    "backend": "ollama",
+    "source_smoke": "ollama_qwen",
+    "gpu_role": "speak_only",
+    "llama_cpp": "not_installed_build_failed_use_ollama"
+  },
+  "cpu": {
+    "prt_hold_3": {"reward": 3, "cycles": 3},
+    "madlibs": "full_triad",
+    "momentum_hold": true,
+    "teach_gold": "L:/Continue/Viv/foundation/artifacts/auto/cpu_teach_gold.jsonl",
+    "voice_speak_enabled": true,
+    "speak_every_n_beats": 5,
+    "speak_min_s_n": 0.42
+  },
+  "commands": [
+    "ollama create viv-voice-qwen -f L:/Continue/Viv/foundation/models/gpu/Modelfile.viv-voice-qwen",
+    "python L:/Continue/Viv/voice_core/voice_main.py speak \"state summary\"",
+    "python L:/Continue/Viv/foundation/auto_main.py autonomous --once"
+  ]
+}

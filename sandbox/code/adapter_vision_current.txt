@@ -1,0 +1,92 @@
+# authored_by=architect_rebuild at=2026-07-21T22:15:00+00:00 tool=adapter_vision
+# law4=source_as_txt run=python_stdin rebuild_tranche=vision_core
+# REBUILD ADAPTER vision — artifact image meta only; no V2 effector/cv2 pipeline
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_vision import image_meta, list_images, run_smoke, status  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    v2 = sev.get("v2") or {}
+    deps = sev.get("deps") or {}
+    print(
+        "ADAPTER_VISION status ok="
+        + str(bool(st.get("ok")))
+        + " v2_on_disk="
+        + str(v2.get("v2_on_disk"))
+        + " markers="
+        + str(v2.get("marker_hits"))
+        + " PIL="
+        + str(deps.get("PIL"))
+        + " cv2="
+        + str(deps.get("cv2"))
+        + " ports_effector="
+        + str(v2.get("viv_ports_v2_effector"))
+    )
+    li = list_images(5)
+    lev = li.get("evidence") or {}
+    print(
+        "LIST ok="
+        + str(bool(li.get("ok")))
+        + " n="
+        + str(lev.get("n_returned"))
+    )
+    imgs = lev.get("images") or []
+    if imgs:
+        im = image_meta(str(imgs[0].get("path") or ""))
+        mev = im.get("evidence") or {}
+        print(
+            "META ok="
+            + str(bool(im.get("ok")))
+            + " "
+            + str(mev.get("width"))
+            + "x"
+            + str(mev.get("height"))
+            + " parser="
+            + str(mev.get("parser"))
+        )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_VISION ok="
+        + str(bool(result.get("ok")))
+        + " n_images="
+        + str(ev.get("n_images"))
+        + " "
+        + str(ev.get("width"))
+        + "x"
+        + str(ev.get("height"))
+        + " parser="
+        + str(ev.get("parser"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "n_images": ev.get("n_images"),
+                "meta_path": ev.get("meta_path"),
+                "width": ev.get("width"),
+                "height": ev.get("height"),
+                "format": ev.get("format"),
+                "parser": ev.get("parser"),
+                "v2_on_disk": ev.get("v2_on_disk"),
+                "PIL": ev.get("PIL"),
+                "cv2": ev.get("cv2"),
+                "s_n": ev.get("s_n"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

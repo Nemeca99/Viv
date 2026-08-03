@@ -1,0 +1,23 @@
+{
+  "experiment_id": "prt_thermo_choice_guide_v1",
+  "timestamp_utc": "2026-07-19T00:35:00+00:00",
+  "intent": "Bounded thermodynamics multiple-choice gold — only what Viv needs to guide plant choices. Not Wikipedia dump.",
+  "corpus": "L:/Continue/Viv/foundation/artifacts/corp/thermo/guide_facts.jsonl",
+  "builder": "L:/Continue/Viv/foundation/lib/prt_thermo_guide.py",
+  "mix": {
+    "flag": "cpu_config.prt.thermo_choice_gold",
+    "max_rows": 40,
+    "oversample": 2,
+    "label": "THERMO_CHOICE_GOLD"
+  },
+  "non_goals": [
+    "Full Wikipedia fine-tune",
+    "voice_speak enable",
+    "Replace PRT plant scoring"
+  ],
+  "next": [
+    "madlibs_choice scaffold mode using same MC skill",
+    "Optional [TAG:thermo_guide] one-liner on pulse cycles"
+  ],
+  "rollback": "Set thermo_choice_gold=false in cpu_config.prt"
+}

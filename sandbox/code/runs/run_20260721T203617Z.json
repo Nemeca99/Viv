@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/skill_index_probe_current.txt",
+  "stdout": "SKILL_PROBE n=27 sample=['ab-test-runner', 'adaptive-task-orchestrator', 'agentic-runtime-operator', 'artifact-first-debugger', 'artifact-log-index-maintainer', 'autonomous-prioritizer', 'autonomy-change-rollout', 'bugfix-evidence-loop']\n",
+  "stderr": "",
+  "s_n": 0.4676,
+  "at": "2026-07-21T20:36:17+00:00"
+}

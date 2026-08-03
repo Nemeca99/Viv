@@ -1,0 +1,164 @@
+{
+  "version": "1.2.0",
+  "mode": "cpu_automaton",
+  "description": "Viv AIOS foundation. Three mains: rid_main (all RID), auto_main (agentic/autonomous), uml_main (calculator/language). PLANT-BOUND to this host for now; hardware-agnostic deferred.",
+  "triad": {
+    "contract_version": "viv_triad_contract_v1",
+    "kernel": "L:/Continue/Viv/foundation/lib/triad_kernel.py",
+    "security_wrapped": true,
+    "pillars": ["rid_main", "auto_main", "uml_main"],
+    "security_authority": "rust_security_core",
+    "fail_closed": true
+  },
+  "doctrine": {
+    "cpu_first": "BINDING: CPU is the mind (RID, tags, judge, teach, grade). GPU is optional draft/render only. Do not burn overnight LoRA as the primary path.",
+    "gpu_overnight": "PARKED by default (prt.gpu_overnight_enabled=false). Short GPU SFT only after a CPU teach change shows lift.",
+    "plant_bound": "NOW: tailor PRT guides, specs, and stress sizing to this PC (i7-11700F / 3060 Ti / H100i / B560). Agnostic portability is later.",
+    "hardware_agnostic": "DEFERRED — do not optimize for unknown machines while plant-bound.",
+    "software_bound": "Limits are Guardian + S_n + constitution, not silicon.",
+    "containable": "A halt flag forces the layer to safe state (budgets -> floor); operator resume required.",
+    "optional_llm": "Attach a stateless GPU voice to talk; remove it and the CPU still runs."
+  },
+  "plant_host": {
+    "bound": true,
+    "specs": "L:/Continue/Viv/foundation/artifacts/corp/hardware/plant_specs.json",
+    "cpu": "i7-11700F",
+    "logical_cores": 16,
+    "gpu": "RTX 3060 Ti",
+    "cooler": "Corsair H100i",
+    "board": "Gigabyte B560 DS3H AC-Y1"
+  },
+  "pillars": {
+    "rid": {
+      "role": "control_theory",
+      "scope": "Everything AIOS needs for RID — telemetry, plant proof, Master S_n, plots",
+      "entry": "L:/Continue/Viv/foundation/rid_main.py",
+      "piston": "L:/Continue/Viv/foundation/lib/piston_engine.py",
+      "maturity": "plant_proofs_canonical_in_progress"
+    },
+    "agentic": {
+      "role": "autonomous_runtime",
+      "scope": "Agentic and autonomous actions — gates, journal, FSAA ticks",
+      "entry": "L:/Continue/Viv/foundation/auto_main.py",
+      "maturity": "autonomous_loop_done"
+    },
+    "uml": {
+      "role": "language",
+      "scope": "Calculator and language — coding, symbols, written and spoken",
+      "entry": "L:/Continue/Viv/foundation/uml_main.py",
+      "maturity": "calculator_v3"
+    },
+    "organism": {
+      "role": "sovereign_integration",
+      "scope": "One living AIOS: boot/run/status/halt — RID+agentic+CPU teach+UML+voice",
+      "entry": "L:/Continue/Viv/foundation/aios_main.py",
+      "lib": "L:/Continue/Viv/foundation/lib/aios_organism.py",
+      "maturity": "online"
+    }
+  },
+  "dormancy_threshold": 0.37,
+    "prt": {
+      "enabled_collect": true,
+      "voice_speak_requires_prt": true,
+      "reward_tol": 0.05,
+      "punish_tol": 0.15,
+      "settle_s": 4.0,
+      "speak_max_tokens": 48,
+      "life_generations": 24,
+      "life_rows": 48,
+      "life_cols": 48,
+      "cycles_path": "L:/Continue/Viv/foundation/artifacts/models/prt_cycles.jsonl",
+      "scaffold_phase": 1,
+      "symbiote_hint": true,
+      "cpu_sample": true,
+      "trust_soft_punish": false,
+      "experiment_id": "prt_cpu_first_rid_v1",
+      "reward_tol_override": 0.10,
+      "punish_tol_override": 0.20,
+      "structure_gate_mode": "soft",
+      "train_gold_tail": 900,
+      "plant_bound": true,
+      "plant_specs_tag": true,
+      "rid_only_train": true,
+      "rid_mastery_mode": true,
+      "rid_mastery_pass_rate": 0.99,
+      "gpu_overnight_enabled": true,
+      "cpu_teach_madlibs": true,
+      "cpu_judge_retry": true,
+      "cpu_judge_madlibs": true,
+      "cpu_judge_far_tol": 0.05,
+      "cpu_judge_before_fill": true,
+      "thermo_choice_gold": false,
+      "hardware_choice_gold": false,
+      "thermo_choice_max_rows": 56,
+      "thermo_choice_oversample": 2,
+      "note": "GPU overnight ENABLED for prt_main.py autonomous perpetual LoRA apply. CPU teach still primary mind."
+    },
+  "quorum_policy": "L:/Continue/Viv/foundation/artifacts/auto/quorum_policy.json",
+  "guardian_tariff": "L:/Continue/Viv/foundation/artifacts/auto/guardian_tariff.json",
+  "paths": {
+    "live_sample": "L:/Continue/Viv/foundation/artifacts/rid/live_sample.json",
+    "pulse": "L:/Continue/Viv/foundation/artifacts/auto/pulse.json",
+    "automaton_heartbeat": "L:/Continue/Viv/foundation/artifacts/auto/automaton_heartbeat.json",
+    "rid_events": "L:/Continue/automation/3_body/rid_logs/events.jsonl",
+    "supervisor_state": "L:/Continue/automation/3_body/rid_logs/supervisor_state.json",
+    "narrator_text": "L:/Continue/automation/3_body/rid_logs/narrator.txt"
+  },
+  "voice": {
+    "required": false,
+    "deferred": false,
+    "backend": "ollama",
+    "served_name": "viv-voice-qwen",
+    "speak_every_n_beats": 5,
+    "speak_min_s_n": 0.42,
+    "note": "Speak-only via Qwen2.5-3B Abliterated (Ollama). GPU not used for RID train."
+  },
+  "autonomy": {
+    "solo_mode": true,
+    "runtime_requires_active_sn": true,
+    "voice_speak": true,
+    "cpu_rid_autofill": true,
+    "cpu_rid_ready_target": 1,
+    "cpu_rid_settle_s": 1.5,
+    "self_life_every_n_beats": 0,
+    "agent_loop_every_beat": true,
+    "dream_every_n_beats": 3,
+    "code_every_n_beats": 4,
+    "description": "Level-3 agent loop every beat: perceive->reason->act->learn on standing goals. Self-life theater off (0). Law7 home L:/Continue/Viv/sandbox/."
+  },
+  "black_hole": {
+    "entry": "L:/Continue/Viv/foundation/black_hole_main.py",
+    "phone_reference": "L:/Continue/Dev-Tests-External/black_hole_collapse_phone.py",
+    "artifacts_cpu": "L:/Continue/Viv/foundation/artifacts/auto/black_hole/",
+    "artifacts_gpu": "L:/Continue/Viv/foundation/artifacts/auto/black_hole/gpu/",
+    "artifacts_coupled": "L:/Continue/Viv/foundation/artifacts/auto/black_hole/coupled/",
+    "gpu_plant": "air_cooled_rtx",
+    "gpu_temp_max_c": 83
+  },
+  "piston": {
+    "enabled": true,
+    "hardware_agnostic": false,
+    "max_cores": 16,
+    "t_max_c": 72,
+    "max_delta_c": 5,
+    "swap_s_n": 0.5,
+    "pairs": "auto (make_pairs by detected core count)",
+    "state": "L:/Continue/Viv/foundation/artifacts/piston/piston_state.json",
+    "halt_flag": "L:/Continue/Viv/foundation/artifacts/auto/halt.flag",
+    "governor": {
+      "enabled": true,
+      "law": "cpu_budget_pct = clamp(S_n) * 100; S_n<0.45 -> floor; halt -> floor",
+      "floor": 0.0,
+      "ema": 0.4,
+      "self_tune": {
+        "enabled": true,
+        "params_path": "L:/Continue/Viv/foundation/artifacts/auto/piston/governor_params.json",
+        "history_path": "L:/Continue/Viv/foundation/artifacts/auto/piston/governor_history.jsonl",
+        "min_samples": 15,
+        "rollback_on_worse": true
+      },
+      "degraded_mode": "no thermal sensor -> load-only headroom, surfaced not silent",
+      "note": "S_n governs allowed CPU duty. Fail-closed direction is DOWN (less heat)."
+    }
+  }
+}

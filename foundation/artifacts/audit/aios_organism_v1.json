@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-07-21T18:45:30+00:00",
+  "experiment_id": "aios_organism_v1",
+  "objective": "Sovereign AIOS organism — one boot, one continuous mind loop across pillars",
+  "verdict": "PASS",
+  "entry": "L:/Continue/Viv/foundation/aios_main.py",
+  "lib": "L:/Continue/Viv/foundation/lib/aios_organism.py",
+  "evidence": {
+    "boot_ok": true,
+    "run_8_beats": true,
+    "run_10_beats": true,
+    "voice": "viv-voice-qwen / ollama_qwen",
+    "cpu_rid": "mostly REWARD",
+    "curriculum_done_kinds": ["health_check", "uml_eval", "rid_sample", "append_journal", "memory_append", "cpu_rid_observe"],
+    "artifacts": [
+      "L:/Continue/Viv/foundation/artifacts/auto/organism/organism_state.json",
+      "L:/Continue/Viv/foundation/artifacts/auto/organism/organism_events.jsonl",
+      "L:/Continue/Viv/foundation/artifacts/auto/agentic/last_uml.json",
+      "L:/Continue/Viv/foundation/artifacts/auto/agentic/last_rid_sample.json",
+      "L:/Continue/Viv/foundation/artifacts/auto/agentic/last_guardian.json"
+    ]
+  },
+  "commands": {
+    "boot": "python aios_main.py boot --clear-halt",
+    "run": "python aios_main.py run --interval 2",
+    "status": "python aios_main.py status",
+    "halt": "python aios_main.py halt"
+  }
+}

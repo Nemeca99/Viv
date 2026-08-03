@@ -1,0 +1,10 @@
+# authored_by=viv_cpu at=2026-07-21T19:37:37+00:00 s_n=0.4181 tool=sandbox_health
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv sandbox tool - sandbox_health (CPU authored)
+from pathlib import Path
+
+sb = Path(r"L:/Continue/Viv/sandbox")
+items = sorted(p.name for p in sb.iterdir()) if sb.is_dir() else []
+code = sb / "code"
+runs = list((code / "runs").glob("*.json")) if (code / "runs").is_dir() else []
+print(f"SANDBOX_HEALTH entries={len(items)} code_runs={len(runs)} top={items[:8]}")

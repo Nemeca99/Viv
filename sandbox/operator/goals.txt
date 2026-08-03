@@ -1,0 +1,18 @@
+[2026-07-21T19:17:05+00:00] OPERATOR GOAL
+goal: keep Master S_n above 0.45 without thrashing the host
+s_n: 0.4309
+plan:
+  1) measure plant (RID)
+  2) remember goal in CARMA
+  3) write sandbox note
+  4) report on task board / outbox
+
+[2026-07-21T19:20:54+00:00] OPERATOR GOAL
+goal: keep S_n stable under load
+s_n: 0.4154
+plan:
+  1) measure plant (RID)
+  2) remember goal in CARMA
+  3) write sandbox note
+  4) report on task board / outbox
+

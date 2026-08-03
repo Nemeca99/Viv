@@ -1,0 +1,14 @@
+# authored_by=viv_cpu at=2026-07-21T20:15:25+00:00 s_n=0.4424 tool=attempt_replay
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv AIOS build - attempt_replay
+import json
+from pathlib import Path
+p = Path(r"L:/Continue/Viv/sandbox/journal/autonomy_attempts.jsonl")
+if not p.is_file():
+    print("ATTEMPT_REPLAY missing_log")
+else:
+    rows = [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    print(f"ATTEMPT_REPLAY n={len(rows)}")
+    for r in rows[-12:]:
+        print(f"  {r.get('at')} {r.get('event')} step={r.get('step')} ok={r.get('ok')} "
+              f"goal={r.get('goal_id')}")

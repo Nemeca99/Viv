@@ -1,0 +1,45 @@
+stages:
+  prepare:
+    cmd: L:/Continue/.venv/Scripts/python.exe scripts/prepare_data.py --input data/raw_samples.jsonl --output artifacts/week1/prepared/prepared_samples.json
+    deps:
+      - scripts/prepare_data.py
+      - data/raw_samples.jsonl
+    outs:
+      - artifacts/week1/prepared/prepared_samples.json
+
+  align:
+    cmd: L:/Continue/.venv/Scripts/python.exe scripts/align_labels.py --input artifacts/week1/prepared/prepared_samples.json --output artifacts/week1/aligned/alignment_manifest.json
+    deps:
+      - scripts/align_labels.py
+      - artifacts/week1/prepared/prepared_samples.json
+    outs:
+      - artifacts/week1/aligned/alignment_manifest.json
+
+  validate:
+    cmd: L:/Continue/.venv/Scripts/python.exe scripts/validate_alignment.py --manifest artifacts/week1/aligned/alignment_manifest.json --schema schema/alignment_manifest.schema.json --suite great_expectations/expectations/aligned_speech_labels_suite.json --report artifacts/week1/validation/validation_report.json
+    deps:
+      - scripts/validate_alignment.py
+      - scripts/alignment_manifest_validator.py
+      - schema/alignment_manifest.schema.json
+      - great_expectations/expectations/aligned_speech_labels_suite.json
+      - artifacts/week1/aligned/alignment_manifest.json
+    outs:
+      - artifacts/week1/validation/validation_report.json
+
+  train_adapter:
+    cmd: L:/Continue/.venv/Scripts/python.exe scripts/train_adapter.py --manifest artifacts/week1/aligned/alignment_manifest.json --validation_report artifacts/week1/validation/validation_report.json --output artifacts/week1/model/adapter_model.json
+    deps:
+      - scripts/train_adapter.py
+      - artifacts/week1/aligned/alignment_manifest.json
+      - artifacts/week1/validation/validation_report.json
+    outs:
+      - artifacts/week1/model/adapter_model.json
+
+  eval:
+    cmd: L:/Continue/.venv/Scripts/python.exe scripts/eval_adapter.py --manifest artifacts/week1/aligned/alignment_manifest.json --model artifacts/week1/model/adapter_model.json --output artifacts/week1/eval/eval_report.json
+    deps:
+      - scripts/eval_adapter.py
+      - artifacts/week1/aligned/alignment_manifest.json
+      - artifacts/week1/model/adapter_model.json
+    outs:
+      - artifacts/week1/eval/eval_report.json

@@ -1,0 +1,6 @@
+{
+  "status": "pass",
+  "mean_confidence": 0.9,
+  "label_coverage_ratio": 1.0,
+  "utterance_count": 3
+}

@@ -1,0 +1,59 @@
+{
+  "experiment_id": "ab_rid_pid_heater_v1",
+  "timestamp": "2026-07-16T17:37:27.222146+00:00",
+  "contract": "RID layers on PID \u2014 never replaces PID",
+  "verdict": "INCONCLUSIVE",
+  "reason": "no_clear_safety_delta",
+  "valid_sample": true,
+  "min_samples": 50,
+  "baseline": {
+    "mode": "pid",
+    "metrics": {
+      "n": 240,
+      "iae": 6134.4223,
+      "overshoot_c": 0.0,
+      "settling_s": null,
+      "max_pv": 324.3647,
+      "min_rle": 0.361942,
+      "min_sn": 0.701407,
+      "interlock_trips": 0,
+      "duty_clamps": 0,
+      "mean_abs_error": 51.1202,
+      "final_error": -29.815
+    }
+  },
+  "pilot": {
+    "mode": "rid_pid",
+    "metrics": {
+      "n": 240,
+      "iae": 6134.4223,
+      "overshoot_c": 0.0,
+      "settling_s": null,
+      "max_pv": 324.3647,
+      "min_rle": 0.361942,
+      "min_sn": 0.701407,
+      "interlock_trips": 0,
+      "duty_clamps": 0,
+      "mean_abs_error": 51.1202,
+      "final_error": -29.815
+    }
+  },
+  "deltas_pilot_minus_baseline": {
+    "iae": 0.0,
+    "overshoot_c": 0.0,
+    "mean_abs_error": 0.0,
+    "min_rle": 0.0,
+    "min_sn": 0.0,
+    "interlock_trips": 0,
+    "duty_clamps": 0
+  },
+  "profile": {
+    "setpoint_c": 350.0,
+    "duration_s": 120.0,
+    "dt_s": 0.5,
+    "disturb_at_s": 60.0,
+    "disturb_delta_c": -40.0,
+    "initial_temp_c": 25.0
+  },
+  "note": "Software plant. Swap plant for hardware IO when heater+PID arrive."
+}

@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "returncode": 0,
+  "source": "L:/Continue/Viv/sandbox/code/plant_trend_current.txt",
+  "stdout": "PLANT_TREND n=17 last=0.4306 min=0.4049 max=0.4729 delta=+0.0257\n",
+  "stderr": "",
+  "s_n": 0.4242,
+  "at": "2026-07-21T20:17:08+00:00"
+}

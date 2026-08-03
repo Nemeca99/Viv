@@ -1,0 +1,224 @@
+{
+  "version": "1.2.0",
+  "reference": "L:/Continue/Dev-Tests-External/deepseekviv.md",
+  "triad": {
+    "contract_version": "viv_triad_contract_v1",
+    "runtime_ingress": "triad_kernel.open_context",
+    "runtime_egress": "triad_kernel.emit",
+    "training_gate": "training_security_plus_triad",
+    "security_authority": "rust_security_core",
+    "gpu_mouth_must_return_through_cpu": true
+  },
+  "policy": {
+    "no_rlhf": true,
+    "no_human_preference_loop": true,
+    "internal_cpu_shadow_judge": true,
+    "gpu_optional": true,
+    "local_only": true,
+    "description": "CPU embedder/judge + GPU generative. No industry human RLHF \u2014 CPU shadow judge stamps drafts (INTERNAL_RLHF_SHADOW_JUDGE_CONTRACT.md)."
+  },
+  "model_roles": {
+    "live_renderer": "qwen_gguf",
+    "teacher": "qwen_gguf",
+    "trainable_target": "qwen25_3b_instruct_abliterated_local",
+    "alignment_authority": "cpu_shadow_judge",
+    "judge_residency": "cpu_allowed_concurrent_with_gpu_mouth",
+    "continuity_fallback": "deterministic_cpu",
+    "fallback_counts_as_native_quality": false
+  },
+  "openaster_training": {
+    "prompt_version": "openaster_prompt_v4",
+    "candidate_adapter": "L:/Continue/Viv/foundation/models/Training/runs/lora_judge_openaster_full_v3_540_20260723T181500Z/checkpoints/checkpoint-360",
+    "validated_candidate": null,
+    "runtime_adapter": "L:/Continue/Viv/foundation/models/gpu/viv_voice_lora",
+    "auto_deploy": false,
+    "sequence_cap": 384,
+    "gpu_exclusive": true,
+    "gpu_mouth_exclusive": true,
+    "cpu_judge_concurrent": true,
+    "training_profile": "moe_mouth_v1",
+    "response_only_loss": true,
+    "eos_supervised": true,
+    "stabilization_corpus": "L:/Continue/Viv/foundation/artifacts/models/viv_judge_sft_stabilization_v3.jsonl",
+    "full_corpus": "L:/Continue/Viv/foundation/artifacts/models/viv_judge_sft_v3.jsonl"
+  },
+  "lanes": {
+    "reasoning": {
+      "role": "neuro-symbolic mind (required) \u2014 beginning and end; Security stamp; past+present only",
+      "substrate": "CPU",
+      "components": [
+        "rid_main",
+        "uml_main",
+        "auto_main",
+        "Guardian",
+        "security_core",
+        "CARMA",
+        "memory_core",
+        "Agentic Runtime",
+        "viv-embed"
+      ],
+      "hz": 1,
+      "hallucination": "forbidden as claim \u2014 retrieve/compute/verify; guesses must be labeled; see ARCHITECT_TRIAD_THEORY.md",
+      "embedder_note": "Knows English word-form/grammar for semantic index \u2014 not full meaning LLM"
+    },
+    "voice": {
+      "role": "voice of reasoning / external draft (optional peripheral) \u2014 speak facts only",
+      "substrate": "GPU",
+      "components": [
+        "ollama",
+        "Qwen2.5-3B-Instruct",
+        "viv-voice-qwen"
+      ],
+      "may_decide": false,
+      "may_remember": false,
+      "without_gpu": "system runs silent or deterministic CPU template; CPU mind unchanged",
+      "theory": "GPU only renders speech; CPU teaches RID / grades plant \u2014 ARCHITECT_TRIAD_THEORY.md"
+    }
+  },
+  "models_root": "L:/Continue/Viv/foundation/models",
+  "voice": {
+    "backend": "ollama",
+    "host": "127.0.0.1",
+    "port": 11434,
+    "max_model_len": 2048,
+    "n_ctx": 2048,
+    "n_gpu_layers": 33,
+    "n_threads": 8,
+    "chat_format": "chat",
+    "gguf_path": "L:/Continue/Viv/foundation/models/gpu/OpenAster1-128k-base.i1-Q6_K.gguf",
+    "hf_base": "L:/Continue/Viv/foundation/models/gpu/OpenAster1-128k-base-hf",
+    "lora_adapter": "L:/Continue/Viv/foundation/models/gpu/viv_voice_lora",
+    "modelfile": "L:/Continue/Viv/foundation/models/gpu/Modelfile.viv-voice-raw",
+    "served_name": "viv-voice-qwen",
+    "prefer_over_lora": true,
+    "use_lora": false,
+    "raw_base": false,
+    "prompt_mode": "chat",
+    "training_corpus": "L:/Continue/Viv/foundation/artifacts/models/voice_fluency.jsonl",
+    "spare_ggufs": [
+      "L:/Continue/Viv/foundation/models/gpu/Qwen2.5-3B-Instruct-Abliterated.Q8_0.gguf",
+      "L:/Continue/Viv/foundation/models/gpu/deepseek-coder-6.7b-base.Q4_K_M.gguf"
+    ],
+    "note": "Qwen chat voice path; raw OpenAster base retained as a diagnostic spare. CPU shadow judge stamps drafts.",
+    "personality_dna": "L:/Continue/Viv/foundation/artifacts/corp/personality/viv_personality_dna.json",
+    "personality_source": "F:/AI/personality/luna_personality_dna.json"
+  },
+  "embedder": {
+    "role": "left_brain_judge_geometry \u2014 semantic axis for internal RLHF shadow judge (not chat soul)",
+    "substrate": "CPU",
+    "purpose": "judge_and_jury_of_gpu_drafts",
+    "contract": "L:/Continue/Viv/foundation/INTERNAL_RLHF_SHADOW_JUDGE_CONTRACT.md",
+    "judge_lib": "L:/Continue/Viv/foundation/lib/viv_shadow_judge.py",
+    "gguf_path": "L:/Continue/Viv/foundation/models/cpu/bert-base-uncased-Q8_0.gguf",
+    "modelfile": "L:/Continue/Viv/foundation/models/cpu/Modelfile.viv-embed",
+    "ollama_name": "viv-embed",
+    "optional": [
+      "L:/Continue/Viv/foundation/models/cpu/goemotions-f16.gguf",
+      "L:/Continue/Viv/foundation/models/cpu/populism_english_bert_base_uncased.f16.gguf"
+    ]
+  },
+  "cpu_semantic_sensor": {
+    "enabled": true,
+    "role": "bounded_categorical_observation_for_deterministic_training_tree_judge",
+    "is_alignment_authority": false,
+    "model": "llama3.1:8b",
+    "endpoint": "http://127.0.0.1:11434/api/generate",
+    "num_gpu": 0,
+    "num_ctx": 2048,
+    "temperature": 0,
+    "seed": 42,
+    "observations_per_pair": 2,
+    "exact_categorical_agreement": true,
+    "failure_action": "HOLD",
+    "cache": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/judge_cache_v1",
+    "note": "Semantic sensor only. Deterministic schema, UML, Security, invariants, and admission remain authoritative."
+  },
+  "training_tree": {
+    "enabled": true,
+    "schema_version": "viv_training_tree_v2",
+    "tree": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/tree_v2.json",
+    "seed_registry": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/seed_registry_v2.json",
+    "judged_seed_pairs": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/judged_seed_pairs_v2.jsonl",
+    "status": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/status_v2.json",
+    "cli": "L:/Continue/Viv/foundation/scripts/training_tree.py",
+    "trainer": "L:/Continue/Viv/foundation/models/Training/code/train_pairwise_lora.py",
+    "stages": 8,
+    "seed_pairs": 96,
+    "seed_pairs_are_training_data": false,
+    "current_train_ready_stage": null,
+    "auto_train": false,
+    "auto_promote": false,
+    "auto_deploy": false,
+    "runtime_changed": false
+  },
+  "aifl": {
+    "enabled": true,
+    "version": "0.2",
+    "contract": "L:/Continue/Viv/foundation/AIFL_CONTRACT.md",
+    "status": "L:/Continue/Viv/foundation/AIFL_STATUS.md",
+    "lib": "L:/Continue/Viv/foundation/lib/viv_aifl.py",
+    "conversation": "L:/Continue/Viv/foundation/artifacts/auto/aifl/conversation.jsonl",
+    "posture": "she_talks_to_herself; judge_aligns; humans_watch_and_tune_judge",
+    "primary_metric": "quality.mind_pass_rate"
+  },
+  "shadow_judge": {
+    "enabled": true,
+    "axes": [
+      "vidi",
+      "intellexi",
+      "vixi"
+    ],
+    "aggregate": "product_and",
+    "punish_bias": true,
+    "is_training_authority": true,
+    "human_preference_ranking": false,
+    "identity": {
+      "vidi": "I saw \u2014 seeing is believing; verifiable proof",
+      "intellexi": "I understood \u2014 logged it; understood what happened",
+      "vixi": "I lived \u2014 S_n vs floor after vidi \u2227 intellexi"
+    },
+    "preference_pairs": "L:/Continue/Viv/foundation/artifacts/auto/shadow_judge/preference_pairs.jsonl",
+    "train_gate": "L:/Continue/Viv/foundation/lib/viv_judge_train_gate.py",
+    "note": "GPU speaks; judge alone admits train rows. She cannot learn beyond judge alignment."
+  },
+  "lora_admission": {
+    "experiment_id": "lora_admit_v1",
+    "flag": "lora_admission.enabled",
+    "enabled": true,
+    "auto_train": false,
+    "policy": "L:/Continue/Viv/foundation/artifacts/auto/shadow_judge/admission_policy.json",
+    "train_ready": "L:/Continue/Viv/foundation/artifacts/auto/shadow_judge/train_ready/signal.json",
+    "trainer": "L:/Continue/Viv/foundation/scripts/train_judge_lora.py",
+    "dataset_only": "viv_judge_sft_train.jsonl",
+    "deployed_adapter": "L:/Continue/Viv/foundation/models/gpu/lora_judge_80_20260722T055311Z",
+    "deploy_pointer": "L:/Continue/Viv/foundation/models/gpu/viv_voice_lora_judge_deploy",
+    "last_validate_mind_pass": 0.7,
+    "rollback": "Set admission_policy.json auto_train=false; point deploy away from adapter",
+    "status": "deployed_80_tagcluster",
+    "note": "Validation-only milestone mode. Candidate training may run, but deployment requires explicit operator action after frozen-pack and baseline checks."
+  },
+  "reasoning": {
+    "foundation_dir": "L:/Continue/Viv/foundation",
+    "aios_v2": "L:/Continue/FSAA/Luna/AIOS_V2",
+    "automation": "L:/Continue/automation",
+    "smoke_scripts": {
+      "rid": "rid_main.py sample",
+      "uml": "uml_main.py eval \"[3,4]\"",
+      "auto": "auto_main.py paths"
+    }
+  },
+  "training": {
+    "voice_base_local": "L:/Continue/Viv/foundation/models/gpu/OpenAster1-128k-base.i1-Q6_K.gguf",
+    "voice_corpus_out": "L:/Continue/Viv/foundation/artifacts/models/voice_fluency.jsonl",
+    "voice_adapter_out": "L:/Continue/Viv/foundation/models/gpu/viv_voice_lora_judge_deploy",
+    "max_seq_length": 2048,
+    "note": "Deploy pointer = tag-cluster 80 LoRA. Reasoning stays symbolic on CPU."
+  },
+  "aios_client": {
+    "vllm_base_url": "http://127.0.0.1:11434/v1",
+    "vllm_model": "viv-voice-qwen",
+    "env_voice_url": "AIOS_VLLM_BASE_URL",
+    "env_voice_optional": "AIOS_VOICE_OPTIONAL",
+    "env_silent_without_voice": "AIOS_SILENT_WITHOUT_VOICE"
+  }
+}

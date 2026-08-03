@@ -1,0 +1,14 @@
+{
+  "timestamp_utc": "2026-07-19T01:21:15+00:00",
+  "test": "observe_smoke_5",
+  "scaffold_phase": 1,
+  "blanked": [],
+  "n": 5,
+  "reward": 3,
+  "neutral": 2,
+  "punish": 0,
+  "reward_rate": 0.6,
+  "pass_gate": 0.99,
+  "verdict": "FAIL_short_window",
+  "note": "Phase-1 override works (was stuck at stage-2 blanks). 60% on n=5 — not mastery. Full 5-round overnight follows."
+}

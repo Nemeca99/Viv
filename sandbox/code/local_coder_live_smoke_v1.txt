@@ -1,0 +1,4 @@
+# staged_by=foreman local_coder=true law4=source_as_txt
+# draft_sha256=abc5dda4283bfaeea94d499107ccd202b89535df3da925ccae2ac11d5b5c3595 execution=not_performed
+
+print('LOCAL_CODER_LIVE_SMOKE_OK')

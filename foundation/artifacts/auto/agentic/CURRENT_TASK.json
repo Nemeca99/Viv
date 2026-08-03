@@ -1,0 +1,442 @@
+{
+  "artifact_root": "L:/Continue/Viv/foundation/artifacts/auto/agentic/backups/pre_v104_alternate_method_20260803T063500Z",
+  "authority": {
+    "authorization_changed": false,
+    "deployment_changed": false,
+    "lease_opened": false,
+    "training": false
+  },
+  "current_index": 6,
+  "last_task": {
+    "effective_prompt_sha256": "9f5cd1d9a8eb704a895c0c36f14168995a16fcac5e0621db534b9469ef462d97",
+    "finished_utc": "2026-08-02T05:51:38Z",
+    "index": 0,
+    "kind": "draft_code",
+    "model": "nerdsking-python-coder-3b-i:latest",
+    "mutation_performed": true,
+    "output_bytes": 7797,
+    "output_path": "L:/Continue/Viv/foundation/artifacts/auto/agentic/tag_training_adapter_20260802T/queue_live_v4/tag_campaign_adapter_draft.txt",
+    "prompt_sha256": "b51a12af3a0ba7f2f862511a0d9657c9315fc121356722759706c077c2f5f040",
+    "response_sha256": "a452afcfbc31af181d3d280b1dccd720bc8ed5baea50137e6fc24fd2a3352302",
+    "span_id": "12d6f8f7d6e54c00993a3c68cc7d9e01",
+    "started_utc": "2026-08-02T05:51:21Z",
+    "status": "success",
+    "task_id": "draft_tag_campaign_adapter",
+    "tool": null,
+    "trace_id": "9deaa1c4cd7c4d63b324819ede977599"
+  },
+  "last_training_evidence": {
+    "campaign_id": "mouth_training_recovery_v3_campaign_v2",
+    "status": "ABORT_NO_PROMOTION",
+    "trained_optimizer_steps": 128,
+    "elapsed_s": 450.531,
+    "initial_mean_response_nll": 4.131955523276702,
+    "final_mean_response_nll": 0.7277076215978013,
+    "initial_token_accuracy": 0.45133477035317526,
+    "final_token_accuracy": 0.7934007627259161,
+    "abort_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v2/EXECUTION_ABORT_REPORT.json",
+    "abort_report_sha256": "a237096c311f3bc91e441e5f4366d6fface8433fef468500968845cfa83c3599",
+    "published_gpu_steps": 0,
+    "master_s_n": 0.3229,
+    "required_master_s_n": 0.37,
+    "training_authorized": false,
+    "run_authorized": false,
+    "deployment_changed": false,
+    "retrain_same_campaign": false
+  },
+  "full_corpus_retrieval_audit": {
+    "sqlite_global_index": "structural_file_index_only",
+    "semantic_wikipedia_index": false,
+    "existing_carma_vectors": 790,
+    "existing_carma_scope": "thesis_codex_not_wikipedia",
+    "speech_route": "read_only_local_wikipedia_adapter_plus_bounded_staged_semantic_canary",
+    "duplicate_index_created": false
+  },
+  "wmi_diagnostic_causality": {
+    "observed_provider_host_load": true,
+    "caused_by_current_diagnostic_probe": true,
+    "probe": "PowerShell Get-CimInstance WMI process/performance/activity queries",
+    "disappeared_after_probe_stop": true,
+    "aios_background_cause_proven": false,
+    "future_policy": "avoid_repeated_wmi_performance_polling"
+  },
+  "full_corpus_retrieval_performance": {
+    "leading_wildcard_sqlite_scan": "potentially_minute_plus",
+    "temporary_work_budget_patch": "reverted",
+    "regression_after_revert": "EXTERNAL_SOURCE_SELECTION_PASS cases=8",
+    "next": "use_complete_title_sidecar_as_candidate_authority_and_build_manifest_bound_semantic_retrieval"
+  },
+  "full_corpus_title_sidecar_checkpoint": {
+    "artifact": "foundation/artifacts/auto/knowledge/wikipedia_title_index_v1_checkpoint_20260803T023000Z.sqlite",
+    "state": "COMPLETE",
+    "source_rows_seen": 12875342,
+    "titles_admitted": 12871465,
+    "malformed_rows": 3877,
+    "source_index_read_only": true,
+    "runtime_admission": false,
+    "training_authorized": false,
+    "next": "expand_content_hash_validation_and_semantic_retrieval_before_any_persistent_admission",
+    "last_validation": "validate_wikipedia_title_index_complete_pass_external_source_selection_pass_knowledge_mouth_pass_full_preflight_pass",
+    "last_preflight": {
+      "ok": true,
+      "parsed_python_files": 1080,
+      "architecture_files": 858,
+      "architecture_coverage_pct": 100.0,
+      "boundary_modules": 513,
+      "errors": 0,
+      "rust_security": "PASS"
+    }
+  },
+  "full_corpus_title_sidecar_runtime": {
+    "wired": true,
+    "mode": "complete_candidate_index_exact_title_redirect",
+    "source_identity_required": true,
+    "header_authority_required": true,
+    "generic_scan_fallback_when_complete": false,
+    "semantic_index": false,
+    "carma_admission": false,
+    "training_authorized": false
+  },
+  "full_corpus_semantic_stage": {
+    "source_manifest_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_source_manifest_v1_20260803T033500Z.json",
+    "source_manifest_state": "VERIFIED",
+    "selection_offset": 96,
+    "selection_limit": 32,
+    "canary_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_v1_offset96_20260803T033500Z.json",
+    "canary_validation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_validation_v1_offset96_20260803T033500Z.json",
+    "canary_state": "VERIFIED",
+    "embedding_backend": "huggingface_local",
+    "embedding_dimensions": 384,
+    "source_hash_revalidation": true,
+    "direct_path_disjointness": "VERIFIED",
+    "vector_index_written": false,
+    "carma_admission": false,
+    "training_authorized": false,
+    "run_authorized": false,
+    "manifest_bound_query_pack": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_query_pack_offset96_v1.json",
+    "retrieval_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_evaluation_offset96_v1_20260803T034000Z.json",
+    "revalidation_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_revalidation_offset96_v1_20260803T040000Z.json",
+    "retrieval_evaluation_state": "VERIFIED",
+    "retrieval_metrics": {
+      "target_presence": "8/8",
+      "top1": "7/8",
+      "mean_reciprocal_rank": 0.90625,
+      "max_target_rank": 4
+    },
+    "additional_window": {
+      "selection_offset": 128,
+      "selection_limit": 32,
+      "source_manifest_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_source_manifest_v1_20260803T034500Z.json",
+      "canary_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_v1_offset128_20260803T034500Z.json",
+      "canary_validation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_validation_v1_offset128_20260803T034500Z.json",
+      "retrieval_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_evaluation_offset128_v1_20260803T034500Z.json",
+      "revalidation_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_revalidation_offset128_v1_20260803T040000Z.json",
+      "manifest_bound_canary_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_v1_manifest_bound_offset128_20260803T041500Z.json",
+      "manifest_bound_canary_validation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_validation_v1_manifest_bound_offset128_20260803T041500Z.json",
+      "manifest_bound_revalidation_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_revalidation_manifest_bound_offset128_v1_20260803T041500Z.json",
+      "state": "VERIFIED",
+      "source_revalidation": {
+        "state": "VERIFIED",
+        "rows_checked": 32,
+        "matched": 32,
+        "reasons": []
+      },
+      "retrieval_metrics": {
+        "target_presence": "8/8",
+        "top1": "7/8",
+        "mean_reciprocal_rank": 0.90625,
+        "max_target_rank": 4
+      }
+    },
+    "third_window": {
+      "selection_offset": 160,
+      "selection_limit": 32,
+      "source_manifest_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_source_manifest_v1_20260803T043000Z.json",
+      "canary_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_v1_manifest_bound_offset160_20260803T043000Z.json",
+      "canary_validation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_validation_v1_manifest_bound_offset160_20260803T043000Z.json",
+      "retrieval_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_revalidation_manifest_bound_offset160_v1_20260803T043000Z.json",
+      "state": "VERIFIED",
+      "source_revalidation": {
+        "state": "VERIFIED",
+        "rows_checked": 32,
+        "matched": 32,
+        "reasons": []
+      },
+      "retrieval_metrics": {
+        "target_presence": "8/8",
+        "top1": "6/8",
+        "mean_reciprocal_rank": 0.8203125,
+        "max_target_rank": 16,
+        "rank_vector": [1, 16, 1, 1, 1, 1, 2, 1]
+      }
+    },
+    "baseline_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_retrieval_baseline_v1_20260803T051500Z.json",
+    "baseline_state": "VERIFIED",
+    "baseline_metrics": {
+      "windows": 5,
+      "staged_articles": 160,
+      "queries": 40,
+      "target_presence": "40/40",
+      "top1": "33/40",
+      "target_presence_rate": 1.0,
+      "top1_rate": 0.825,
+      "mean_reciprocal_rank": 0.884896,
+      "max_target_rank": 16,
+      "source_rows_revalidated": 160
+    },
+    "fifth_window": {
+      "selection_offset": 224,
+      "selection_limit": 32,
+      "source_manifest_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_source_manifest_v1_20260803T051500Z.json",
+      "canary_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_v1_manifest_bound_offset224_20260803T051500Z.json",
+      "canary_validation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_validation_v1_manifest_bound_offset224_20260803T051500Z.json",
+      "retrieval_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_revalidation_manifest_bound_offset224_v1_20260803T051500Z.json",
+      "state": "VERIFIED",
+      "source_revalidation": {
+        "state": "VERIFIED",
+        "rows_checked": 32,
+        "matched": 32,
+        "reasons": []
+      },
+      "retrieval_metrics": {
+        "target_presence": "8/8",
+        "top1": "7/8",
+        "mean_reciprocal_rank": 0.9375,
+        "max_target_rank": 2
+      }
+    },
+    "fourth_window": {
+      "selection_offset": 192,
+      "selection_limit": 32,
+      "source_manifest_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_source_manifest_v1_20260803T044500Z.json",
+      "canary_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_v1_manifest_bound_offset192_20260803T044500Z.json",
+      "canary_validation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_32_article_canary_validation_v1_manifest_bound_offset192_20260803T044500Z.json",
+      "retrieval_evaluation_artifact": "foundation/artifacts/auto/knowledge/wikipedia_staged_manifest_retrieval_revalidation_manifest_bound_offset192_v1_20260803T044500Z.json",
+      "state": "VERIFIED",
+      "source_revalidation": {
+        "state": "VERIFIED",
+        "rows_checked": 32,
+        "matched": 32,
+        "reasons": []
+      },
+      "retrieval_metrics": {
+        "target_presence": "8/8",
+        "top1": "6/8",
+        "mean_reciprocal_rank": 0.854167,
+        "max_target_rank": 3
+      }
+    },
+    "source_revalidation": {
+      "state": "VERIFIED",
+      "rows_checked": 32,
+      "matched": 32,
+      "reasons": []
+    },
+    "manifest_bound_canary": true,
+    "ordinal_chain_bug": {
+      "state": "FIXED_AND_VERIFIED",
+      "failure": "receipt_chain_mismatch_for_global_manifest_ordinals",
+      "repair": "validator_uses_recorded_artifact_ordinal_with_legacy_fallback"
+    },
+    "generic_retrieval_fallback_repair": {
+      "state": "FIXED_AND_VERIFIED",
+      "source": "foundation/lib/knowledge_external_adapters.py",
+      "regression": "foundation/scripts/test_wikipedia_legacy_query_fallback_v1.py",
+      "cases": ["What is autism?", "What causes autism?", "photosynthesis", "Albert Einstein"],
+      "stopword_filter": true,
+      "source_provenance_preserved": true,
+      "training_authorized": false,
+      "run_authorized": false
+    },
+    "generic_mouth_grounding_containment": {
+      "state": "FIXED_AND_VERIFIED",
+      "renderer_source": "foundation/lib/aios_tagged_packet.py",
+      "packet_source": "voice_core/intent_packet.py",
+      "regression": "foundation/scripts/test_wikipedia_legacy_query_fallback_v1.py",
+      "grounded_generic_query": "What is autism?",
+      "private_rendering_rule_excluded": true,
+      "ordinary_packet_operational_disclosure": false,
+      "training_authorized": false,
+      "run_authorized": false
+    },
+    "generic_topic_grounding_regression": {
+      "state": "VERIFIED",
+      "test": "foundation/scripts/test_generic_topic_grounding_v1.py",
+      "topics": {
+        "Evolution": {"three_way": "CONFLICT", "alignment": "INCONCLUSIVE", "grounded": true},
+        "Photosynthesis": {"three_way": "PARTIAL", "alignment": "INCONCLUSIVE", "grounded": true},
+        "Albert Einstein": {"three_way": "PARTIAL", "alignment": "INCONCLUSIVE", "grounded": true}
+      },
+      "source_attribution": true,
+      "telemetry_containment": true,
+      "training_authorized": false,
+      "run_authorized": false
+    },
+    "generic_coverage_evaluation": {
+      "state": "VERIFIED",
+      "artifact": "foundation/artifacts/auto/knowledge/wikipedia_generic_coverage_evaluation_v1_20260803T094500Z.json",
+      "artifact_sha256": "DFC25DB0A39E5AF20624C3CEED0E2208D0A0ED6D2807AEE9BE9915207A16BD84",
+      "queries": 16,
+      "matched_expected_titles": "16/16",
+      "coverage_rate": 1.0,
+      "source_checks": "19/19",
+      "source_integrity": "VERIFIED",
+      "semantic_embeddings_used": false,
+      "vector_index_written": false,
+      "training_authorized": false,
+      "run_authorized": false
+    },
+    "semantic_shard": {
+      "state": "WIRED_VERIFIED_READ_ONLY",
+      "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_shard_v1_20260803T114500Z.json",
+      "artifact_sha256": "36FEAFCD239BC687202AE5FC8174A75FF27AF122ADD8AE842B9C739FE135D072",
+      "input_artifacts": 6,
+      "unique_source_rows": 192,
+      "smoke_cases": "5/5",
+      "ranking_repair": "title_overlap_secondary_signal",
+      "repaired_case": "Economy of Angola paraphrase moved to rank 1",
+      "forty_query_evaluation": {
+        "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_shard_evaluation_v1_20260803T150000Z.json",
+        "artifact_sha256": "E85B65CC9B341A02D139477619D41868F04A1115651FE98069731B7C13FA154A",
+        "target_presence": "33/40",
+        "top1": "29/40",
+        "mean_reciprocal_rank": 0.770833,
+        "max_rank": 3,
+        "source_revalidation_rejections": 0,
+        "misses": ["Asparagales", "Apple Inc.", "AU", "Abjad", "Axiom", "The Amazing Spider-Man", "Ampere"]
+      },
+      "source_lexical_gate_evaluation": {
+        "state": "VERIFIED",
+        "adapter_backup": "foundation/artifacts/auto/agentic/backups/pre_semantic_source_lexical_gate_20260803T170000Z/knowledge_staged_adapter.py",
+        "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_shard_evaluation_v2_20260803T170000Z.json",
+        "artifact_sha256": "3250494FDE90E47463FDF097A632C7C93C73B715CF47570E27F2647C880F5542",
+        "target_presence": "39/40",
+        "top1": "34/40",
+        "mean_reciprocal_rank": 0.905,
+        "max_rank": 5,
+        "source_revalidation_rejections": 0,
+        "remaining_miss": "AU redirect-only ambiguous case",
+        "training_authorized": false,
+        "run_authorized": false
+      },
+      "disjoint_evaluation": {
+        "state": "VERIFIED",
+        "evaluator": "foundation/scripts/evaluate_wikipedia_semantic_disjoint_v1.py",
+        "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_disjoint_evaluation_v1_20260803T183000Z.json",
+        "artifact_sha256": "74A0A36BFD3A6002B13C3C2C401DA9949EAFC301F2102CA1B125A8054ADE8B32",
+        "queries": 8,
+        "target_presence": "6/8",
+        "top1": "6/8",
+        "mean_reciprocal_rank": 0.75,
+        "max_rank": 1,
+        "source_revalidation_rejections": 0,
+        "misses": ["Albert Einstein", "Ada Lovelace"],
+        "training_authorized": false,
+        "run_authorized": false
+      },
+      "clean_representation": {
+        "state": "VERIFIED_READ_ONLY_DEFAULT",
+        "builder": "foundation/scripts/build_wikipedia_clean_semantic_shard_v1.py",
+        "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_shard_clean_v1_20260803T200000Z.json",
+        "artifact_sha256": "B4BB67516A5E9336B70F5871CDB0660B05B1F4A33685EB07D8E5AF6A3BFF35F",
+        "rows": 192,
+        "representation": "verified_title_short_description_clean_opening_v1",
+        "original_pack": {
+          "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_shard_clean_evaluation_v1_20260803T201500Z.json",
+          "artifact_sha256": "A95AA004090D9112B29F8EA2F4E777B12E3218EB2F670068D8A315E8DCFCF51D",
+          "target_presence": "38/40",
+          "top1": "36/40",
+          "mean_reciprocal_rank": 0.920833,
+          "max_rank": 3,
+          "source_revalidation_rejections": 0,
+          "misses": ["AU", "Abatement"]
+        },
+        "disjoint": {
+          "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_disjoint_clean_evaluation_v1_20260803T201500Z.json",
+          "artifact_sha256": "E68893E53DA3D4FC42E08C21050B84AB7D74D38BBECE28A720980B041D1972B2",
+          "target_presence": "8/8",
+          "top1": "8/8",
+          "mean_reciprocal_rank": 1.0,
+          "source_revalidation_rejections": 0
+        },
+        "vector_index_written": false,
+        "persistent_index_written": false,
+        "training_authorized": false,
+        "run_authorized": false
+      },
+      "abatement_gate_evaluation": {
+        "state": "VERIFIED",
+        "adapter_backup": "foundation/artifacts/auto/agentic/backups/pre_abatement_lexical_gate_relaxation_20260803T220000Z/knowledge_staged_adapter.py",
+        "artifact": "foundation/artifacts/auto/knowledge/wikipedia_semantic_shard_clean_evaluation_v2_20260803T220000Z.json",
+        "artifact_sha256": "53507B11775280EFA43A548A5FDB3BD957AB5D54E79F557684C73103A3D02E30",
+        "target_presence": "39/40",
+        "top1": "37/40",
+        "mean_reciprocal_rank": 0.945833,
+        "max_rank": 3,
+        "source_revalidation_rejections": 0,
+        "remaining_miss": "AU redirect-only ambiguous case",
+        "training_authorized": false,
+        "run_authorized": false
+      },
+      "au_redirect_resolution": {
+        "state": "VERIFIED_CANONICAL_AMBIGUOUS",
+        "alias_source": "F:/AI_Datasets/wikipedia_deduplicated/batch_0000/000161_AU.txt",
+        "redirect_target": "Au",
+        "canonical_source": "F:/AI_Datasets/wikipedia_deduplicated/batch_0000/001204_Au.txt",
+        "resolution_state": "RESOLVED_CROSS_DIRECTORY",
+        "canonical_source_sha256": "A0971669D7DB39E4671E32E21D3C1B3790E7D12A8510AFE5119A70759C438D45",
+        "canonical_is_disambiguation": true,
+        "forced_semantic_match": false,
+        "training_authorized": false,
+        "run_authorized": false
+      },
+      "clean_default_mouth_matrix": {
+        "state": "VERIFIED",
+        "evaluator": "foundation/scripts/evaluate_clean_default_mouth_matrix_v1.py",
+        "artifact": "foundation/artifacts/auto/knowledge/clean_default_mouth_matrix_v2_20260804T013000Z.json",
+        "artifact_sha256": "DFD25B2B859A16F94B78B5E1087DCF9B21992F80FF0D9B8BBBF7736815100514",
+        "cases": 4,
+        "passed": 4,
+        "ordinary_telemetry_contained": true,
+        "ambiguous_au_clarified": true,
+        "explicit_health_mode_allowed": true,
+        "training_authorized": false,
+        "run_authorized": false
+      },
+      "training_readiness_review": {
+        "state": "READY_FOR_SEPARATE_NAMED_AUTHORIZATION_REVIEW",
+        "artifact": "foundation/artifacts/auto/knowledge/mouth_training_recovery_v3_readiness_review_v2_20260803T061000Z.json",
+        "trainer_contract_audit": "TRAINER_SCHEMA_COMPATIBLE_PENDING_ADMISSION",
+        "trainer_rows": 256,
+        "campaign_feasibility": "CAMPAIGN_FEASIBLE_NO_EXECUTION",
+        "campaign_feasibility_artifact": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_semantic_projection_v1/CAMPAIGN_FEASIBILITY_AUDIT_V4.json",
+        "evaluation_packs": {"development": "64/64 PASS", "blind": "32/32 PASS", "legacy": "64/64 PASS", "auditor_negative": "20/20 FAIL"},
+        "training_authorized": false,
+        "run_authorized": false,
+        "lease_opened": false,
+        "gpu_steps": 0,
+        "model_loaded": false,
+        "next": "separate_named_campaign_authorization_review"
+      },
+      "source_revalidation": true,
+      "vector_index_written": false,
+      "persistent_index_written": false,
+      "carma_admission": false,
+      "training_authorized": false,
+      "run_authorized": false
+    },
+    "next": "separate_named_campaign_authorization_review"
+  },
+  "mode": "live",
+  "next_action": "Three-source rebuild remains active and provider-agnostic. Exact-title, normalized natural-language title, redirect, and bounded source-faithful routing are wired across the full 12.8M-article corpus. The clean read-only semantic shard combines 192 source-hash-verified rows and is the default adapter artifact. The clean 40-query pack is target presence 39/40, top-1 37/40, MRR 0.945833; the disjoint eight-query family is 8/8 target presence and 8/8 top-1, with zero source revalidation rejections. AU now resolves canonically to the Au disambiguation article, so ambiguous meaning is preserved rather than guessed. The clean-default mouth matrix passes 4/4 for ordinary grounding, telemetry containment, AU clarification, and explicit health mode. New closed campaign mouth_training_recovery_v3_campaign_v3 is admitted and runner-validated with fresh evaluation packs. The CPU-only decision simulator now separates verified choice, progress, and restore recovery while penalizing only no-progress loops; model-policy integration is not yet complete. No persistent semantic index, CARMA admission, training, lease, promotion, deployment, or live-model mutation is authorized. V104 remains read-only and closed: V19 parent hash locked, 148 train rows, 96 disjoint holdout rows, gpu_steps=0, model_loaded=false, and all authority closed. Next: integrate a model policy into hidden-oracle disjoint simulation before creating a simulation training campaign.",
+  "objective": "Progressively train and validate Viv's tagged prompt adapter under AIOS governance; do not promote without fresh evidence.",
+  "phase": "three_source_rebuild_provider_agnostic_staged_semantic_runtime_wired_knowledge_to_mouth_containment_verified_v104_closed_authorization_pending",
+  "schema_version": "viv_current_task_v1",
+  "started_utc": "2026-08-02T05:51:21Z",
+  "status": "IN_PROGRESS",
+  "task_list": null,
+  "task_list_sha256": null,
+  "total_tasks": 0,
+  "trace_id": "9deaa1c4cd7c4d63b324819ede977599",
+  "updated_utc": "2026-08-03T08:45:00Z"
+}

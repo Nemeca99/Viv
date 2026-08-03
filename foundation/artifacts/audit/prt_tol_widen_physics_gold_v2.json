@@ -1,0 +1,29 @@
+{
+  "experiment_id": "prt_tol_widen_physics_gold_v2",
+  "parent": "prt_tol_widen_physics_gold_v1",
+  "timestamp_utc": "2026-07-18T17:05:00+00:00",
+  "diagnosis_mid_v1": {
+    "overnight_window_cycles": 230,
+    "reward_rate": 0.0,
+    "neutral_rate": 0.122,
+    "stability_reward_n": 5,
+    "all3_within_0_08": 5,
+    "structure_ok_n": 30,
+    "both_physics_and_structure": 1,
+    "blocker": "structure_gate stripped 4/5 physics REWARD; physics still sparse at 0.08"
+  },
+  "changes": {
+    "reward_tol_override": 0.10,
+    "punish_tol_override": 0.20,
+    "structure_gate_mode": "soft",
+    "train_gold_tail": 900,
+    "gold_oversample_reduced": true,
+    "overnight": "prt_overnight_config_tol_widen_16h.json"
+  },
+  "rollback": "Set structure_gate_mode=strict, reward_tol_override=0.08, clear train_gold_tail or set 0; use prior overnight config",
+  "success_signals": [
+    "REWARD rate > 2% over ≥100 cycles",
+    "round elapsed_s median < 25 min",
+    "self_emit still logged (not abandoned)"
+  ]
+}

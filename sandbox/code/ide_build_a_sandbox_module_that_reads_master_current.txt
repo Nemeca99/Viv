@@ -1,0 +1,21 @@
+# Viv IDE authored tool — ide_build_a_sandbox_module_that_reads_master
+# Goal: build a sandbox module that reads master_rid.json and prints Master S_n with status
+from pathlib import Path
+import json
+cands = [
+    Path(r"L:/Continue/Viv/foundation/artifacts/auto/master_rid.json"),
+    Path(r"L:/Continue/Viv/foundation/artifacts/auto/pulse.json"),
+]
+data = None
+src = None
+for p in cands:
+    if p.is_file():
+        data = json.loads(p.read_text(encoding='utf-8'))
+        src = p
+        break
+if not data:
+    print('PLANT unavailable')
+else:
+    sn = data.get('master_s_n') or data.get('s_n') or (data.get('master') or {}).get('master_s_n')
+    status = data.get('status') or data.get('mode') or '?'
+    print('PLANT sn=' + str(sn) + ' status=' + str(status) + ' source=' + src.name)

@@ -1,0 +1,79 @@
+# authored_by=architect_rebuild at=2026-07-21T22:15:00+00:00 tool=adapter_utils
+# law4=source_as_txt run=python_stdin rebuild_tranche=utils_core
+# REBUILD ADAPTER utils — path helpers + V1 D: read-mirror; no V1 bridge import
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_utils import list_roots, resolve_path, run_smoke, status  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    v1 = sev.get("v1") or {}
+    print(
+        "ADAPTER_UTILS status ok="
+        + str(bool(st.get("ok")))
+        + " v1_on_disk="
+        + str(v1.get("v1_on_disk"))
+        + " markers="
+        + str(v1.get("marker_hits"))
+        + " ports_bridges="
+        + str(sev.get("viv_ports_v1_bridges"))
+    )
+    lr = list_roots()
+    print(
+        "ROOTS ok="
+        + str(bool(lr.get("ok")))
+        + " present="
+        + str((lr.get("evidence") or {}).get("n_present"))
+    )
+    rp = resolve_path("@foundation/lib/paths.py")
+    print(
+        "RESOLVE ok="
+        + str(bool(rp.get("ok")))
+        + " exists="
+        + str((rp.get("evidence") or {}).get("exists"))
+        + " kind="
+        + str((rp.get("evidence") or {}).get("kind"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_UTILS ok="
+        + str(bool(result.get("ok")))
+        + " resolve_f="
+        + str(ev.get("resolve_foundation_ok"))
+        + " resolve_m="
+        + str(ev.get("resolve_manifest_ok"))
+        + " deny_d="
+        + str(ev.get("deny_d_ok"))
+        + " v1_mirror="
+        + str(ev.get("v1_read_mirror_only"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "resolve_foundation_ok": ev.get("resolve_foundation_ok"),
+                "resolve_manifest_ok": ev.get("resolve_manifest_ok"),
+                "deny_d_ok": ev.get("deny_d_ok"),
+                "v1_on_disk": ev.get("v1_on_disk"),
+                "v1_marker_hits": ev.get("v1_marker_hits"),
+                "v1_read_mirror_only": ev.get("v1_read_mirror_only"),
+                "viv_executes_v1": ev.get("viv_executes_v1"),
+                "s_n": ev.get("s_n"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

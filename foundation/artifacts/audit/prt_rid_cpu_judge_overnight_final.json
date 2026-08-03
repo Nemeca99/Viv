@@ -1,0 +1,14 @@
+{
+  "timestamp_utc": "2026-07-21T18:12:00+00:00",
+  "overnight_id": "prt_rid_cpu_judge_overnight_v1",
+  "status": "TIME_BUDGET",
+  "rounds_done": 41,
+  "elapsed_h": 14.133,
+  "observe_n": 861,
+  "labels": {"PUNISH": 433, "NEUTRAL": 229, "REWARD": 199},
+  "reward_rate": 0.2311,
+  "pass_gate": 0.99,
+  "verdict": "FAIL",
+  "cpu_judge_retries": 0,
+  "note": "GPU overnight parked after this. Pivot to CPU-first teach."
+}

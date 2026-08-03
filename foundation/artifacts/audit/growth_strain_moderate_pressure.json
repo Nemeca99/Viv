@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "seek_ok": true,
+  "seek": {
+    "ok": true,
+    "band_lo": 0.2,
+    "band_hi": 0.4074,
+    "final_duty": 0.38,
+    "plant": {
+      "timestamp": "2026-07-16T05:02:48.342008+00:00",
+      "master_s_n": 0.3948,
+      "master_rsr": 0.515,
+      "master_ltp": 0.3884,
+      "master_rle": 0.3077,
+      "status": "ACTIVE",
+      "dormancy_threshold": 0.37,
+      "cpu_load_pct": 55.6,
+      "cpu_temp_c": 61.0,
+      "gpu_temp_c": 57.0
+    },
+    "history": [
+      {
+        "t": 0.1,
+        "duty": 0.28,
+        "master_s_n": 0.4144,
+        "cpu_load_pct": 71.4,
+        "status": "ACTIVE",
+        "near_dead": false
+      },
+      {
+        "t": 3.1,
+        "duty": 0.33,
+        "master_s_n": 0.4166,
+        "cpu_load_pct": 53.2,
+        "status": "ACTIVE",
+        "near_dead": false
+      },
+      {
+        "t": 6.1,
+        "duty": 0.38,
+        "master_s_n": 0.3948,
+        "cpu_load_pct": 55.6,
+        "status": "ACTIVE",
+        "near_dead": false
+      }
+    ],
+    "reason": "in_band"
+  },
+  "strain": {
+    "ok": true,
+    "seconds": 90.0,
+    "steps": 89,
+    "target": 0.4074,
+    "baseline": 0.4374,
+    "growth_events": 1,
+    "final_strain": 0.2903,
+    "pending_growth": true,
+    "pending_delta_r": 1,
+    "state_path": "L:/Continue/Viv/foundation/artifacts/auto/growth_state.json",
+    "events_path": "L:/Continue/Viv/foundation/artifacts/auto/growth_events.jsonl",
+    "plant_teacher": "aios_master_rid"
+  }
+}

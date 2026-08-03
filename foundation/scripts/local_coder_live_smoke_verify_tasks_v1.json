@@ -1,0 +1,11 @@
+[
+  {
+    "task_id": "verify_live_smoke_stage",
+    "kind": "prebuilt_tool",
+    "tool": "sandbox_verify_stage",
+    "args": {
+      "path": "L:/Continue/Viv/sandbox/code/local_coder_live_smoke_v1.txt",
+      "expected_sha256": "a48b6b5d3cbce798e6efa9ddf4833cbaab246f11bb81bff0208c887a395ec16e"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-07-16T05:19:35.342396+00:00",
+  "ok": true,
+  "link": "A_prt_crystallize_before_moe_actuator",
+  "adapter_r_before_after": 21,
+  "adapter_alpha": 42,
+  "tensor_shapes_ok": true,
+  "collect": {
+    "observe": 10,
+    "life": 8,
+    "speak": 4,
+    "score_counts": {
+      "observe:PUNISH": 10,
+      "life:PUNISH": 8,
+      "speak:PUNISH": 4
+    }
+  },
+  "train": {
+    "steps": 120,
+    "lr": 8e-05,
+    "train_loss": 0.0384,
+    "train_rows": 3944,
+    "continue_adapter": true
+  },
+  "growth_after_crystallize": {
+    "pending_growth": true,
+    "pending_delta_r": 2,
+    "applied": false,
+    "note": "left pending \u2014 prove r=21 first; do not widen yet"
+  },
+  "chambers": 13,
+  "real_moe": false,
+  "voice_speak": false,
+  "log": "artifacts/audit/prt_crystallize_r21_sustained.log",
+  "verdict": "PASS_r21_stable_under_sustained_prt"
+}

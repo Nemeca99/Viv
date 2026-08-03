@@ -1,0 +1,59 @@
+# authored_by=architect_rebuild at=2026-07-21T22:10:00+00:00 tool=adapter_nox
+# law4=source_as_txt run=python_stdin rebuild_tranche=nox_forge_core
+# REBUILD ADAPTER nox — status-only DLL presence (never LoadLibrary / ctypes / pyo3)
+import json
+import sys
+from pathlib import Path
+
+_FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(_FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(_FOUNDATION))
+
+from lib.aios_adapter_nox import run_smoke, status  # noqa: E402
+
+
+def main() -> int:
+    st = status()
+    sev = st.get("evidence") or {}
+    print(
+        "ADAPTER_NOX status ok="
+        + str(bool(st.get("ok")))
+        + " dll_present="
+        + str(sev.get("dll_present"))
+        + " loaded="
+        + str(sev.get("loaded"))
+        + " load_attempted="
+        + str(sev.get("load_attempted"))
+    )
+    result = run_smoke()
+    ev = result.get("evidence") or {}
+    print(
+        "ADAPTER_NOX ok="
+        + str(bool(result.get("ok")))
+        + " dll_present="
+        + str(ev.get("dll_present"))
+        + " bytes="
+        + str(ev.get("dll_bytes"))
+        + " loaded="
+        + str(ev.get("loaded"))
+    )
+    print(
+        json.dumps(
+            {
+                "ok": result.get("ok"),
+                "dll_present": ev.get("dll_present"),
+                "dll_path": ev.get("dll_path"),
+                "dll_bytes": ev.get("dll_bytes"),
+                "loaded": ev.get("loaded"),
+                "load_attempted": ev.get("load_attempted"),
+                "viv_loads_dll": ev.get("viv_loads_dll"),
+                "s_n": ev.get("s_n"),
+                "evidence_path": ev.get("evidence_path"),
+            },
+            default=str,
+        )
+    )
+    return 0 if result.get("ok") else 1
+
+
+raise SystemExit(main())

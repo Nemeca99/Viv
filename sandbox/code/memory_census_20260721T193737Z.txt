@@ -1,0 +1,20 @@
+# authored_by=viv_cpu at=2026-07-21T19:37:37+00:00 s_n=0.4181 tool=memory_census
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# Viv sandbox tool - memory_census (CPU authored)
+from pathlib import Path
+
+root = Path(r"L:/Continue/Viv/foundation/artifacts/carma")
+counts = {}
+for sub in ("live", "dream", "simulation"):
+    d = root / sub
+    n = 0
+    bytes_ = 0
+    if d.is_dir():
+        for f in d.rglob("*.txt"):
+            n += 1
+            try:
+                bytes_ += f.stat().st_size
+            except OSError:
+                pass
+    counts[sub] = {"files": n, "bytes": bytes_}
+print("MEMORY_CENSUS", counts)

@@ -1,0 +1,27 @@
+{
+  "schema_version": "mouth_training_schedule_v1",
+  "status": "SCHEDULE_READY_AUTH_CLOSED",
+  "campaign_root": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v1",
+  "automatic_retry": false,
+  "deployment_allowed": false,
+  "runs": [
+    {
+      "run_id": "recovery_v3_lr5e5",
+      "learning_rate": 0.00005,
+      "optimizer_steps": 128,
+      "checkpoint_steps": [32, 64, 96, 128],
+      "automatic_retry": false,
+      "authorization_file": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v1/authorizations/recovery_v3_lr5e5.json",
+      "parameter_note": "Predeclared LR comparison candidate; no authorization issued."
+    },
+    {
+      "run_id": "recovery_v3_lr1e4",
+      "learning_rate": 0.0001,
+      "optimizer_steps": 128,
+      "checkpoint_steps": [32, 64, 96, 128],
+      "automatic_retry": false,
+      "authorization_file": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v1/authorizations/recovery_v3_lr1e4.json",
+      "parameter_note": "Predeclared Qwen-style adapter LR candidate; no authorization issued."
+    }
+  ]
+}

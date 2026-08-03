@@ -1,0 +1,79 @@
+# authored_by=architect_rebuild at=2026-07-21T21:54:50+00:00 tool=adapter_dataset
+# law4=source_as_txt run=python_stdin rebuild_tranche=dataset_core
+# REAL callable dataset adapter smoke — catalog + bounded read_sample.
+import json
+import sys
+from pathlib import Path
+
+FOUNDATION = Path(r"L:/Continue/Viv/foundation")
+if str(FOUNDATION) not in sys.path:
+    sys.path.insert(0, str(FOUNDATION))
+
+from lib.aios_adapter_dataset import list_datasets, read_sample, run_smoke, status
+
+st = status()
+sev = st.get("evidence") or {}
+print(
+    "ADAPTER_DATASET status ok=%s count=%s v2=%s built=%s db=%s"
+    % (
+        st.get("ok"),
+        sev.get("dataset_count"),
+        sev.get("v2_dataset_readable"),
+        sev.get("v2_built_readable"),
+        sev.get("v2_global_index_db"),
+    )
+)
+
+listed = list_datasets(refresh=True)
+lev = listed.get("evidence") or {}
+print(
+    "LIST ok=%s count=%s catalog=%s"
+    % (listed.get("ok"), lev.get("count"), lev.get("catalog_path"))
+)
+for d in (lev.get("datasets") or [])[:5]:
+    print("  ds id=%s bytes=%s path=%s" % (d.get("id"), d.get("bytes"), d.get("path")))
+
+target = None
+for d in lev.get("datasets") or []:
+    p = str(d.get("path") or "").replace("\\", "/")
+    if "/artifacts/rid/" in p and p.lower().endswith(".csv"):
+        target = d
+        break
+if target is None and (lev.get("datasets") or []):
+    target = (lev.get("datasets") or [])[0]
+
+if target:
+    samp = read_sample(target.get("id"), n_rows=3)
+    sev2 = samp.get("evidence") or {}
+    sample = sev2.get("sample") or {}
+    print(
+        "SAMPLE ok=%s format=%s n=%s path=%s"
+        % (samp.get("ok"), sample.get("format"), sample.get("n_rows"), sev2.get("path"))
+    )
+else:
+    print("SAMPLE skipped — empty catalog")
+
+smoke = run_smoke()
+sev3 = smoke.get("evidence") or {}
+print(
+    "SMOKE ok=%s count=%s sample_n=%s evidence=%s"
+    % (
+        smoke.get("ok"),
+        sev3.get("dataset_count"),
+        sev3.get("sample_n_rows"),
+        sev3.get("evidence_path"),
+    )
+)
+print(
+    "ADAPTER_DATASET_DONE "
+    + json.dumps(
+        {
+            "ok": bool(smoke.get("ok")),
+            "count": sev3.get("dataset_count"),
+            "sample_path": sev3.get("sample_path"),
+            "evidence_path": sev3.get("evidence_path"),
+        },
+        default=str,
+    )
+)
+raise SystemExit(0 if smoke.get("ok") else 1)

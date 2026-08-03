@@ -1,0 +1,12 @@
+# authored_by=viv_cpu at=2026-07-21T20:49:48+00:00 s_n=0.5000 tool=prt_autonomous_audit_tail
+# law4=source_as_txt execute=python_stdin foundation_immutable=true
+# PRT expand - prt_autonomous_audit_tail
+import json
+from pathlib import Path
+p = Path(r"L:/Continue/Viv/foundation/artifacts/audit/prt_autonomous.log")
+if not p.is_file():
+    print("AUTO_AUDIT missing")
+else:
+    lines = [l for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    last = json.loads(lines[-1]) if lines else {}
+    print(f"AUTO_AUDIT n={len(lines)} last_msg={last.get('message')} speak_rr={last.get('speak_reward_rate')}")

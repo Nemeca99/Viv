@@ -1,0 +1,157 @@
+{
+  "schema_version": "stage1_generation_v1",
+  "mode": "smoke",
+  "stage_id": "evidence_truth",
+  "max_steps": 32,
+  "learning_rate": 5e-05,
+  "precision": "bf16",
+  "batch_size": 1,
+  "gradient_accumulation": 4,
+  "sequence_cap": 384,
+  "objective": {
+    "name": "chosen_response_causal_nll",
+    "formula": "-sum_response_log_probability",
+    "prompt_labels_masked": true,
+    "eos_supervised": true,
+    "rejected_text_role": "corpus_audit_only",
+    "rejected_forward": false,
+    "pairwise_weight": 0.0,
+    "hybrid_objective": false
+  },
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05
+  },
+  "corpus": {
+    "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_identity_v2/stage1_mouth_identity_judged_v1.jsonl",
+    "sha256": "fc65a778da8cee63bde9d3f66d028ae42bcf189c2d5f07c684f601d321683a97",
+    "registry_id": "112191d56574273d",
+    "train": 64,
+    "development": 16
+  },
+  "parity_remeasure": {
+    "path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_identity_v2/stage1_mouth_identity_freeze_manifest_v1.json",
+    "sha256": "834237156b4dc36125d0c3eba0295b8f686be1c18963a9216e914d3b30c9ffd6",
+    "next_action": "proceed_to_stage1_mouth_generation_canary_v1"
+  },
+  "smoke_gate": null,
+  "operator_override": true,
+  "operator_override_reason": "user_said_model_fine_keep_training",
+  "security": {
+    "manifest_hash": "c94d199d5bfa7236dd0af9f979e2bbfce917d56fc00535d45878c3bf91d375df",
+    "decision_rid": {
+      "timestamp": "2026-07-29T05:56:50.776725+00:00",
+      "master_s_n": 0.6847,
+      "status": "ACTIVE",
+      "n_subsystems": 3
+    },
+    "staging_root": "L:/Continue/Viv/sandbox/training_staging/openaster_stage1_gen_smoke_32_20260729T055650Z",
+    "final_root": "L:/Continue/Viv/foundation/models/Training/runs/openaster_stage1_gen_smoke_32_20260729T055650Z"
+  },
+  "resource_preflight": {
+    "ok": true,
+    "at": "2026-07-29T05:56:50+00:00",
+    "blocked_by": [],
+    "note": "ok",
+    "memory": {
+      "ok": true,
+      "memory_used_mib": 1404.0,
+      "memory_total_mib": 8192.0,
+      "utilization_gpu_pct": 35.0
+    },
+    "compute_apps": [
+      {
+        "pid": 2228,
+        "name": "[Insufficient Permissions]",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 10376,
+        "name": "C:\\Windows\\explorer.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 11516,
+        "name": "C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 11492,
+        "name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 14480,
+        "name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 14948,
+        "name": "C:\\Program Files\\RustDesk\\rustdesk.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 15416,
+        "name": "C:\\Program Files\\LGHUB\\system_tray\\lghub_system_tray.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 15408,
+        "name": "C:\\Program Files\\Corsair\\Corsair iCUE5 Software\\iCUE.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 13636,
+        "name": "C:\\Program Files\\Corsair\\Corsair iCUE5 Software\\QmlRenderer.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 9400,
+        "name": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.4078.99\\msedgewebview2.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 4384,
+        "name": "C:\\Windows\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 71460,
+        "name": "[Insufficient Permissions]",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 51652,
+        "name": "C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 150136,
+        "name": "C:\\Users\\nemec\\AppData\\Local\\Programs\\cursor\\Cursor.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 174604,
+        "name": "C:\\Program Files\\RustDesk\\rustdesk.exe",
+        "used_gpu_memory_mib": 0.0
+      },
+      {
+        "pid": 6708,
+        "name": "[Insufficient Permissions]",
+        "used_gpu_memory_mib": 0.0
+      }
+    ],
+    "competing": [
+      {
+        "pid": 17948,
+        "name": "ollama.exe",
+        "needle": "ollama",
+        "cmd": "C:\\Users\\nemec\\AppData\\Local\\Programs\\Ollama\\ollama.exe serve"
+      }
+    ],
+    "max_foreign_mib": 4096.0
+  },
+  "runtime_backend_unchanged": "qwen_gguf",
+  "deployment_changed": false
+}
