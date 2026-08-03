@@ -999,7 +999,7 @@
           "source": "foundation/lib/core_contracts.py",
           "regression": "foundation/scripts/test_core_contracts_v1.py",
           "manual_core_contracts": 33,
-            "counts": {"wired": 23, "partial": 1, "source_only": 9},
+            "counts": {"wired": 24, "partial": 1, "source_only": 8},
           "meaning": "bulk acceptance map and current-surface inventory; not completion claim",
           "training_authorized": false,
           "live_model_changed": false
@@ -1108,8 +1108,25 @@
             "state": "VERIFIED_FRACTAL_SURFACE_RECONCILED",
             "source": "foundation/lib/core_contracts.py",
             "regression": "foundation/scripts/test_core_contracts_v1.py",
-            "counts": {"wired": 23, "partial": 1, "source_only": 9},
-            "foundation_preflight": "PASS_1240_PARSED_21_SUITES_RUST_OK"
+            "counts": {"wired": 24, "partial": 1, "source_only": 8},
+            "foundation_preflight": "PASS_1245_PARSED_21_SUITES_RUST_OK"
+          },
+          "privacy_cpu_policy": {
+            "state": "VERIFIED_FAIL_CLOSED_CONSENT_POLICY",
+            "source": "foundation/lib/cpu_privacy_policy.py",
+            "adapter": "foundation/lib/aios_adapter_privacy.py",
+            "regression": "foundation/scripts/test_cpu_privacy_policy_v1.py",
+            "manual_source": "F:/AIOS_Clean/privacy_core",
+            "default_mode": "semi-auto",
+            "conversation_learning": true,
+            "broader_learning_requires": ["full_auto_enabled", "user_acknowledged"],
+            "dispatcher_adapter_count": 19,
+            "source_planes_read_only": true,
+            "writes_performed": false,
+            "llm_authority": false,
+            "foundation_preflight": "PASS_1245_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
           },
           "training_authorized": false,
           "live_model_changed": false

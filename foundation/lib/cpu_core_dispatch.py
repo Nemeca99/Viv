@@ -24,6 +24,7 @@ ADAPTERS: dict[str, str] = {
     "luna_core": "lib.aios_adapter_luna",
     "mirror_core": "lib.aios_adapter_mirror",
     "nox_forge_core": "lib.aios_adapter_nox",
+    "privacy_core": "lib.aios_adapter_privacy",
     "rid_core": "lib.aios_adapter_rid",
     "security_core": "lib.aios_adapter_support",
     "steel_brain_core": "lib.aios_adapter_steel",
@@ -82,4 +83,3 @@ def probe_many(core_ids: list[str], *, operation: str = "status") -> dict[str, A
 
 def available_cores() -> list[str]:
     return sorted(ADAPTERS)
-

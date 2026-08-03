@@ -42,7 +42,7 @@ CORE_CONTRACTS: tuple[CoreContract, ...] = (
     CoreContract("game_core", "simulation and interaction", ("simulation", "determinism", "sandbox"), ("F:/AIOS_Clean/game_core", "D:/LocalAi/AIOS_V1/game_core"), (), 90),
     CoreContract("marketplace_core", "plugin discovery and policy", ("manifest", "trust", "install_gate"), ("F:/AIOS_Clean/marketplace_core", "D:/LocalAi/AIOS_V1/marketplace_core"), (), 95),
     CoreContract("music_core", "music peripheral", ("routing", "sandbox", "output_gate"), ("F:/AIOS_Clean/music_core", "D:/LocalAi/AIOS_V1/music_core"), (), 95),
-    CoreContract("privacy_core", "privacy controls", ("redaction", "consent", "audit"), ("F:/AIOS_Clean/privacy_core", "D:/LocalAi/AIOS_V1/privacy_core"), (), 45),
+    CoreContract("privacy_core", "privacy controls", ("redaction", "consent", "audit"), ("F:/AIOS_Clean/privacy_core", "D:/LocalAi/AIOS_V1/privacy_core"), ("foundation/lib/cpu_privacy_policy.py", "foundation/lib/aios_adapter_privacy.py"), 45),
     CoreContract("template_core", "extension templates", ("schema", "validation", "isolation"), ("F:/AIOS_Clean/template_core", "D:/LocalAi/AIOS_V1/template_core"), (), 80),
     CoreContract("main_core", "kernel routing", ("boot", "queue", "health", "shutdown"), ("F:/AIOS_Clean/main_core", "D:/LocalAi/AIOS_V1/main_core"), ("foundation/aios_main.py", "foundation/auto_main.py"), 12),
     CoreContract("infra_core", "deployment and monitoring", ("health", "lkg", "rollback"), ("F:/AIOS_Clean/infra_core", "D:/LocalAi/AIOS_V1/infra_core"), (), 55),

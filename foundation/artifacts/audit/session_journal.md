@@ -3158,3 +3158,13 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Updated `foundation/lib/core_contracts.py` so `fractal_core` records its verified Viv surfaces (`cpu_fractal_reasoner.py` and the CPU reasoning pipeline) instead of remaining falsely labeled source-only.
 - Contract regression now reports `23 wired`, `1 partial`, and `9 source-only` out of `33`; this changes inventory truth only and does not claim the full fractal core is complete.
 - Focused contract and Triad architecture checks passed. Full foundation preflight passed with `1,240` Python files parsed, all configured suites green, `922` architecture files at `100%` coverage, no direct bridge violations or registry drift, and Rust security passed.
+
+## 2026-08-04 — fail-closed CPU privacy and consent boundary
+
+- Compared the F/D `privacy_core` implementations. The source defines semi-auto as the default, conversation-only learning, and full-auto as an explicit-consent opt-in; it also requires that the user can disable the mode.
+- Backed up `foundation/lib/cpu_core_dispatch.py` and `foundation/lib/core_contracts.py` at `foundation/artifacts/auto/agentic/backups/pre_privacy_cpu_surface_20260804T000000Z/` before editing.
+- Added `foundation/lib/cpu_privacy_policy.py` with pure deterministic evaluation and learning authorization. Invalid or incomplete settings fall back to semi-auto; behavior/passive/predictive learning remains denied without both explicit consent flags.
+- Added `foundation/lib/aios_adapter_privacy.py` as a read-only adapter and added it to the CPU dispatcher. The adapter reports source presence only and never writes the F/D planes or creates a runtime config.
+- Added `foundation/scripts/test_cpu_privacy_policy_v1.py`. Focused privacy, dispatcher, and contract tests passed; the inventory now reports `24 wired`, `1 partial`, and `8 source-only` cores.
+- Full foundation preflight passed: `1,245` Python files parsed, all configured suites returned zero, Triad architecture `925` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No training, model load, lease, promotion, deployment, live-model change, or source-corpus mutation occurred.
