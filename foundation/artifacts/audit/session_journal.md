@@ -3118,6 +3118,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Live beat task `t-050327dfd3` completed `cpu_reasoning_probe` with result `VERIFIED`, `writes_performed=false`, `llm_authority=false`; mode remained nominal and Master `S_n` ended at `0.5852`.
 - This is the first explicit CPU evidence-to-renderer decision path. The later standard LLM/API can be connected only at the final rendering boundary; no training, model load, promotion, deployment, or live-model change occurred.
 - Live follow-up task `t-c3d0c8440e` queried `Anarchism` through the local F Wikipedia path and completed `cpu_reasoning_probe` as `VERIFIED` with no writes and no LLM authority; the beat remained nominal and Master `S_n` ended at `0.7374`. The separate autonomous agent action attempted a memory remember at low/denied ingress and correctly recorded the denial without mutation.
+
+## 2026-08-03 — CPU claim and privacy render gate
+
+- Backed up `foundation/lib/cpu_reasoning_pipeline.py` before editing at `foundation/artifacts/auto/agentic/backups/pre_cpu_claim_policy_20260803T174722Z/`.
+- Added `foundation/lib/cpu_claim_policy.py` and its regression. A packet must be `VERIFIED`, conflict-free, and carry source hash/root/kind; internal paths are removed from the renderer copy and telemetry markers are rejected.
+- Integrated the policy after retrieval and Steel Judge evaluation in the CPU reasoning pipeline. The renderer now receives only the sanitized typed packet, with `telemetry_allowed=false` and `llm_authority=false`.
+- Focused claim-policy and full CPU-pipeline tests passed. Full foundation preflight is the next verification gate for this group.
+- Canonical foundation preflight passed after the claim policy: `1,233` Python files parsed, all configured suites returned zero, Triad architecture `918` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - Canonical foundation preflight after the reasoning pipeline passed: `1,230` Python files parsed, all configured suites returned zero, Triad architecture `916` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 
 ## 2026-08-03 — CPU reasoning connected to the existing Wikipedia corpus

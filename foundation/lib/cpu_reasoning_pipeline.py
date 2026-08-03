@@ -16,6 +16,7 @@ from typing import Any
 from lib.aios_adapter_input import normalize
 from lib.aios_adapter_knowledge import query_manual_packet, query_packet
 from lib.aios_adapter_steel import judge
+from lib.cpu_claim_policy import verify_packet
 from lib.knowledge_external_adapters import query_legacy_wikipedia
 from lib.knowledge_source_contract import packet_from_retrieval
 from lib.luna_core import assess_rendered_response, build_response_plan
@@ -92,11 +93,14 @@ def reason(
     containment = assess_rendered_response(fact_text, grounded=True)
     if not containment.get("ok"):
         return {"ok": True, "state": "ABSTAIN", "reason": "containment_rejected_context", "ingress": ingress, "plan": plan, "retrieval": retrieval, "judge": judged, "containment": containment, "renderer_packet": None, "llm_authority": False, "at": _utc()}
+    policy = verify_packet(retrieval.get("packet") or {})
+    if not policy.get("ok"):
+        return {"ok": True, "state": "ABSTAIN", "reason": "claim_policy_rejected_context", "ingress": ingress, "plan": plan, "retrieval": retrieval, "judge": judged, "containment": containment, "policy": policy, "renderer_packet": None, "llm_authority": False, "at": _utc()}
     renderer_packet = {
         "instruction": "Render only the supplied verified facts. Do not add unsupported claims or internal telemetry.",
         "question": text,
         "facts": fact_text,
-        "source_packet": retrieval.get("packet"),
+        "source_packet": policy.get("packet"),
         "response_plan": plan,
         "cpu_judge": {"passed": verdict.get("passed"), "structural_rsr": verdict.get("structural_rsr"), "token_overlap": verdict.get("token_overlap")},
         "telemetry_allowed": False,
@@ -110,6 +114,7 @@ def reason(
         "retrieval": retrieval,
         "judge": judged,
         "containment": containment,
+        "policy": policy,
         "renderer_packet": renderer_packet,
         "llm_authority": False,
         "writes_performed": False,

@@ -1065,6 +1065,16 @@
           },
           "gpu_or_api_role": "deferred_surface_renderer",
           "foundation_preflight": "PASS_1230_PARSED_21_SUITES_RUST_OK",
+          "claim_policy": {
+            "state": "VERIFIED_CPU_PROVENANCE_PRIVACY_RENDER_GATE",
+            "source": "foundation/lib/cpu_claim_policy.py",
+            "regression": "foundation/scripts/test_cpu_claim_policy_v1.py",
+            "checks": ["source_hash_root_kind", "conflict_rejection", "telemetry_rejection", "internal_path_redaction"],
+            "llm_authority": false,
+            "training_authorized": false,
+            "live_model_changed": false
+          },
+          "claim_policy_preflight": "PASS_1233_PARSED_21_SUITES_RUST_OK",
           "training_authorized": false,
           "live_model_changed": false
         }
