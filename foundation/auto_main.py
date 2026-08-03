@@ -35,7 +35,7 @@ VERSION = "1.2.0"
 
 HEARTBEAT_SCRIPT = AUTOMATION_ROOT / "master_ai_heartbeat_service.py"
 HEALTH_SCRIPT = AUTOMATION_ROOT / "automation_health.py"
-QUORUM_SCRIPT = AUTOMATION_ROOT / "aios_quorum_selftest.py"
+QUORUM_SCRIPT = _ROOT / "scripts" / "aios_quorum_selftest.py"
 RID_SELFTEST = AUTOMATION_ROOT / "3_body" / "rid_selftest.py"
 
 

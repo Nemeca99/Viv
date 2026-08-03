@@ -57,10 +57,16 @@ def quorum_run() -> dict[str, Any]:
     policy_file = Path(str(policy_path))
     if not policy_file.is_file():
         return {"allow": False, "skipped": False, "reason": f"missing_policy:{policy_file}"}
-    aut = str(AUTOMATION_ROOT)
-    if aut not in sys.path:
-        sys.path.insert(0, aut)
-    from aios_quorum_gate import evaluate_quorum, load_policy
+    # The quorum gate belongs to the local CPU core.  Keep the relocated
+    # automation tree as a compatibility fallback, but do not depend on it
+    # being present for the Alpha runtime.
+    try:
+        from lib.aios_quorum_gate import evaluate_quorum, load_policy
+    except ModuleNotFoundError:
+        aut = str(AUTOMATION_ROOT)
+        if aut not in sys.path:
+            sys.path.insert(0, aut)
+        from aios_quorum_gate import evaluate_quorum, load_policy
 
     result = evaluate_quorum("run", load_policy(policy_file))
     return {

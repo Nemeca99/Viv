@@ -2985,3 +2985,10 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Corrected `model_main check` to read the current Ollama/GGUF voice configuration (`voice.gguf_path`) while preserving the GPU lane as optional. The check exits `0`; no voice weights or model state were changed.
 - Knowledge semantic backend, retrieval ranker, source contract, mouth grounding/verification, and UML equivalence/structural tests passed. Source alignment remains explicitly provisional/inconclusive where evidence is not corroborated; no claim is promoted from that state.
 - Next: continue building and testing the CPU authority/retrieval/UML boundary. Do not create another GPU adapter until the AIOS CPU path is stable and a later campaign is justified by a full behavioral comparison.
+
+## 2026-08-03 — relocated automation and CPU quorum repair
+
+- The moved automation tree caused `auto_main check` to fail on missing `rid_event_schema.py`; `paths.py` now prefers the original `L:/Continue/automation` when present and falls back to the verified `D:/LocalAi/5126/automation` relocation. Pulse then passed and the live RID event/supervisor path resolved from D:.
+- The moved tree also lacked `aios_quorum_gate.py` and its self-test. Added a local deterministic CPU quorum gate and self-test under `foundation/lib/` and `foundation/scripts/`. The gate reads only the JSON policy's trigger files and fails closed on missing, stale, malformed, or mismatched providers.
+- `auto_main check` now reaches all eight checks: foundation, pulse, gate, narrator, guardian, health, quorum self-test, and RID self-test. Quorum self-test and RID self-test pass. A live check returned exit `30` because the runtime gate denied the current action state; this is an expected fail-closed runtime result, not a missing-module or code-crash result.
+- The CPU authority repair is bounded to path resolution and quorum plumbing. No GPU training, adapter promotion, deployment, or live voice mutation occurred.

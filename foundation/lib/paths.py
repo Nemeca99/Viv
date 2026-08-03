@@ -6,7 +6,17 @@ from pathlib import Path
 FOUNDATION_ROOT = Path(__file__).resolve().parents[1]
 VIV_ROOT = FOUNDATION_ROOT.parent
 CONTINUE_ROOT = VIV_ROOT.parent
-AUTOMATION_ROOT = CONTINUE_ROOT / "automation"
+# The active automation tree may be staged on D: while L: remains the system
+# plane. Prefer the canonical L: location, then the verified local-ai
+# relocation used by this workstation; never silently invent a third root.
+_AUTOMATION_CANDIDATES = (
+    CONTINUE_ROOT / "automation",
+    Path(r"D:\LocalAi\5126\automation"),
+)
+AUTOMATION_ROOT = next(
+    (candidate for candidate in _AUTOMATION_CANDIDATES if candidate.is_dir()),
+    _AUTOMATION_CANDIDATES[0],
+)
 FSAA_ROOT = CONTINUE_ROOT / "FSAA"
 FSAA_SCRIPTS = FSAA_ROOT / "scripts"
 

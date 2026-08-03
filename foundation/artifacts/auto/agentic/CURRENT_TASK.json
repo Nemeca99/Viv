@@ -826,6 +826,14 @@
     "cpu_core_status": "PASS",
     "cpu_core_components": ["rid_main", "uml_main", "auto_main", "guardian_v2"],
     "optional_legacy_status": "DEFERRED_MISSING_FSAA_COMPATIBILITY_TREE",
+    "cpu_runtime_boundary": {
+      "automation_check": "REACHED_ALL_STEPS_FAIL_CLOSED_GATE_DENY",
+      "pulse": "PASS",
+      "quorum_selftest": "PASS",
+      "rid_selftest": "PASS",
+      "gate_denial_is_runtime_state": true,
+      "module_errors": false
+    },
     "next_action": "build_and_test_cpu_neurosymbolic_authority_before_next_gpu_campaign"
   },
   "updated_utc": "2026-08-03T21:54:35Z"
