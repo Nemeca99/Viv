@@ -16,6 +16,8 @@ from typing import Any
 from lib.aios_adapter_input import normalize
 from lib.aios_adapter_knowledge import query_manual_packet, query_packet
 from lib.aios_adapter_steel import judge
+from lib.knowledge_external_adapters import query_legacy_wikipedia
+from lib.knowledge_source_contract import packet_from_retrieval
 from lib.luna_core import assess_rendered_response, build_response_plan
 
 
@@ -32,6 +34,7 @@ def reason(
     *,
     s_n: float | None = None,
     manual_only: bool = False,
+    local_wikipedia: bool = True,
     top_k: int = 5,
 ) -> dict[str, Any]:
     """Produce a CPU-owned reasoning packet; no durable writes are performed."""
@@ -42,6 +45,26 @@ def reason(
     text = str(iev.get("plain_text") or "").strip()
     plan = build_response_plan(text, grounded=False)
     retrieval = query_manual_packet(text, k=top_k) if manual_only else query_packet(text, k=top_k)
+    if not manual_only and local_wikipedia and not (retrieval.get("hits") or []):
+        local = query_legacy_wikipedia(text, limit=top_k, max_chars=12000, resolve_redirects=False)
+        local_facts = local.get("facts") or []
+        local_hits = [
+            {
+                "source": "wikipedia_local",
+                "doc": (fact.get("source") or {}).get("path"),
+                "score": 1,
+                "text": fact.get("value"),
+                "claim": fact.get("claim"),
+                "source_ref": fact.get("source"),
+            }
+            for fact in local_facts
+        ]
+        retrieval = {
+            **local,
+            "hits": local_hits,
+            "packet": packet_from_retrieval(text, local_hits),
+            "mode": "wikipedia_local_read_only",
+        }
     hits = retrieval.get("hits") or []
     packet_state = str((retrieval.get("packet") or {}).get("state") or retrieval.get("state") or "")
     grounded = bool(hits) and packet_state in {"VERIFIED", "PARTIAL"}

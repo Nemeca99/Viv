@@ -3118,3 +3118,10 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Live beat task `t-050327dfd3` completed `cpu_reasoning_probe` with result `VERIFIED`, `writes_performed=false`, `llm_authority=false`; mode remained nominal and Master `S_n` ended at `0.5852`.
 - This is the first explicit CPU evidence-to-renderer decision path. The later standard LLM/API can be connected only at the final rendering boundary; no training, model load, promotion, deployment, or live-model change occurred.
 - Canonical foundation preflight after the reasoning pipeline passed: `1,230` Python files parsed, all configured suites returned zero, Triad architecture `916` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+
+## 2026-08-03 — CPU reasoning connected to the existing Wikipedia corpus
+
+- Read-only source inspection confirmed `F:/AI_Datasets/wikipedia_deduplicated` contains `1,288` batch directories of uniquely named article files. The recovered D-drive structural index is available at `D:/LocalAi/5126/FSAA/Luna/AIOS_V2/dataset_core/global_index.db`; the small F `smart_lazy_rag/articles.db` is an empty schema and was not treated as authoritative.
+- Reused the existing `foundation/lib/knowledge_external_adapters.py` resolver and derived title sidecar rather than creating a competing corpus index. Query `Anarchism` returned a verified local article fact from `F_AI_DATASETS` with source hash and F-path containment.
+- Extended `foundation/lib/cpu_reasoning_pipeline.py` with bounded local-Wikipedia fallback when the active Viv knowledge index has no hits. The result is wrapped into the existing typed source packet and remains read-only; no embedding, CARMA admission, or training authority is granted.
+- Extended the pipeline regression to cover the local corpus path. Verified/manual retrieval, local Wikipedia retrieval, abstention, and denial all pass. No source tree or source index was modified.

@@ -25,6 +25,11 @@ def main() -> int:
     abstain = reason("Tell me an unsupported fact about a nonexistent device", manual_only=True, s_n=0.6)
     assert abstain["ok"] is True and abstain["state"] == "ABSTAIN", compact(abstain)
 
+    local = reason("Anarchism", local_wikipedia=True, manual_only=False, s_n=0.6, top_k=1)
+    assert local["ok"] is True and local["state"] == "VERIFIED", compact(local)
+    assert local["retrieval"]["mode"] == "wikipedia_local_read_only"
+    assert local["renderer_packet"]["source_packet"]["three_way"]["present_sources"] == ["F_AI_DATASETS"]
+
     denied = reason("", s_n=0.6)
     assert denied["ok"] is False and denied["state"] == "DENIED"
     task = Task(task_id="test-cpu-reason", title="reason", kind="cpu_reasoning_probe", payload={"value": "What does the Alpha manual say about CPU mind?", "manual_only": True, "top_k": 2})

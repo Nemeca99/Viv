@@ -393,6 +393,7 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
                 value,
                 s_n=s_n,
                 manual_only=bool(payload.get("manual_only", False)),
+                local_wikipedia=bool(payload.get("local_wikipedia", True)),
                 top_k=int(payload.get("top_k") or 5),
             )
             if result.get("state") == "DENIED":

@@ -1031,6 +1031,21 @@
           "runtime_integration": "foundation/lib/agentic_runtime.py",
           "regression": "foundation/scripts/test_cpu_reasoning_pipeline_v1.py",
           "stages": ["ingress_normalization", "luna_response_plan", "verified_retrieval", "steel_judge", "containment", "renderer_packet"],
+          "knowledge_sources": [
+            "foundation/lib/aios_adapter_knowledge.py",
+            "foundation/lib/knowledge_external_adapters.py",
+            "F:/AI_Datasets/wikipedia_deduplicated",
+            "D:/LocalAi/5126/FSAA/Luna/AIOS_V2/dataset_core/global_index.db"
+          ],
+          "local_wikipedia": {
+            "state": "VERIFIED_READ_ONLY_BOUNDED_ARTICLE_LOOKUP",
+            "query": "Anarchism",
+            "source_root": "F_AI_DATASETS",
+            "batch_directories_observed": 1288,
+            "derived_title_sidecar": "foundation/artifacts/auto/knowledge/wikipedia_title_index_v1_checkpoint_20260803T023000Z.sqlite",
+            "source_mutated": false,
+            "training_authorized": false
+          },
           "states_verified": ["VERIFIED", "ABSTAIN", "DENIED"],
           "live_task": {
             "task_id": "t-050327dfd3",
