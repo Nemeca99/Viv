@@ -1054,6 +1054,15 @@
             "llm_authority": false,
             "master_s_n_after": 0.5852
           },
+          "live_local_wikipedia_task": {
+            "task_id": "t-c3d0c8440e",
+            "query": "Anarchism",
+            "state": "VERIFIED",
+            "source_root": "F_AI_DATASETS",
+            "writes_performed": false,
+            "llm_authority": false,
+            "master_s_n_after": 0.7374
+          },
           "gpu_or_api_role": "deferred_surface_renderer",
           "foundation_preflight": "PASS_1230_PARSED_21_SUITES_RUST_OK",
           "training_authorized": false,
