@@ -20,7 +20,7 @@ def state_hash(state: Mapping[str, Any]) -> str:
     return _hash(dict(state))
 
 
-def build_contract(*, task_id: str, action: str, state: Mapping[str, Any]) -> dict[str, Any]:
+def build_contract(*, task_id: str, action: str, state: Mapping[str, Any], allowed_effects: tuple[str, ...] = (), side_effects_allowed: bool = False) -> dict[str, Any]:
     selected = str(action).strip().casefold()
     return {
         "version": CONTRACT_VERSION,
@@ -28,8 +28,8 @@ def build_contract(*, task_id: str, action: str, state: Mapping[str, Any]) -> di
         "action": selected,
         "state_hash": state_hash(state),
         "preconditions": {"state_snapshot_required": True, "s_n_fresh_required": True},
-        "allowed_effects": [],
-        "side_effects_allowed": False,
+        "allowed_effects": list(allowed_effects),
+        "side_effects_allowed": bool(side_effects_allowed),
         "execution_authority": "not_granted",
     }
 

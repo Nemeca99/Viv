@@ -435,6 +435,19 @@ def _execute(task: Task, s_n: float) -> tuple[bool, str]:
         except Exception as exc:  # noqa: BLE001
             return False, f"cpu_choice_live_probe_error:{exc}"
 
+    if kind == "cpu_action_execute":
+        try:
+            from lib.cpu_action_executor import execute_contract
+            from lib.cpu_state_snapshot import capture_live
+
+            contract = payload.get("contract")
+            if not isinstance(contract, dict):
+                return False, "missing_action_contract"
+            result = execute_contract(contract, capture_live())
+            return result.get("ok") is True, json.dumps(result, sort_keys=True, default=str)
+        except Exception as exc:  # noqa: BLE001
+            return False, f"cpu_action_execute_error:{exc}"
+
     if kind == "cpu_rid_observe":
         # CPU-first teach tick — plant grades hold prediction; no GPU.
         try:

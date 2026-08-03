@@ -1211,6 +1211,20 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "game_cpu_action_executor": {
+            "state": "VERIFIED_FAIL_CLOSED_EXECUTION_GATE",
+            "source": "foundation/lib/cpu_action_executor.py",
+            "runtime_task": "cpu_action_execute",
+            "regression": "foundation/scripts/test_cpu_action_executor_v1.py",
+            "idle": "EXECUTED_NOOP",
+            "action": "DENIED_EFFECT_BINDING_CLOSED",
+            "restore": "DENIED_EFFECT_BINDING_CLOSED",
+            "state_drift": "DENIED",
+            "live_side_effects": false,
+            "foundation_preflight": "PASS_1260_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }

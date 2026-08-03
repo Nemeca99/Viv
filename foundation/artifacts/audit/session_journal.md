@@ -3160,6 +3160,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,255` Python files parsed, all configured suites returned zero, Triad architecture `929` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
 
+## 2026-08-04 — fail-closed CPU action executor
+
+- Added `foundation/lib/cpu_action_executor.py` and the autonomous `cpu_action_execute` task. It re-verifies the contract against the current live snapshot before any execution path.
+- `idle` is bound only as `EXECUTED_NOOP`; `action` and `restore` are denied while their effect-specific bindings remain closed. State drift is denied before execution.
+- Regression passed no-op execution, closed-effect denial, state-drift denial, and runtime task execution. No real action was performed.
+- Full foundation preflight passed: `1,260` Python files parsed, all configured suites returned zero, Triad architecture `932` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
+
 ## 2026-08-04 — CPU action contract and verification receipt gate
 
 - Added `foundation/lib/cpu_action_contract.py` with `cpu_action_contract_v1`: every ranked action is bound to a canonical state hash, requires fresh state preconditions, and grants no execution authority or side effects.
