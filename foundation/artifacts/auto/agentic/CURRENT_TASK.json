@@ -811,5 +811,22 @@
     "promotion_authorized": false,
     "deployment_authorized": false
   },
-  "updated_utc": "2026-08-03T22:35:00Z"
+  "training_pause_cpu_first": {
+    "state": "ACTIVE",
+    "decision": "pause_gpu_training_until_cpu_aios_boundary_is_stable",
+    "reason": "The bounded repair canary completed 8/8 optimizer steps, but adapter quality is not yet established; CPU authority is the primary AI and the GPU remains an optional rendering lane.",
+    "campaign_id": "mouth_training_repair_canary_v2",
+    "run_id": "mouth_training_repair_canary_v2_trl_20260803T215052Z",
+    "receipt": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_repair_canary_v2/EXECUTION_SUCCESS_REPORT_TRL.json",
+    "gpu_steps": 8,
+    "commit_allowed": true,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "live_model_changed": false,
+    "cpu_core_status": "PASS",
+    "cpu_core_components": ["rid_main", "uml_main", "auto_main", "guardian_v2"],
+    "optional_legacy_status": "DEFERRED_MISSING_FSAA_COMPATIBILITY_TREE",
+    "next_action": "build_and_test_cpu_neurosymbolic_authority_before_next_gpu_campaign"
+  },
+  "updated_utc": "2026-08-03T21:54:35Z"
 }

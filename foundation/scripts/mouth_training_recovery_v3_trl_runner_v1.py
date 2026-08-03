@@ -91,6 +91,10 @@ def assert_safe_staging_tree(root: Path) -> None:
 def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, Any]:
     root = Path(root)
     manifest, train_path, rows = load_rows(root)
+    optimizer_steps = int(manifest.get("optimizer_steps") or OPTIMIZER_STEPS)
+    checkpoint_steps = tuple(int(step) for step in (manifest.get("checkpoint_steps") or CHECKPOINT_STEPS))
+    if optimizer_steps <= 0 or not checkpoint_steps or checkpoint_steps[-1] != optimizer_steps:
+        raise ValueError(f"optimizer_schedule_invalid:{optimizer_steps}:{checkpoint_steps}")
     campaign_id = str(manifest.get("campaign_id") or root.name)
     if manifest.get("training_authorized") is not True or manifest.get("run_authorized") is not True:
         raise PermissionError("named_campaign_authorization_required")
@@ -144,7 +148,7 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
         class AdapterCheckpointCallback(TrainerCallback):
             def on_step_end(self, args: Any, state: Any, control: Any, model: Any = None, **kwargs: Any) -> Any:
                 step = int(state.global_step)
-                if model is not None and step in CHECKPOINT_STEPS:
+                if model is not None and step in checkpoint_steps:
                     # The Rust lease commits by atomically renaming staging_root
                     # to final_root.  Writing final_root before commit causes a
                     # run-collision denial and would violate the lease boundary.
@@ -155,7 +159,7 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
             model=model,
             args=SFTConfig(
                 output_dir=str(trainer_root),
-                max_steps=OPTIMIZER_STEPS,
+                max_steps=optimizer_steps,
                 per_device_train_batch_size=1,
                 gradient_accumulation_steps=GRADIENT_ACCUMULATION,
                 learning_rate=LEARNING_RATE,
@@ -184,12 +188,12 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
             "train_rows": len(rows),
             "train_sha256": sha256(train_path),
             "adapter_staging": str(staging_adapter).replace("\\", "/"),
-            "checkpoint_steps": {str(step): (staging_root / f"adapter_step_{step}").is_dir() for step in CHECKPOINT_STEPS},
+            "checkpoint_steps": {str(step): (staging_root / f"adapter_step_{step}").is_dir() for step in checkpoint_steps},
             "completion_only_loss": True,
             "automatic_chat_template_conversion": False,
         }
-        if int(trainer.state.global_step) != OPTIMIZER_STEPS:
-            raise RuntimeError(f"optimizer_steps:{trainer.state.global_step}:{OPTIMIZER_STEPS}")
+        if int(trainer.state.global_step) != optimizer_steps:
+            raise RuntimeError(f"optimizer_steps:{trainer.state.global_step}:{optimizer_steps}")
         assert_safe_staging_tree(staging_root)
         commit = lease.commit()
         if not commit.get("allowed"):
@@ -198,12 +202,12 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
         if output_root is not None:
             target_root = Path(output_root)
             target_root.mkdir(parents=True, exist_ok=True)
-            for step in CHECKPOINT_STEPS:
+            for step in checkpoint_steps:
                 source = Path(lease.final_root) / f"adapter_step_{step}"
                 target = target_root / f"adapter_step_{step}"
                 if source.is_dir() and not target.exists():
                     shutil.copytree(source, target)
-        result.update({"ok": True, "gpu_steps": OPTIMIZER_STEPS, "training": trained, "security_commit": commit, "validation": validation})
+        result.update({"ok": True, "gpu_steps": optimizer_steps, "training": trained, "security_commit": commit, "validation": validation})
         success_path = root / "EXECUTION_SUCCESS_REPORT_TRL.json"
         if success_path.exists():
             raise FileExistsError(f"refuse_overwrite:{success_path}")
@@ -215,7 +219,7 @@ def run_experiment(*, root: Path, output_root: Path | None = None) -> dict[str, 
             "status": "EXECUTION_COMMITTED_NO_PROMOTION",
             "authority": {"training_authorized": True, "run_authorized": True, "promotion_authorized": False, "deployment_authorized": False},
             "engine": "trl_peft",
-            "gpu_steps": OPTIMIZER_STEPS,
+            "gpu_steps": optimizer_steps,
             "lease_opened": True,
             "adapter_final": str((Path(lease.final_root) / "adapter")).replace("\\", "/"),
             "training": trained,

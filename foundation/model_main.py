@@ -75,7 +75,11 @@ def cmd_check(args: argparse.Namespace) -> int:
     else:
         print("[SKIP] vllm not installed (OK if running silent)")
         voice_hint()
-    local = Path(cfg["voice"]["awq_model"])
+    # The current local voice contract uses Ollama/GGUF.  Older configs used
+    # ``awq_model``; keep the voice lane optional without making a stale key
+    # crash the required CPU reasoning check.
+    voice_cfg = cfg.get("voice") or {}
+    local = Path(voice_cfg.get("gguf_path") or voice_cfg.get("awq_model") or "")
     if local.is_dir() or local.is_file():
         print(f"[PASS] voice weights: {local}")
     else:
