@@ -2806,6 +2806,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - The matched capability baseline is 8/8 verified for both canonical UML calculations and local source-faithful Wikipedia retrieval. On this host, canonical UML averaged approximately 0.256 ms per calculation and local retrieval approximately 2.206 ms per factual lookup. These are different authoritative problem families, so this supports an optional UML fast path, not a universal UML detour. Receipt: `uml_source_efficiency_benchmark_v1_20260803T085526Z.json`, SHA-256 `72d02a88cd3afdf0038fb5dea008a98264ac8114f2d10726a1ff31489df7dee2`.
 - The two new benchmark boundaries were reviewed and frozen with two additions, zero removals, and zero changed signatures. Full preflight passed with 1,167 parsed Python files, 880 architecture files, 100% coverage, 529 boundary modules, zero errors, and Rust/security pass. No training, lease, promotion, deployment, persistent index, CARMA admission, or live-model mutation occurred.
 
+## 2026-08-03 — named V3 campaign read-only audit
+
+- Fresh validation of `mouth_training_recovery_v3_campaign_v3` returned `VALIDATION_PASS_AUTH_CLOSED` with no findings. The package contains 256 admitted train rows and its four evaluation packs remain hash-bound; `gpu_steps=0`, `lease_opened=false`, `training_authorized=false`, `run_authorized=false`, and `next_action=preflight_only_then_separate_execution_authorization`.
+- This confirms the simulated mouth pass has not silently opened the real campaign. No model load, lease, GPU step, promotion, deployment, parent mutation, or live-model mutation occurred. The exact campaign is technically ready for a separate named authorization decision, not automatically authorized.
+
 ## 2026-08-03 — mode-locked mouth rendering repair
 
 - Backed up the runner before the prompt repair at `foundation/artifacts/auto/agentic/backups/pre_voice_mode_locked_render_prompt_20260803T040245Z/` and before the idle sentence repair at `pre_voice_idle_render_sentence_repair_20260803T040402Z/`.
