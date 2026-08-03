@@ -2782,3 +2782,10 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Backed up/froze the verifier boundary at `pre_cpu_verifier_boundary_registry_freeze_20260803T083000Z` after expected registry drift.
 - Full preflight passed: 1,130 parsed Python files, 873 architecture files, 100% coverage, 523 boundaries, zero errors, Rust/security pass.
 - Verified simulation comparison and simulator regression remained green; no live authority or training mutation.
+## 2026-08-03 — verifier paraphrase calibration and boundary refresh
+
+- Added hold-only disjoint paraphrase calibration `calibrate_decision_verifier_paraphrases_v1.py` across 120 hidden-oracle scenarios and 240 cases: positive paraphrases and semantic negatives for idle, action, and restore.
+- The first receipt held at 219/240 because truthful restore wording using `responded` was rejected. After that repair, the second held at 228/240 because truthful restore wording using `merged` was rejected. These were verifier false negatives, not model or corpus failures; the contract was repaired minimally.
+- Final receipt `decision_verifier_paraphrases_v3_20260803.json`, SHA-256 `f3e5751e2254956420faae911a21d91ab4a80ca6c6701568cddc732cf90ef620`, passed 240/240 while retaining all targeted negative rejections. Fixed calibration remained 5/5; grounded verified simulation remained 300/300; self-awarding policy remained 0/300.
+- Refreshed the boundary registry after the new script and verifier changes. Backup: `foundation/artifacts/auto/agentic/backups/pre_verifier_paraphrase_boundary_freeze_20260803T082154Z/`. Full preflight passed with 1,137 parsed Python files, 875 architecture files, 100% coverage, 525 boundary modules, zero errors, and Rust/security pass.
+- This remains simulation/evaluator evidence only. No live S_n read, lease, training authorization, GPU step, promotion, deployment, or live-model mutation occurred. Next: integrate a replaceable model policy against the hidden-oracle public packet and measure verified-choice and answer-verification rates on disjoint episodes.

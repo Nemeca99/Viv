@@ -1,0 +1,60 @@
+{
+  "episodes": 300,
+  "live_mutation": false,
+  "live_s_n_read": false,
+  "malformed_choice": {
+    "error": "unknown_choice:not-a-choice",
+    "rejected": true
+  },
+  "run_authorized": false,
+  "runs": {
+    "always_idle": {
+      "cycles": 299,
+      "episodes": 300,
+      "penalized_cycles": 299,
+      "sn_final": 0.0,
+      "sn_start": 0.5,
+      "verified_choice": 0,
+      "verified_progress": 0,
+      "verified_recovery": 0,
+      "wrong_choice": 200
+    },
+    "random_guess": {
+      "cycles": 129,
+      "episodes": 300,
+      "penalized_cycles": 297,
+      "sn_final": 0.0,
+      "sn_start": 0.5,
+      "verified_choice": 0,
+      "verified_progress": 0,
+      "verified_recovery": 0,
+      "wrong_choice": 200
+    },
+    "three_mode_cycle": {
+      "cycles": 295,
+      "episodes": 300,
+      "penalized_cycles": 295,
+      "sn_final": 0.0,
+      "sn_start": 0.5,
+      "verified_choice": 0,
+      "verified_progress": 0,
+      "verified_recovery": 0,
+      "wrong_choice": 200
+    },
+    "two_mode_cycle": {
+      "cycles": 207,
+      "episodes": 300,
+      "penalized_cycles": 297,
+      "sn_final": 0.0,
+      "sn_start": 0.5,
+      "verified_choice": 0,
+      "verified_progress": 0,
+      "verified_recovery": 0,
+      "wrong_choice": 203
+    }
+  },
+  "schema_version": "aios_decision_simulation_stress_v1",
+  "seed": 202,
+  "training_authorized": false,
+  "verifier_ownership_gap": "answer_verified is caller-supplied until CPU verifier integration; no live authority is granted"
+}

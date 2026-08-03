@@ -1,0 +1,3377 @@
+{
+  "case_results": [
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_000",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_000",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_001",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_001",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "No task is currently available, so I am waiting rather than acting.",
+      "case_id": "positive_002",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.666667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_002",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_003",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_003",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_004",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_004",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "No task is currently available, so I am waiting rather than acting.",
+      "case_id": "positive_005",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.666667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_005",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_006",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_006",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_007",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_007",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_008",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_008",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_009",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_009",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_010",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_010",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_011",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_011",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_012",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_012",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_013",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_013",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_014",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_014",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_015",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_015",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The maintenance task was done and its outcome was verified.",
+      "case_id": "positive_016",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_016",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_017",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_017",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_018",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_018",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_019",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_019",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_020",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_020",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_021",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_021",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The maintenance task was done and its outcome was verified.",
+      "case_id": "positive_022",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_022",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_023",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_023",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_024",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_024",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_025",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_025",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_026",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_026",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_027",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_027",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_028",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_028",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "No task is currently available, so I am waiting rather than acting.",
+      "case_id": "positive_029",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.666667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_029",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_030",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_030",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_031",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_031",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_032",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_032",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_033",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_033",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_034",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_034",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_035",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_035",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_036",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_036",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The maintenance task was done and its outcome was verified.",
+      "case_id": "positive_037",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_037",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_038",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_038",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_039",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_039",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The maintenance task was done and its outcome was verified.",
+      "case_id": "positive_040",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_040",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_041",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_041",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_042",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_042",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_043",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_043",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_044",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_044",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_045",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_045",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_046",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_046",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_047",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_047",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_048",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_048",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_049",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_049",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_050",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_050",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_051",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_051",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The maintenance task was done and its outcome was verified.",
+      "case_id": "positive_052",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_052",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "No task is currently available, so I am waiting rather than acting.",
+      "case_id": "positive_053",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.666667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_053",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_054",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_054",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The maintenance task was done and its outcome was verified.",
+      "case_id": "positive_055",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_055",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_056",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_056",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_057",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_057",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_058",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_058",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_059",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_059",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_060",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_060",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_061",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_061",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_062",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_062",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_063",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_063",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_064",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_064",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_065",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_065",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_066",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_066",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_067",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_067",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "No task is currently available, so I am waiting rather than acting.",
+      "case_id": "positive_068",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.666667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_068",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_069",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_069",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_070",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_070",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_071",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_071",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_072",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_072",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_073",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_073",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_074",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_074",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_075",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_075",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_076",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_076",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_077",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_077",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_078",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_078",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_079",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_079",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_080",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_080",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_081",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_081",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_082",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_082",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_083",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_083",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_084",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_084",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_085",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_085",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_086",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_086",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_087",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_087",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_088",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_088",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_089",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_089",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_090",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_090",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The maintenance task was done and its outcome was verified.",
+      "case_id": "positive_091",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_091",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_092",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_092",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_093",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_093",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_094",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_094",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_095",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_095",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I integrated the facts and then answered from that material.",
+      "case_id": "positive_096",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_096",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_097",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_097",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "No task is currently available, so I am waiting rather than acting.",
+      "case_id": "positive_098",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.666667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_098",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_099",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_099",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_100",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_100",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_101",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_101",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_102",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_102",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_103",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_103",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "No task is currently available, so I am waiting rather than acting.",
+      "case_id": "positive_104",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.666667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_104",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_105",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_105",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_106",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_106",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_107",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_107",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_108",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_108",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_109",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_109",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Nothing worthwhile is available right now; idling preserves capacity.",
+      "case_id": "positive_110",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_110",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The evidence was consolidated before I responded to the question.",
+      "case_id": "positive_111",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_111",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the operation, completed the task, and validated its result.",
+      "case_id": "positive_112",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_112",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_113",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_113",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I merged the verified records and used them while answering.",
+      "case_id": "positive_114",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.5,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_114",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "The task is complete; I confirmed the result afterward.",
+      "case_id": "positive_115",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_115",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "Useful work is unavailable at present, and recovery through idling is appropriate.",
+      "case_id": "positive_116",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.166667,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_116",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I synthesized the confirmed findings into the response.",
+      "case_id": "positive_117",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.0,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.6,
+        "verified_recovery": 0.12
+      }
+    },
+    {
+      "answer": "I guessed the evidence and answered confidently.",
+      "case_id": "negative_117",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "restore",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.25,
+        "reason": "unsupported_or_uncertain_claim",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I finished the bounded maintenance work and checked the outcome.",
+      "case_id": "positive_118",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "action",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.7,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "I performed the work, but the outcome is unconfirmed.",
+      "case_id": "negative_118",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "action",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.0,
+        "reason": "action_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    },
+    {
+      "answer": "There is no useful work available, so I will wait and conserve resources.",
+      "case_id": "positive_119",
+      "expected_verified": true,
+      "kind": "positive_paraphrase",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": true,
+        "content_overlap": 0.333333,
+        "reason": "verified_contract_match",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.04
+      }
+    },
+    {
+      "answer": "I performed the maintenance task and conserved resources.",
+      "case_id": "negative_119",
+      "expected_verified": false,
+      "kind": "semantic_negative",
+      "mode": "idle",
+      "observed": {
+        "answer_verified": false,
+        "content_overlap": 0.166667,
+        "reason": "idle_contract",
+        "verified_progress": 0.0,
+        "verified_recovery": 0.0
+      }
+    }
+  ],
+  "cases": 240,
+  "live_mutation": false,
+  "live_s_n_read": false,
+  "matches": 240,
+  "recorded_utc": "2026-08-03T08:16:15+00:00",
+  "run_authorized": false,
+  "scenarios": 120,
+  "schema_version": "aios_decision_verifier_paraphrases_v3",
+  "seed": 20260803,
+  "source_pack_sha256": "9ff12b8469736cdefde6bedc381d3564bf92796138c6db500e64687089d927f7",
+  "status": "CALIBRATION_PASS",
+  "total": 240,
+  "training_authorized": false
+}

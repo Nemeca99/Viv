@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 874,
+  "generated_from_python_files": 875,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -1254,6 +1254,9 @@
     },
     "foundation/scripts/build_wikipedia_staged_source_manifest_v1.py": {
       "filesystem_mutation:args.output.write_text": 1
+    },
+    "foundation/scripts/calibrate_decision_verifier_paraphrases_v1.py": {
+      "filesystem_mutation:OUT.write_text": 1
     },
     "foundation/scripts/calibrate_decision_verifier_v1.py": {
       "filesystem_mutation:args.output.write_text": 1

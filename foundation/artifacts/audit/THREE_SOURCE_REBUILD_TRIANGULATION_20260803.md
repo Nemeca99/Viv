@@ -1358,3 +1358,8 @@ This is stronger evidence, but not yet a language-model training result: the gro
 ### 2026-08-03 — CPU verifier boundary freeze and full preflight
 
 The verifier integration added one governed script boundary. The registry was backed up at `pre_cpu_verifier_boundary_registry_freeze_20260803T083000Z/` and frozen. Full preflight passed: `1,130` parsed Python files, `873` architecture files, `100%` coverage, `523` boundary modules, zero errors, and Rust/security pass. The verified simulation comparison and simulator regression remained green.
+### 2026-08-03 — verifier paraphrase calibration and boundary refresh
+
+The hold-only disjoint paraphrase pack tested 120 hidden-oracle scenarios and 240 positive/negative cases. The first run held at 219/240 because truthful restore wording using `responded` was rejected. The second held at 228/240 because truthful restore wording using `merged` was rejected after the first repair. These were concrete verifier false negatives; the contract was repaired minimally and `decision_verifier_paraphrases_v3_20260803.json`, SHA-256 `f3e5751e2254956420faae911a21d91ab4a80ca6c6701568cddc732cf90ef620`, passed 240/240 while retaining all targeted negative rejections.
+
+The boundary registry was refreshed after those changes. Backup: `pre_verifier_paraphrase_boundary_freeze_20260803T082154Z/`. Full preflight passed with 1,137 parsed Python files, 875 architecture files, 100% coverage, 525 boundary modules, zero errors, and Rust/security pass. This improves evaluator confidence but is not a language-model result: model-policy integration remains the next required test. Training, lease, promotion, deployment, persistent index, CARMA admission, and live-model mutation remain closed.
