@@ -533,8 +533,8 @@ GPU_REASON = re.compile(
 MEMORY_SERVICE = re.compile(
     r"(?:aios|ai os|adaptive intelligent operating system|cpu[- ]side(?:\s+aios)?|system services?|service layer|"
     r"governed services?|(?:memory|logging) service).{0,72}"
-    r"(?:handle|manage|maintain|record|take care of|own|store|retain|write).{0,48}(?:memory|memories|recall|logs?|logging)"
-    r"|(?:memory|memories|logs?|logging).{0,72}(?:handled|managed|maintained|recorded|owned).{0,40}"
+    r"(?:handle|manage|maintain|record|take care of|own|store|retain|write).{0,48}(?:memory|memories|recall|logs?|logging|persistent storage|persistent records|durable records|conversation history)"
+    r"|(?:memory|memories|logs?|logging|persistent storage|persistent records|durable records|conversation history).{0,72}(?:handled|managed|maintained|recorded|owned).{0,40}"
     r"(?:aios|ai os|adaptive intelligent operating system|cpu[- ]side(?:\s+aios)?|system services?|service layer|"
     r"governed services?|(?:memory|logging) service)",
     re.I,
@@ -1287,14 +1287,14 @@ def deterministic_axis(text: str, axis: str) -> dict[str, Any]:
             r"\b(?:gpu|graphics processing unit|gpu mouth|voice|model)\b.{0,64}"
             r"\b(?:does not|doesn't|do not|don't|never|no)\b.{0,48}"
             r"\b(?:own|keep|store|have|possess|decide|manage)\b.{0,32}"
-            r"\b(?:private|personal)?\s*(?:memory|memories|records?|logs?)\b",
+            r"\b(?:private|personal)?\s*(?:memory|memories|records?|logs?|persistent storage|persistent records|durable records)\b",
             n,
         ):
             return {"status": PASS, "reason": "gpu_memory_ownership_denied"}
         if re.search(
             r"\b(?:gpu|graphics processing unit|gpu mouth|voice|model)\b.{0,48}"
             r"\b(?:cannot|can't|does not|doesn't|do not|don't|never)\b.{0,32}"
-            r"\b(?:decide|manage|control)\b.{0,32}\b(?:memory|memories|records?|logs?)\b",
+            r"\b(?:decide|manage|control)\b.{0,32}\b(?:memory|memories|records?|logs?|persistent storage|persistent records|durable records)\b",
             n,
         ):
             return {"status": PASS, "reason": "gpu_memory_policy_denied"}
