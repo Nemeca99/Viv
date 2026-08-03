@@ -1,0 +1,64 @@
+{
+  "schema_version": "aios_file_type_policy_v1",
+  "purpose": "Keep AIOS implementation and governed state centered on Python, Rust, and JSON without deleting required evidence or model artifacts.",
+  "primary_implementation_extensions": [
+    ".py",
+    ".rs",
+    ".json"
+  ],
+  "implementation_roots": [
+    "foundation/lib",
+    "foundation/scripts",
+    "foundation/models/Training/code",
+    "voice_core",
+    "security_core/src"
+  ],
+  "non_implementation_globs": [
+    "foundation/scripts/*.ps1",
+    "foundation/scripts/*.md",
+    "foundation/lib/sensors/*.CSV"
+  ],
+  "required_non_primary_exceptions": {
+    "rust_build_metadata": [
+      "Cargo.toml",
+      "Cargo.lock"
+    ],
+    "training_and_evaluation_data": [
+      ".jsonl"
+    ],
+    "external_interoperability": [
+      ".xml"
+    ],
+    "documentation_and_human_journals": [
+      ".md"
+    ],
+    "runtime_and_test_evidence": [
+      ".log",
+      ".err",
+      ".sha256",
+      ".jsonl"
+    ],
+    "model_and_compiled_artifacts": [
+      ".safetensors",
+      ".bin",
+      ".pyd",
+      ".dll",
+      ".exe",
+      ".rlib",
+      ".rmeta",
+      ".o",
+      ".pdb",
+      ".lib",
+      ".exp"
+    ]
+  },
+  "policy": {
+    "new_source_files_must_use_primary_extensions": true,
+    "existing_artifacts_must_not_be_deleted_or_renamed_by_this_policy": true,
+    "jsonl_is_data_not_source": true,
+    "xml_is_interoperability_only_not_canonical_state": true,
+    "build_outputs_are_not_source": true,
+    "promotion_or_deployment_authority_changed": false
+  },
+  "status": "ACTIVE_READ_ONLY_POLICY"
+}
