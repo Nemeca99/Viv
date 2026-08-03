@@ -25,6 +25,7 @@ _ARCHITECTURE_TERMS = (
     "thinks", "only talks", "truth decided", "graphics processor", "graphics card",
     "owner of verified context", "mind versus mouth", "chip split", "truth calls",
     "chip speaks", "does it reason", "roles flipped", "straighten them out", "set decisions", "reasoning", "rendering", "language model",
+    "cpu-mind", "gpu-mouth", "cpu mind", "gpu mouth", "cpu vs gpu", "cpu versus gpu",
 )
 _TOOL_TERMS = (
     "patch", "file", "server", "command", "workstation", "log in", "login", "log into",

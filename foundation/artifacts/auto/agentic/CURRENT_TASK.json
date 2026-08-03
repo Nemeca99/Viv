@@ -271,6 +271,23 @@
     "deployment_changed": false,
     "next_action": "redesign role intervention; preserve V6 as best challenger"
   },
+  "architecture_query_gate_repair": {
+    "state": "VERIFIED_CPU_CONTAINMENT_IMPROVEMENT",
+    "source": "voice_core/runtime_contract.py",
+    "regression": "foundation/scripts/test_mouth_architecture_query_gate_v1.py",
+    "repair": "recognize CPU-mind, GPU-mouth, CPU mind, GPU mouth, CPU vs GPU, and CPU versus GPU role queries",
+    "v6_replay_raw": {"pass": 50, "hold": 44, "fail": 8, "rows": 102, "toolbleed": 0},
+    "v6_replay_contained": {"pass": 102, "hold": 0, "fail": 0, "rows": 102, "toolbleed": 0, "acronym_failures": 0},
+    "v6_replay_artifact": "sandbox/mouth_training_recovery_v3_campaign_v6_runtime_shadow_v3.json",
+    "v8_replay_contained": {"pass": 100, "hold": 2, "fail": 0, "rows": 102, "toolbleed": 0, "acronym_failures": 0},
+    "v8_replay_artifact": "sandbox/mouth_training_recovery_v3_campaign_v8_runtime_shadow_v3.json",
+    "full_foundation_preflight": "PASS; parsed_python_files=1190; architecture_files=888; coverage_pct=100.0; boundary_modules=533; errors=0; rust_security=PASS",
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_allowed": false,
+    "deployment_changed": false,
+    "next_action": "retain V6 as best challenger; redesign role training only if raw mouth improvement remains required"
+  },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
     "semantic_wikipedia_index": false,

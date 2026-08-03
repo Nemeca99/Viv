@@ -2917,3 +2917,11 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Added a fail-closed compound rule and regression `test_mouth_acronym_compound_membrane_v1.py`. `GPU-Speech` now remains unresolved and regenerates through the deterministic CPU contract instead of being accepted or losslessly expanded.
 - V8 shadow recheck remains `100 PASS / 2 HOLD / 0 FAIL`, zero toolbleed, zero acronym failures; the score did not improve, but the containment evidence is now semantically honest. Full foundation preflight passes with 1,189 parsed Python files, 887 architecture files, 100% coverage, 533 boundaries, zero errors, and Rust/security PASS.
 - V6 remains the best challenger at `101 PASS / 1 HOLD / 0 FAIL` under the repaired persistence judge. V7 and V8 remain negative training experiments; no promotion or deployment is authorized.
+
+## 2026-08-03 — explicit CPU/GPU architecture query gate repair
+
+- The remaining V6 contained hold came from a routing gap: `requires_cpu_contract("Give CPU-mind vs GPU-mouth in plain speech.")` returned false, so the abstaining mouth response bypassed deterministic CPU architecture rendering.
+- Added explicit role-query terms (`CPU-mind`, `GPU-mouth`, spaced and versus variants) to `voice_core/runtime_contract.py`. Regression `test_mouth_architecture_query_gate_v1.py` confirms the query enters the CPU gate and the fallback is CPU-judge PASS.
+- Replayed the unchanged V6 semantic artifact through the updated runtime: raw remains `50 PASS / 44 HOLD / 8 FAIL`, while contained output becomes `102 PASS / 0 HOLD / 0 FAIL`, zero toolbleed, zero acronym failures.
+- Replayed V8 through the same gate: contained remains `100 PASS / 2 HOLD / 0 FAIL`; V8 is still inferior. Full foundation preflight passes with 1,190 parsed Python files, 888 architecture files, 100% coverage, 533 boundaries, zero errors, and Rust/security PASS.
+- This is a CPU containment improvement, not a claim that the GPU adapter learned the role. V6 remains the best challenger; promotion and deployment remain closed.
