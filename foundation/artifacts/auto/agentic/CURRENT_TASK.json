@@ -709,7 +709,17 @@
     "real_campaign_touched": false,
     "training_authorized": false,
     "run_authorized": false,
-    "next": "use_pretokenized_completion_mask_for_real_v9; no automatic_chat_template_conversion"
+    "next": "use_pretokenized_completion_mask_for_real_v9; no automatic_chat_template_conversion",
+    "governed_runner": {
+      "script": "foundation/scripts/mouth_training_recovery_v3_trl_runner_v1.py",
+      "read_only_validation": "PASS",
+      "closed_execute_refusal": "PASS",
+      "real_model_loaded": false,
+      "training_authorized": false,
+      "run_authorized": false,
+      "promotion_allowed": false,
+      "deployment_allowed": false
+    }
   },
-  "updated_utc": "2026-08-03T19:30:00Z"
+  "updated_utc": "2026-08-03T19:35:00Z"
 }
