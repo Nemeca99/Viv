@@ -3168,6 +3168,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Full foundation preflight passed: `1,262` Python files parsed, all configured suites returned zero, Triad architecture `932` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
 - No real dream cycle, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
 
+## 2026-08-04 — allowlisted CPU task-dispatch binding
+
+- Bound `action` to the explicit `task_dispatch` effect only when the contract carries a valid payload hash and `side_effects_allowed=true`.
+- The dispatch allowlist contains only read-only CPU probes and simulations: `cpu_core_probe`, `cpu_core_survey`, `cpu_reasoning_probe`, `cpu_choice_simulation`, and `cpu_choice_live_probe`.
+- Filesystem writes, memory mutation, sandbox code, recursive action execution, shell commands, and training are rejected as non-allowlisted task kinds.
+- Focused regression passed allowed child dispatch, rejected `write_note`, and preserved restore/idle/drift behavior. Full foundation preflight passed: `1,265` Python files parsed, all configured suites returned zero, Triad architecture `932` files at `100%` coverage with `540` boundary modules and no registry drift, and Rust security tests passed.
+- No live action, training, model load, lease, promotion, deployment, or source-corpus mutation occurred.
+
 ## 2026-08-04 — fail-closed CPU action executor
 
 - Added `foundation/lib/cpu_action_executor.py` and the autonomous `cpu_action_execute` task. It re-verifies the contract against the current live snapshot before any execution path.

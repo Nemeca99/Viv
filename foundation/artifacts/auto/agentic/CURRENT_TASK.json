@@ -1240,6 +1240,19 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "game_cpu_action_task_dispatch_binding": {
+            "state": "VERIFIED_ALLOWLISTED_READ_ONLY_CPU_TASK_DISPATCH",
+            "source": "foundation/lib/cpu_action_executor.py",
+            "contract_source": "foundation/lib/cpu_action_contract.py",
+            "effect": "task_dispatch",
+            "allowlisted_kinds": ["cpu_core_probe", "cpu_core_survey", "cpu_reasoning_probe", "cpu_choice_simulation", "cpu_choice_live_probe"],
+            "rejected_kinds": ["write_note", "append_journal", "memory_append", "sandbox_code", "cpu_action_execute"],
+            "payload_hash_bound": true,
+            "focused_regression": "PASS",
+            "foundation_preflight": "PASS_1265_PARSED_21_SUITES_RUST_OK",
+            "training_authorized": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }

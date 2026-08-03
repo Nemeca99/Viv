@@ -28,6 +28,12 @@ def main() -> int:
     with patch("lib.aios_dream.perform_dream_cycle", return_value={"ok": True, "cycle": 1}) as dream:
         restored = execute_contract(restore, state)
     assert restored["ok"] is True and restored["state"] == "EXECUTED" and restored["writes_performed"] is True and dream.called
+    dispatch = build_contract(task_id="dispatch", action="action", state=state, allowed_effects=("task_dispatch",), side_effects_allowed=True, effect_payload={"kind": "cpu_reasoning_probe", "payload": {"value": "What is the CPU mind?", "manual_only": True}})
+    with patch("lib.agentic_runtime._execute", return_value=(True, "{\\\"state\\\":\\\"VERIFIED\\\"}")) as child:
+        dispatched = execute_contract(dispatch, state)
+    assert dispatched["ok"] is True and dispatched["target_kind"] == "cpu_reasoning_probe" and child.called
+    blocked_dispatch = build_contract(task_id="blocked-dispatch", action="action", state=state, allowed_effects=("task_dispatch",), side_effects_allowed=True, effect_payload={"kind": "write_note", "payload": {}})
+    assert execute_contract(blocked_dispatch, state)["reason"] == "task_kind_not_allowlisted"
     drift = execute_contract(idle, dict(state, s_n=0.2))
     assert drift["ok"] is False and drift["reason"] == "contract_verification_failed"
     live = capture_live()
