@@ -73,22 +73,38 @@ def validate_campaign(root: Path = CAMPAIGN, *, allow_authorized: bool = False) 
     root = Path(root)
     manifest = load_manifest(root)
     findings: list[str] = []
-    allowed_statuses = {"CAMPAIGN_ADMITTED_TRAINING_CLOSED", "ABORT_NO_PROMOTION"}
+    completed = manifest.get("status") == "CAMPAIGN_EXECUTION_COMPLETE"
+    allowed_statuses = {"CAMPAIGN_ADMITTED_TRAINING_CLOSED", "ABORT_NO_PROMOTION", "CAMPAIGN_EXECUTION_COMPLETE"}
     if allow_authorized:
         allowed_statuses.add("CAMPAIGN_EXECUTION_AUTHORIZED")
     if manifest.get("status") not in allowed_statuses:
         findings.append("manifest_status")
-    if not allow_authorized:
+    if not allow_authorized and not completed:
         for key in ("training_authorized", "run_authorized", "lora_authorized", "dpo_authorized"):
             if manifest.get(key) is not False:
                 findings.append(f"{key}_must_be_false_until_authorized")
-    else:
+    elif not completed:
         if manifest.get("training_authorized") is not True or manifest.get("run_authorized") is not True:
             findings.append("execution_authorization_missing")
         for key in ("lora_authorized", "dpo_authorized"):
             if manifest.get(key) is not False:
                 findings.append(f"{key}_must_remain_false")
-    if manifest.get("lease_opened") is not False or manifest.get("gpu_steps") != 0:
+    if completed:
+        success_path = root / "EXECUTION_SUCCESS_REPORT.json"
+        if not success_path.is_file():
+            findings.append("execution_success_report_missing")
+        adapter_path = Path()
+        if success_path.is_file():
+            try:
+                success = json.loads(success_path.read_text(encoding="utf-8"))
+                adapter_path = Path(str(success.get("adapter_final") or (success.get("training") or {}).get("adapter_final") or ""))
+            except (OSError, json.JSONDecodeError):
+                findings.append("execution_success_report_invalid")
+        if manifest.get("lease_opened") is not True or manifest.get("gpu_steps") != OPTIMIZER_STEPS:
+            findings.append("completed_execution_state")
+        if not adapter_path.is_dir() or not (adapter_path / "adapter_model.safetensors").is_file():
+            findings.append("committed_adapter_missing")
+    elif manifest.get("lease_opened") is not False or manifest.get("gpu_steps") != 0:
         findings.append("manifest_execution_state")
     train_path = root / "train_256.jsonl"
     train = load_jsonl(train_path)
@@ -108,7 +124,7 @@ def validate_campaign(root: Path = CAMPAIGN, *, allow_authorized: bool = False) 
         findings.append("parent_adapter_missing")
     report = {
         "schema_version": "mouth_training_recovery_v3_runner_validation_v1",
-        "status": "VALIDATION_PASS_AUTH_CLOSED" if not findings else "VALIDATION_FAIL",
+        "status": ("VALIDATION_PASS_EXECUTION_COMPLETE" if completed else "VALIDATION_PASS_AUTH_CLOSED") if not findings else "VALIDATION_FAIL",
         "recorded_utc": utc(),
         "campaign_root": str(root).replace("\\", "/"),
         "findings": findings,
@@ -118,8 +134,8 @@ def validate_campaign(root: Path = CAMPAIGN, *, allow_authorized: bool = False) 
         "parent_sha256": sha256(parent) if parent.is_file() else None,
         "training_authorized": manifest.get("training_authorized"),
         "run_authorized": manifest.get("run_authorized"),
-        "lease_opened": False,
-        "gpu_steps": 0,
+        "lease_opened": bool(manifest.get("lease_opened")) if completed else False,
+        "gpu_steps": int(manifest.get("gpu_steps") or 0) if completed else 0,
         "model_loaded": False,
     }
     if findings:
@@ -283,6 +299,50 @@ def run_experiment(*, root: Path = CAMPAIGN, output_root: Path | None = None) ->
             raise PermissionError(f"security_commit_denied:{commit}")
         committed = True
         result.update({"ok": True, "gpu_steps": OPTIMIZER_STEPS, "training": trained, "security_commit": commit, "validation": validation})
+        success_receipt = {
+            "schema_version": "execution_success_report_v1",
+            "recorded_utc": utc(),
+            "campaign_id": campaign_id,
+            "run_id": run_id,
+            "status": "EXECUTION_COMMITTED_NO_PROMOTION",
+            "authority": {
+                "training_authorized": True,
+                "run_authorized": True,
+                "promotion_authorized": False,
+                "deployment_authorized": False,
+            },
+            "gpu_steps": OPTIMIZER_STEPS,
+            "lease_opened": True,
+            "promotion_allowed": False,
+            "deployment_changed": False,
+            "adapter_final": trained.get("adapter_final"),
+            "adapter_staging": trained.get("adapter_staging"),
+            "training": trained,
+            "security_commit": commit,
+            "validation": validation,
+        }
+        success_path = root / "EXECUTION_SUCCESS_REPORT.json"
+        if success_path.exists():
+            raise FileExistsError(f"refuse_overwrite:{success_path}")
+        success_path.write_text(
+            json.dumps(success_receipt, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        manifest_path = root / "manifest.json"
+        manifest = load_manifest(root)
+        manifest.update({
+            "status": "CAMPAIGN_EXECUTION_COMPLETE",
+            "gpu_steps": OPTIMIZER_STEPS,
+            "lease_opened": True,
+            "next_action": "read_only_generation_validation_then_separate_promotion_review",
+            "execution_success_report": str(success_path).replace("\\", "/"),
+        })
+        manifest_path.write_text(
+            json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
         output_root.mkdir(parents=True, exist_ok=True)
         source_root = Path(lease.final_root)
         for step in CHECKPOINT_STEPS:

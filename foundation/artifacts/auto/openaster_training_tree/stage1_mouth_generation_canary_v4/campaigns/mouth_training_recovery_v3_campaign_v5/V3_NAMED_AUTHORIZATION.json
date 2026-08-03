@@ -1,0 +1,21 @@
+{
+  "campaign_id": "mouth_training_recovery_v3_campaign_v5",
+  "checkpoint_steps": [
+    32,
+    64,
+    96,
+    128
+  ],
+  "deployment_authorized": false,
+  "learning_rate": 0.0001,
+  "manifest_after_sha256": "4e61dce0a9880a74f922e90e1e2436cf795f9dc63d47589500ce939e6ef05a9f",
+  "manifest_before_sha256": "239b208e2b06e1d48b8eaba827f1ea41c0fc0f376a61ac6af842b49d8815cfe5",
+  "optimizer_steps": 128,
+  "preflight_path": "L:/Continue/Viv/foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v5/PREFLIGHT_READ_ONLY_NAMED.json",
+  "preflight_train_sha256": "ed627a30cc311bfd558b4276f1a5c171ed630b3ba785d7ca12fa9de33c390a6b",
+  "promotion_authorized": false,
+  "recorded_utc": "2026-08-03T10:41:26Z",
+  "run_authorized": true,
+  "schema_version": "v3_named_authorization_v1",
+  "training_authorized": true
+}

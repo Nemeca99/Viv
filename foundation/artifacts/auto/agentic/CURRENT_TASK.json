@@ -26,32 +26,33 @@
     "trace_id": "9deaa1c4cd7c4d63b324819ede977599"
   },
   "last_training_evidence": {
-    "campaign_id": "mouth_training_recovery_v3_campaign_v4",
+    "campaign_id": "mouth_training_recovery_v3_campaign_v5",
     "status": "ABORT_NO_PROMOTION",
     "trained_optimizer_steps": 128,
-    "elapsed_s": 499.094,
+    "elapsed_s": 388.39,
     "initial_mean_response_nll": 4.090474838856608,
-    "final_mean_response_nll": 0.7210625485749915,
+    "final_mean_response_nll": 0.7194120786443818,
     "initial_token_accuracy": 0.4558116398607196,
-    "final_token_accuracy": 0.7919084728900679,
-    "abort_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v4/EXECUTION_ABORT_REPORT.json",
-    "abort_report_sha256": "b50faffd11abd4ca34e3eb65b13fd745cbc4626136e54ece1ebaa6ff0b97f4fe",
-    "published_gpu_steps": 0,
-    "master_s_n": 0.0039,
+    "final_token_accuracy": 0.7947272425800033,
+    "success_report": "foundation/artifacts/auto/openaster_training_tree/stage1_mouth_generation_canary_v4/campaigns/mouth_training_recovery_v3_campaign_v5/EXECUTION_SUCCESS_REPORT.json",
+    "success_report_sha256": "66226061f22f3357249c5f8cb5e9b436e0917bfc9900b230d6e7b91346aa81eb",
+    "published_gpu_steps": 128,
+    "master_s_n": 0.3485,
     "required_master_s_n": 0.25,
-    "training_authorized": false,
-    "run_authorized": false,
+    "training_authorized": true,
+    "run_authorized": true,
     "deployment_changed": false,
-    "retrain_same_campaign": false
+    "retrain_same_campaign": false,
+    "promotion_allowed": false
   },
   "latest_execution": {
-    "campaign_id": "mouth_training_recovery_v3_campaign_v4",
-    "result": "128_optimizer_steps_completed_then_law5_commit_denied",
-    "commit_reason": "Master S_n 0.0039 below training soft floor 0.2500",
-    "adapter_committed": false,
+    "campaign_id": "mouth_training_recovery_v3_campaign_v5",
+    "result": "128_optimizer_steps_completed_and_law5_commit_allowed_in_soft_band",
+    "commit_reason": "Master S_n 0.3485 in training soft band above 0.2500 and below hard threshold 0.3700",
+    "adapter_committed": true,
     "promotion_authorized": false,
     "deployment_authorized": false,
-    "next_action": "do_not_retry_same_campaign; restore_or_raise_authoritative_s_n_before_new_named_campaign"
+    "next_action": "read_only_generation_validation_then_separate_promotion_review"
   },
   "v4_staged_generation_evaluation": {
     "state": "VERIFIED_READ_ONLY",
@@ -77,6 +78,17 @@
     "run_authorized": false,
     "promotion_allowed": false,
     "deployment_changed": false
+  },
+  "v5_committed_generation_evaluation": {
+    "state": "VERIFIED_READ_ONLY_AND_EXECUTION_RECEIPT_VALIDATED",
+    "raw": {"pass": 47, "hold": 41, "fail": 14, "rows": 102, "toolbleed": 0},
+    "contained": {"pass": 101, "hold": 1, "fail": 0, "rows": 102, "toolbleed": 0},
+    "semantic_artifact": "sandbox/mouth_training_recovery_v3_campaign_v5_semantic_eval.json",
+    "runtime_shadow_artifact": "sandbox/mouth_training_recovery_v3_campaign_v5_runtime_shadow.json",
+    "runner_validation": "VALIDATION_PASS_EXECUTION_COMPLETE",
+    "promotion_allowed": false,
+    "deployment_changed": false,
+    "next_action": "resolve_one_memory_attribution_hold_and_obtain_separate_promotion_authorization"
   },
   "full_corpus_retrieval_audit": {
     "sqlite_global_index": "structural_file_index_only",
@@ -472,5 +484,5 @@
   "task_list_sha256": null,
   "total_tasks": 0,
   "trace_id": "9deaa1c4cd7c4d63b324819ede977599",
-  "updated_utc": "2026-08-03T09:31:19Z"
+  "updated_utc": "2026-08-03T10:54:38Z"
 }
