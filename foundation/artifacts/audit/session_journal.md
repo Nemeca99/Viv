@@ -3176,6 +3176,14 @@ Follow-up egress baseline: the staged semantic regression now runs an untrusted 
 - Focused tests passed. Contract inventory now reports `29 wired` and `4 source-only` cores.
 - No external integration, data export, key rotation, training, deployment, or source mutation occurred.
 
+## 2026-08-04 — truthful CPU contract dispositions and mouthless cold-start proof
+
+- Inspected the F/D/manual roles for the remaining source-only cores. `streamlit_core` is `ui_only`; `marketplace_core` and `music_core` are `optional` effect-closed capabilities; `template_core` is `retired` reference scaffolding. None is authoritative CPU cognition, so none was forced into runtime integration.
+- Extended `foundation/lib/core_contracts.py` with explicit disposition and reason fields. Focused disposition regression passed with `29 wired`, `2 optional`, `1 ui_only`, `1 retired`, and zero ambiguous `source_only` cores.
+- Added `foundation/lib/cpu_cold_start_replay.py` and frozen fixture `foundation/scripts/fixtures/cpu_cold_start_v1.json`. The proof loads only explicit fixture state, verifies the RID involution/A-B phase, evaluates sandbox/infra/enterprise policy, preserves provenance and audit digests, and emits no prose or effect.
+- CPU cold-start/replay regression passed with canonical-identical envelopes while GPU/API/model availability was false. Decision was `AUTHORIZED_READ_ONLY_CPU_DECISION` with action `observe`.
+- No model load, training, deployment, promotion, external call, write, live-state mutation, Master S_n mutation, or dirty autonomy-journal mutation occurred.
+
 ## 2026-08-04 — state-derived CPU action policy
 
 - Extended `foundation/lib/cpu_choice_simulator.py` with an explicit reference policy: low S_n with restoration due selects `restore`; queued work with sufficient S_n selects `action`; no queued work selects `idle`.

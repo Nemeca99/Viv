@@ -1334,11 +1334,54 @@
             "training_authorized": false,
             "live_model_changed": false
           },
+          "cpu_contract_dispositions": {
+            "state": "VERIFIED_NO_AMBIGUOUS_SOURCE_ONLY_CORES",
+            "source": "foundation/lib/core_contracts.py",
+            "regression": "foundation/scripts/test_cpu_contract_dispositions_v1.py",
+            "counts": {"wired": 29, "optional": 2, "ui_only": 1, "retired": 1},
+            "dispositions": {
+              "streamlit_core": {"classification": "ui_only", "authoritative_cpu": false, "reason": "frontend_only"},
+              "marketplace_core": {"classification": "optional", "authoritative_cpu": false, "reason": "external_install_effect_closed"},
+              "music_core": {"classification": "optional", "authoritative_cpu": false, "reason": "peripheral_playback_and_preference_write_effect_closed"},
+              "template_core": {"classification": "retired", "authoritative_cpu": false, "reason": "reference_scaffold_only"}
+            },
+            "ambiguous_source_only": 0,
+            "training_authorized": false,
+            "live_model_changed": false
+          },
+          "cpu_cold_start_replay": {
+            "state": "VERIFIED_GPU_API_FREE_DETERMINISTIC_CPU_DECISION",
+            "source": "foundation/lib/cpu_cold_start_replay.py",
+            "fixture": "foundation/scripts/fixtures/cpu_cold_start_v1.json",
+            "regression": "foundation/scripts/test_cpu_cold_start_replay_v1.py",
+            "decision": "AUTHORIZED_READ_ONLY_CPU_DECISION",
+            "action": "observe",
+            "canonical_replay_identical": true,
+            "rid_shadow_verified": true,
+            "heartbeat_verified": true,
+            "sandbox_plan_only": true,
+            "infra_slos_pass": true,
+            "enterprise_read_allowed": true,
+            "enterprise_external_denied": true,
+            "gpu_available": false,
+            "api_available": false,
+            "model_loaded": false,
+            "natural_language_rendered": false,
+            "mouth_invoked": false,
+            "writes_performed": false,
+            "external_calls": false,
+            "live_state_mutated": false,
+            "master_rid_mutated": false,
+            "audit_digest_present": true,
+            "training_authorized": false,
+            "deployment_changed": false,
+            "live_model_changed": false
+          },
           "training_authorized": false,
           "live_model_changed": false
         }
       }
     }
   },
-  "updated_utc": "2026-08-04T07:35:00Z"
+  "updated_utc": "2026-08-04T08:15:00Z"
 }

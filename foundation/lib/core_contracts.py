@@ -25,6 +25,8 @@ class CoreContract:
     source_paths: tuple[str, ...]
     viv_surfaces: tuple[str, ...]
     priority: int
+    disposition: str = "authoritative_cpu"
+    disposition_reason: str = ""
 
 
 CORE_CONTRACTS: tuple[CoreContract, ...] = (
@@ -36,14 +38,14 @@ CORE_CONTRACTS: tuple[CoreContract, ...] = (
     CoreContract("utils_core", "bridges and monitoring utilities", ("bridge", "monitor", "bounded_io"), ("F:/AIOS_Clean/utils_core", "D:/LocalAi/AIOS_V1/utils_core"), ("foundation/lib/aios_adapter_utils.py",), 35),
     CoreContract("enterprise_core", "enterprise policy and integrations", ("policy", "integration", "audit"), ("F:/AIOS_Clean/enterprise_core", "D:/LocalAi/AIOS_V1/enterprise_core"), ("foundation/lib/cpu_enterprise_policy.py", "foundation/lib/aios_adapter_audit.py"), 70),
     CoreContract("rag_core", "provenance-preserving document retrieval", ("index", "retrieve", "source_hash", "abstain"), ("F:/AIOS_Clean/rag_core", "D:/LocalAi/AIOS_V1/rag_core"), ("foundation/lib/manual_oracle.py", "foundation/lib/aios_adapter_knowledge.py"), 6),
-    CoreContract("streamlit_core", "operator UI", ("status", "read_only", "audit"), ("F:/AIOS_Clean/streamlit_core", "D:/LocalAi/AIOS_V1/streamlit_core"), (), 90),
+    CoreContract("streamlit_core", "operator UI", ("status", "read_only", "audit"), ("F:/AIOS_Clean/streamlit_core", "D:/LocalAi/AIOS_V1/streamlit_core"), (), 90, "ui_only", "Streamlit frontend; it observes and renders CPU state but is not authoritative cognition."),
     CoreContract("backup_core", "immutable backup and restore", ("snapshot", "hash", "restore", "rollback"), ("F:/AIOS_Clean/backup_core", "D:/LocalAi/AIOS_V1/backup_core"), ("foundation/lib/backup_core.py",), 40),
     CoreContract("fractal_core", "recursive multi-scale reasoning", ("recursion", "bounded_depth", "cost"), ("F:/AIOS_Clean/fractal_core", "D:/LocalAi/AIOS_V1/fractal_core"), ("foundation/lib/cpu_fractal_reasoner.py", "foundation/lib/cpu_reasoning_pipeline.py"), 50),
     CoreContract("game_core", "simulation and interaction", ("simulation", "determinism", "sandbox"), ("F:/AIOS_Clean/game_core", "D:/LocalAi/AIOS_V1/game_core"), ("foundation/lib/cpu_choice_simulator.py", "foundation/lib/agentic_runtime.py"), 90),
-    CoreContract("marketplace_core", "plugin discovery and policy", ("manifest", "trust", "install_gate"), ("F:/AIOS_Clean/marketplace_core", "D:/LocalAi/AIOS_V1/marketplace_core"), (), 95),
-    CoreContract("music_core", "music peripheral", ("routing", "sandbox", "output_gate"), ("F:/AIOS_Clean/music_core", "D:/LocalAi/AIOS_V1/music_core"), (), 95),
+    CoreContract("marketplace_core", "plugin discovery and policy", ("manifest", "trust", "install_gate"), ("F:/AIOS_Clean/marketplace_core", "D:/LocalAi/AIOS_V1/marketplace_core"), (), 95, "optional", "Optional effect-closed capability; discovery may be reviewed, but installation and external network effects are outside CPU authority."),
+    CoreContract("music_core", "music peripheral", ("routing", "sandbox", "output_gate"), ("F:/AIOS_Clean/music_core", "D:/LocalAi/AIOS_V1/music_core"), (), 95, "optional", "Optional effect-closed peripheral; playback, preference writes, and random selection are not authoritative cognition."),
     CoreContract("privacy_core", "privacy controls", ("redaction", "consent", "audit"), ("F:/AIOS_Clean/privacy_core", "D:/LocalAi/AIOS_V1/privacy_core"), ("foundation/lib/cpu_privacy_policy.py", "foundation/lib/aios_adapter_privacy.py"), 45),
-    CoreContract("template_core", "extension templates", ("schema", "validation", "isolation"), ("F:/AIOS_Clean/template_core", "D:/LocalAi/AIOS_V1/template_core"), (), 80),
+    CoreContract("template_core", "extension templates", ("schema", "validation", "isolation"), ("F:/AIOS_Clean/template_core", "D:/LocalAi/AIOS_V1/template_core"), (), 80, "retired", "Reference scaffold for future plugins; not a runtime core or CPU authority surface."),
     CoreContract("main_core", "kernel routing", ("boot", "queue", "health", "shutdown"), ("F:/AIOS_Clean/main_core", "D:/LocalAi/AIOS_V1/main_core"), ("foundation/aios_main.py", "foundation/auto_main.py"), 12),
     CoreContract("infra_core", "deployment and monitoring", ("health", "lkg", "rollback"), ("F:/AIOS_Clean/infra_core", "D:/LocalAi/AIOS_V1/infra_core"), ("foundation/lib/cpu_infra_ops_judge.py", "foundation/lib/foundation_health.py"), 55),
     CoreContract("consciousness_core", "pulse, fragments, memory, mirror", ("pulse", "fragments", "stm_ltm", "mirror", "drift"), ("F:/AIOS_Clean/consciousness_core", "D:/LocalAi/AIOS_V1/consciousness_core"), ("foundation/lib/consciousness_core.py", "foundation/lib/aios_adapter_consciousness.py"), 20),
@@ -74,7 +76,7 @@ def contract_report() -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     for contract in CORE_CONTRACTS:
         surfaces = [surface for surface in contract.viv_surfaces if _exists(surface)]
-        state = "wired" if surfaces and len(surfaces) == len(contract.viv_surfaces) else ("partial" if surfaces else "source_only")
+        state = "wired" if surfaces and len(surfaces) == len(contract.viv_surfaces) else ("partial" if surfaces else (contract.disposition if contract.disposition != "authoritative_cpu" else "source_only"))
         rows.append({**asdict(contract), "acceptance": list(contract.acceptance), "source_paths": list(contract.source_paths), "viv_surfaces": list(contract.viv_surfaces), "present_surfaces": surfaces, "state": state})
     counts: dict[str, int] = {}
     for row in rows:
