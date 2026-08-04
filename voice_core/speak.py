@@ -5,7 +5,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, Mapping
 
 _VIV = Path(__file__).resolve().parents[1]
 _FOUNDATION = _VIV / "foundation"
@@ -35,11 +35,13 @@ from voice_core.intent_packet import (  # noqa: E402
     deterministic_speak,
     is_health_query,
     looks_like_speech,
-    packet_to_completion_prompt,
-    packet_to_messages,
-    render_openaster_prompt,
 )
 from lib.aios_tagged_packet import verify_gpu_draft  # noqa: E402
+from lib.cpu_mouth_contract import (  # noqa: E402
+    build_envelope_from_packet,
+    envelope_to_completion_prompt,
+    envelope_to_messages,
+)
 from voice_core.acronym_registry import (  # noqa: E402
     validate_acronym_usage,
 )
@@ -111,8 +113,16 @@ def _finalize_spoken(
     model: str | None,
     s_n: float,
     triad_context: TriadContext,
+    renderer_retry: Callable[[Mapping[str, Any]], str] | None = None,
 ) -> dict[str, Any]:
-    finalized = finalize_draft(query=query, packet=packet, raw_text=raw_text, voice_source=voice_source)
+    finalized = finalize_draft(
+        query=query,
+        packet=packet,
+        raw_text=raw_text,
+        voice_source=voice_source,
+        cpu_fallback=deterministic_speak,
+        renderer_retry=renderer_retry,
+    )
     raw_text = str(finalized["text"])
     voice_source = str(finalized["voice_source"])
     acronym_repair = dict(finalized["acronym_repair"])
@@ -122,14 +132,49 @@ def _finalize_spoken(
     regenerated_for_entity = bool(finalized["entity_regenerated"])
     draft_verification = verify_gpu_draft(packet["tagged_packet"], raw_text) if packet.get("tagged_packet") else None
     if draft_verification is not None and draft_verification.status != "PASS":
-        raw_text = deterministic_speak(packet)
-        voice_source = f"{voice_source}_cpu_verified_fallback"
+        # Re-enter the strict CPU mouth contract after the legacy tagged
+        # packet verifier rejects a draft.  The old path could otherwise
+        # replace text with deterministic_speak and bypass the new envelope
+        # validator on the way to triad egress.
+        rechecked = finalize_draft(
+            query=query,
+            packet=packet,
+            raw_text=deterministic_speak(packet),
+            voice_source=f"{voice_source}_cpu_verified_fallback",
+            cpu_fallback=deterministic_speak,
+            renderer_retry=renderer_retry,
+        )
+        raw_text = str(rechecked["text"])
+        voice_source = str(rechecked["voice_source"])
+        acronym_repair = dict(rechecked["acronym_repair"])
+        entity_decision = dict(rechecked["entity_decision"])
+        regenerated_for_acronym = bool(rechecked["acronym_regenerated"])
+        regenerated_for_entity = bool(rechecked["entity_regenerated"])
+        finalized = rechecked
         draft_verification = verify_gpu_draft(packet["tagged_packet"], raw_text)
+    contract_blocked = bool(
+        finalized.get("render_contract")
+        and not bool(finalized["render_contract"].get("accepted"))
+    )
+    if draft_verification is not None and draft_verification.status != "PASS":
+        contract_blocked = True
     try:
-        spoken, triad_receipt = emit(triad_context, raw_text)
-        egress = triad_receipt.to_dict()
-        blocked = not triad_receipt.allowed
-        out_text = str(spoken or "")
+        if contract_blocked:
+            egress = {
+                "allowed": False,
+                "reason": "cpu_mouth_contract_or_tagged_packet_rejected",
+                "evidence": {
+                    "render_contract": finalized.get("render_contract"),
+                    "tagged_packet_verification": draft_verification.to_dict() if draft_verification else None,
+                },
+            }
+            blocked = True
+            out_text = ""
+        else:
+            spoken, triad_receipt = emit(triad_context, raw_text)
+            egress = triad_receipt.to_dict()
+            blocked = not triad_receipt.allowed
+            out_text = str(spoken or "")
     except TriadDenied as exc:
         egress = {"allowed": False, "reason": exc.reason, "evidence": exc.evidence}
         blocked = True
@@ -155,6 +200,7 @@ def _finalize_spoken(
             "entity_regenerated": regenerated_for_entity,
         },
         "tagged_packet_verification": draft_verification.to_dict() if draft_verification else None,
+        "render_contract": finalized.get("render_contract"),
         "text_preview": (out_text[:160] if not blocked else "[blocked]"),
     }
     _log_voice_event(row)
@@ -181,6 +227,7 @@ def _finalize_spoken(
         "voice_source": voice_source,
         "packet": packet,
         "egress": egress,
+        "render_contract": finalized.get("render_contract"),
         "events_path": str(VOICE_EVENTS_PATH).replace("\\", "/"),
     }
 
@@ -225,6 +272,7 @@ def _try_ollama_or_gguf(
     packet: dict[str, Any],
     *,
     query: str,
+    render_envelope: dict[str, Any],
     max_tokens: int,
     cfg: dict[str, Any],
     triad_context: TriadContext,
@@ -240,7 +288,7 @@ def _try_ollama_or_gguf(
     if backend in {"llama_cpp", "gguf"}:
         from voice_core.gguf_voice import chat as gguf_chat
 
-        messages = packet_to_messages(packet)
+        messages = envelope_to_messages(render_envelope)
         completion = gguf_chat(messages, max_tokens=max_tokens, temperature=0.35, cfg=cfg)
         raw_text = str(completion.get("text") or "")
         if completion.get("silent") or len(raw_text.strip()) < 12:
@@ -248,6 +296,18 @@ def _try_ollama_or_gguf(
         raw_text = _stamp_measured_s_n(clean_base_output(raw_text), s_n, require=require_sn)
         if not looks_like_speech(raw_text, measured_s_n=s_n, require_s_n=require_sn):
             return None
+
+        def retry_renderer(envelope: Mapping[str, Any]) -> str:
+            retry = gguf_chat(
+                envelope_to_messages(envelope),
+                max_tokens=max_tokens,
+                temperature=0.20,
+                cfg=cfg,
+            )
+            if retry.get("silent"):
+                return ""
+            return clean_base_output(str(retry.get("text") or ""))
+
         return _finalize_spoken(
             query=query,
             packet=packet,
@@ -256,6 +316,7 @@ def _try_ollama_or_gguf(
             model=completion.get("model"),
             s_n=s_n,
             triad_context=triad_context,
+            renderer_retry=retry_renderer,
         )
 
     if backend != "ollama":
@@ -268,25 +329,48 @@ def _try_ollama_or_gguf(
     raw_base = bool(voice.get("raw_base")) or str(voice.get("prompt_mode") or "").lower() == "completion"
     if raw_base:
         # Raw base models: completion only — no chat/Instruct template
-        prompt = packet_to_completion_prompt(packet)
+        prompt = envelope_to_completion_prompt(render_envelope)
         completion = speak_generate(
             prompt, cfg=cfg, max_tokens=max_tokens, temperature=0.5 if converse else 0.35
         )
         raw_text = str(completion.get("text") or "")
         voice_source = "ollama_raw_base"
+
+        def retry_renderer(envelope: Mapping[str, Any]) -> str:
+            retry = speak_generate(
+                envelope_to_completion_prompt(envelope),
+                cfg=cfg,
+                max_tokens=max_tokens,
+                temperature=0.35 if converse else 0.25,
+            )
+            if retry.get("silent"):
+                return ""
+            return clean_base_output(str(retry.get("text") or ""))
+
     else:
-        messages = packet_to_messages(packet)
+        messages = envelope_to_messages(render_envelope)
         completion = speak_completion(
             messages, max_tokens=max_tokens, cfg=cfg, temperature=0.45 if converse else 0.35
         )
         raw_text = str(completion.get("text") or "")
         if completion.get("silent") or len(raw_text.strip()) < 12:
-            prompt = packet_to_completion_prompt(packet)
+            prompt = envelope_to_completion_prompt(render_envelope)
             completion = speak_generate(
                 prompt, cfg=cfg, max_tokens=max_tokens, temperature=0.45 if converse else 0.35
             )
             raw_text = str(completion.get("text") or "")
         voice_source = "ollama_qwen"
+
+        def retry_renderer(envelope: Mapping[str, Any]) -> str:
+            retry = speak_completion(
+                envelope_to_messages(envelope),
+                max_tokens=max_tokens,
+                cfg=cfg,
+                temperature=0.30 if converse else 0.25,
+            )
+            if retry.get("silent"):
+                return ""
+            return clean_base_output(str(retry.get("text") or ""))
     raw_text = clean_base_output(raw_text)
     if len(raw_text.strip()) < 12:
         return None
@@ -301,6 +385,7 @@ def _try_ollama_or_gguf(
         model=completion.get("model") or voice.get("served_name"),
         s_n=s_n,
         triad_context=triad_context,
+        renderer_retry=retry_renderer,
     )
 
 
@@ -344,6 +429,10 @@ def speak(
         memory_top=memory_top,
         mode=requested_mode or "converse",
     )
+    # The live renderer sees this data-only contract projection.  The legacy
+    # intent/tagged packet remains available to CPU verification and training
+    # tooling, but it is no longer the mouth's primary ingress payload.
+    render_envelope = build_envelope_from_packet(packet, query=query)
     s_n = float(packet.get("s_n") or 0.0)
     cfg = load_config()
     voice = dict(cfg.get("voice") or {})
@@ -389,6 +478,7 @@ def speak(
         hit = _try_ollama_or_gguf(
             packet,
             query=query,
+            render_envelope=render_envelope,
             max_tokens=max_tokens,
             cfg=cfg,
             triad_context=triad_context,
@@ -414,17 +504,29 @@ def speak(
 
     # Prefer local LoRA only when Qwen path not preferred
     if adapter_ready():
-        prompt = render_openaster_prompt(packet, semantic_key=packet.get("semantic_key"))
+        prompt = envelope_to_completion_prompt(render_envelope)
         completion = hf_lora_generate(prompt, max_new_tokens=min(max_tokens, 64), temperature=0.15)
         if completion.get("text"):
             completion["text"] = clean_base_output(str(completion["text"]))
         raw_text = str(completion.get("text") or "")
         if looks_like_speech(raw_text, measured_s_n=s_n):
             voice_source = "hf_lora"
+
+            def retry_renderer(envelope: Mapping[str, Any]) -> str:
+                retry = hf_lora_generate(
+                    envelope_to_completion_prompt(envelope),
+                    max_new_tokens=min(max_tokens, 64),
+                    temperature=0.10,
+                )
+                if retry.get("silent"):
+                    return ""
+                return clean_base_output(str(retry.get("text") or ""))
+
         else:
             raw_text = deterministic_speak(packet)
             voice_source = "deterministic_after_lora_fail"
             completion = {"ok": True, "silent": False, "text": raw_text, "model": "deterministic", "mode": "deterministic"}
+            retry_renderer = None
         return _finalize_spoken(
             query=query,
             packet=packet,
@@ -433,6 +535,7 @@ def speak(
             model=completion.get("model"),
             s_n=s_n,
             triad_context=triad_context,
+            renderer_retry=retry_renderer,
         )
 
     reach = server_reachable(cfg)
@@ -449,15 +552,38 @@ def speak(
         )
 
     # Legacy fallbacks (non-prefer Qwen configs)
-    messages = packet_to_messages(packet)
+    messages = envelope_to_messages(render_envelope)
     backend = str(voice.get("backend") or "").lower()
     if backend == "ollama":
-        prompt = packet_to_completion_prompt(packet)
+        prompt = envelope_to_completion_prompt(render_envelope)
         completion = speak_generate(prompt, cfg=cfg, max_tokens=max_tokens)
         if completion.get("text"):
             completion["text"] = clean_base_output(str(completion["text"]))
+
+        def retry_renderer(envelope: Mapping[str, Any]) -> str:
+            retry = speak_generate(
+                envelope_to_completion_prompt(envelope),
+                cfg=cfg,
+                max_tokens=max_tokens,
+                temperature=0.25,
+            )
+            if retry.get("silent"):
+                return ""
+            return clean_base_output(str(retry.get("text") or ""))
+
     else:
         completion = speak_completion(messages, max_tokens=max_tokens)
+
+        def retry_renderer(envelope: Mapping[str, Any]) -> str:
+            retry = speak_completion(
+                envelope_to_messages(envelope),
+                max_tokens=max_tokens,
+                cfg=cfg,
+                temperature=0.25,
+            )
+            if retry.get("silent"):
+                return ""
+            return clean_base_output(str(retry.get("text") or ""))
 
     raw_text = str(completion.get("text") or "")
     if completion.get("silent") or not looks_like_speech(raw_text, measured_s_n=s_n):
@@ -481,4 +607,5 @@ def speak(
         model=completion.get("model"),
         s_n=s_n,
         triad_context=triad_context,
+        renderer_retry=retry_renderer,
     )

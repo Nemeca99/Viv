@@ -59,3 +59,43 @@ splits are ask-cluster disjoint. A candidate must improve raw free-generation
 behavior and containment against the untouched V19 incumbent; teacher-forced
 NLL alone is not a promotion signal. No candidate changes live state without a
 separate promotion decision.
+
+## Runtime implementation
+
+The strict runtime boundary is implemented by
+`foundation/lib/cpu_mouth_contract.py` and is applied by
+`voice_core/runtime_contract.py` before speech egress.
+
+The CPU emits a `cpu_mouth_render_envelope_v1` containing:
+
+- CPU-authorized facts and conclusions only;
+- conversation or health mode;
+- permitted action language and explicit forbidden disclosures;
+- source/freshness evidence;
+- CPU decision and provenance digests; and
+- renderer capabilities fixed to data-only, no-live-read, no-execution, and
+  no-decision-change.
+
+The renderer receives an immutable view of that envelope and returns text only.
+The CPU rejects unsupported claims or numbers, authority and execution claims,
+ordinary-mode telemetry including semantic paraphrases, acronym violations,
+and stale health presented as current. A rejected proposal gets one bounded
+retry; if it still fails, `deterministic_fallback()` supplies CPU-authored
+language. Health data is renderable only when its freshness state is `fresh`
+within the authoritative three-second bound; otherwise the response says that
+current health cannot be verified.
+
+The live Ollama, GGUF, and LoRA branches use `envelope_to_messages()` or
+`envelope_to_completion_prompt()` at renderer ingress. The older intent/tagged
+packet remains a CPU verification and training artifact; it is not the live
+mouth's primary input. A live renderer retry uses the same envelope and is
+bounded to one attempt.
+
+The acceptance regression is
+`foundation/scripts/test_cpu_mouth_render_contract_v1.py`. It proves that two
+different renderers can vary wording while retaining the same claim IDs,
+decision digest, provenance digest, and CPU authority; it also exercises a
+malicious renderer, semantic telemetry leakage, unsupported facts, stale health,
+fresh health, immutable input, and unchanged live-state fixtures. This is a
+runtime boundary change only; it does not authorize training, promotion, or
+deployment.

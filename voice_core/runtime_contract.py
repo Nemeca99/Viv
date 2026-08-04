@@ -1,9 +1,11 @@
 """Pure CPU-owned finalization shared by live speech and adapter evaluation."""
 from __future__ import annotations
 
-from typing import Any
+import re
+from typing import Any, Callable, Mapping
 
 from lib.entity_we_contract import decide_entity_output
+from lib.cpu_mouth_contract import build_envelope_from_packet, render_with_cpu_validation
 from voice_core.acronym_registry import repair_acronym_usage, validate_acronym_usage
 from voice_core.knowledge_grounding import grounded_response_fallback
 from voice_core.intent_packet import contains_telemetry_disclosure, deterministic_speak
@@ -39,7 +41,15 @@ def requires_cpu_contract(query: str) -> bool:
     return any(term in folded for term in (*_IDENTITY_TERMS, *_MEMORY_TERMS, *_ARCHITECTURE_TERMS, *_TOOL_TERMS))
 
 
-def finalize_draft(*, query: str, packet: dict[str, Any], raw_text: str, voice_source: str) -> dict[str, Any]:
+def finalize_draft(
+    *,
+    query: str,
+    packet: dict[str, Any],
+    raw_text: str,
+    voice_source: str,
+    cpu_fallback: Any | None = None,
+    renderer_retry: Callable[[Mapping[str, Any]], str] | None = None,
+) -> dict[str, Any]:
     """Apply the same deterministic contract used before live egress.
 
     This function has no triad, logging, memory, or filesystem side effects,
@@ -47,6 +57,7 @@ def finalize_draft(*, query: str, packet: dict[str, Any], raw_text: str, voice_s
     live membrane.
     """
     ordinary_mode = str(packet.get("mode") or "translate").lower() in {"converse", "talk", "ide"}
+    fallback_renderer = cpu_fallback or deterministic_speak
     text = str(raw_text or "").strip()
     source = str(voice_source or "unknown")
     acronym_repair: dict[str, Any] = {"original": text, "repaired": text, "changed": False, "repairs": [], "unresolved": [], "pass": True}
@@ -55,7 +66,7 @@ def finalize_draft(*, query: str, packet: dict[str, Any], raw_text: str, voice_s
     entity_regenerated = False
 
     if ordinary_mode and requires_cpu_contract(query):
-        text = deterministic_speak(packet)
+        text = fallback_renderer(packet)
         source = f"{source}_cpu_contract_fallback"
 
     acronym_violations = validate_acronym_usage(text)
@@ -71,7 +82,7 @@ def finalize_draft(*, query: str, packet: dict[str, Any], raw_text: str, voice_s
         entity_regenerated = True
         source = f"{source}_entity_repaired"
     elif entity_decision["decision"] != "ACCEPT":
-        regenerated = deterministic_speak(packet)
+        regenerated = fallback_renderer(packet)
         if decide_entity_output(regenerated)["decision"] == "ACCEPT":
             text = regenerated
             entity_regenerated = True
@@ -91,7 +102,7 @@ def finalize_draft(*, query: str, packet: dict[str, Any], raw_text: str, voice_s
         acronym_repair["unresolved"] = list(final_repair.get("unresolved", []))
 
     if acronym_violations or validate_acronym_usage(text) or acronym_repair["unresolved"]:
-        regenerated = deterministic_speak(packet)
+        regenerated = fallback_renderer(packet)
         regenerated_repair = repair_acronym_usage(regenerated)
         if regenerated_repair["changed"] and regenerated_repair["pass"]:
             regenerated = str(regenerated_repair["repaired"])
@@ -101,13 +112,65 @@ def finalize_draft(*, query: str, packet: dict[str, Any], raw_text: str, voice_s
             source = f"{source}_acronym_regenerated"
 
     if ordinary_mode and contains_telemetry_disclosure(text):
-        text = deterministic_speak(packet)
+        text = fallback_renderer(packet)
         source = f"{source}_telemetry_contained"
 
     grounded = grounded_response_fallback(packet)
     if grounded is not None:
         text = str(grounded["text"])
+        grounded_repair = repair_acronym_usage(text)
+        source_label_pattern = re.compile(r"\[(?:source|provenance)\s*:\s*([^\]]+)\]", flags=re.I)
+        source_labels = source_label_pattern.findall(str(grounded_repair.get("repaired") or text))
+        source_only_unresolved = all(
+            item.get("kind") == "unapproved_acronym"
+            and any(str(item.get("token") or "") in label for label in source_labels)
+            for item in grounded_repair.get("unresolved") or ()
+        )
+        if grounded_repair.get("changed") and (grounded_repair.get("pass") or source_only_unresolved):
+            text = str(grounded_repair["repaired"])
+            grounded = {**grounded, "text": text}
         source = f"{source}_knowledge_grounded"
+
+    # The existing CPU fallbacks remain the text teachers, but the new strict
+    # envelope is the final authority at the mouth boundary.  Only text that
+    # the CPU authored itself (a query-gated fallback or a knowledge-grounded
+    # fallback) is added as an explicit claim; raw model prose is never
+    # promoted into the envelope merely because it was generated.
+    cpu_claims: list[dict[str, Any]] = []
+    if ordinary_mode and requires_cpu_contract(query):
+        cpu_claims.append({"id": "cpu_contract_fallback", "value": text, "source": "cpu_contract"})
+    if acronym_repair.get("changed") or acronym_regenerated or entity_regenerated:
+        cpu_claims.append({"id": "cpu_surface_repair", "value": text, "source": "cpu_surface_contract"})
+    if grounded is not None:
+        cpu_claims.append({"id": "cpu_grounded_fallback", "value": text, "source": "cpu_grounding"})
+    envelope = build_envelope_from_packet(
+        packet,
+        query=query,
+        fallback_text=text if (grounded is not None or (ordinary_mode and requires_cpu_contract(query))) else None,
+        authorized_claims=cpu_claims,
+    )
+    strict = render_with_cpu_validation(
+        envelope,
+        lambda _envelope: text,
+        # ``finalize_draft`` has already consumed the model proposal.  Live
+        # adapters may supply one same-envelope renderer retry; offline and
+        # evaluation callers use an identical validation retry before the
+        # envelope's CPU fallback.
+        retry_renderer=renderer_retry or (lambda _envelope: text),
+    )
+    if strict["accepted"]:
+        strict_text = str(strict["text"])
+        if strict_text != text:
+            source = f"{source}_cpu_mouth_fallback"
+        elif strict.get("attempt_count", 0) > 1:
+            source = f"{source}_cpu_mouth_retry"
+        text = strict_text
+    else:
+        # This is fail-closed.  The contract's hard fallback should validate;
+        # if a malformed packet makes even that impossible, do not return
+        # unvalidated renderer text.
+        text = "I cannot verify an answer from the current verified evidence."
+        source = f"{source}_cpu_mouth_blocked"
 
     return {
         "text": text,
@@ -116,7 +179,27 @@ def finalize_draft(*, query: str, packet: dict[str, Any], raw_text: str, voice_s
         "acronym_regenerated": acronym_regenerated,
         "entity_decision": entity_decision,
         "entity_regenerated": entity_regenerated,
-        "acronym_pass": not validate_acronym_usage(text),
+        "acronym_pass": not validate_acronym_usage(text) or strict.get("validation", {}).get("status") == "PASS",
         "telemetry_contained": bool(ordinary_mode and contains_telemetry_disclosure(str(raw_text or "")) and text != str(raw_text or "")),
         "knowledge_grounding": grounded,
+        "render_contract": {
+            "schema_version": envelope.get("schema_version"),
+            "mode": (envelope.get("request") or {}).get("mode"),
+            "envelope_id": strict.get("envelope_id"),
+            "decision_digest": strict.get("decision_digest"),
+            "provenance_digest": strict.get("provenance_digest"),
+            "accepted": bool(strict.get("accepted")),
+            "attempt_count": strict.get("attempt_count"),
+            "fallback_used": bool(strict.get("fallback_used")),
+            "attempts": [
+                {
+                    "name": attempt.get("name"),
+                    "status": (attempt.get("validation") or {}).get("status"),
+                    "errors": (attempt.get("validation") or {}).get("errors", []),
+                }
+                for attempt in strict.get("attempts", [])
+            ],
+            "validation": strict.get("validation"),
+            "authority": strict.get("authority"),
+        },
     }
