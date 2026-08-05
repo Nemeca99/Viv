@@ -1,6 +1,6 @@
 {
   "schema_version": "viv_training_identity_dataset_index_v1",
-  "status": "ACTIVE_FIRST_CURRICULUM_CANONICAL_COPIES_READY_V60_RETENTION_SOURCE_DECLARED",
+  "status": "ACTIVE_FIRST_CURRICULUM_CANONICAL_COPIES_READY_V62_DIALOGUE_LANE_DECLARED",
   "canonical_root": "foundation/models/Training/data/identity",
   "curriculum_order": [
     "identity",
@@ -10,6 +10,7 @@
     "identity_before_knowledge": true,
     "world_knowledge_included_in_identity_copies": false,
     "knowledge_admission_for_v60": false,
+    "knowledge_admission_for_identity_lanes": false,
     "response_only_loss": true,
     "no_holdout_rows_in_training": true,
     "no_delete": true
@@ -63,6 +64,46 @@
       "validation_source": "v43_conversation_focus_only",
       "v16_validation_in_training": false,
       "role": "V60_identity_preservation_replay_candidate"
+    },
+    "v61_stratified_preservation_replay": {
+      "path": "foundation/models/Training/data/identity/v61_stratified_preservation_replay",
+      "source_path": "foundation/models/Training/current/viv_slm/build_viv_slm_preservation_replay_inputs.py",
+      "copy_status": "BUILT_DETERMINISTIC_HASH_VERIFIED",
+      "input_manifest_sha256": "516B3254EE0C2173A0E135D38E4469B1E1CE72525E73B8C884E0072A7DC8D3E0",
+      "tensor_manifest_sha256": "6168797D0FD8D3A09AA4E55E47FF5B49955BF6B5B733FCF7DD72C85E7EF34124",
+      "vocab_sha256": "00982C5992060D4D55E4843D0726A9823CCB71C46E04FC9E9DFFBCDB1D3F8179",
+      "train_examples": 66127,
+      "validation_examples": 8696,
+      "base_train_examples": 55106,
+      "retention_train_examples": 11021,
+      "retention_fraction_of_base_train": 0.2,
+      "retention_sampling_seed": 42,
+      "validation_source": "v43_conversation_focus_only",
+      "v16_validation_in_training": false,
+      "role": "V61_identity_preservation_replay_candidate"
+    },
+    "v62_dialogue_visibility_preservation": {
+      "path": "foundation/models/Training/data/identity/v62_dialogue_visibility_preservation",
+      "source_path": "foundation/models/Training/current/viv_slm/build_viv_slm_preservation_replay_inputs.py",
+      "copy_status": "BUILT_DETERMINISTIC_HASH_VERIFIED",
+      "base_dataset": "v43_conversation_focus",
+      "retention_dataset": "v16_response_only",
+      "base_source_train_examples": 55106,
+      "base_replay_examples": 53314,
+      "dialogue_context_examples": 1792,
+      "base_dialogue_extra_repeats": 1,
+      "effective_base_train_examples": 56898,
+      "retention_train_examples": 11021,
+      "prepared_train_examples": 67919,
+      "validation_examples": 8696,
+      "input_manifest_sha256": "2C246037457D8BD590038F963F7890CAF8FA0B24112E2E6EBA3FB9DA11A801CF",
+      "tensor_manifest_sha256": "2263B3C10D4E5CF3D0DFEFED126CE5E058129098234F13C9C1868F2CF9AF4C44",
+      "vocab_sha256": "00982C5992060D4D55E4843D0726A9823CCB71C46E04FC9E9DFFBCDB1D3F8179",
+      "retention_fraction_of_base_train": 0.2,
+      "retention_sampling_seed": 42,
+      "validation_source": "v43_conversation_focus_only",
+      "v16_validation_in_training": false,
+      "role": "V62_dialogue_visibility_preservation_candidate"
     }
   },
   "historical_sources": {
@@ -81,6 +122,33 @@
     "retention_examples_expected": 5511,
     "validation_root": "foundation/models/Training/data/identity/v43_conversation_focus",
     "knowledge_root": null,
-    "rule": "V60 may use only identity data and an explicitly declared train-only V15-derived response-only retention lane; V43 validation is the sole validation source, V16 validation and adversarial rows remain independent and excluded from training."
+      "rule": "V60 may use only identity data and an explicitly declared train-only V15-derived response-only retention lane; V43 validation is the sole validation source, V16 validation and adversarial rows remain independent and excluded from training."
+  },
+  "v61_use": {
+    "allowed": true,
+    "input_root": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "retention_root": "foundation/models/Training/data/identity/v16_response_only",
+    "prepared_root": "foundation/models/Training/data/identity/v61_stratified_preservation_replay",
+    "retention_fraction_of_v43_train": 0.2,
+    "retention_sampling_seed": 42,
+    "retention_examples_expected": 11021,
+    "validation_root": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "knowledge_root": null,
+    "rule": "V61 may use only identity data and a deterministic train-only V16-derived response-only retention lane; V43 validation is the sole validation source, V16 validation remains independent and excluded from training."
+  },
+  "v62_use": {
+    "allowed": true,
+    "input_root": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "retention_root": "foundation/models/Training/data/identity/v16_response_only",
+    "prepared_root": "foundation/models/Training/data/identity/v62_dialogue_visibility_preservation",
+    "base_dialogue_extra_repeats": 1,
+    "effective_dialogue_visibility": "64x_from_32x_source_oversample",
+    "retention_fraction_of_v43_train": 0.2,
+    "retention_sampling_seed": 42,
+    "retention_examples_expected": 11021,
+    "prepared_train_examples_expected": 67919,
+    "validation_root": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "knowledge_root": null,
+    "rule": "V62 may use only identity data: V43 train replay plus one additional repetition of its existing dialogue-context tail and deterministic train-only V16 response-only retention; V43 validation is the sole validation source and V16 validation remains independent and excluded from training."
   }
 }

@@ -1,0 +1,178 @@
+{
+  "schema_version": "viv_slm_next_hypothesis_data_v1",
+  "status": "SEALED_READ_ONLY_DATA_PACKET",
+  "generated_utc": "2026-08-05T06:27:13Z",
+  "purpose": "Define the next governed identity-layer canary from V61's matched evidence by increasing only the visibility of the existing V43 dialogue tail while retaining the V61 preservation mixture and all authority boundaries.",
+  "authority": {
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "deployment_changed": false,
+    "live_model_changed": false,
+    "global_aifl_writes": false,
+    "master_s_n_mutation": false,
+    "knowledge_admission": false,
+    "training_action_taken": false
+  },
+  "decision_context": {
+    "working_parent": "viv_slm_identity_personality_v57_v43_behavior_lane_autotune_0250_20260805T032239Z",
+    "working_parent_checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+    "latest_measured_challenger": "viv_slm_identity_personality_v61_stratified_preservation_retention_0250_20260805T060708Z",
+    "latest_measured_challenger_checkpoint_sha256": "688B45999846B11569615F608C89ADAD52680BECDC1794D6F282DA3CCBCFBAC5",
+    "latest_evaluation_receipt": "foundation/models/Training/runs/viv_slm/v61_stratified_preservation_retention_steps_0250/V61_EVALUATION.json",
+    "latest_evaluation_receipt_sha256": "6D95BEA40FEBDE17CAFE4383602D2CDC8D7D56AB49365E5697B813E03D588453",
+    "decision": "RETAIN_V57_WORKING_PARENT_AND_PRESERVE_V61_AS_INCONCLUSIVE_LAYER",
+    "reason": "V61 improved matched NLL, token accuracy, and conversation over V57 but remained 8/10 on the independent V15 surface. Its two failed cases were greeting and plain-language conversation responses, while the six core V15 identity probes passed. The next test therefore changes dialogue visibility rather than repeating the failed retention fraction change."
+  },
+  "lineage_evidence": {
+    "v57": {
+      "role": "preservation_parent",
+      "checkpoint_path": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/checkpoint.pt",
+      "checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+      "run_manifest_path": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/RUN_MANIFEST.json",
+      "run_manifest_sha256": "076AF1A10DCB452E709980B7EF9A41FAF36C252BA057A26AC5D976178E8D4C32",
+      "matched_metrics": {
+        "validation_nll": 0.13188553545231463,
+        "validation_token_accuracy": 0.960563554257356,
+        "teacher_kl": 0.01421539282297509
+      },
+      "independent_probes": {
+        "semantic": "6/6",
+        "v15": "9/10",
+        "conversation": "5/10",
+        "telemetry_leakage": 0,
+        "cpu_mouth_contract": "PASS"
+      }
+    },
+    "v61": {
+      "role": "inconclusive_retention_challenger",
+      "checkpoint_sha256": "688B45999846B11569615F608C89ADAD52680BECDC1794D6F282DA3CCBCFBAC5",
+      "run_manifest_sha256": "5028B33613ABDFB8B330339295D769DE4464965C6AFA1AAF9B6212647DED1221",
+      "selected_composition_scale": 0.0,
+      "best_training_metrics": {
+        "validation_nll": 0.13073937050545334,
+        "validation_token_accuracy": 0.9610267644675989,
+        "teacher_kl": 0.014242744808556867
+      },
+      "independent_probes": {
+        "semantic": "6/6",
+        "v15": "8/10",
+        "conversation": "6/10",
+        "telemetry_leakage": 0,
+        "cpu_mouth_contract": "PASS",
+        "candidate_specific_cpu_envelope": "INCONCLUSIVE_NOT_RUN"
+      },
+      "v15_failure_surface": {
+        "greeting": "I can adapt my tone to the Architect's style while remaining Viv.",
+        "plain_language": "I do not call a task complete without evidence.",
+        "failed_term": "conversation_term",
+        "core_identity_probes": "6/6"
+      },
+      "controller_observation": {
+        "rollbacks": 0,
+        "manual_adjustments": 0,
+        "loss_pressure_max": 0.4837822202021566,
+        "gradient_pressure_max": 0.0,
+        "final_learning_rate_scale": 0.769574539230548,
+        "final_weight_decay_scale": 0.6371633348483825,
+        "final_anchor_weight": 0.26663477587843415,
+        "final_gradient_clip_scale": 1.0
+      },
+      "interpretation": "The 20% V16 train-only retention lane produced aggregate and conversation progress but did not recover the V15 greeting/plain-language surface. Gradient pressure stayed dormant, so changing optimizer actuators again is not the measured next move."
+    }
+  },
+  "source_audit": {
+    "base_dataset": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "base_tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
+    "base_train_examples": 55106,
+    "base_replay_examples": 53314,
+    "dialogue_context_examples": 1792,
+    "dialogue_context_examples_unweighted": 56,
+    "source_dialogue_train_oversample": 32,
+    "observed_v43_examples": "greeting acknowledgement and plain-language response examples are present in the dialogue source",
+    "retention_fraction_held_fixed": 0.2,
+    "retention_examples_held_fixed": 11021,
+    "validation_examples": 8696,
+    "v16_validation_examples_excluded": 8672,
+    "knowledge_admission": false
+  },
+  "next_hypothesis": {
+    "candidate_id": "V62_DIALOGUE_VISIBILITY_PRESERVATION",
+    "hypothesis": "Increasing the existing V43 dialogue tail from its current 32x contribution to 64x by adding one declarative repeat may improve greeting and plain-language conversation responses while retaining V61's aggregate metric progress and 20% train-only preservation mixture.",
+    "starting_parent": "V57",
+    "candidate_controller_infrastructure": "V59 carry_forward_actuation_only seeded from V57; metric history reset for a fresh observation",
+    "change_scope": "One broad data-mixture variable: base_dialogue_extra_repeats = 1. V43 replay, V16 retention fraction, tokenizer, transformer architecture, parent checkpoint, teacher, optimizer family, probe suite, acceptance guards, and 250-step budget remain fixed.",
+    "candidate_values": {
+      "base_dialogue_extra_repeats": 1,
+      "source_dialogue_context_examples": 1792,
+      "source_dialogue_train_oversample": 32,
+      "effective_dialogue_visibility": "64x",
+      "effective_base_train_examples": 56898,
+      "retention_fraction_of_base_train": 0.2,
+      "retention_sampling_seed": 42,
+      "retention_train_examples": 11021,
+      "prepared_train_examples": 67919,
+      "validation_examples": 8696
+    },
+    "new_measured_reason": "V61's two V15 failures are conversation-surface failures, the V43 source contains matching greeting and plain-language examples, and the previous 20% retention change should not be repeated unchanged.",
+    "not_yet_authorized": true,
+    "success_condition": "A bounded candidate improves at least one matched aggregate metric over V57 while retaining V15 at 9/10 or better, semantic 6/6, conversation at least 6/10, zero telemetry leakage, and generic CPU mouth-contract PASS. Working-parent advancement additionally requires the independent candidate-specific CPU surface to be valid or explicitly accepted by the separate authority process.",
+    "failure_interpretation": "If V62 improves metrics or conversation while V15 remains 8/10 or lower, retain it as a measured challenger and conclude that dialogue visibility alone is insufficient or trades away preservation. Do not erase V62 or repeat the same lane unchanged.",
+    "risk": "More dialogue repetition may overfit conversational phrasing, dilute the broad identity replay, or increase teacher divergence. The bounded controller and independent probes must decide; qualitative output alone is not acceptance evidence."
+  },
+  "data_contract": {
+    "lane_id": "v62_dialogue_visibility_preservation",
+    "builder": "foundation/models/Training/current/viv_slm/build_viv_slm_preservation_replay_inputs.py",
+    "builder_behavior": "deterministic_existing_dialogue_tail_expansion_plus_train_only_retention_with_base_validation_only",
+    "base_dataset": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "base_input_manifest_sha256": "0F328F5208F6BD0D794FF0ABC28CE2139D4582AA8F611A9AD9583BA35051DDEF",
+    "base_tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
+    "retention_dataset": "foundation/models/Training/data/identity/v16_response_only",
+    "retention_input_manifest_sha256": "AB5092BBCCDB651DEB30B659710D22F7B9B0871FE33B8D702AD6B56656C3A299",
+    "retention_tensor_manifest_sha256": "1C80CACF02FF8E1CFE9218AFBD22C2D87EC3A3A1F3465C20B33DFA4C1DF8AF66",
+    "prepared_dataset": "foundation/models/Training/data/identity/v62_dialogue_visibility_preservation",
+    "prepared_input_manifest_sha256": "2C246037457D8BD590038F963F7890CAF8FA0B24112E2E6EBA3FB9DA11A801CF",
+    "prepared_tensor_manifest_sha256": "2263B3C10D4E5CF3D0DFEFED126CE5E058129098234F13C9C1868F2CF9AF4C44",
+    "prepared_vocab_sha256": "00982C5992060D4D55E4843D0726A9823CCB71C46E04FC9E9DFFBCDB1D3F8179",
+    "base_source_train_examples": 55106,
+    "base_replay_examples": 53314,
+    "dialogue_context_examples": 1792,
+    "dialogue_extra_repeats": 1,
+    "effective_base_train_examples": 56898,
+    "retention_train_examples": 11021,
+    "prepared_train_examples": 67919,
+    "prepared_validation_examples": 8696,
+    "retention_fraction_of_base_train": 0.2,
+    "retention_sampling_seed": 42,
+    "retention_validation_examples_excluded": 8672,
+    "validation_source": "v43_conversation_focus_only",
+    "world_knowledge_included": false,
+    "identity_before_knowledge": true,
+    "knowledge_admission": false
+  },
+  "controller_binding": {
+    "mode": "carry_forward_actuation_only",
+    "source": "V57",
+    "source_run_manifest_sha256": "076AF1A10DCB452E709980B7EF9A41FAF36C252BA057A26AC5D976178E8D4C32",
+    "source_checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+    "metric_history_carried": false,
+    "fresh_baseline_required": true
+  },
+  "registry_binding": {
+    "path": "foundation/models/Training/current/TRAINING_KNOBS.json",
+    "sha256": "9278886F5CA45640A012332D9D482D60705CABFF6E8BE69C3007A1ED42D216E6",
+    "identity_index": "foundation/models/Training/data/identity/INDEX.json",
+    "identity_index_sha256": "419C0AC087A4DAF3CB5F6CE318E983F36ABEC379DE915CC4930AF88404A6D4A6"
+  },
+  "preparation_evidence": {
+    "builder_dry_run_status": "PASS",
+    "builder_build_status": "PASS",
+    "focused_builder_test_status": "PASS",
+    "output_overwrite_policy": "REFUSE_EXISTING_OUTPUT",
+    "authority_during_preparation": "CLOSED",
+    "canary_required_before_any_promotion": true
+  },
+  "required_next_action": "Create the V62 hash-pinned campaign contract, run engine and supervisor dry-runs with authority closed, run focused tests and full foundation preflight, then create an exact-scope authorization backup before the single 250-step canary.",
+  "organization_note": "V34-V61 evidence remains preserved. V62 uses the same generic declarative builder and controller; no historical trainer or negative/inconclusive evidence package is deleted or overwritten."
+}

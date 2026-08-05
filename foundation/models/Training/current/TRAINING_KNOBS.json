@@ -113,7 +113,7 @@
   },
   "identity_data": {
     "index": "foundation/models/Training/data/identity/INDEX.json",
-    "index_sha256": "9FD0FEC21A10FB9F3D69499DDD32AA3A4A11D2ADC3EED3D80F71E1161207AB53",
+    "index_sha256": "419C0AC087A4DAF3CB5F6CE318E983F36ABEC379DE915CC4930AF88404A6D4A6",
     "base_dataset": "foundation/models/Training/data/identity/v43_conversation_focus",
     "base_input_manifest_sha256": "0F328F5208F6BD0D794FF0ABC28CE2139D4582AA8F611A9AD9583BA35051DDEF",
     "base_tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
@@ -129,7 +129,59 @@
     "validation_source": "foundation/models/Training/data/identity/v43_conversation_focus",
     "v16_validation_in_training": false,
     "knowledge_dataset_admitted": false,
-    "rule": "Identity data is the first curriculum. V60 may mix only V43 train rows with a deterministic V16 response-only train retention sample; validation remains V43-only and V16 validation remains an independent evaluation surface."
+    "candidate_lanes": {
+      "v61_stratified_preservation_retention": {
+        "builder": "foundation/models/Training/current/viv_slm/build_viv_slm_preservation_replay_inputs.py",
+        "base_dataset": "foundation/models/Training/data/identity/v43_conversation_focus",
+        "base_input_manifest_sha256": "0F328F5208F6BD0D794FF0ABC28CE2139D4582AA8F611A9AD9583BA35051DDEF",
+        "base_tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
+        "retention_dataset": "foundation/models/Training/data/identity/v16_response_only",
+        "retention_input_manifest_sha256": "AB5092BBCCDB651DEB30B659710D22F7B9B0871FE33B8D702AD6B56656C3A299",
+        "retention_tensor_manifest_sha256": "1C80CACF02FF8E1CFE9218AFBD22C2D87EC3A3A1F3465C20B33DFA4C1DF8AF66",
+        "output_dataset": "foundation/models/Training/data/identity/v61_stratified_preservation_replay",
+        "retention_fraction_of_base_train": 0.2,
+        "retention_sampling_seed": 42,
+        "validation_source": "foundation/models/Training/data/identity/v43_conversation_focus",
+        "v16_validation_in_training": false,
+        "prepared_input_manifest_sha256": "516B3254EE0C2173A0E135D38E4469B1E1CE72525E73B8C884E0072A7DC8D3E0",
+        "prepared_tensor_manifest_sha256": "6168797D0FD8D3A09AA4E55E47FF5B49955BF6B5B733FCF7DD72C85E7EF34124",
+        "prepared_vocab_sha256": "00982C5992060D4D55E4843D0726A9823CCB71C46E04FC9E9DFFBCDB1D3F8179",
+        "base_train_examples": 55106,
+        "retention_train_examples": 11021,
+        "prepared_train_examples": 66127,
+        "prepared_validation_examples": 8696,
+        "change_dimension": "retention_fraction_of_base_train",
+        "hypothesis": "doubling_train_only_v16_retention_recovers_v15_without_erasing_v60_metric_or_conversation_progress"
+      },
+      "v62_dialogue_visibility_preservation": {
+        "builder": "foundation/models/Training/current/viv_slm/build_viv_slm_preservation_replay_inputs.py",
+        "base_dataset": "foundation/models/Training/data/identity/v43_conversation_focus",
+        "base_input_manifest_sha256": "0F328F5208F6BD0D794FF0ABC28CE2139D4582AA8F611A9AD9583BA35051DDEF",
+        "base_tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
+        "retention_dataset": "foundation/models/Training/data/identity/v16_response_only",
+        "retention_input_manifest_sha256": "AB5092BBCCDB651DEB30B659710D22F7B9B0871FE33B8D702AD6B56656C3A299",
+        "retention_tensor_manifest_sha256": "1C80CACF02FF8E1CFE9218AFBD22C2D87EC3A3A1F3465C20B33DFA4C1DF8AF66",
+        "output_dataset": "foundation/models/Training/data/identity/v62_dialogue_visibility_preservation",
+        "retention_fraction_of_base_train": 0.2,
+        "retention_sampling_seed": 42,
+        "base_dialogue_extra_repeats": 1,
+        "validation_source": "foundation/models/Training/data/identity/v43_conversation_focus",
+        "v16_validation_in_training": false,
+        "prepared_input_manifest_sha256": "2C246037457D8BD590038F963F7890CAF8FA0B24112E2E6EBA3FB9DA11A801CF",
+        "prepared_tensor_manifest_sha256": "2263B3C10D4E5CF3D0DFEFED126CE5E058129098234F13C9C1868F2CF9AF4C44",
+        "prepared_vocab_sha256": "00982C5992060D4D55E4843D0726A9823CCB71C46E04FC9E9DFFBCDB1D3F8179",
+        "base_source_train_examples": 55106,
+        "base_replay_examples": 53314,
+        "dialogue_context_examples": 1792,
+        "effective_base_train_examples": 56898,
+        "retention_train_examples": 11021,
+        "prepared_train_examples": 67919,
+        "prepared_validation_examples": 8696,
+        "change_dimension": "base_dialogue_extra_repeats",
+        "hypothesis": "doubling_v43_dialogue_visibility_from_32x_to_64x_recovers_greeting_and_plain_language_without_repeating_the_failed_v61_retention_change"
+      }
+    },
+    "rule": "Identity data is the first curriculum. Declared preservation lanes may mix only V43 train rows with deterministic V16 response-only train retention samples; validation remains V43-only and V16 validation remains an independent evaluation surface."
   },
   "training_inference_profile": {
     "status": "PARTIALLY_VERIFIED_CUSTOM_VIV_SLM_TENSOR_LANE",
@@ -189,7 +241,9 @@
       "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
       "foundation/artifacts/audit/session_journal.md",
       "foundation/artifacts/auto/uml/viv_slm_checkpoint_layers.json",
-      "foundation/artifacts/auto/agentic/V60_NEXT_HYPOTHESIS_DATA.json"
+      "foundation/artifacts/auto/agentic/V60_NEXT_HYPOTHESIS_DATA.json",
+      "foundation/artifacts/auto/agentic/V61_NEXT_HYPOTHESIS_DATA.json",
+      "foundation/models/Training/runs/viv_slm/v61_stratified_preservation_retention_steps_0250/V61_EVALUATION.json"
     ],
     "decision_order": [
       "preservation_regression",
@@ -208,12 +262,15 @@
       "A generated hypothesis is preparation evidence, not authorization to train."
     ],
     "next_candidate": {
-      "id": "V60_PRESERVATION_AWARE_REPLAY_OR_RETENTION_LANE",
+      "id": "V62_DIALOGUE_VISIBILITY_PRESERVATION",
       "parent": "V57",
       "controller_infrastructure": "V59 carry_forward_actuation_only",
-      "change_dimension": "V15 train-only retention/replay data mixture",
-      "candidate_values": "must be derived and sealed from the V15/V43 data audit before contract creation",
-      "status": "NOT_READY_FOR_CANARY"
+      "change_dimension": "V43 dialogue visibility versus fixed replay/retention",
+      "candidate_values": "base_dialogue_extra_repeats=1; source_dialogue_context_examples=1792; effective_dialogue_visibility=64x; retention_fraction_of_base_train=0.2; selected_train_examples=11021",
+      "evidence_packet": "foundation/artifacts/auto/agentic/V62_NEXT_HYPOTHESIS_DATA.json",
+      "evidence_packet_sha256": "",
+      "prepared_dataset": "foundation/models/Training/data/identity/v62_dialogue_visibility_preservation",
+      "status": "DECLARED_AUTHORITY_CLOSED_DATA_PACKAGE_PENDING"
     }
   },
   "output_policy": {

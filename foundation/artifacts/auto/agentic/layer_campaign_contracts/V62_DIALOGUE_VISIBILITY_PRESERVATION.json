@@ -1,0 +1,113 @@
+{
+  "schema_version": "viv_slm_layer_campaign_v1",
+  "campaign_id": "viv_slm_identity_personality_v62_dialogue_visibility_preservation_0250",
+  "input_root": "foundation/models/Training/data/identity/v62_dialogue_visibility_preservation",
+  "output_dir": "foundation/models/Training/runs/viv_slm/v62_dialogue_visibility_preservation_steps_0250",
+  "parent_checkpoint": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/checkpoint.pt",
+  "parent_checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+  "delta_source_parent": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/checkpoint.pt",
+  "delta_source_parent_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+  "delta_source_child": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/checkpoint.pt",
+  "delta_source_child_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+  "allowed_scale_ladder": [
+    1.0,
+    0.75,
+    0.5,
+    0.25,
+    0.1
+  ],
+  "metric_guards": {
+    "validation_nll_tolerance": 0.001,
+    "validation_accuracy_tolerance": 0.0005,
+    "teacher_kl_tolerance": 0.002,
+    "selection_rule": "largest_guard_safe_scale_with_any_pareto_improvement"
+  },
+  "teacher_reference_checkpoint": "models/viv_slm_identity_personality_v28_canonical_disambiguation/runs/canonical_disambiguation_steps_0250/checkpoint.pt",
+  "teacher_reference_checkpoint_sha256": "99D536EE2E0AB804B70B54B4C81C617468564F825EAE82E2F6296964796C1BF0",
+  "step_budget": 250,
+  "rollback_budget": 2,
+  "training_config": {
+    "batch_size": 64,
+    "eval_batch_size": 64,
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "evaluation_interval": 50,
+    "max_grad_norm": 1.0,
+    "seed": 42,
+    "anchor_weight": 0.2,
+    "anchor_weight_min": 0.05,
+    "anchor_weight_max": 0.5,
+    "learning_rate_scale_min": 0.2,
+    "learning_rate_scale_max": 1.05,
+    "gradient_clip_scale_min": 0.75,
+    "gradient_clip_scale_max": 1.0,
+    "weight_decay_scale_min": 0.25,
+    "weight_decay_scale_max": 1.0,
+    "sample_tokens": 160,
+    "top_k": 40,
+    "controller_tuning": {
+      "schema_version": "viv_slm_multi_metric_controller_v3",
+      "ema_alpha": 0.1,
+      "teacher_kl_delta_target": 0.002,
+      "validation_nll_delta_target": 0.001,
+      "loss_relative_tolerance": 0.05,
+      "grad_norm_target_ratio": 0.7
+    },
+    "controller_state_seed": {
+      "mode": "carry_forward_actuation_only",
+      "source_run_manifest": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/RUN_MANIFEST.json",
+      "source_run_manifest_sha256": "076AF1A10DCB452E709980B7EF9A41FAF36C252BA057A26AC5D976178E8D4C32",
+      "source_checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+      "source_layer_id": "viv_slm_identity_personality_v57_v43_behavior_lane_autotune_0250_20260805T032239Z"
+    }
+  },
+  "input_contract": {
+    "lane_id": "v62_dialogue_visibility_preservation",
+    "identity_index": "foundation/models/Training/data/identity/INDEX.json",
+    "identity_index_sha256": "419C0AC087A4DAF3CB5F6CE318E983F36ABEC379DE915CC4930AF88404A6D4A6",
+    "input_manifest_sha256": "2C246037457D8BD590038F963F7890CAF8FA0B24112E2E6EBA3FB9DA11A801CF",
+    "tensor_manifest_sha256": "2263B3C10D4E5CF3D0DFEFED126CE5E058129098234F13C9C1868F2CF9AF4C44",
+    "vocab_file_sha256": "00982C5992060D4D55E4843D0726A9823CCB71C46E04FC9E9DFFBCDB1D3F8179",
+    "base_dataset": "v43_conversation_focus",
+    "base_source_train_examples": 55106,
+    "base_replay_examples": 53314,
+    "dialogue_context_examples": 1792,
+    "dialogue_extra_repeats": 1,
+    "effective_base_train_examples": 56898,
+    "retention_dataset": "v16_response_only",
+    "retention_train_examples": 11021,
+    "retention_fraction_of_base_train": 0.2,
+    "retention_sampling_seed": 42,
+    "train_examples": 67919,
+    "validation_examples": 8696,
+    "validation_source": "v43_conversation_focus_only",
+    "v16_validation_in_training": false,
+    "response_only_loss": true,
+    "dialogue_context": true,
+    "base_replay": true,
+    "world_knowledge_included": false,
+    "knowledge_admission": false
+  },
+  "probe_suite": [
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_personality_semantic_probe_v1.py",
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_personality_v15_probe_v1.py",
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_conversation_probe_v1.py",
+    "foundation/scripts/test_cpu_mouth_render_contract_v1.py"
+  ],
+  "knob_registry": {
+    "path": "foundation/models/Training/current/TRAINING_KNOBS.json",
+    "sha256": "9278886F5CA45640A012332D9D482D60705CABFF6E8BE69C3007A1ED42D216E6"
+  },
+  "authority_scope": {
+    "steps": 250,
+    "step_increment": 250,
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_authorized": false,
+    "deployment_changed": false,
+    "live_model_changed": false,
+    "global_aifl_writes": false,
+    "master_s_n_mutation": false,
+    "knowledge_admission": false
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "viv_master_training_program_v1",
-  "status": "CANONICAL_TRAINING_PACKAGE_AND_IDENTITY_DATA_VERIFIED_V60_CONTRACT_DRY_RUN_PASSED_AUTHORIZATION_BACKUP_PENDING",
+  "status": "CANONICAL_TRAINING_PACKAGE_AND_IDENTITY_DATA_VERIFIED_V62_DIALOGUE_LANE_DRY_RUN_PENDING_AUTHORITY_CLOSED",
   "program_id": "viv_identity_layer_governed_continual_training",
   "canonical_root": "foundation/models/Training",
   "canonical_root_absolute": "L:/Continue/Viv/foundation/models/Training",
@@ -19,7 +19,7 @@
   "canonical_python": "L:/Continue/.venv/Scripts/python.exe",
   "knob_registry": {
     "path": "foundation/models/Training/current/TRAINING_KNOBS.json",
-    "sha256": "2C97FDC361E050970385CDDC006419965086ED1EAD5F8202CDBE77ABEB8A7369",
+    "sha256": "9278886F5CA45640A012332D9D482D60705CABFF6E8BE69C3007A1ED42D216E6",
     "binding_status": "HASH_PINNED_ENGINE_BINDING_VERIFIED"
   },
   "active_engine": {
@@ -55,10 +55,12 @@
       "checkpoint_sha256": "649675EACF43E8065D24A09236FCD1DD56B8976B0FCBDC6265D4B826C20965EA"
     },
     "next_candidate": {
-      "version": "V60",
-      "hypothesis_data": "foundation/artifacts/auto/agentic/V60_NEXT_HYPOTHESIS_DATA.json",
-      "hypothesis_data_sha256": "DEB4AB1FAAE2EEB9A8D54BDF123F1CC159418E526A4F6ECC916628391DABAAB3",
-      "status": "NOT_AUTHORIZED"
+      "version": "V62",
+      "hypothesis_data": "foundation/artifacts/auto/agentic/V62_NEXT_HYPOTHESIS_DATA.json",
+      "hypothesis_data_sha256": "04173F27F2ABEB06A734FA6977961CC7875E57EB7E841FD9D2F07483815026B8",
+      "campaign_contract": "foundation/artifacts/auto/agentic/layer_campaign_contracts/V62_DIALOGUE_VISIBILITY_PRESERVATION.json",
+      "campaign_contract_sha256": "EC587473C2221F9D7594FC524036F1FBF14E3CD4464D274C1E06444E2968EDC6",
+      "status": "PREPARED_AUTHORITY_CLOSED_DATA_BUILT_DRY_RUN_PASS_PREFLIGHT_PASS_GIT_BACKUP_PENDING"
     }
   },
   "logical_roles": {
@@ -69,7 +71,7 @@
     },
     "data": {
       "identity_index": "foundation/models/Training/data/identity/INDEX.json",
-      "identity_index_status": "IDENTITY_FIRST_V60_REPLAY_PACKAGE_BUILT_HASH_VERIFIED",
+      "identity_index_status": "IDENTITY_FIRST_V62_DIALOGUE_VISIBILITY_PACKAGE_BUILT_HASH_VERIFIED",
       "knowledge_index": "foundation/models/Training/data/knowledge/INDEX.json",
       "knowledge_admission": false,
       "status": "ACTIVE_DATA_CONTRACT_INDEX_NO_KNOWLEDGE_ADMISSION"
@@ -121,5 +123,5 @@
     "preflight": "L:/Continue/.venv/Scripts/python.exe -B foundation/scripts/run_foundation_preflight.py"
   },
   "migration_plan": "foundation/models/Training/TRAINING_ORGANIZATION_MIGRATION.json",
-  "v60_gate": "Do not authorize the V60 canary until the migration plan reaches IMPORTS_AND_PATHS_VERIFIED, the identity-first V60 data package is hash verified, the scoped Git backup is pushed, the V60 contract dry-runs pass, the exact authorization backup is sealed, and full preflight passes with authority closed."
+  "v62_gate": "Do not authorize the V62 canary until the identity-first V62 data package is hash verified, the V62 contract and generic engine/supervisor dry-runs pass, the scoped Git backup is pushed, the exact authorization backup is sealed, and full preflight passes with authority closed."
 }
