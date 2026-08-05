@@ -14141,7 +14141,7 @@
       "canonical_root": "foundation/models/Training",
       "canonical_root_absolute": "L:/Continue/Viv/foundation/models/Training",
       "master_program": "foundation/models/Training/current/MASTER_TRAINING_PROGRAM.json",
-      "master_program_sha256": "DA2B9196111F58647C6E730929CFD5DC9EA2B17F34EDD987EEAB7E6132A5DCE3",
+      "master_program_sha256": "DADE67BDA711F57D809BC50CB7D574578B9ACFCA9B9C7B97C65AFAE58E160E47",
       "migration_plan": "foundation/models/Training/TRAINING_ORGANIZATION_MIGRATION.json",
       "migration_plan_sha256": "1F05FC82F26A687C4771796C120EDEA6A75147EA4709CC9A3B1C8E3B8CD373E1",
       "legacy_index": "foundation/models/Training/legacy/INDEX.json",
@@ -14157,7 +14157,7 @@
       "knowledge_index": "foundation/models/Training/data/knowledge/INDEX.json",
       "knowledge_index_sha256": "E206721EB5ED05ED658C38D54DB887449711AE9ED54A27851E87DCD1B18E44BD",
       "journal": "foundation/artifacts/audit/session_journal.md",
-      "journal_sha256": "5531D504FD41DB8F7AFA9B90EB465906EA19B281DCA8812AD0EA0123C6775305",
+      "journal_sha256": "56AE2226B8C6ABB88A14270C48BBDECA0DF36B6D0409F2FB41F573B807078848",
       "triad_registry": "foundation/triad_boundary_registry.json",
       "triad_registry_sha256": "15519E8DAC6481E322C3CDBC92A7E5AB3C85FD4B203E5A87A573D25293E1FD78",
       "last_full_preflight": {
@@ -14263,6 +14263,48 @@
     },
     "next_action": "prepare and dry-run the V60 identity-retention canary contract, then create the exact authorization backup"
   },
+  "v60_preservation_aware_replay_preparation": {
+    "campaign_id": "viv_slm_identity_personality_v60_preservation_aware_replay_0250",
+    "hypothesis_id": "V60_PRESERVATION_AWARE_REPLAY_OR_RETENTION_LANE",
+    "working_parent_layer_id": "viv_slm_identity_personality_v57_v43_behavior_lane_autotune_0250_20260805T032239Z",
+    "parent_checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+    "campaign_contract": "foundation/artifacts/auto/agentic/layer_campaign_contracts/V60_PRESERVATION_AWARE_REPLAY.json",
+    "campaign_contract_sha256": "167BC41A91732897CF6A217980E2FDF88E64165A7D6692F65E6DA6F140D086E2",
+    "input_root": "foundation/models/Training/data/identity/v60_preservation_replay",
+    "output_dir": "foundation/models/Training/runs/viv_slm/v60_preservation_aware_replay_steps_0250",
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_authorized": false,
+    "deployment_changed": false,
+    "live_model_changed": false,
+    "global_aifl_writes": false,
+    "master_s_n_mutation": false,
+    "knowledge_admission": false,
+    "scope": {
+      "steps": 250,
+      "step_increment": 250,
+      "training_authorized": false,
+      "run_authorized": false,
+      "promotion_authorized": false,
+      "deployment_changed": false,
+      "live_model_changed": false,
+      "global_aifl_writes": false,
+      "master_s_n_mutation": false,
+      "knowledge_admission": false
+    },
+    "dry_run": {
+      "engine_status": "DRY_RUN_READY",
+      "supervisor_status": "DRY_RUN_READY",
+      "steps": 250,
+      "parent_binding": true,
+      "authority_opened": false,
+      "output_directory_absent": true
+    },
+    "status": "PREPARED_AUTHORITY_CLOSED_DRY_RUN_PASSED_AUTHORIZATION_BACKUP_PENDING",
+    "training_action_taken": false,
+    "working_parent_advanced": false,
+    "next_action": "create the exact pre-canary authorization backup, then open only the named 250-step V60 scope"
+  },
   "handoff_document": {
     "path": "foundation/artifacts/audit/HANDOFF_V34_AIFL_PREFLIGHT_20260804.md",
     "sha256": "EB4096FD9885597FEBF6C16BEA4A1E37992392B816F6F9CCB1084DE667AD7687",
@@ -14274,5 +14316,5 @@
     "status": "V34_PREFLIGHT_AIFL_INTEGRATED_CANARY_PENDING"
   },
   "next_action": "V59 evidence sealed; canonical engine, identity-first datasets, V60 replay package, full preflight, and scoped Git backup are verified; prepare the V60 contract",
-  "updated_utc": "2026-08-05T05:18:09Z"
+  "updated_utc": "2026-08-05T05:22:19Z"
 }
