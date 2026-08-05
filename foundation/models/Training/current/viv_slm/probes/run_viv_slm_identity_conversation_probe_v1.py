@@ -15,7 +15,7 @@ from pathlib import Path
 import sys
 from typing import Any, Mapping, Sequence
 
-FOUNDATION = Path(__file__).resolve().parents[1]
+FOUNDATION = Path(__file__).resolve().parents[5]
 VIV_ROOT = FOUNDATION.parent
 if str(FOUNDATION) not in sys.path:
     sys.path.insert(0, str(FOUNDATION))

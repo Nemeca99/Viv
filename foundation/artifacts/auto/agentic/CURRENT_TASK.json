@@ -14157,20 +14157,22 @@
       "knowledge_index": "foundation/models/Training/data/knowledge/INDEX.json",
       "knowledge_index_sha256": "E206721EB5ED05ED658C38D54DB887449711AE9ED54A27851E87DCD1B18E44BD",
       "journal": "foundation/artifacts/audit/session_journal.md",
-      "journal_sha256": "56AE2226B8C6ABB88A14270C48BBDECA0DF36B6D0409F2FB41F573B807078848",
+      "journal_sha256": "567C38D2F95020BC4A03ED4865E74A519F116DF67F459259DD0BDF26D1091C97",
       "triad_registry": "foundation/triad_boundary_registry.json",
-      "triad_registry_sha256": "15519E8DAC6481E322C3CDBC92A7E5AB3C85FD4B203E5A87A573D25293E1FD78",
+      "triad_registry_sha256": "B75B2400F841AFC1B4BD3B5961C1B93C5E75CB15D4E8421BA453733096DB9E86",
+      "layer_ledger": "foundation/artifacts/auto/uml/viv_slm_checkpoint_layers.json",
+      "layer_ledger_sha256": "EC625B35F782DDDA99D85BB700BEA41483641DBCEADB611E0F14EE02937FC18F",
       "last_full_preflight": {
         "status": "PASS",
-        "parsed_python_files": 2392,
-        "architecture_python_files": 1174,
+        "parsed_python_files": 2393,
+        "architecture_python_files": 1175,
         "architecture_coverage_pct": 100.0,
-        "boundary_modules": 595,
+        "boundary_modules": 596,
         "direct_bridge_violations": 0,
         "registry_drift": false,
         "rust_security_core": "PASS",
         "authority_closed": true,
-        "run_utc": "2026-08-05T05:13:37Z"
+        "run_utc": "2026-08-05T05:42:48Z"
       },
       "canonical_active_paths": [
         "foundation/models/Training/current/viv_slm",
@@ -14187,8 +14189,8 @@
         "repository": "Nemeca99/Viv",
         "pushed": true
       },
-      "status": "CANONICAL_TRAINING_PACKAGE_AND_IDENTITY_DATA_BUILT_GIT_BACKUP_PUSHED_V60_CONTRACT_PENDING",
-      "v60_blocked_until": "V60_CONTRACT_DRY_RUN_AND_AUTHORIZATION_BACKUP",
+      "status": "V60_CANARY_COMPLETED_AUTHORITY_CLOSED_EVALUATED_INCONCLUSIVE_V57_RETAINED",
+      "v60_blocked_until": "V61_HYPOTHESIS_PREPARATION_ONLY",
       "active_paths_preserved": true,
       "canonical_source_migrated": true,
       "identity_data_canonical_copies": true,
@@ -14300,10 +14302,28 @@
       "authority_opened": false,
       "output_directory_absent": true
     },
-    "status": "PREPARED_AUTHORITY_CLOSED_DRY_RUN_PASSED_AUTHORIZATION_BACKUP_PENDING",
-    "training_action_taken": false,
+    "authorization_backup": {
+      "path": "foundation/artifacts/auto/agentic/backups/pre_v60_authorized_canary_20260805T052319Z/",
+      "file_count": 9,
+      "closed_authority_verified": true,
+      "source_commit": "eef97bd",
+      "journal_snapshot_sha256": "56AE2226B8C6ABB88A14270C48BBDECA0DF36B6D0409F2FB41F573B807078848",
+      "contract_snapshot_sha256": "167BC41A91732897CF6A217980E2FDF88E64165A7D6692F65E6DA6F140D086E2"
+    },
+    "status": "EVALUATED_INCONCLUSIVE_RETAIN_V57_WORKING_PARENT",
+    "operator_authorization": "architect_standing_authorization_single_bounded_250_step_increment",
+    "training_action_taken": true,
+    "training_output_completed": true,
+    "checkpoint_sha256": "19CC6EE6261EFFF2FFE9BCE7337949152FF69BB121DF52D9925B2D79178F2857",
+    "run_manifest_sha256": "E57A6C4DE437572A076B31257F01CE601221075BEB9FB5C1DCE2911614AE48D6",
+    "evaluation_receipt": "foundation/models/Training/runs/viv_slm/v60_preservation_aware_replay_steps_0250/V60_EVALUATION.json",
+    "evaluation_receipt_sha256": "07C3AB296CCFA24803553D9E2ABFF2B3F114846B5A1DD6F415AEFB7791B4C7D0",
+    "registration_repair_receipt": "foundation/artifacts/auto/agentic/layered_supervisor/viv_slm_identity_personality_v60_preservation_aware_replay_0250_20260805T052855Z/POST_RUN_REGISTRATION_REPAIR.json",
+    "registration_repair_receipt_sha256": "05AB64E856EF5B848F5812FE0C191254FF2A0E6BA4CDC75BDBB7C2AC2D7005E5",
+    "layer_record_sha256": "025ACF8D0C83F4A7B489440BE4CF29E49260EF3CC9BF25A8B3286F535613A1A3",
+    "decision": "RETAIN_V57_WORKING_PARENT_V60_INCONCLUSIVE_LAYER",
     "working_parent_advanced": false,
-    "next_action": "create the exact pre-canary authorization backup, then open only the named 250-step V60 scope"
+    "next_action": "repair canonical supervisor import, preserve V60 as a measured layer, and form the next broad hypothesis without advancing the working parent"
   },
   "handoff_document": {
     "path": "foundation/artifacts/audit/HANDOFF_V34_AIFL_PREFLIGHT_20260804.md",
@@ -14315,6 +14335,6 @@
     "sha256": "0358ACF33372109635A938E8EBA1BA3A63AB89196DE22D613C70018453103E17",
     "status": "V34_PREFLIGHT_AIFL_INTEGRATED_CANARY_PENDING"
   },
-  "next_action": "V59 evidence sealed; canonical engine, identity-first datasets, V60 replay package, full preflight, and scoped Git backup are verified; prepare the V60 contract",
-  "updated_utc": "2026-08-05T05:22:19Z"
+  "next_action": "V60 evaluated inconclusive; retain V57 as working parent, repair the canonical supervisor path, and prepare the next broad hypothesis without opening training authority",
+  "updated_utc": "2026-08-05T05:44:58Z"
 }
