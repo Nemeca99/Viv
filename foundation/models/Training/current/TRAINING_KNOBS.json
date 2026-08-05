@@ -1,0 +1,243 @@
+{
+  "schema_version": "viv_training_knob_registry_v1",
+  "status": "CENTRAL_DECLARATIVE_SOURCE_ENGINE_BINDING_VERIFIED",
+  "registry_id": "viv_identity_layer_training_knobs",
+  "canonical_root": "foundation/models/Training",
+  "purpose": "Centralize the knobs and policies used to prepare each bounded Viv-SLM training contract while preserving a hash-pinned snapshot inside every contract and run receipt.",
+  "authority": {
+    "this_file_opens_authority": false,
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "live_model_mutation": false,
+    "global_aifl_writes": false,
+    "master_s_n_mutation": false,
+    "knowledge_admission": false
+  },
+  "ownership": {
+    "architect_declared": [
+      "step_budget",
+      "step_increment",
+      "rollback_budget",
+      "metric_guards",
+      "probe_suite",
+      "data_policy",
+      "hypothesis_policy",
+      "output_policy"
+    ],
+    "governor_auto_tuned_within_bounds": [
+      "learning_rate_scale",
+      "weight_decay_scale",
+      "anchor_weight",
+      "gradient_clip_scale"
+    ],
+    "observed_only": [
+      "training_nll",
+      "validation_nll",
+      "token_accuracy",
+      "teacher_kl",
+      "sft_loss",
+      "total_loss",
+      "gradient_norm",
+      "telemetry_leakage",
+      "semantic_probe_result",
+      "v15_probe_result",
+      "conversation_probe_result",
+      "cpu_mouth_contract_result"
+    ]
+  },
+  "bounded_training": {
+    "step_budget": 250,
+    "step_increment": 250,
+    "evaluation_interval": 50,
+    "rollback_budget": 2,
+    "one_broad_change_per_increment": true,
+    "no_retry_after_canary_return": true,
+    "authority_closes_before_evaluation": true,
+    "no_auto_promotion": true
+  },
+  "optimizer_defaults": {
+    "batch_size": 64,
+    "eval_batch_size": 64,
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "seed": 42,
+    "sample_tokens": 160,
+    "top_k": 40
+  },
+  "actuator_bounds": {
+    "learning_rate_scale": {"min": 0.2, "max": 1.05, "initial": 1.0},
+    "weight_decay_scale": {"min": 0.25, "max": 1.0, "initial": 1.0},
+    "anchor_weight": {"min": 0.05, "max": 0.5, "initial": 0.2},
+    "gradient_clip_scale": {"min": 0.75, "max": 1.0, "initial": 1.0}
+  },
+  "controller": {
+    "schema_version": "viv_slm_multi_metric_controller_v3",
+    "ema_alpha": 0.1,
+    "teacher_kl_delta_target": 0.002,
+    "validation_nll_delta_target": 0.001,
+    "loss_relative_tolerance": 0.05,
+    "grad_norm_target_ratio": 0.7,
+    "state_seed_mode": "carry_forward_actuation_only",
+    "metric_history_carried": false,
+    "seeded_fields": ["anchor_weight", "gradient_clip_scale", "lr_scale", "weight_decay_scale"],
+    "rule": "Carry only bounded actuator state when explicitly hash-bound to the parent; reset metric history, baselines, and pressures for fresh observations."
+  },
+  "metric_guards": {
+    "validation_nll_tolerance": 0.001,
+    "validation_accuracy_tolerance": 0.0005,
+    "teacher_kl_tolerance": 0.002,
+    "selection_rule": "largest_guard_safe_scale_with_any_pareto_improvement",
+    "promotion_requires_independent_preservation": true,
+    "v15_minimum_for_working_parent": "9/10",
+    "semantic_minimum_for_working_parent": "6/6",
+    "telemetry_leakage_maximum": 0,
+    "cpu_mouth_contract_required": "PASS"
+  },
+  "composition": {
+    "scale_ladder": [1.0, 0.75, 0.5, 0.25, 0.1],
+    "selection": "read_only_largest_guard_safe_scale_then_train_once",
+    "failed_delta_reuse": "do_not_repeat_same_parent_delta_without_new_evidence"
+  },
+  "data_policy": {
+    "response_only_loss": true,
+    "dialogue_context": true,
+    "base_replay": true,
+    "world_knowledge_included": false,
+    "knowledge_policy": "external_cpu_retrieval_only",
+    "v15_replay_rule": "train_rows_only; validation, frozen, and adversarial rows remain independent evaluation surfaces",
+    "input_hashes_required": true,
+    "disjoint_holdout_required": true
+  },
+  "identity_data": {
+    "index": "foundation/models/Training/data/identity/INDEX.json",
+    "index_sha256": "9FD0FEC21A10FB9F3D69499DDD32AA3A4A11D2ADC3EED3D80F71E1161207AB53",
+    "base_dataset": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "base_input_manifest_sha256": "0F328F5208F6BD0D794FF0ABC28CE2139D4582AA8F611A9AD9583BA35051DDEF",
+    "base_tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
+    "retention_dataset": "foundation/models/Training/data/identity/v16_response_only",
+    "retention_input_manifest_sha256": "AB5092BBCCDB651DEB30B659710D22F7B9B0871FE33B8D702AD6B56656C3A299",
+    "retention_tensor_manifest_sha256": "1C80CACF02FF8E1CFE9218AFBD22C2D87EC3A3A1F3465C20B33DFA4C1DF8AF66",
+    "prepared_v60_dataset": "foundation/models/Training/data/identity/v60_preservation_replay",
+    "prepared_input_manifest_sha256": "8B12F584C0137B75E18F15257FC0FDF92D8F6B28C2AE73A9B5BA80A1AF30BF70",
+    "prepared_tensor_manifest_sha256": "6263D6A6137628C4C41EA621FA7C753E4BE1BFA3D2B7F896EEFCC0FBEB5B3C54",
+    "retention_fraction_of_base_train": 0.1,
+    "retention_sampling_seed": 42,
+    "max_shard_examples": 2048,
+    "validation_source": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "v16_validation_in_training": false,
+    "knowledge_dataset_admitted": false,
+    "rule": "Identity data is the first curriculum. V60 may mix only V43 train rows with a deterministic V16 response-only train retention sample; validation remains V43-only and V16 validation remains an independent evaluation surface."
+  },
+  "training_inference_profile": {
+    "status": "PARTIALLY_VERIFIED_CUSTOM_VIV_SLM_TENSOR_LANE",
+    "purpose": "Inference settings and system-prompt binding used to construct or evaluate training examples. This profile shapes training updates; it does not replace the main runtime inference contract.",
+    "prompt_prefix": "Viv:",
+  "prompt_prefix_source": "foundation/models/Training/current/viv_slm/train_viv_slm_identity_v1.py::_sample",
+  "prompt_prefix_source_sha256": "174E01F4FCE95366F2CCFDA4ED2CB2A1C72BBD7C487C032AEB6DBBD022780222",
+    "termination_marker": "<END>",
+    "termination_marker_source": "foundation/models/Training/data/identity/v15/INPUT_MANIFEST.json",
+    "termination_marker_source_sha256": "D864A287B4A580D51DE813134D257CA0AD77C87B31069EB8FCB783B0CD125D54",
+    "generation": {
+      "temperature_sweep": [0.0, 0.25, 0.5, 0.75, 1.0],
+      "top_k": 40,
+      "sample_tokens": 160
+    },
+    "loss_application": {
+      "response_only_loss": true,
+      "teacher_anchor_applies_to_training_inference": true,
+      "teacher_reference_is_parent_bound": true
+    },
+    "system_prompt": {
+      "status": "NOT_PRESENT_IN_CURRENT_CUSTOM_VIV_SLM_TENSOR_CONTRACT",
+      "source_path": null,
+      "source_sha256": null,
+      "rule": "Do not copy a GPU-mouth or runtime system prompt into the custom Viv-SLM lane until a canonical prompt source and a hash-pinned dataset/rendering contract are explicitly declared."
+    },
+    "main_inference_separation": {
+      "main_inference_owner": "AIOS runtime and CPU authority",
+      "main_inference_mutated_by_training_registry": false,
+      "relationship": "The training-inference profile supplies declared prompts, teacher/reference behavior, and generation probes to the training engine. It does not authorize live runtime inference changes or deployment."
+    }
+  },
+  "constitutional_awareness": {
+    "status": "REQUIRED_FUTURE_IDENTITY_CURRICULUM_NOT_IN_V60",
+    "purpose": "Teach Viv to identify and explain the governing doctrine without making learned text the enforcement mechanism.",
+    "canonical_enforcement_source": "security_core/src/laws.rs",
+    "canonical_enforcement_source_sha256": "4B3B8043A644EF8106B0330234A5AC2CC8A0739ECE89EC26178C71CF9293E0D2",
+    "machine_readable_summary_source": "security_core/src/constitution.rs",
+    "machine_readable_summary_source_sha256": "4062B6509BB902EDD6ABB0CEE1C04F79246E60E75BB46C884634BF645EAB9875",
+    "required_primes": 3,
+    "required_laws": 8,
+    "runtime_enforcement_owner": "Rust security_core plus CPU authority",
+    "training_role": "identity and constitutional awareness curriculum only",
+    "runtime_role": "learned model cannot override or replace security_core, CPU authority, or fail-closed gates",
+    "curriculum_binding": "Future contract must hash-pin the law source and use disjoint awareness probes.",
+    "documentation_note": "foundation/VIV_COMPLETE_SUMMARY.md contains older aspirational wording; do not combine it with the Rust doctrine without an explicit architect-approved reconciliation."
+  },
+  "probe_suite": [
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_personality_semantic_probe_v1.py",
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_personality_v15_probe_v1.py",
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_conversation_probe_v1.py",
+    "foundation/scripts/test_cpu_mouth_render_contract_v1.py"
+  ],
+  "hypothesis_policy": {
+    "mode": "bounded_evidence_driven",
+    "input_sources": [
+      "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
+      "foundation/artifacts/audit/session_journal.md",
+      "foundation/artifacts/auto/uml/viv_slm_checkpoint_layers.json",
+      "foundation/artifacts/auto/agentic/V60_NEXT_HYPOTHESIS_DATA.json"
+    ],
+    "decision_order": [
+      "preservation_regression",
+      "guarded_aggregate_metric_progress",
+      "semantic_and_cpu_containment",
+      "controller_pressure_and_rollback_evidence",
+      "next_broad_single_variable_change"
+    ],
+    "rules": [
+      "Retain every candidate and classify it as parent, challenger, rejected, or inconclusive.",
+      "Use a preservation parent when a challenger improves aggregate metrics but regresses an independent surface.",
+      "Do not keep refining a surface after a declared improvement; advance to the next broad hypothesis.",
+      "Do not change acceptance guards automatically; only tune actuators within declared bounds.",
+      "Do not repeat a failed hypothesis on the same parent without a new measured reason.",
+      "Generate the next contract from evidence and this registry, then hash-pin the registry snapshot.",
+      "A generated hypothesis is preparation evidence, not authorization to train."
+    ],
+    "next_candidate": {
+      "id": "V60_PRESERVATION_AWARE_REPLAY_OR_RETENTION_LANE",
+      "parent": "V57",
+      "controller_infrastructure": "V59 carry_forward_actuation_only",
+      "change_dimension": "V15 train-only retention/replay data mixture",
+      "candidate_values": "must be derived and sealed from the V15/V43 data audit before contract creation",
+      "status": "NOT_READY_FOR_CANARY"
+    }
+  },
+  "output_policy": {
+    "future_viv_slm_runs": "foundation/models/Training/runs/viv_slm",
+    "contract_directory": "foundation/artifacts/auto/agentic/layer_campaign_contracts",
+    "evidence_directory": "foundation/artifacts/auto/agentic",
+    "checkpoint_index": "foundation/models/Training/checkpoints/INDEX.json",
+    "no_delete": true,
+    "append_only_evidence": true
+  },
+  "binding_requirements": {
+    "contract_must_record_registry_path": true,
+    "contract_must_record_registry_sha256": true,
+    "run_manifest_must_record_resolved_knobs": true,
+    "controller_receipt_must_record_actuator_trajectory": true,
+    "evaluation_must_record_next_hypothesis": true,
+    "engine_binding_status": "HASH_PINNED_ENGINE_BINDING_VERIFIED"
+  },
+  "consumers": {
+    "master_program": "foundation/models/Training/current/MASTER_TRAINING_PROGRAM.json",
+    "generic_engine": "foundation/models/Training/current/viv_slm/run_viv_slm_layer_campaign.py",
+    "layered_supervisor": "foundation/models/Training/current/viv_slm/run_viv_slm_layered_training_supervisor.py",
+    "governor": "foundation/models/Training/current/viv_slm/viv_slm_layer_governor.py",
+    "task_record": "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
+    "journal": "foundation/artifacts/audit/session_journal.md"
+  }
+}

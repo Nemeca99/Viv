@@ -1,0 +1,25 @@
+{
+  "schema_version": "viv_training_knowledge_dataset_index_v1",
+  "status": "INVENTORIED_LOCKED_IDENTITY_FIRST",
+  "canonical_root": "foundation/models/Training/data/knowledge",
+  "curriculum_precedence": {
+    "identity": 1,
+    "knowledge": 2
+  },
+  "admission": {
+    "allowed_before_identity_acceptance": false,
+    "allowed_in_v60": false,
+    "requires_separate_contract": true,
+    "requires_disjoint_holdout_and_cpu_retrieval_probe": true,
+    "requires_architect_authorization": true
+  },
+  "authoritative_source": {
+    "path": "foundation/artifacts/auto/knowledge",
+    "status": "EXTERNAL_AUTHORITATIVE_ARTIFACT_ROOT_NOT_MOVED",
+    "files": 278,
+    "bytes": 6088342487,
+    "note": "The source includes retrieval evidence, manifests, text documents, and a SQLite title index. Do not duplicate or train from it until a knowledge-specific migration and admission contract exists."
+  },
+  "future_layout": "foundation/models/Training/data/knowledge/<corpus>/<version>",
+  "rule": "Knowledge is a later curriculum layer. Its existence in the index does not authorize ingestion, training, admission, promotion, deployment, or live runtime mutation."
+}

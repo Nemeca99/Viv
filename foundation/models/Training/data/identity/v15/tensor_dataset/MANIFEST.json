@@ -1,0 +1,319 @@
+{
+  "objective": {
+    "context_length": 128,
+    "input_ids": "tokens[start:start+context_length]",
+    "kind": "causal_next_character",
+    "next_character_losses_per_example": 128,
+    "stride": 1,
+    "target_ids": "tokens[start+1:start+context_length+1]"
+  },
+  "schema_version": "uml_part3_tensor_dataset_v1",
+  "source_policy": "source_files_read_only_strict_utf8_no_character_replacement",
+  "splits": {
+    "train": {
+      "examples": 44900,
+      "shards": [
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00000.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00001.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00002.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00003.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00004.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00005.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00006.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00007.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00008.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00009.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00010.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00011.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00012.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00013.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00014.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00015.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00016.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00017.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00018.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00019.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "train/shard_00020.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 1892,
+          "path": "train/shard_00021.pt",
+          "storage_dtype": "torch.int16"
+        }
+      ],
+      "source_file_count": 1,
+      "source_files": [
+        {
+          "bytes": 45028,
+          "characters": 45028,
+          "path": "L:/Continue/Viv/foundation/artifacts/auto/uml/viv_slm_identity_personality_v15/text/train.txt",
+          "sha256": "c4b60cdc004dbadffe503522a6285698594e95638c036b4645a4d5672e2905f6"
+        }
+      ],
+      "tokens_consumed_for_windows": 5792100
+    },
+    "validation": {
+      "examples": 8673,
+      "shards": [
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "validation/shard_00000.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "validation/shard_00001.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "validation/shard_00002.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "path": "validation/shard_00003.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 481,
+          "path": "validation/shard_00004.pt",
+          "storage_dtype": "torch.int16"
+        }
+      ],
+      "source_file_count": 1,
+      "source_files": [
+        {
+          "bytes": 8801,
+          "characters": 8801,
+          "path": "L:/Continue/Viv/foundation/artifacts/auto/uml/viv_slm_identity_personality_v15/text/validation.txt",
+          "sha256": "730915602382b485e2738823012c966d8b8603df70314e2fb23b2812df94e358"
+        }
+      ],
+      "tokens_consumed_for_windows": 1118817
+    }
+  },
+  "status": "COMPLETE",
+  "storage": {
+    "dtype": "torch.int16",
+    "model_batch_dtype": "torch.int64",
+    "shard_examples": 2048
+  },
+  "tokenizer": {
+    "schema_version": "uml_part3_character_tokenizer_v1",
+    "token_id_max": 95,
+    "token_id_min": 0,
+    "token_unit": "corpus_character",
+    "vocab": [
+      "\n",
+      " ",
+      "!",
+      "\"",
+      "#",
+      "$",
+      "%",
+      "&",
+      "'",
+      "(",
+      ")",
+      "*",
+      "+",
+      ",",
+      "-",
+      ".",
+      "/",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      ":",
+      ";",
+      "<",
+      "=",
+      ">",
+      "?",
+      "@",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "[",
+      "\\",
+      "]",
+      "^",
+      "_",
+      "`",
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+      "{",
+      "|",
+      "}",
+      "~"
+    ],
+    "vocab_mode": "scanned_append_only",
+    "vocab_sha256": "a5444bb0573ce8bbe523ca78bfd0e064568459ac55615c59f1e5f1cbbc0aad4b",
+    "vocab_size": 96
+  }
+}

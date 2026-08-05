@@ -1,0 +1,267 @@
+{
+  "base_input_manifest": "L:/Continue/Viv/models/viv_slm_identity_personality_v31_balanced_base/inputs/INPUT_MANIFEST.json",
+  "base_input_manifest_sha256": "18446924D85E554A1D6452F011F88798CC4948D8D66CC021165C0B25F9953D72",
+  "dialogue_source_manifest": "L:/Continue/Viv/foundation/artifacts/auto/agentic/viv_slm_identity_dialogue_v43/MANIFEST.json",
+  "dialogue_source_manifest_sha256": "9CD1CFCACC2C02AA445819E87045315E0E8F948603E824ED7CFD365BE2A696F3",
+  "objective": {
+    "context_length": 128,
+    "dialogue_context": true,
+    "kind": "v31_replay_plus_oversampled_dialogue_context_response_only",
+    "loss_mask": "Viv_response_and_end_marker_only",
+    "sampling_policy": "train_dialogue_chunks_repeated_32x_validation_once",
+    "target_coverage": "complete_response_and_end_marker"
+  },
+  "schema_version": "viv_slm_v43_conversation_focus_tensor_dataset_v1",
+  "splits": {
+    "train": {
+      "base_replay_examples": 53314,
+      "dialogue_context_examples": 1792,
+      "dialogue_context_examples_unweighted": 56,
+      "dialogue_train_oversample": 32,
+      "examples": 55106,
+      "masked_target_tokens": 3475608,
+      "shards": [
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00000.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00001.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00002.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00003.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00004.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00005.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00006.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00007.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00008.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00009.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00010.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00011.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00012.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00013.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00014.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00015.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00016.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00017.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00018.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00019.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00020.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00021.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00022.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00023.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00024.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00025.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 1858,
+          "loss_mask_dtype": "torch.bool",
+          "path": "train/shard_00026.pt",
+          "storage_dtype": "torch.int16"
+        }
+      ]
+    },
+    "validation": {
+      "base_replay_examples": 8672,
+      "dialogue_context_examples": 24,
+      "dialogue_context_examples_unweighted": 24,
+      "dialogue_train_oversample": 1,
+      "examples": 8696,
+      "masked_target_tokens": 550506,
+      "shards": [
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "validation/shard_00000.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "validation/shard_00001.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "validation/shard_00002.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "path": "validation/shard_00003.pt",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 504,
+          "loss_mask_dtype": "torch.bool",
+          "path": "validation/shard_00004.pt",
+          "storage_dtype": "torch.int16"
+        }
+      ]
+    }
+  },
+  "status": "COMPLETE",
+  "storage": {
+    "dtype": "torch.int16",
+    "loss_mask_dtype": "torch.bool",
+    "shard_examples": 2048
+  }
+}

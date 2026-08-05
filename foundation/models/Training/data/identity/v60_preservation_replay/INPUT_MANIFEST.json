@@ -1,0 +1,43 @@
+{
+  "base_dataset": {
+    "input_manifest_sha256": "0f328f5208f6bd0d794ff0abc28ce2139d4582aa8f611a9ad9583ba35051ddef",
+    "name": "v43_conversation_focus",
+    "root": "L:/Continue/Viv/foundation/models/Training/data/identity/v43_conversation_focus",
+    "tensor_manifest_sha256": "66afd13e31e2e5ab8c766ffbfb322bff4d33bd2f89006e2819b771fcacbbab77"
+  },
+  "context_length": 128,
+  "deployment_authorized": false,
+  "deployment_changed": false,
+  "global_aifl_writes": false,
+  "identity_before_knowledge": true,
+  "knowledge_admission": false,
+  "live_model_changed": false,
+  "master_s_n_mutation": false,
+  "model": "Viv-SLM",
+  "promotion_authorized": false,
+  "response_only_loss": true,
+  "retention_dataset": {
+    "input_manifest_sha256": "ab5092bbccdb651deb30b659710d22f7b9b0871fe33b8d702ad6b56656c3a299",
+    "name": "v16_response_only",
+    "root": "L:/Continue/Viv/foundation/models/Training/data/identity/v16_response_only",
+    "sampling_seed": 42,
+    "selected_train_examples": 5511,
+    "tensor_manifest_sha256": "1c80cacf02ff8e1cfe9218afbd22c2d87ec3a3a1f3465c20b33dfa4c1df8af66",
+    "train_only": true,
+    "validation_excluded": true
+  },
+  "run_authorized": false,
+  "schema_version": "viv_slm_v60_preservation_replay_inputs_v1",
+  "status": "COMPLETE_TRAINING_CLOSED",
+  "tensor_manifest": "L:/Continue/Viv/foundation/models/Training/data/identity/v60_preservation_replay/tensor_dataset/MANIFEST.json",
+  "tensor_manifest_sha256": "6263d6a6137628c4c41ea621fa7c753e4be1bfa3d2b7f896eefcc0fbeb5b3c54",
+  "termination_marker": "<END>",
+  "train_examples": 60617,
+  "training_authorized": false,
+  "validation_examples": 8696,
+  "validation_source": "v43_conversation_focus_only",
+  "vocab_manifest": "L:/Continue/Viv/foundation/models/Training/data/identity/v60_preservation_replay/VOCAB.json",
+  "vocab_manifest_sha256": "00982c5992060d4d55e4843d0726a9823ccb71c46e04fc9e9dffbcdb1d3f8179",
+  "vocab_size": 96,
+  "world_knowledge_included": false
+}

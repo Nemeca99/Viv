@@ -1,0 +1,51 @@
+{
+  "schema_version": "viv_training_legacy_index_v1",
+  "status": "INDEXED_HISTORICAL_VIV_SLM_MOVED_NO_DELETE",
+  "canonical_root": "foundation/models/Training",
+  "purpose": "Index frozen and historical training assets without deleting or changing the executable historical specifications.",
+  "existing_archive": {
+    "path": "foundation/models/Training/legacy training",
+    "manifest": "foundation/models/Training/legacy training/LEGACY_TRAINING_ARCHIVE_MANIFEST.md",
+    "status": "ARCHIVED_VERIFIED",
+    "move_policy": "Leave in place until a separate rename/move pass verifies every reference."
+  },
+  "frozen_viv_slm_executable_specifications": {
+    "status": "MOVED_HASH_PRESERVED_WITH_COMPATIBILITY_PATH_RESOLUTION",
+    "target_group": "foundation/models/Training/legacy/viv_slm",
+    "trainers": [
+      "foundation/models/Training/legacy/viv_slm/train_viv_slm_v30_frozen_head_greeting.py",
+      "foundation/models/Training/legacy/viv_slm/train_viv_slm_v31_balanced_base.py",
+      "foundation/models/Training/legacy/viv_slm/train_viv_slm_v32_balanced_low_lr.py",
+      "foundation/models/Training/legacy/viv_slm/train_viv_slm_v33_pairwise_identity.py",
+      "foundation/models/Training/legacy/viv_slm/train_viv_slm_v34_conflict_aware_identity.py",
+      "foundation/models/Training/legacy/viv_slm/train_viv_slm_v35_full_surface_teacher_anchor.py",
+      "foundation/models/Training/legacy/viv_slm/train_viv_slm_v36_composed_behavior_layer.py"
+    ],
+    "tests": [
+      "foundation/models/Training/legacy/viv_slm/test_viv_slm_v30_frozen_head_greeting.py",
+      "foundation/models/Training/legacy/viv_slm/test_viv_slm_v31_balanced_base_training.py",
+      "foundation/models/Training/legacy/viv_slm/test_viv_slm_v32_balanced_low_lr_training.py",
+      "foundation/models/Training/legacy/viv_slm/test_viv_slm_v33_pairwise_identity.py",
+      "foundation/models/Training/legacy/viv_slm/test_viv_slm_v34_conflict_aware_identity.py",
+      "foundation/models/Training/legacy/viv_slm/test_viv_slm_v35_full_surface_teacher_anchor.py",
+      "foundation/models/Training/legacy/viv_slm/test_viv_slm_v36_composed_behavior_layer.py"
+    ],
+    "rule": "These files are frozen historical proof. The current engine never imports them; historical contract paths resolve to this legacy root without rewriting historical hashes."
+  },
+  "migrated_viv_slm_scripts": {
+    "root": "foundation/models/Training/legacy/viv_slm",
+    "count": 113,
+    "source_snapshot_root": "foundation/models/Training/legacy/viv_slm/source_snapshots",
+    "source_snapshot_count": 7,
+    "status": "HASH_VERIFIED_COPY_BEFORE_MOVE",
+    "rule": "Legacy VSLM builders, probes, evaluators, registration tools, tests, and V30-V36 trainers remain available as negative and historical evidence."
+  },
+  "historical_viv_slm_artifacts": {
+    "root": "models",
+    "versions": "viv_slm_identity_personality_v1 through viv_slm_identity_personality_v59",
+    "status": "PARENT_BOUND_IMMUTABLE_PATHS",
+    "future_target": "foundation/models/Training/checkpoints/viv_slm",
+    "rule": "Do not move or rename existing checkpoints as part of index creation. Any migration must update every contract, task record, ledger receipt, probe path, and runtime consumer, then pass hash and preflight checks."
+  },
+  "no_delete": true
+}

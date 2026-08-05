@@ -1,0 +1,23 @@
+{
+  "schema_version": "viv_training_evidence_index_v1",
+  "status": "INDEX_ONLY_APPEND_ONLY",
+  "canonical_root": "foundation/models/Training/evidence",
+  "purpose": "Give AIOS one stable index for training evidence without duplicating or deleting the authoritative artifacts.",
+  "authoritative_sources": {
+    "current_task": "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
+    "journal": "foundation/artifacts/audit/session_journal.md",
+    "layer_ledger": "foundation/artifacts/auto/uml/viv_slm_checkpoint_layers.json",
+    "contracts": "foundation/artifacts/auto/agentic/layer_campaign_contracts",
+    "supervisor_receipts": "foundation/artifacts/auto/agentic/layered_supervisor",
+    "backups": "foundation/artifacts/auto/agentic/backups",
+    "next_hypothesis_packet": "foundation/artifacts/auto/agentic/V60_NEXT_HYPOTHESIS_DATA.json",
+    "central_knob_registry": "foundation/models/Training/current/TRAINING_KNOBS.json"
+  },
+  "sealed_v59": {
+    "final_package": "foundation/artifacts/auto/agentic/backups/pre_v59_final_metric_challenger_20260805T041818Z",
+    "checkpoint_sha256": "649675EACF43E8065D24A09236FCD1DD56B8976B0FCBDC6265D4B826C20965EA",
+    "next_hypothesis_packet_sha256": "16A88AA5CE89EFDF7D089F5A6EEEFF031F76E24256FF55C36DB0821F5CBF72B3"
+  },
+  "future_layout": "foundation/models/Training/evidence/viv_slm/<version>/<campaign>/",
+  "migration_rule": "The index may point to authoritative artifacts, but it does not replace them. Preserve negative, rejected, and inconclusive evidence."
+}

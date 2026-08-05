@@ -93,3 +93,33 @@ desktop.ini
 
 # Keep governed source documentation and receipts trackable. Generated files
 # are ignored only when they use conventional cache/temp names above.
+
+# Isolated Part 3 model source and compact evidence are intentionally
+# trackable for backup. No other model material is unignored here.
+!models/
+!models/uml_bigram_part3/
+!models/uml_bigram_part3/**
+models/uml_bigram_part3/__pycache__/
+models/uml_bigram_part3/artifacts/run_500_steps/tensor_dataset/**/*.pt
+
+# Viv-SLM Training control plane: keep declarative source, indexes, manifests,
+# and small audit documents trackable while excluding generated runs/tensors.
+foundation/models/Training/runs/
+foundation/models/Training/checkpoints/**/*.pt
+foundation/models/Training/checkpoints/**/*.pth
+!foundation/models/Training/checkpoints/
+!foundation/models/Training/checkpoints/INDEX.json
+foundation/models/Training/evidence/*
+!foundation/models/Training/evidence/
+!foundation/models/Training/evidence/INDEX.json
+foundation/models/Training/data/**/*.pt
+foundation/models/Training/data/**/*.pth
+foundation/models/Training/data/**/*.bin
+foundation/models/Training/data/**/*.safetensors
+foundation/models/Training/data/**/*.gguf
+foundation/models/Training/data/knowledge/**
+!foundation/models/Training/data/knowledge/
+!foundation/models/Training/data/knowledge/README.md
+!foundation/models/Training/data/knowledge/INDEX.json
+foundation/models/Training/current/viv_slm/**/__pycache__/
+foundation/models/Training/legacy/viv_slm/**/__pycache__/

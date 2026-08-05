@@ -1,0 +1,259 @@
+{
+  "schema_version": "viv_slm_next_hypothesis_data_v1",
+  "status": "SEALED_READ_ONLY_DATA_PACKET",
+  "generated_utc": "2026-08-05T04:14:57Z",
+  "purpose": "Collect the measured evidence required to define the next governed identity-layer experiment without discarding V57, V58, or V59 evidence.",
+  "authority": {
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "deployment_changed": false,
+    "live_model_changed": false,
+    "global_aifl_writes": false,
+    "master_s_n_mutation": false,
+    "knowledge_admission": false,
+    "training_action_taken": false
+  },
+  "decision_context": {
+    "working_parent": "viv_slm_identity_personality_v57_v43_behavior_lane_autotune_0250_20260805T032239Z",
+    "working_parent_checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+    "challenger": "viv_slm_identity_personality_v59_controller_state_layering_0250_20260805T040517Z",
+    "challenger_checkpoint_sha256": "649675EACF43E8065D24A09236FCD1DD56B8976B0FCBDC6265D4B826C20965EA",
+    "decision": "RETAIN_V57_AS_PRESERVATION_PARENT_AND_V59_AS_METRIC_PROGRESS_CHALLENGER",
+    "reason": "V59 improved matched aggregate metrics with the controller state seed, but independent V15 retention regressed from 9/10 to 8/10. V59 is preserved as evidence and is not promoted as the sole working parent."
+  },
+  "lineage_evidence": {
+    "v57": {
+      "role": "preservation_parent",
+      "checkpoint_path": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/checkpoint.pt",
+      "checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+      "run_manifest_path": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/RUN_MANIFEST.json",
+      "run_manifest_sha256": "076AF1A10DCB452E709980B7EF9A41FAF36C252BA057A26AC5D976178E8D4C32",
+      "training_history_sha256": "C4C78E3F96630424FED2EB09724274DB2675BD4E3BC54C64CC5B42F96B6E6205",
+      "matched_metrics": {
+        "validation_nll": 0.13188553545231463,
+        "validation_token_accuracy": 0.960563554257356,
+        "teacher_kl": 0.01421539282297509
+      },
+      "independent_probes": {
+        "semantic": "6/6",
+        "v15": "9/10",
+        "conversation": "5/10",
+        "telemetry_leakage": 0,
+        "cpu_mouth_contract": "PASS"
+      },
+      "controller_final": {
+        "lr_scale": 0.6827753582098277,
+        "weight_decay_scale": 0.6130221798792127,
+        "anchor_weight": 0.3037393449578614,
+        "gradient_clip_scale": 1.0,
+        "max_loss_pressure": 0.515970426827716,
+        "max_grad_pressure": 0.0,
+        "observed_grad_norm_min": 0.548675775527954,
+        "observed_grad_norm_max": 0.676140248775482
+      }
+    },
+    "v58": {
+      "role": "rejected_delta_composition_negative_evidence",
+      "contract_path": "foundation/artifacts/auto/agentic/layer_campaign_contracts/V58_V43_BEHAVIOR_DELTA_COMPOSITION.json",
+      "contract_sha256": "10EDA82177D9FE2DB2B5221077DAA61C23BE07B5B8543DD941FA48547E8CE7FD",
+      "checkpoint_sha256": "678E26A6FD4D88E47D52D181F0F255B8F5AA2530979C50D59A0862405DB079C3",
+      "run_manifest_sha256": "4ACC5E1537399D773F522406A6D256A0020ACF1D35C201108FB8E445551DFACF",
+      "training_history_sha256": "9B2A05BFB2D543DA386CD136EF25B143A1F9FE5330FBF091657B71FF8289D83A",
+      "composition": {
+        "ladder": [1.0, 0.75, 0.5, 0.25, 0.1],
+        "selected_scale": 0.0,
+        "interpretation": "The V43-minus-V42 behavior delta was not accepted on the V57 parent. The higher scales were disruptive; lower scales were guard-safe but did not produce a Pareto improvement."
+      },
+      "best_training_metrics_against_v57": {
+        "validation_nll": 0.13158978588276113,
+        "validation_nll_delta": -0.0002957495695535,
+        "validation_token_accuracy": 0.9607270402139123,
+        "validation_token_accuracy_delta": 0.000163485956556353,
+        "teacher_kl": 0.014248420075550867,
+        "teacher_kl_delta": 0.0000330272525757771
+      },
+      "independent_probes": {
+        "semantic": "6/6",
+        "v15": "8/10",
+        "conversation": "5/10",
+        "telemetry_leakage": 0,
+        "cpu_mouth_contract": "PASS"
+      },
+      "decision": "REJECTED_NEGATIVE_EVIDENCE_PRESERVATION_GUARD"
+    },
+    "v59": {
+      "role": "metric_progress_challenger_controller_state_layering",
+      "contract_path": "foundation/artifacts/auto/agentic/layer_campaign_contracts/V59_CONTROLLER_STATE_LAYERING.json",
+      "contract_sha256": "44D0CCB57050AD01B1BA82201518C2A566D9D3511124677ADAB2BD7E38A0CE90",
+      "run_directory": "models/viv_slm_identity_personality_v59_controller_state_layering/runs/controller_state_layering_steps_0250",
+      "checkpoint_sha256": "649675EACF43E8065D24A09236FCD1DD56B8976B0FCBDC6265D4B826C20965EA",
+      "run_manifest_sha256": "09314A9561718D04E26AC9A4CE9696C814154E5C53B0E1CFFCE1362793712AEA",
+      "training_history_sha256": "301F688F08D03463379E9E50EDFF753658C72167950842ED5EDE91B5F11E5DE0",
+      "probe_hashes": {
+        "semantic": "10CA3488BAF6D4C5ABA9A7FBAB01E4C8D3D6279D18A2B665853C572F5C34C8EF",
+        "v15": "EBA071551926325E18E52696B0D917A2C37CC01EDDF578E2ACF061CFB86E605E",
+        "conversation": "E58CF09679065BF4D50C77CD900EB047685FE527529CEAAC0FBA6FDCBC802F93"
+      },
+      "matched_metrics": {
+        "parent": {
+          "validation_nll": 0.13188553545231463,
+          "validation_token_accuracy": 0.960563554257356,
+          "teacher_kl": 0.01421539282297509
+        },
+        "best_step": 250,
+        "selected": {
+          "validation_nll": 0.13181558704295493,
+          "validation_token_accuracy": 0.9606689118738034,
+          "teacher_kl": 0.014824686546112395
+        },
+        "deltas": {
+          "validation_nll": -0.0000699484093597,
+          "validation_token_accuracy": 0.000105357616447366,
+          "teacher_kl": 0.000609293723137306
+        }
+      },
+      "independent_probes": {
+        "semantic": "6/6",
+        "v15": "8/10",
+        "conversation": "5/10",
+        "telemetry_leakage": 0,
+        "cpu_mouth_contract": "PASS"
+      },
+      "controller_state_seed": {
+        "mode": "carry_forward_actuation_only",
+        "source": "V57",
+        "metric_history_carried": false,
+        "seeded_fields": [
+          "anchor_weight",
+          "gradient_clip_scale",
+          "lr_scale",
+          "weight_decay_scale"
+        ],
+        "source_run_manifest_sha256": "076AF1A10DCB452E709980B7EF9A41FAF36C252BA057A26AC5D976178E8D4C32",
+        "source_checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+        "source_layer_id": "viv_slm_identity_personality_v57_v43_behavior_lane_autotune_0250_20260805T032239Z"
+      },
+      "controller_trajectory": [
+        {"step": 50, "lr_scale": 0.8808389289877323, "weight_decay_scale": 0.8422520489208378, "anchor_weight": 0.242761968331953, "loss_pressure": 0.0, "grad_pressure": 0.0, "grad_norm": 0.5510068535804749, "teacher_pressure": 0.21033060143888296},
+        {"step": 100, "lr_scale": 0.8398547197550258, "weight_decay_scale": 0.8158933392644351, "anchor_weight": 0.2555247613530691, "loss_pressure": 0.14029060158064632, "grad_pressure": 0.0, "grad_norm": 0.652630507946014, "teacher_pressure": 0.2454755476474199},
+        {"step": 150, "lr_scale": 0.8278881257430697, "weight_decay_scale": 0.808913392930513, "anchor_weight": 0.2588678207736978, "loss_pressure": 0.15150530739732193, "grad_pressure": 0.0, "grad_norm": 0.5520597696304321, "teacher_pressure": 0.25478214275931593},
+        {"step": 200, "lr_scale": 0.8384257648403806, "weight_decay_scale": 0.7824190871721866, "anchor_weight": 0.2601398844524036, "loss_pressure": 0.17153278811420916, "grad_pressure": 0.0, "grad_norm": 0.6487255096435547, "teacher_pressure": 0.290107883770418},
+        {"step": 250, "lr_scale": 0.7932769152882387, "weight_decay_scale": 0.7756932974946213, "anchor_weight": 0.270575933315279, "loss_pressure": 0.2990756033405048, "grad_pressure": 0.0, "grad_norm": 0.6446279883384705, "teacher_pressure": 0.2915617815502415}
+      ],
+      "rollbacks": 0,
+      "decision": "RETAINED_METRIC_PROGRESS_CHALLENGER_PRESERVATION_REGRESSION"
+    }
+  },
+  "cross_version_observations": [
+    {
+      "observation_id": "aggregate_progress_without_behavior_retention",
+      "finding": "V58 and V59 both improved at least one matched aggregate metric over V57 while both scored V15 8/10. V57 remains the stronger preservation parent."
+    },
+    {
+      "observation_id": "delta_portability_not_proven",
+      "finding": "The V43-minus-V42 delta did not produce a Pareto-safe improvement on V57. It must remain lineage-bound evidence, not a reusable universal layer."
+    },
+    {
+      "observation_id": "actuation_state_portability_supported",
+      "finding": "V59 carried forward only bounded actuator values, reset metric history, produced no rollback, and reduced pressure while retaining the V57 parent binding. This supports reusing the mechanism as infrastructure, subject to preservation guards."
+    },
+    {
+      "observation_id": "gradient_controller_not_stressed",
+      "finding": "V57, V58, and V59 all recorded zero gradient pressure with clipping at 1.0. Gradient-norm auto-tuning has not yet been meaningfully exercised by these lanes."
+    },
+    {
+      "observation_id": "behavior_surface_stable_but_conversation_unresolved",
+      "finding": "Semantic identity stayed 6/6, CPU containment stayed PASS, and telemetry leakage stayed zero. The bounded conversation surface stayed 5/10 in V57 through V59, so the next behavior hypothesis should target retention and ordinary conversation rather than broad metric refinement alone."
+    }
+  ],
+  "preservation_source": {
+    "dataset_manifest_path": "foundation/artifacts/auto/uml/viv_slm_identity_personality_v15/MANIFEST.json",
+    "dataset_manifest_sha256": "02692A2F241DAB0AAE4A17E7387FF254E2F623964E9BDEC8014A65E876B3D604",
+    "vocab_manifest_path": "foundation/artifacts/auto/uml/viv_slm_identity_personality_v15/VOCAB.json",
+    "vocab_manifest_sha256": "5BF9C6E419F43E29B0C6009079991161573C3AD8E30075589630E536445426D8",
+    "input_manifest_path": "models/viv_slm_identity_personality_v15/inputs/INPUT_MANIFEST.json",
+    "input_manifest_sha256": "D864A287B4A580D51DE813134D257CA0AD77C87B31069EB8FCB783B0CD125D54",
+    "tensor_manifest_path": "models/viv_slm_identity_personality_v15/inputs/tensor_dataset/MANIFEST.json",
+    "tensor_manifest_sha256": "148204D745B0233242247593BC28F2B936D3C426E1368AE02C098991AE95A5E3",
+    "row_counts": {"total": 476, "train": 348, "validation": 64, "frozen": 32, "adversarial": 32},
+    "training_windows": {"train": 44900, "validation": 8673},
+    "vocab_size": 96,
+    "concept_count": 32,
+    "additional_train_rows": 24,
+    "retention_rule": "Use V15 train rows only for any future replay lane; keep V15 validation, frozen, and adversarial surfaces out of training and preserve them for independent evaluation."
+  },
+  "next_hypothesis": {
+    "candidate_id": "V60_PRESERVATION_AWARE_REPLAY_OR_RETENTION_LANE",
+    "hypothesis": "An explicit, disjoint V15 identity-retention replay lane, combined with bounded controller actuation carry-forward, may recover the V57 9/10 V15 surface while preserving V59's aggregate metric progress.",
+    "starting_parent": "V57",
+    "candidate_controller_infrastructure": "V59 carry_forward_actuation_only seed, subject to dry-run validation and parent hash binding",
+    "change_scope": "One broad data-mixture variable: add or tune a V15 train-only retention lane while keeping tokenizer, transformer architecture, optimizer family, teacher, CPU authority, and acceptance guards fixed.",
+    "not_yet_authorized": true,
+    "required_preparation": [
+      "inventory the existing V15 train-only rows and current V43 lane without using holdout rows",
+      "declare the replay share and exact input hashes in a new contract",
+      "add V15 retention as an explicit independent acceptance guard before any working-parent advancement",
+      "dry-run the generic engine and supervisor with authority closed",
+      "run full foundation preflight before requesting the bounded canary"
+    ],
+    "success_condition": "A future bounded candidate must improve at least one matched aggregate metric over V57 while retaining V15 at 9/10 or better, semantic 6/6, zero telemetry leakage, and CPU mouth-contract PASS.",
+    "failure_interpretation": "If aggregate metrics improve while V15 remains 8/10 or lower, retain the candidate only as a challenger and treat the replay ratio or preservation mechanism as insufficient; do not discard the evidence."
+  },
+  "organization_prerequisite": {
+    "required_before_v60_canary": true,
+    "canonical_training_root": "foundation/models/Training",
+    "canonical_training_root_absolute": "L:/Continue/Viv/foundation/models/Training",
+    "central_knob_registry": "foundation/models/Training/current/TRAINING_KNOBS.json",
+    "central_knob_registry_sha256": "2C97FDC361E050970385CDDC006419965086ED1EAD5F8202CDBE77ABEB8A7369",
+    "identity_data_index": "foundation/models/Training/data/identity/INDEX.json",
+    "identity_data_index_sha256": "9FD0FEC21A10FB9F3D69499DDD32AA3A4A11D2ADC3EED3D80F71E1161207AB53",
+    "identity_data_contract": {
+      "status": "BUILT_HASH_VERIFIED_IDENTITY_FIRST",
+      "base_dataset": "foundation/models/Training/data/identity/v43_conversation_focus",
+      "base_input_manifest_sha256": "0F328F5208F6BD0D794FF0ABC28CE2139D4582AA8F611A9AD9583BA35051DDEF",
+      "base_tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
+      "retention_dataset": "foundation/models/Training/data/identity/v16_response_only",
+      "retention_input_manifest_sha256": "AB5092BBCCDB651DEB30B659710D22F7B9B0871FE33B8D702AD6B56656C3A299",
+      "retention_tensor_manifest_sha256": "1C80CACF02FF8E1CFE9218AFBD22C2D87EC3A3A1F3465C20B33DFA4C1DF8AF66",
+      "retention_fraction_of_base_train": 0.1,
+      "retention_sampling_seed": 42,
+      "retention_train_examples": 5511,
+      "prepared_dataset": "foundation/models/Training/data/identity/v60_preservation_replay",
+      "prepared_input_manifest_sha256": "8B12F584C0137B75E18F15257FC0FDF92D8F6B28C2AE73A9B5BA80A1AF30BF70",
+      "prepared_tensor_manifest_sha256": "6263D6A6137628C4C41EA621FA7C753E4BE1BFA3D2B7F896EEFCC0FBEB5B3C54",
+      "prepared_train_examples": 60617,
+      "prepared_validation_examples": 8696,
+      "validation_source": "v43_conversation_focus_only",
+      "v16_validation_in_training": false,
+      "knowledge_admission": false
+    },
+    "future_viv_slm_output_root": "foundation/models/Training/runs/viv_slm",
+    "rule": "Move only after reference audit; never delete checkpoints, receipts, contracts, journals, tests, or negative evidence.",
+    "active_paths_to_preserve": [
+      "foundation/models/Training/current/viv_slm/viv_slm_layer_governor.py",
+      "foundation/models/Training/current/viv_slm/run_viv_slm_layer_campaign.py",
+      "foundation/models/Training/current/viv_slm/run_viv_slm_layered_training_supervisor.py",
+      "foundation/models/Training/current/viv_slm/train_viv_slm_identity_v1.py",
+      "foundation/models/Training/current/viv_slm/build_viv_slm_v60_preservation_replay_inputs.py",
+      "foundation/models/Training/current/TRAINING_KNOBS.json",
+      "foundation/models/Training/data/identity/INDEX.json",
+      "foundation/triad_boundary_registry.json",
+      "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
+      "foundation/artifacts/audit/session_journal.md",
+      "foundation/artifacts/auto/uml/viv_slm_checkpoint_layers.json"
+    ],
+    "planned_index_roots": [
+      "foundation/models/Training/current",
+      "foundation/models/Training/data/identity",
+      "foundation/models/Training/data/knowledge",
+      "foundation/models/Training/legacy",
+      "foundation/models/Training/checkpoints",
+      "foundation/models/Training/evidence"
+    ],
+    "existing_legacy_archive": "foundation/models/Training/legacy training",
+    "move_policy": "Create indexes and manifests first. Move only explicitly classified, unreferenced historical or scratch files after absolute-path validation; preserve compatibility for any path enforced by the triad registry.",
+    "status": "IMPORTS_AND_PATHS_VERIFIED_DATA_CONTRACT_BUILT_GIT_BACKUP_PENDING"
+  }
+}

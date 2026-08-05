@@ -1,0 +1,86 @@
+{
+  "schema_version": "viv_training_identity_dataset_index_v1",
+  "status": "ACTIVE_FIRST_CURRICULUM_CANONICAL_COPIES_READY_V60_RETENTION_SOURCE_DECLARED",
+  "canonical_root": "foundation/models/Training/data/identity",
+  "curriculum_order": [
+    "identity",
+    "knowledge"
+  ],
+  "policy": {
+    "identity_before_knowledge": true,
+    "world_knowledge_included_in_identity_copies": false,
+    "knowledge_admission_for_v60": false,
+    "response_only_loss": true,
+    "no_holdout_rows_in_training": true,
+    "no_delete": true
+  },
+  "canonical_datasets": {
+    "v15": {
+      "path": "foundation/models/Training/data/identity/v15",
+      "source_path": "models/viv_slm_identity_personality_v15/inputs",
+      "copy_status": "HASH_VERIFIED_COPY",
+      "input_manifest_sha256": "D864A287B4A580D51DE813134D257CA0AD77C87B31069EB8FCB783B0CD125D54",
+      "tensor_manifest_sha256": "148204D745B0233242247593BC28F2B936D3C426E1368AE02C098991AE95A5E3",
+      "train_examples": 44900,
+      "validation_examples": 8673,
+      "role": "identity_surface_reference_and_retention_guard"
+    },
+    "v43_conversation_focus": {
+      "path": "foundation/models/Training/data/identity/v43_conversation_focus",
+      "source_path": "models/viv_slm_identity_personality_v43_conversation_focus/inputs",
+      "copy_status": "HASH_VERIFIED_COPY",
+      "input_manifest_sha256": "0F328F5208F6BD0D794FF0ABC28CE2139D4582AA8F611A9AD9583BA35051DDEF",
+      "tensor_manifest_sha256": "66AFD13E31E2E5AB8C766FFBFB322BFF4D33BD2F89006E2819B771FCACBBAB77",
+      "train_examples": 55106,
+      "validation_examples": 8696,
+      "role": "conversation_identity_training_lane"
+    },
+    "v16_response_only": {
+      "path": "foundation/models/Training/data/identity/v16_response_only",
+      "source_path": "models/viv_slm_identity_personality_v16_response_only/inputs",
+      "copy_status": "HASH_VERIFIED_COPY_DERIVED_FROM_V15_IDENTITY_CORPUS",
+      "input_manifest_sha256": "AB5092BBCCDB651DEB30B659710D22F7B9B0871FE33B8D702AD6B56656C3A299",
+      "tensor_manifest_sha256": "1C80CACF02FF8E1CFE9218AFBD22C2D87EC3A3A1F3465C20B33DFA4C1DF8AF66",
+      "vocab_sha256": "76AAEDB0CECF25789194677CBDC605A8A28ED3F7F8FD088F73FC2803FBBE09E3",
+      "train_examples": 44899,
+      "validation_examples": 8672,
+      "role": "train_only_identity_retention_source",
+      "validation_use": "excluded_from_v60_training_and_reserved_for_independent_v15_probe_context"
+    },
+    "v60_preservation_replay": {
+      "path": "foundation/models/Training/data/identity/v60_preservation_replay",
+      "source_path": "foundation/models/Training/current/viv_slm/build_viv_slm_v60_preservation_replay_inputs.py",
+      "copy_status": "BUILT_DETERMINISTIC_HASH_VERIFIED",
+      "input_manifest_sha256": "8B12F584C0137B75E18F15257FC0FDF92D8F6B28C2AE73A9B5BA80A1AF30BF70",
+      "tensor_manifest_sha256": "6263D6A6137628C4C41EA621FA7C753E4BE1BFA3D2B7F896EEFCC0FBEB5B3C54",
+      "vocab_sha256": "00982C5992060D4D55E4843D0726A9823CCB71C46E04FC9E9DFFBCDB1D3F8179",
+      "train_examples": 60617,
+      "validation_examples": 8696,
+      "base_train_examples": 55106,
+      "retention_train_examples": 5511,
+      "retention_fraction_of_base_train": 0.1,
+      "retention_sampling_seed": 42,
+      "validation_source": "v43_conversation_focus_only",
+      "v16_validation_in_training": false,
+      "role": "V60_identity_preservation_replay_candidate"
+    }
+  },
+  "historical_sources": {
+    "root": "models",
+    "pattern": "viv_slm_identity_personality_v*\\inputs",
+    "status": "INDEXED_NOT_DELETED",
+    "note": "V1-V59 source paths remain authoritative for historical contracts. Add a hash-verified canonical copy before using a future dataset in a new contract."
+  },
+  "v60_use": {
+    "allowed": true,
+    "input_root": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "retention_root": "foundation/models/Training/data/identity/v16_response_only",
+    "prepared_root": "foundation/models/Training/data/identity/v60_preservation_replay",
+    "retention_fraction_of_v43_train": 0.1,
+    "retention_sampling_seed": 42,
+    "retention_examples_expected": 5511,
+    "validation_root": "foundation/models/Training/data/identity/v43_conversation_focus",
+    "knowledge_root": null,
+    "rule": "V60 may use only identity data and an explicitly declared train-only V15-derived response-only retention lane; V43 validation is the sole validation source, V16 validation and adversarial rows remain independent and excluded from training."
+  }
+}

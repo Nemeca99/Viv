@@ -1,0 +1,361 @@
+{
+  "objective": {
+    "context_length": 128,
+    "kind": "v60_v43_base_plus_v16_identity_retention_response_only",
+    "loss_mask": "Viv_response_and_end_marker_only",
+    "v16_validation_in_training": false,
+    "validation_source": "v43_conversation_focus"
+  },
+  "schema_version": "viv_slm_v60_preservation_replay_tensor_dataset_v1",
+  "source_policy": "v43_train_plus_deterministic_v16_train_only_response_only_replay; v43_validation_only",
+  "sources": {
+    "base": {
+      "input_manifest_sha256": "0f328f5208f6bd0d794ff0abc28ce2139d4582aa8f611a9ad9583ba35051ddef",
+      "root": "L:/Continue/Viv/foundation/models/Training/data/identity/v43_conversation_focus",
+      "tensor_manifest_sha256": "66afd13e31e2e5ab8c766ffbfb322bff4d33bd2f89006e2819b771fcacbbab77",
+      "train_examples_used": 55106
+    },
+    "retention": {
+      "input_manifest_sha256": "ab5092bbccdb651deb30b659710d22f7b9b0871fe33b8d702ad6b56656c3a299",
+      "root": "L:/Continue/Viv/foundation/models/Training/data/identity/v16_response_only",
+      "sampling_algorithm": "torch.randperm_cpu_sorted_indices",
+      "sampling_seed": 42,
+      "selected_train_examples": 5511,
+      "source_train_examples": 44899,
+      "tensor_manifest_sha256": "1c80cacf02ff8e1cfe9218afbd22c2d87ec3a3a1f3465c20b33dfa4c1df8af66",
+      "validation_examples_excluded": 8672
+    }
+  },
+  "splits": {
+    "train": {
+      "base_examples": 55106,
+      "examples": 60617,
+      "masked_target_tokens": 3821277,
+      "retention_examples": 5511,
+      "shards": [
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 129154,
+          "path": "train/shard_00000.pt",
+          "sha256": "d6cf54b34a3ada00f04a2199f9a25330a8f7d446661b3148d7389ae74dfa1ecf",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 123060,
+          "path": "train/shard_00001.pt",
+          "sha256": "137f7d08efe73bff05ae0242bb71f0b87bda6b37c4687cac9f36e33a58944c66",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 134114,
+          "path": "train/shard_00002.pt",
+          "sha256": "98e54814fbe37d020bd00c436c67584570ec3057d13e64023d93b5ee0dc7d2b9",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 117994,
+          "path": "train/shard_00003.pt",
+          "sha256": "857187d63fddb7df73abeac845e64c69761218462b2b0a09751aa00687b9a1ae",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 117999,
+          "path": "train/shard_00004.pt",
+          "sha256": "6fbc03c346f6db58405da4fbda0600c8682286ecb73203a45098158e96885164",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 131767,
+          "path": "train/shard_00005.pt",
+          "sha256": "d46f043bc83905a17700398db2efb56a9450d7e0c1de69e720b60dd167fdd2c5",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 126408,
+          "path": "train/shard_00006.pt",
+          "sha256": "37d05862bfe9526653d336d23fc6b00532a5dc437a3229ebf99edeedef5541a1",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 131202,
+          "path": "train/shard_00007.pt",
+          "sha256": "4ed00c82a4a75dac0cb77cccb0d2da4b870401c5d42b1db3279d0ecf8b057f22",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 137013,
+          "path": "train/shard_00008.pt",
+          "sha256": "24913a000685b4abcfc5a0e7da5402ae6c46a20f581389ab8c0d0e395d24808b",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 130441,
+          "path": "train/shard_00009.pt",
+          "sha256": "785c125aa153fdfa8d75907d612a61f9f8d9debb96b56d100ca8b724f5557034",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 123984,
+          "path": "train/shard_00010.pt",
+          "sha256": "6027f9831183e8d0251d1c6eee34c34ad51cee4a9aaec50a93d29029b1ee26a8",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 119704,
+          "path": "train/shard_00011.pt",
+          "sha256": "d3fc740487c1ff1afd6854cf66d07a2ee21204d3e7609abe2a900af40ebe62c8",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 115672,
+          "path": "train/shard_00012.pt",
+          "sha256": "396601cace6165e33c06aee7b0a83ca25e05fbe67030c336ea0aff15fa917041",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 127484,
+          "path": "train/shard_00013.pt",
+          "sha256": "393a5996edf2b5e3bfd25fc55a891244fdca158c19a84c17c7d901e86735c6db",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 118234,
+          "path": "train/shard_00014.pt",
+          "sha256": "6d58bbd0f82d4723486c36b7400c0f96013fb4486510aac3d00273b38c9d18fb",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 132834,
+          "path": "train/shard_00015.pt",
+          "sha256": "c8e6d2709acf27e40468ed3c58bff68230db222724e4c25f90b8f8786c2348e7",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 110624,
+          "path": "train/shard_00016.pt",
+          "sha256": "5d901d5c43a8fd3ed132f62e5fb53fd0eedebed5a8247b2ed05ae82f9ec92cf6",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 127791,
+          "path": "train/shard_00017.pt",
+          "sha256": "d60ba1d911416b13d412fc6663ec61e8868cde3541439b84c91f062ce7d0a406",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 144734,
+          "path": "train/shard_00018.pt",
+          "sha256": "53b4a470bfb55b485c631711a0eba6ee53ddaaf61502127575845f5a22145827",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 131376,
+          "path": "train/shard_00019.pt",
+          "sha256": "c394b4d1684e0a934c5331b156950410b87f1494e3591c65d046476d8f1373d6",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 135894,
+          "path": "train/shard_00020.pt",
+          "sha256": "acf537893b13ee865c28b5b6d03271e0f5c4cefc004c944639b36c5f935cd1b6",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 169641,
+          "path": "train/shard_00021.pt",
+          "sha256": "549f8f82587bc3dcaec65d573defdc6571ae1c3987d485e7861510b1b2c629a4",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 131317,
+          "path": "train/shard_00022.pt",
+          "sha256": "8afc3bcc1c7748becf9890a6acb66dfdb3a71f38134d980adbe64ab94eb043b8",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 126159,
+          "path": "train/shard_00023.pt",
+          "sha256": "1ee55feab6b143b5f7c3b2e7e457b58df365378de4d3288dd8b13bb468cb5200",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 130393,
+          "path": "train/shard_00024.pt",
+          "sha256": "cfb1b3adcf3ed92398055a3b1a161ccac77c4c897b3ca41b459816d1cb73ad88",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 147241,
+          "path": "train/shard_00025.pt",
+          "sha256": "376d91e5ae702289c3ab3eb240322703dc7d7502e3afda9e65d6b2f8d32d8af8",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 114569,
+          "path": "train/shard_00026.pt",
+          "sha256": "dda5c1c358c61279be4cd426d5617fc6c8644c18279517c5b492910aaf0cf94d",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 127988,
+          "path": "train/shard_00027.pt",
+          "sha256": "30e777889f385fd467a9ce51599494e21d655f14543bd25b651b29d3439443f2",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 122474,
+          "path": "train/shard_00028.pt",
+          "sha256": "c83cf093e5d526407453eb9a05254092bd561b5b1a0f9e214e1c3e897cd14c75",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 1225,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 84012,
+          "path": "train/shard_00029.pt",
+          "sha256": "42de8a286405e509089611755b68db4a586469225485d06b721104595ea99b4a",
+          "storage_dtype": "torch.int16"
+        }
+      ]
+    },
+    "validation": {
+      "examples": 8696,
+      "masked_target_tokens": 550506,
+      "shards": [
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 126970,
+          "path": "validation/shard_00000.pt",
+          "sha256": "75b2a6eb091d5e646940394458cb4d5274f78fbadf8d7382a00cdf33daec7e08",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 134179,
+          "path": "validation/shard_00001.pt",
+          "sha256": "0b6a7d89190d2160b33e86d33ced9a4f15425f334ffac6f0e28da44dc00c2014",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 131898,
+          "path": "validation/shard_00002.pt",
+          "sha256": "280059b954df83864363e78f32b303c2e007c745d58510b4391db90ee2975c82",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 2048,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 128949,
+          "path": "validation/shard_00003.pt",
+          "sha256": "2f8c545fe086ec4e530516e6e5a048d5f93e168f9c5c743f1a9e5c60d7bb567a",
+          "storage_dtype": "torch.int16"
+        },
+        {
+          "context_length": 128,
+          "examples": 504,
+          "loss_mask_dtype": "torch.bool",
+          "masked_target_tokens": 28510,
+          "path": "validation/shard_00004.pt",
+          "sha256": "2d678a6e7c0f3d6adba81e0da3bfae2118c9d7cf7ff810111476595b72187198",
+          "storage_dtype": "torch.int16"
+        }
+      ],
+      "source": "v43_conversation_focus"
+    }
+  }
+}

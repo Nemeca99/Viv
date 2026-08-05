@@ -1,0 +1,125 @@
+{
+  "schema_version": "viv_master_training_program_v1",
+  "status": "CANONICAL_TRAINING_PACKAGE_AND_IDENTITY_DATA_VERIFIED_GIT_BACKUP_PENDING",
+  "program_id": "viv_identity_layer_governed_continual_training",
+  "canonical_root": "foundation/models/Training",
+  "canonical_root_absolute": "L:/Continue/Viv/foundation/models/Training",
+  "purpose": "Single declarative entry point for the custom Viv tokenizer/transformer identity-layer training lifecycle. This file links the governed engine, supervisor, governor, contracts, preflight, lineage, output policy, and reversible organization rules.",
+  "authority": {
+    "this_file_opens_authority": false,
+    "training_authorized": false,
+    "run_authorized": false,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "live_model_mutation": false,
+    "global_aifl_writes": false,
+    "master_s_n_mutation": false,
+    "knowledge_admission": false
+  },
+  "canonical_python": "L:/Continue/.venv/Scripts/python.exe",
+  "knob_registry": {
+    "path": "foundation/models/Training/current/TRAINING_KNOBS.json",
+    "sha256": "2C97FDC361E050970385CDDC006419965086ED1EAD5F8202CDBE77ABEB8A7369",
+    "binding_status": "HASH_PINNED_ENGINE_BINDING_VERIFIED"
+  },
+  "active_engine": {
+    "engine": "foundation/models/Training/current/viv_slm/run_viv_slm_layer_campaign.py",
+    "supervisor": "foundation/models/Training/current/viv_slm/run_viv_slm_layered_training_supervisor.py",
+    "governor": "foundation/models/Training/current/viv_slm/viv_slm_layer_governor.py",
+    "contracts": "foundation/artifacts/auto/agentic/layer_campaign_contracts",
+    "layer_ledger": "foundation/artifacts/auto/uml/viv_slm_checkpoint_layers.json",
+    "task_record": "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
+    "journal": "foundation/artifacts/audit/session_journal.md",
+    "preflight": "foundation/scripts/run_foundation_preflight.py",
+    "path_status": "CANONICAL_SOURCE_MIGRATED_COMPATIBILITY_SHIMS_RETAINED",
+    "reason": "The active engine, supervisor, governor, trainer, focused tests, and custom tokenizer/transformer sources now resolve from the canonical Training/Viv-SLM package. Historical foundation/scripts and foundation/lib entry paths remain thin compatibility shims; moved historical VSLM sources are retained under Training/legacy/viv_slm."
+  },
+  "future_output_policy": {
+    "viv_slm_run_root": "foundation/models/Training/runs/viv_slm",
+    "viv_slm_checkpoint_index": "foundation/models/Training/checkpoints/INDEX.json",
+    "viv_slm_evidence_index": "foundation/models/Training/evidence/INDEX.json",
+    "aifl_existing_run_root": "foundation/models/Training/runs",
+    "historical_parent_bound_models": "models",
+    "historical_move_status": "INDEXED_NOT_MOVED",
+    "rule": "Future Viv-SLM canary outputs are to be declared under the canonical Training root. Existing V1-V59 model paths remain immutable historical references until a path-migration contract rewrites every consumer and passes preflight."
+  },
+  "lineage": {
+    "preservation_parent": {
+      "version": "V57",
+      "layer_id": "viv_slm_identity_personality_v57_v43_behavior_lane_autotune_0250_20260805T032239Z",
+      "checkpoint_sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E"
+    },
+    "metric_progress_challenger": {
+      "version": "V59",
+      "layer_id": "viv_slm_identity_personality_v59_controller_state_layering_0250_20260805T040517Z",
+      "checkpoint_sha256": "649675EACF43E8065D24A09236FCD1DD56B8976B0FCBDC6265D4B826C20965EA"
+    },
+    "next_candidate": {
+      "version": "V60",
+      "hypothesis_data": "foundation/artifacts/auto/agentic/V60_NEXT_HYPOTHESIS_DATA.json",
+      "hypothesis_data_sha256": "DEB4AB1FAAE2EEB9A8D54BDF123F1CC159418E526A4F6ECC916628391DABAAB3",
+      "status": "NOT_AUTHORIZED"
+    }
+  },
+  "logical_roles": {
+    "current": {
+      "path": "foundation/models/Training/current",
+      "contents": ["MASTER_TRAINING_PROGRAM.json", "TRAINING_KNOBS.json", "viv_slm/ active engine, trainer, model, governor, supervisor, data builder, and focused tests", "data/identity/ canonical identity datasets", "data/knowledge/ locked knowledge index", "migration manifests", "compatibility shims remain outside this root only for historical callers"],
+      "status": "ACTIVE_DECLARATIVE_CONTROL_AND_ENGINE_INDEX"
+    },
+    "data": {
+      "identity_index": "foundation/models/Training/data/identity/INDEX.json",
+      "identity_index_status": "IDENTITY_FIRST_V60_REPLAY_PACKAGE_BUILT_HASH_VERIFIED",
+      "knowledge_index": "foundation/models/Training/data/knowledge/INDEX.json",
+      "knowledge_admission": false,
+      "status": "ACTIVE_DATA_CONTRACT_INDEX_NO_KNOWLEDGE_ADMISSION"
+    },
+    "legacy": {
+      "path": "foundation/models/Training/legacy",
+      "index": "foundation/models/Training/legacy/INDEX.json",
+      "contents": ["frozen V34-V36 executable specifications", "historical tests", "references to the existing legacy training archive"],
+      "status": "INDEX_FIRST_MOVE_GATED"
+    },
+    "checkpoints": {
+      "path": "foundation/models/Training/checkpoints",
+      "index": "foundation/models/Training/checkpoints/INDEX.json",
+      "contents": ["checkpoint lineage indexes and future canonical copies"],
+      "status": "INDEX_FIRST_PARENT_PATHS_IMMUTABLE"
+    },
+    "evidence": {
+      "path": "foundation/models/Training/evidence",
+      "index": "foundation/models/Training/evidence/INDEX.json",
+      "contents": ["receipts, probes, manifests, journals, backups, negative evidence indexes"],
+      "status": "INDEX_FIRST_NO_DELETION"
+    },
+    "existing_aifl_compatibility": {
+      "path": "foundation/models/Training/code",
+      "status": "ACTIVE_TRIAD_REGISTERED_PATH",
+      "rule": "Do not relocate this registered AIFL code during the Viv-SLM migration without a separate registry and import rewrite."
+    },
+    "existing_runs": {
+      "path": "foundation/models/Training/runs",
+      "status": "ACTIVE_AIFL_RUN_ROOT_AND_HISTORICAL_MIXED_ROOT",
+      "rule": "New Viv-SLM runs use the viv_slm subroot; existing runs remain in place until reference classification is complete."
+    }
+  },
+  "standard_workflow": [
+    "Read CURRENT_TASK.json and session_journal.md.",
+    "Verify all authority flags are closed before preparation or evaluation.",
+    "Create a declarative contract with parent and input hashes.",
+    "Run engine and supervisor dry-runs with side effects false.",
+    "Run focused tests and full foundation preflight.",
+    "Create an exact-scope authorization backup only when the canary is approved.",
+    "Run exactly one bounded 250-step increment through the supervisor.",
+    "Close training and run authority immediately after return, before interpreting outputs.",
+    "Evaluate metrics and independent semantic, V15, conversation, telemetry, and CPU-contract probes.",
+    "Retain improvements and negative evidence in the ledger and task record; promote only through separate authority."
+  ],
+  "execution_template": {
+    "dry_run": "L:/Continue/.venv/Scripts/python.exe -B foundation/models/Training/current/viv_slm/run_viv_slm_layered_training_supervisor.py --campaign-id <campaign_id> --campaign-contract <contract> --output-dir foundation/models/Training/runs/viv_slm/<run_dir> --steps 250 --dry-run",
+    "authorized_canary": "L:/Continue/.venv/Scripts/python.exe -B foundation/models/Training/current/viv_slm/run_viv_slm_layered_training_supervisor.py --campaign-id <campaign_id> --campaign-contract <contract> --output-dir foundation/models/Training/runs/viv_slm/<run_dir> --steps 250 --execute --operator-authorize",
+    "preflight": "L:/Continue/.venv/Scripts/python.exe -B foundation/scripts/run_foundation_preflight.py"
+  },
+  "migration_plan": "foundation/models/Training/TRAINING_ORGANIZATION_MIGRATION.json",
+  "v60_gate": "Do not authorize the V60 canary until the migration plan reaches IMPORTS_AND_PATHS_VERIFIED, the identity-first V60 data package is hash verified, the scoped Git backup is pushed, and full preflight passes with authority closed."
+}

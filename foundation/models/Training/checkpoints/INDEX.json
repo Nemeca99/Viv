@@ -1,0 +1,23 @@
+{
+  "schema_version": "viv_training_checkpoint_index_v1",
+  "status": "INDEX_ONLY_PARENT_PATHS_IMMUTABLE",
+  "canonical_root": "foundation/models/Training/checkpoints",
+  "purpose": "Provide the AIOS-visible checkpoint catalog while preserving existing parent-bound checkpoint paths until an explicit migration contract is verified.",
+  "working_parent": {
+    "version": "V57",
+    "layer_id": "viv_slm_identity_personality_v57_v43_behavior_lane_autotune_0250_20260805T032239Z",
+    "source_path": "models/viv_slm_identity_personality_v57_v43_behavior_lane_autotune/runs/v43_behavior_lane_autotune_steps_0250/checkpoint.pt",
+    "sha256": "CDF7A82A3FEB451923C3F7DEE9415B6C202DEB73546EC34A1BBF35E8CDF8F39E",
+    "role": "preservation_parent"
+  },
+  "challenger": {
+    "version": "V59",
+    "layer_id": "viv_slm_identity_personality_v59_controller_state_layering_0250_20260805T040517Z",
+    "source_path": "models/viv_slm_identity_personality_v59_controller_state_layering/runs/controller_state_layering_steps_0250/checkpoint.pt",
+    "sha256": "649675EACF43E8065D24A09236FCD1DD56B8976B0FCBDC6265D4B826C20965EA",
+    "role": "metric_progress_challenger_preservation_regression"
+  },
+  "historical_root": "models/viv_slm_identity_personality_v1 through models/viv_slm_identity_personality_v59",
+  "future_layout": "foundation/models/Training/checkpoints/viv_slm/<version>/<run>/",
+  "migration_rule": "Catalog first; copy or move only after a hash-verified migration contract rewrites all consumers. Do not overwrite or delete a checkpoint."
+}

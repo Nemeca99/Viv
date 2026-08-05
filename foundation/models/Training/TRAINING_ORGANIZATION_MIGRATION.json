@@ -1,0 +1,93 @@
+{
+  "schema_version": "viv_training_organization_migration_v1",
+  "status": "PLANNED_REFERENCE_AUDIT_REQUIRED",
+  "canonical_root": "foundation/models/Training",
+  "canonical_root_absolute": "L:/Continue/Viv/foundation/models/Training",
+  "owner": "AIOS governed training control plane",
+  "no_delete": true,
+  "v60_blocked_until": "IMPORTS_AND_PATHS_VERIFIED",
+  "observed_constraints": [
+    {
+      "path": "foundation/scripts/run_viv_slm_layer_campaign.py",
+      "constraint": "Derives FOUNDATION from __file__.resolve().parents[1] and imports lib.viv_slm_layer_governor.",
+      "migration_action": "Keep source path stable or add a reviewed compatibility entry point that preserves FOUNDATION and sys.path semantics before moving."
+    },
+    {
+      "path": "foundation/scripts/run_viv_slm_layered_training_supervisor.py",
+      "constraint": "Derives FOUNDATION from __file__ and imports the governor through the foundation lib path.",
+      "migration_action": "Do not move until the supervisor import path and all subprocess command paths are tested from the new location."
+    },
+    {
+      "path": "foundation/lib/viv_slm_layer_governor.py",
+      "constraint": "Contains parent/input defaults and path resolution used by the generic engine.",
+      "migration_action": "Update path constants only through a focused change with regression tests and unchanged lineage hashes."
+    },
+    {
+      "path": "foundation/models/Training/code",
+      "constraint": "Existing AIFL code is explicitly present in triad_boundary_registry.json.",
+      "migration_action": "Any Python move under or out of this tree requires registry update, import audit, and full foundation preflight."
+    },
+    {
+      "path": "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
+      "constraint": "Contains parent-bound checkpoint, manifest, probe, contract, and adapter paths across V1-V59.",
+      "migration_action": "Do not bulk-rewrite historical paths. Add a path migration receipt and preserve old paths or verified compatibility aliases."
+    },
+    {
+      "path": "foundation/artifacts/audit/session_journal.md",
+      "constraint": "Human-readable evidence contains historical source and destination paths.",
+      "migration_action": "Append migration entries; never rewrite historical evidence merely to make it look current."
+    }
+  ],
+  "migration_units": [
+    {
+      "unit": "current_viv_slm_engine",
+      "source": [
+        "foundation/scripts/run_viv_slm_layer_campaign.py",
+        "foundation/scripts/run_viv_slm_layered_training_supervisor.py",
+        "foundation/lib/viv_slm_layer_governor.py"
+      ],
+      "target": "foundation/models/Training/current/viv_slm",
+      "status": "CANONICAL_SOURCE_MIGRATED_COMPATIBILITY_SHIMS_RETAINED",
+      "required_before_move": ["compatibility wrapper or import rewrite", "triad registry update", "focused tests", "full preflight"]
+    },
+    {
+      "unit": "frozen_v34_v36_specs",
+      "source": "foundation/scripts/train_viv_slm_v30_frozen_head_greeting.py through foundation/scripts/test_viv_slm_v36_composed_behavior_layer.py",
+      "target": "foundation/models/Training/legacy/viv_slm",
+      "status": "MOVED_HASH_PRESERVED_LEGACY_SOURCE",
+      "required_before_move": ["reference scan", "historical hash preservation", "compatibility stubs if required", "triad registry update", "full preflight"]
+    },
+    {
+      "unit": "custom_tokenizer_transformer_sources",
+      "source": "models/uml_bigram_part3/*.py",
+      "target": "foundation/models/Training/current/viv_slm/model",
+      "status": "COPIED_CANONICAL_ACTIVE_SOURCE_ORIGINAL_ARTIFACTS_PRESERVED",
+      "required_before_move": ["focused import check", "model source hash record", "full preflight"]
+    },
+    {
+      "unit": "parent_bound_viv_slm_checkpoints",
+      "source": "models/viv_slm_identity_personality_v1 through models/viv_slm_identity_personality_v59",
+      "target": "foundation/models/Training/checkpoints/viv_slm",
+      "status": "INDEXED_NOT_MOVED",
+      "required_before_move": ["contract path rewrite", "task/journal/ledger reference map", "hash-verified copy or move", "probe path audit", "full preflight"]
+    },
+    {
+      "unit": "receipts_and_negative_evidence",
+      "source": "foundation/artifacts/auto/agentic and foundation/artifacts/audit",
+      "target": "foundation/models/Training/evidence/viv_slm",
+      "status": "INDEXED_NOT_DUPLICATED",
+      "required_before_move": ["append-only evidence manifest", "backup pointer update", "no historical rewrite"]
+    }
+  ],
+  "required_validation": [
+    "All source and target paths resolve inside L:/Continue/Viv or explicitly approved training root.",
+    "No unresolved imports after any Python move.",
+    "No missing paths in active contracts, CURRENT_TASK.json, or the layer ledger.",
+    "triad_boundary_registry.json matches the Python architecture tree.",
+    "Engine and supervisor dry-runs report side_effects=false and parent binding true.",
+    "Focused generic-governor, campaign, supervisor, V36, and triad tests pass.",
+    "Full foundation preflight passes with all authority flags false.",
+    "A reversible backup exists before every move or registry rewrite."
+  ],
+  "execution_policy": "Index first, migrate one unit at a time, verify hashes and imports after each unit, and only then return to V60 contract preparation."
+}

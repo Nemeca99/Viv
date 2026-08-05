@@ -1,20 +1,18 @@
 {
   "ok": true,
-  "at": "2026-08-03T19:35:44+00:00",
-  "old_registry_sha256": "594544f40f1d9d710bb760b0f67277fadc6f932f54218f2b7c31dcd2d135a088",
-  "n_added": 1,
+  "at": "2026-08-04T22:06:26+00:00",
+  "old_registry_sha256": "d3928d5a5b744656b90d52517b685b5d8f6a87b51aba373c4b97dfe1a75d8278",
+  "n_added": 0,
   "n_removed": 0,
   "n_changed": 0,
-  "added": [
-    "foundation/scripts/mouth_training_recovery_v3_trl_runner_v1.py"
-  ],
+  "added": [],
   "removed": [],
   "changed": [],
   "allow_changed": false,
   "note": "Intentional freeze of current inventory after review. Unexplained removals block freeze; changed signatures require --allow-changed.",
-  "backup": "L:/Continue/Viv/foundation/triad_boundary_registry.bak_20260803T193544Z.json",
-  "new_registry_sha256": "80333518e2a3e1fdefe90a10a7fafa467f8916a7c8c635a94e186337a68a9246",
+  "backup": "L:/Continue/Viv/foundation/triad_boundary_registry.bak_20260804T220626Z.json",
+  "new_registry_sha256": "d3928d5a5b744656b90d52517b685b5d8f6a87b51aba373c4b97dfe1a75d8278",
   "freeze_ok": true,
-  "frozen_modules": 537,
+  "frozen_modules": 579,
   "review_artifact": "L:/Continue/Viv/foundation/artifacts/auto/triad/boundary_registry_review_latest.json"
 }

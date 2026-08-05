@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 904,
+  "generated_from_python_files": 1174,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -501,6 +501,166 @@
       "filesystem_mutation:dest.write_text": 2,
       "filesystem_mutation:latest.write_text": 1,
       "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/models/Training/current/viv_slm/build_viv_slm_v60_preservation_replay_inputs.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/model/train.py": {
+      "filesystem_mutation:report.write_text": 1,
+      "filesystem_mutation:sample_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/model/train_part4.py": {
+      "filesystem_mutation:report.write_text": 1,
+      "filesystem_mutation:sample_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/model/train_part5.py": {
+      "filesystem_mutation:probe_path.write_text": 1,
+      "filesystem_mutation:report.write_text": 1,
+      "filesystem_mutation:sample_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/model/train_part7.py": {
+      "filesystem_mutation:report_path.write_text": 1,
+      "filesystem_mutation:starting_sample_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_conversation_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_personality_semantic_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/probes/run_viv_slm_identity_personality_v15_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/run_viv_slm_layer_campaign.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/run_viv_slm_layered_training_supervisor.py": {
+      "process:subprocess.CompletedProcess": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/models/Training/current/viv_slm/tests/test_run_viv_slm_layered_training_supervisor.py": {
+      "filesystem_mutation:descriptive_task.write_text": 1,
+      "filesystem_mutation:ledger.write_text": 2,
+      "filesystem_mutation:task.write_text": 2
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_conversation_focus_v43_inputs.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_conversation_residual_v44_inputs.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_dialogue_aligned_inputs_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_dialogue_aligned_inputs_v2.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_dialogue_context_v41_inputs.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_dialogue_weighted_inputs_v1.py": {
+      "filesystem_mutation:path.write_text": 2
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_identity_personality_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_identity_personality_v10.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_identity_personality_v11.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_identity_personality_v2.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_packed_route_conditioned_inputs_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_response_only_inputs_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_route_conditioned_inputs_v1.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_v25_target_focused_inputs.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_v26_surface_discrimination_inputs.py": {
+      "filesystem_mutation:input_path.write_text": 1,
+      "filesystem_mutation:tensor_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_v27_replay_anchored_inputs.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_v28_canonical_disambiguation_inputs.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_v29_greeting_focus_inputs.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/build_viv_slm_v33_pairwise_identity_inputs.py": {
+      "filesystem_mutation:pairs_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/evaluate_viv_slm_identity_candidate_v1.py": {
+      "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/register_viv_slm_checkpoint_layer.py": {
+      "filesystem_mutation:ledger_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/run_viv_slm_identity_conversation_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/run_viv_slm_identity_personality_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/run_viv_slm_identity_personality_probe_v2.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/run_viv_slm_identity_personality_semantic_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/run_viv_slm_identity_personality_v15_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/run_viv_slm_route_conditioned_probe_v1.py": {
+      "filesystem_mutation:output_path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/source_snapshots/run_viv_slm_layer_campaign.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/source_snapshots/run_viv_slm_layered_training_supervisor.py": {
+      "process:subprocess.CompletedProcess": 1,
+      "process:subprocess.run": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/source_snapshots/test_run_viv_slm_layered_training_supervisor.py": {
+      "filesystem_mutation:descriptive_task.write_text": 1,
+      "filesystem_mutation:ledger.write_text": 2,
+      "filesystem_mutation:task.write_text": 2
+    },
+    "foundation/models/Training/legacy/viv_slm/test_register_viv_slm_checkpoint_layer.py": {
+      "filesystem_mutation:checkpoint.write_bytes": 1,
+      "filesystem_mutation:manifest.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/train_viv_slm_v30_frozen_head_greeting.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/train_viv_slm_v31_balanced_base.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/train_viv_slm_v32_balanced_low_lr.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/train_viv_slm_v33_pairwise_identity.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/train_viv_slm_v34_conflict_aware_identity.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/train_viv_slm_v35_full_surface_teacher_anchor.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/legacy/viv_slm/train_viv_slm_v36_composed_behavior_layer.py": {
+      "filesystem_mutation:path.write_text": 1
     },
     "foundation/prt_main.py": {
       "process:subprocess.run": 1
@@ -1249,6 +1409,15 @@
       "filesystem_mutation:manifest_path.write_text": 1,
       "filesystem_mutation:path.write_text": 1
     },
+    "foundation/scripts/build_uml_identity_dataset_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1,
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/scripts/build_uml_identity_stream_v1.py": {
+      "filesystem_mutation:manifest_path.write_text": 1,
+      "filesystem_mutation:path.write_bytes": 1
+    },
     "foundation/scripts/build_uml_tariff_dictionary.py": {
       "filesystem_mutation:out.write_text": 1
     },
@@ -1863,6 +2032,18 @@
       "filesystem_mutation:args.output.write_text": 1,
       "network:urllib.request.urlopen": 1
     },
+    "foundation/scripts/run_qwen25_gguf_runtime_canary_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1,
+      "network:urlrequest.urlopen": 3,
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/run_qwen25_llama_cpp_tokenizer_trace_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1,
+      "network:socket.socket": 1,
+      "network:urlrequest.urlopen": 1,
+      "process:subprocess.Popen": 1,
+      "process:subprocess.run": 1
+    },
     "foundation/scripts/run_verified_decision_simulation_v1.py": {
       "filesystem_mutation:args.output.write_text": 1
     },
@@ -1941,6 +2122,9 @@
       "filesystem_mutation:manifest.write_text": 1,
       "filesystem_mutation:src.write_text": 1
     },
+    "foundation/scripts/test_qwen25_tokenizer_template_mask_parity_v1.py": {
+      "filesystem_mutation:args.output.write_text": 1
+    },
     "foundation/scripts/test_rid_electrical_auditable_ledger.py": {
       "filesystem_mutation:tmp.unlink": 2
     },
@@ -1962,6 +2146,9 @@
     },
     "foundation/scripts/test_trl_v9_masking_compatibility_v1.py": {
       "filesystem_mutation:OUTPUT.write_text": 1
+    },
+    "foundation/scripts/test_uml_char_tensor_dataset_v1.py": {
+      "filesystem_mutation:bad.write_bytes": 1
     },
     "foundation/scripts/train_fresh_base_tag_campaign_v1.py": {
       "filesystem_mutation:path.write_text": 2
