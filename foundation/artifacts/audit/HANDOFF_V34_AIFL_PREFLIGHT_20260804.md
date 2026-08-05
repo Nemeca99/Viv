@@ -287,3 +287,4 @@ The new chat should begin at:
 V34 canary preparation and exact authorization, not AIFL discovery.
 
 The identity foundation remains the only active training lane. Knowledge admission remains closed until the identity/mouth contract is stable and the architect explicitly opens the next layer.
+

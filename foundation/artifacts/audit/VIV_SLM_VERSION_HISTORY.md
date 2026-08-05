@@ -1,7 +1,7 @@
 # Viv-SLM identity/personality version history
 
-Status: living engineering record
-Updated: 2026-08-04
+Status: living engineering record  
+Updated: 2026-08-04  
 Scope: the custom character-level Viv-SLM identity/personality lane
 
 ## What this document is tracking

@@ -1,6 +1,6 @@
 {
   "schema_version": "viv_master_training_program_v1",
-  "status": "CANONICAL_TRAINING_PACKAGE_AND_IDENTITY_DATA_VERIFIED_GIT_BACKUP_PENDING",
+  "status": "CANONICAL_TRAINING_PACKAGE_AND_IDENTITY_DATA_VERIFIED_GIT_BACKUP_PUSHED_V60_CONTRACT_PENDING",
   "program_id": "viv_identity_layer_governed_continual_training",
   "canonical_root": "foundation/models/Training",
   "canonical_root_absolute": "L:/Continue/Viv/foundation/models/Training",
@@ -121,5 +121,5 @@
     "preflight": "L:/Continue/.venv/Scripts/python.exe -B foundation/scripts/run_foundation_preflight.py"
   },
   "migration_plan": "foundation/models/Training/TRAINING_ORGANIZATION_MIGRATION.json",
-  "v60_gate": "Do not authorize the V60 canary until the migration plan reaches IMPORTS_AND_PATHS_VERIFIED, the identity-first V60 data package is hash verified, the scoped Git backup is pushed, and full preflight passes with authority closed."
+  "v60_gate": "Do not authorize the V60 canary until the migration plan reaches IMPORTS_AND_PATHS_VERIFIED, the identity-first V60 data package is hash verified, the scoped Git backup is pushed, the V60 contract dry-runs pass, and full preflight passes with authority closed."
 }

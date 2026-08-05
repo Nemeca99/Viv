@@ -254,6 +254,13 @@
     ],
     "existing_legacy_archive": "foundation/models/Training/legacy training",
     "move_policy": "Create indexes and manifests first. Move only explicitly classified, unreferenced historical or scratch files after absolute-path validation; preserve compatibility for any path enforced by the triad registry.",
-    "status": "IMPORTS_AND_PATHS_VERIFIED_DATA_CONTRACT_BUILT_GIT_BACKUP_PENDING"
+    "status": "IMPORTS_AND_PATHS_VERIFIED_DATA_CONTRACT_BUILT_GIT_BACKUP_PUSHED",
+    "git_backup": {
+      "branch": "codex/viv-v60-preflight-backup",
+      "commit": "890ebd1",
+      "remote": "origin",
+      "repository": "Nemeca99/Viv",
+      "pushed": true
+    }
   }
 }
