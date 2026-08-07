@@ -122,6 +122,63 @@ def _finalize_spoken(
     triad_context: TriadContext,
     renderer_retry: Callable[[Mapping[str, Any]], str] | None = None,
 ) -> dict[str, Any]:
+    # GPU draft may only REQUEST tools. CPU approves + executes; result becomes evidence.
+    try:
+        from lib.cpu_tool_authority import (
+            handle_tool_request,
+            parse_gpu_tool_request_from_text,
+        )
+
+        gpu_req = parse_gpu_tool_request_from_text(str(raw_text or ""))
+        if gpu_req is not None:
+            bundle = handle_tool_request(gpu_req)
+            packet.setdefault("facts", [])
+            if isinstance(packet.get("facts"), list):
+                appr = bundle.get("approval") or {}
+                packet["facts"].extend(
+                    [
+                        f"tool_request_source=gpu_mouth_request",
+                        f"tool_requested={(bundle.get('request') or {}).get('tool')}",
+                        f"cpu_tool_approved={appr.get('allowed')}",
+                        f"cpu_tool_reason={appr.get('reason')}",
+                        f"cpu_tool_executed={bundle.get('executed')}",
+                        "gpu_executed_tool=False",
+                    ]
+                )
+            result = ((bundle.get("execution") or {}).get("result") or {})
+            if bundle.get("executed") and result.get("uml_invoked"):
+                packet["facts"].extend(
+                    [
+                        f"uml_invoked={result.get('uml_invoked')}",
+                        f"uml_ok={result.get('ok')}",
+                        f"uml_expression={result.get('expression')}",
+                        f"uml_value={result.get('value')}",
+                        f"uml_verify_ok={result.get('verify_ok')}",
+                        f"uml_form={result.get('uml_form')}",
+                        f"uml_std_form={result.get('std_form')}",
+                        f"uml_evidence_sha256={result.get('evidence_sha256')}",
+                    ]
+                )
+                raw_text = (
+                    f"Central Processing Unit (CPU) approved the Graphics Processing Unit (GPU) "
+                    f"tool request for Universal Mathematical Language (UML) and evaluated "
+                    f"{result.get('expression')} to {result.get('value')} "
+                    f"(verify_ok={result.get('verify_ok')}; "
+                    f"evidence_sha256={result.get('evidence_sha256')})."
+                )
+                voice_source = f"{voice_source}_cpu_approved_tool"
+                packet["cpu_tool_authority"] = bundle
+            elif not bundle.get("approval", {}).get("allowed"):
+                raw_text = (
+                    "Central Processing Unit (CPU) denied the Graphics Processing Unit (GPU) "
+                    f"tool request ({(bundle.get('approval') or {}).get('reason')}). "
+                    "The Graphics Processing Unit (GPU) mouth cannot execute tools."
+                )
+                voice_source = f"{voice_source}_cpu_denied_tool"
+                packet["cpu_tool_authority"] = bundle
+    except Exception:  # noqa: BLE001 — authority hook must not crash speak
+        pass
+
     finalized = finalize_draft(
         query=query,
         packet=packet,
@@ -469,10 +526,20 @@ def speak(
                         "skeleton_bus_vacant=" + ",".join(str(x) for x in vacant[:8])
                     )
 
-            expr = extract_expression(query)
-            if expr:
-                invoker = bus.slots.get("uml_invoke") or uml_invoke_slot
-                uml_receipt = invoker(expr, query=query, source="cpu")
+            # Authority law: mouth/GPU may only REQUEST tools; CPU reviews + executes.
+            from lib.cpu_tool_authority import (
+                handle_tool_request,
+                propose_calculator_from_query,
+            )
+
+            tool_bundle = None
+            proposed = propose_calculator_from_query(
+                query, source="operator_via_mouth"
+            )
+            if proposed is not None:
+                tool_bundle = handle_tool_request(proposed)
+                if tool_bundle.get("executed"):
+                    uml_receipt = (tool_bundle.get("execution") or {}).get("result")
             elif any(
                 term in qfold
                 for term in (
@@ -490,6 +557,18 @@ def speak(
 
                 uml_receipt = last_invoke()
             enriched_facts = list(enriched_facts or [])
+            if isinstance(tool_bundle, dict):
+                approval = tool_bundle.get("approval") or {}
+                enriched_facts.extend(
+                    [
+                        f"tool_request_source={(tool_bundle.get('request') or {}).get('source')}",
+                        f"tool_requested={(tool_bundle.get('request') or {}).get('tool')}",
+                        f"cpu_tool_approved={approval.get('allowed')}",
+                        f"cpu_tool_reason={approval.get('reason')}",
+                        f"cpu_tool_executed={tool_bundle.get('executed')}",
+                        "gpu_executed_tool=False",
+                    ]
+                )
             if isinstance(uml_receipt, dict) and uml_receipt.get("uml_invoked"):
                 enriched_facts.extend(
                     [

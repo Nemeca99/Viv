@@ -77,6 +77,24 @@ _ROUTES: tuple[dict[str, Any], ...] = (
         ),
     },
     {
+        "intent_id": "gpu_tool_request",
+        "canonical_query": "Can the GPU use tools by itself?",
+        "authorized_text": (
+            "No. The Graphics Processing Unit (GPU) mouth may only request a tool with inputs. "
+            "The Central Processing Unit (CPU) must approve the request, execute the tool, and return the result. "
+            "Example: the Graphics Processing Unit (GPU) may request the calculator with an expression; "
+            "the Central Processing Unit (CPU) checks that it is allowed, runs Universal Mathematical Language (UML), and gives the answer back."
+        ),
+        "patterns": (
+            r"\bcan the gpu (?:use|run|execute) tools\b",
+            r"\bgpu (?:use|run|execute) tools?\b",
+            r"\bgpu .* calculator\b",
+            r"\bwho (?:approves|executes) (?:tool|calculator) requests?\b",
+            r"\btool authority\b",
+            r"\brequest (?:to use )?the calculator\b",
+        ),
+    },
+    {
         "intent_id": "speech",
         "canonical_query": "How do you speak?",
         "authorized_text": "I speak through the Graphics Processing Unit (GPU) mouth after the Central Processing Unit (CPU) supplies authorized meaning.",
