@@ -761,10 +761,60 @@ def deterministic_speak(packet: dict[str, Any]) -> str:
                                     + "; ".join(bus_bits[:6])
                                     + "."
                                 )
+                        if intent_id in {"uml_show_work", "uml_why_valid", "uml_prove_ran"}:
+                            uml_bits = [
+                                str(f)
+                                for f in (packet.get("facts") or [])
+                                if str(f).startswith("uml_")
+                            ]
+                            if not uml_bits:
+                                try:
+                                    from lib.aios_adapter_uml_invoke import last_invoke
+
+                                    last = last_invoke()
+                                except Exception:  # noqa: BLE001
+                                    last = None
+                                if isinstance(last, dict) and last.get("uml_invoked"):
+                                    uml_bits = [
+                                        f"uml_invoked={last.get('uml_invoked')}",
+                                        f"uml_expression={last.get('expression')}",
+                                        f"uml_value={last.get('value')}",
+                                        f"uml_verify_ok={last.get('verify_ok')}",
+                                        f"uml_form={last.get('uml_form')}",
+                                        f"uml_std_form={last.get('std_form')}",
+                                        f"uml_evidence_sha256={last.get('evidence_sha256')}",
+                                    ]
+                            if uml_bits:
+                                return (
+                                    authorized
+                                    + " Verified Universal Mathematical Language (UML) evidence on this path: "
+                                    + "; ".join(uml_bits[:8])
+                                    + "."
+                                )
+                            return (
+                                authorized
+                                + " No uml_invoked evidence is attached on this path, so Universal Mathematical Language (UML) did not run for a prior compute turn in this evidence window."
+                            )
                         return authorized
             except Exception:  # noqa: BLE001 — fail open to legacy heuristics
                 pass
             q = query.casefold()
+            # Direct solve results placed on the packet by the speak path.
+            if any(str(f).startswith("uml_value=") for f in (packet.get("facts") or [])):
+                facts_map = {}
+                for f in packet.get("facts") or []:
+                    s = str(f)
+                    if "=" in s and s.startswith("uml_"):
+                        k, v = s.split("=", 1)
+                        facts_map[k] = v
+                if facts_map.get("uml_invoked") == "True" and facts_map.get("uml_value"):
+                    return (
+                        f"Universal Mathematical Language (UML) evaluated "
+                        f"{facts_map.get('uml_expression', 'the expression')} "
+                        f"to {facts_map.get('uml_value')} "
+                        f"(verify_ok={facts_map.get('uml_verify_ok')}; "
+                        f"evidence_sha256={facts_map.get('uml_evidence_sha256', 'unavailable')})."
+                    )
             if any(term in q for term in ("qwen", "costume", "casual chat", "casual conversation", "which system do you belong", "aios system you belong", "aios the system", "viv and the operator", "operator and viv", "training project", "what does we", "we usually feel", "test this hypothesis", "components are responsible", "memory and logging", "split speaking from persistence")):
                 if "qwen" in q or "costume" in q:
                     return "No. Qwen is a replaceable language model; Viv is the governed Adaptive Intelligent Operating System (AIOS) identity, not a costume or a human person."

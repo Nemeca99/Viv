@@ -427,42 +427,85 @@ def speak(
         )
     enriched_facts = list(facts) if facts is not None else None
     qfold = (query or "").casefold()
-    if force_packet is None and any(
-        term in qfold
-        for term in (
-            "active",
-            "running",
-            "systems",
-            "uml",
-            "prove",
-            "current state",
-            "doing right now",
-        )
-    ):
+    uml_receipt: dict[str, Any] | None = None
+    if force_packet is None:
         try:
+            from lib.aios_adapter_uml_invoke import extract_expression, uml_invoke_slot
             from lib.aios_skeleton_bus import default_bus
 
-            wire = default_bus().wire_status()
+            bus = default_bus()
+            wire = bus.wire_status()
+            if any(
+                term in qfold
+                for term in (
+                    "active",
+                    "running",
+                    "systems",
+                    "uml",
+                    "prove",
+                    "current state",
+                    "doing right now",
+                    "solve",
+                    "compute",
+                    "evaluate",
+                )
+            ):
+                enriched_facts = list(enriched_facts or [])
+                pct = wire.get("pct_filled")
+                vacant = list(wire.get("vacant_for_compute_core") or [])
+                bound = [
+                    str(r.get("slot"))
+                    for r in (wire.get("rows") or [])
+                    if str(r.get("fill") or "") in {"BOUND", "PARTIAL"}
+                ]
+                if pct is not None:
+                    enriched_facts.append(f"skeleton_bus_filled_pct={pct}")
+                if bound:
+                    enriched_facts.append(
+                        "skeleton_bus_bound=" + ",".join(bound[:12])
+                    )
+                if vacant:
+                    enriched_facts.append(
+                        "skeleton_bus_vacant=" + ",".join(str(x) for x in vacant[:8])
+                    )
+
+            expr = extract_expression(query)
+            if expr:
+                invoker = bus.slots.get("uml_invoke") or uml_invoke_slot
+                uml_receipt = invoker(expr, query=query, source="cpu")
+            elif any(
+                term in qfold
+                for term in (
+                    "what uml did",
+                    "uml did",
+                    "uml work",
+                    "uml trace",
+                    "answer valid",
+                    "uml actually ran",
+                    "evidence",
+                    "prove uml",
+                )
+            ):
+                from lib.aios_adapter_uml_invoke import last_invoke
+
+                uml_receipt = last_invoke()
             enriched_facts = list(enriched_facts or [])
-            pct = wire.get("pct_filled")
-            vacant = list(wire.get("vacant_for_compute_core") or [])
-            bound = [
-                str(r.get("slot"))
-                for r in (wire.get("rows") or [])
-                if str(r.get("fill") or "") in {"BOUND", "PARTIAL"}
-            ]
-            if pct is not None:
-                enriched_facts.append(f"skeleton_bus_filled_pct={pct}")
-            if bound:
-                enriched_facts.append(
-                    "skeleton_bus_bound=" + ",".join(bound[:12])
+            if isinstance(uml_receipt, dict) and uml_receipt.get("uml_invoked"):
+                enriched_facts.extend(
+                    [
+                        f"uml_invoked={uml_receipt.get('uml_invoked')}",
+                        f"uml_ok={uml_receipt.get('ok')}",
+                        f"uml_expression={uml_receipt.get('expression')}",
+                        f"uml_value={uml_receipt.get('value')}",
+                        f"uml_verify_ok={uml_receipt.get('verify_ok')}",
+                        f"uml_notation={uml_receipt.get('notation')}",
+                        f"uml_form={uml_receipt.get('uml_form')}",
+                        f"uml_std_form={uml_receipt.get('std_form')}",
+                        f"uml_evidence_sha256={uml_receipt.get('evidence_sha256')}",
+                    ]
                 )
-            if vacant:
-                enriched_facts.append(
-                    "skeleton_bus_vacant=" + ",".join(str(x) for x in vacant[:8])
-                )
-        except Exception:  # noqa: BLE001 — speak must not die on bus probe
-            pass
+        except Exception:  # noqa: BLE001 — speak must not die on bus/uml probe
+            uml_receipt = None
     packet = force_packet or build_intent_packet(
         query=query,
         facts=enriched_facts,
@@ -474,6 +517,8 @@ def speak(
         memory_top=memory_top,
         mode=requested_mode or "converse",
     )
+    if uml_receipt is not None:
+        packet["uml_invoke_receipt"] = uml_receipt
     # The live renderer sees this data-only contract projection.  The legacy
     # intent/tagged packet remains available to CPU verification and training
     # tooling, but it is no longer the mouth's primary ingress payload.

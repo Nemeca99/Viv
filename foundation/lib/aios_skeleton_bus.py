@@ -49,11 +49,11 @@ _SLOT_BINDINGS: dict[str, dict[str, Any]] = {
         "note": "Same envelope as security_in; OUT path not separately wired here",
     },
     "uml_invoke": {
-        "bound": False,
-        "source": None,
-        "adapter": None,
-        "fill": "VACANT",
-        "note": "Deliberately empty for Nested-PEMDAS compute-core wire-in",
+        "bound": True,
+        "source": "lib.uml_engine via lib.aios_adapter_uml_invoke",
+        "adapter": "aios_adapter_uml_invoke",
+        "fill": "PARTIAL",
+        "note": "Bound: evaluate+verify one expression; speak solve path attaches evidence facts",
     },
     "rid_sample": {
         "bound": True,
@@ -251,8 +251,17 @@ def default_bus() -> SkeletonBus:
     sec = _try_import_cpu_plan("lib.aios_adapter_security")
     bus.bind("security_in", sec, note=_SLOT_BINDINGS["security_in"]["note"])
     bus.bind("security_out", sec, note=_SLOT_BINDINGS["security_out"]["note"])
-    # uml_invoke deliberately vacant for compute-core
-    bus.bind("uml_invoke", None, note=_SLOT_BINDINGS["uml_invoke"]["note"])
+    from lib.aios_adapter_uml_invoke import uml_invoke_slot
+
+    bus.bind(
+        "uml_invoke",
+        uml_invoke_slot,
+        note=_SLOT_BINDINGS["uml_invoke"]["note"],
+    )
+    bus.meta["uml_invoke"]["source"] = _SLOT_BINDINGS["uml_invoke"]["source"]
+    bus.meta["uml_invoke"]["adapter"] = _SLOT_BINDINGS["uml_invoke"]["adapter"]
+    bus.meta["uml_invoke"]["fill"] = "PARTIAL"
+    bus.meta["uml_invoke"]["bound"] = True
     rid = _try_import_cpu_plan("lib.aios_adapter_rid")
     bus.bind("rid_sample", rid, note=_SLOT_BINDINGS["rid_sample"]["note"])
     mouth = _try_import_cpu_plan("lib.aios_adapter_luna")
@@ -280,7 +289,7 @@ def default_bus() -> SkeletonBus:
     hardware = _try_import_cpu_plan("lib.aios_adapter_infra")
     bus.bind("hardware_plan", hardware, note=_SLOT_BINDINGS["hardware_plan"]["note"])
     # Restore static fill labels for partial bindings even when callable exists.
-    # Never wipe BOUND callables (e.g. subagent_spawn). Only uml_invoke stays VACANT.
+    # Never wipe BOUND callables (e.g. subagent_spawn, uml_invoke).
     for slot, info in _SLOT_BINDINGS.items():
         if info.get("fill") == "PARTIAL" and bus.slots.get(slot) is not None:
             bus.meta[slot]["fill"] = "PARTIAL"

@@ -125,6 +125,47 @@ _ROUTES: tuple[dict[str, Any], ...] = (
         ),
     },
     {
+        "intent_id": "uml_show_work",
+        "canonical_query": "Show me what UML did.",
+        "authorized_text": (
+            "I can show Universal Mathematical Language (UML) work only from a verified invoke receipt on this evidence path. "
+            "If this turn has no uml_invoked evidence, UML did not run for that answer."
+        ),
+        "patterns": (
+            r"\bshow me what uml did\b",
+            r"\bwhat uml did\b",
+            r"\bshow (?:me )?(?:the )?uml (?:work|trace|steps)\b",
+            r"\buml (?:work|trace|steps)\b",
+        ),
+    },
+    {
+        "intent_id": "uml_why_valid",
+        "canonical_query": "Why is that answer valid?",
+        "authorized_text": (
+            "An answer is valid here when Universal Mathematical Language (UML) evaluate and verify agree on the same expression, "
+            "with an evidence digest on the packet. Doctrine alone is not a compute proof."
+        ),
+        "patterns": (
+            r"\bwhy is that answer valid\b",
+            r"\bwhy (?:is )?(?:that|this) valid\b",
+            r"\bwhy is (?:the )?(?:result|answer) (?:valid|correct)\b",
+        ),
+    },
+    {
+        "intent_id": "uml_prove_ran",
+        "canonical_query": "What evidence from this turn proves UML actually ran?",
+        "authorized_text": (
+            "Proof that Universal Mathematical Language (UML) ran is the invoke receipt: uml_invoked=true, expression, value, "
+            "verify_ok, uml_form/std_form, and evidence_sha256 on this turn's packet — not a doctrine paragraph."
+        ),
+        "patterns": (
+            r"\bwhat evidence\b.*\buml\b",
+            r"\bprove(?:s)? uml (?:actually )?ran\b",
+            r"\buml actually ran\b",
+            r"\bprove (?:that )?uml\b",
+        ),
+    },
+    {
         "intent_id": "active_systems",
         "canonical_query": "What systems are currently active?",
         "authorized_text": (

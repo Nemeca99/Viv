@@ -23,6 +23,8 @@ _IDENTITY_TERMS = (
     "uml", "nested-pemdas", "nested pemdas", "universal mathematical language",
     "currently active", "active systems", "what is running", "what are you doing",
     "what can you prove", "prove about", "why did you answer", "why did you say",
+    "solve", "compute", "evaluate", "show me what uml", "what uml did",
+    "why is that answer valid", "uml actually ran",
 )
 _INVENTED_PROVENANCE_RE = re.compile(
     r"\b(?:previous session|prior session|last session|earlier session|"
