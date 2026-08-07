@@ -1,0 +1,839 @@
+{
+  "schema_version": "commit_ready_v1",
+  "title": "COMMIT_READY pack (overnight; do not commit)",
+  "created_utc": "2026-08-07T09:29:12Z",
+  "workspace": "L:/Continue/Viv",
+  "git": {
+    "branch": "codex/viv-v60-preflight-backup",
+    "head": "def895e",
+    "already_pushed": {
+      "commit": "def895e",
+      "message": "Add AIOS automation preflight, training orchestration, and uml_request canary ingress.",
+      "remote_branch": "origin/codex/viv-v60-preflight-backup",
+      "note": "HEAD is def895e and matches origin tracking; working tree has post-push deltas only."
+    }
+  },
+  "policy": {
+    "do_not_commit": true,
+    "do_not_push": true,
+    "reason": "Operator asleep; finish on wake. Produce commit-ready pack only.",
+    "no_aios_start": true,
+    "do_not_edit_cold_start": true
+  },
+  "excludes": [
+    "COLD_START.md (other agents own; do not include unless operator asks)",
+    "foundation/artifacts/audit/session_journal.md",
+    "foundation/artifacts/auto/agentic/CURRENT_TASK.json",
+    "sandbox/journal/*",
+    "vault/* / gpu packs / *.pt / *.gguf / weight packs",
+    "foundation/models/Training/** (SLM/training lane — separate commit series)",
+    "foundation/lib/node_federation*.py + federation tests (out of tonight theme)",
+    "foundation/docs/VIV_SLM_*.md, drive-download zips, docs/external/",
+    "foundation/artifacts/auto/** receipts (evidence, not source pack)",
+    "models/ top-level untracked"
+  ],
+  "path_verification": {
+    "all_exist": true,
+    "checks": [
+      {
+        "path": "foundation/lib/aios_system_smoke_v1.py",
+        "exists": true,
+        "bytes": 22905,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/scripts/run_aios_system_smoke_v1.py",
+        "exists": true,
+        "bytes": 4618,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/scripts/test_aios_system_smoke_v1.py",
+        "exists": true,
+        "bytes": 2904,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/lib/aios_skeleton_bus.py",
+        "exists": true,
+        "bytes": 10581,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/lib/aios_skeleton_stub.py",
+        "exists": true,
+        "bytes": 2675,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/lib/aios_skeleton_subagent_profiles.py",
+        "exists": true,
+        "bytes": 2095,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/lib/aios_subagent_v1.py",
+        "exists": true,
+        "bytes": 28987,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/scripts/run_aios_skeleton_v1.py",
+        "exists": true,
+        "bytes": 2480,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/scripts/run_aios_subagent_v1.py",
+        "exists": true,
+        "bytes": 5209,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/scripts/test_aios_subagent_v1.py",
+        "exists": true,
+        "bytes": 4260,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/lib/uml_bridge_security_gate.py",
+        "exists": true,
+        "bytes": 22942,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/scripts/test_uml_bridge_security_gate_v1.py",
+        "exists": true,
+        "bytes": 6407,
+        "git_status": "untracked"
+      },
+      {
+        "path": "foundation/scripts/run_field_scoped_bridge_canary_v1.py",
+        "exists": true,
+        "bytes": 37863,
+        "git_status": "modified"
+      },
+      {
+        "path": "foundation/lib/manual_oracle.py",
+        "exists": true,
+        "bytes": 4546,
+        "git_status": "clean_tracked"
+      },
+      {
+        "path": "foundation/scripts/test_manual_oracle_v1.py",
+        "exists": true,
+        "bytes": 1389,
+        "git_status": "clean_tracked"
+      }
+    ]
+  },
+  "suggested_commits": [
+    {
+      "id": 1,
+      "theme": "skeleton_smoke_subagent",
+      "suggested_message": "Add AIOS skeleton bus, system smoke, and subagent runners.",
+      "rationale": "Wake priority from WAKE_FINISH: land smoke+skeleton+subagent source before broader automation.",
+      "files": [
+        {
+          "path": "foundation/lib/aios_system_smoke_v1.py",
+          "exists": true,
+          "bytes": 22905,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_aios_system_smoke_v1.py",
+          "exists": true,
+          "bytes": 4618,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_aios_system_smoke_v1.py",
+          "exists": true,
+          "bytes": 2904,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_skeleton_bus.py",
+          "exists": true,
+          "bytes": 10581,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_skeleton_stub.py",
+          "exists": true,
+          "bytes": 2675,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_skeleton_subagent_profiles.py",
+          "exists": true,
+          "bytes": 2095,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_subagent_v1.py",
+          "exists": true,
+          "bytes": 28987,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_aios_skeleton_v1.py",
+          "exists": true,
+          "bytes": 2480,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_aios_subagent_v1.py",
+          "exists": true,
+          "bytes": 5209,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_aios_subagent_v1.py",
+          "exists": true,
+          "bytes": 4260,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_manual_oracle_v1.py",
+          "exists": true,
+          "bytes": 1389,
+          "git_status": "clean_tracked"
+        }
+      ],
+      "file_count": 11,
+      "total_bytes": null,
+      "notes": [
+        "manual_oracle.py is already tracked/clean; include only untracked test_manual_oracle_v1.py",
+        "Do not include COLD_START.md or system_smoke artifact receipts in this commit unless operator asks"
+      ]
+    },
+    {
+      "id": 2,
+      "theme": "security_gate_canary_fix",
+      "suggested_message": "Add UML bridge security gate and harden field-scoped canary ingress.",
+      "rationale": "Security gate is new; canary/bridge are post-def895e fixes on already-pushed canary ingress.",
+      "files": [
+        {
+          "path": "foundation/lib/uml_bridge_security_gate.py",
+          "exists": true,
+          "bytes": 22942,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_uml_bridge_security_gate_v1.py",
+          "exists": true,
+          "bytes": 6407,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/uml_field_scoped_bridge.py",
+          "exists": true,
+          "bytes": 17487,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/scripts/run_field_scoped_bridge_canary_v1.py",
+          "exists": true,
+          "bytes": 37863,
+          "git_status": "modified"
+        }
+      ],
+      "file_count": 4,
+      "total_bytes": null,
+      "notes": [
+        "uml_field_scoped_bridge.py and run_field_scoped_bridge_canary_v1.py were partially in def895e; this commit is the overnight fix delta",
+        "Keep canary default OFF; enable only via --enable-canary"
+      ]
+    },
+    {
+      "id": 3,
+      "theme": "core_automation_expansion",
+      "suggested_message": "Expand AIOS core automation with service/cognitive/RID runners and core adapters.",
+      "rationale": "Narrow third commit for automation + cores/adapters/docs that smoke/skeleton depend on for fuller coverage.",
+      "files": [
+        {
+          "path": "foundation/lib/aios_core_automation.py",
+          "exists": true,
+          "bytes": 37648,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/scripts/run_aios_core_automation_v1.py",
+          "exists": true,
+          "bytes": 8633,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/scripts/test_aios_core_automation_v1.py",
+          "exists": true,
+          "bytes": 4533,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_systems.py",
+          "exists": true,
+          "bytes": 15706,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_systems_preflight.py",
+          "exists": true,
+          "bytes": 29886,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/core_contracts.py",
+          "exists": true,
+          "bytes": 11335,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/cognitive_cores_automation_v1.py",
+          "exists": true,
+          "bytes": 8974,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/service_cores_automation.py",
+          "exists": true,
+          "bytes": 13433,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/rid_plant_automation_v1.py",
+          "exists": true,
+          "bytes": 21742,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_cognitive_cores_automation_v1.py",
+          "exists": true,
+          "bytes": 5275,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_service_cores_automation_v1.py",
+          "exists": true,
+          "bytes": 4747,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_rid_plant_automation_v1.py",
+          "exists": true,
+          "bytes": 4931,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_cognitive_cores_automation_v1.py",
+          "exists": true,
+          "bytes": 4012,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_service_cores_automation_v1.py",
+          "exists": true,
+          "bytes": 3191,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_rid_plant_automation_v1.py",
+          "exists": true,
+          "bytes": 5751,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_carma_automation_v1.py",
+          "exists": true,
+          "bytes": 885,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_consciousness_automation_v1.py",
+          "exists": true,
+          "bytes": 909,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/run_voice_contract_automation_v1.py",
+          "exists": true,
+          "bytes": 15278,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/data_core.py",
+          "exists": true,
+          "bytes": 16513,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/dream_core.py",
+          "exists": true,
+          "bytes": 13020,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/enterprise_core.py",
+          "exists": true,
+          "bytes": 14910,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/fractal_core.py",
+          "exists": true,
+          "bytes": 7878,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/game_core.py",
+          "exists": true,
+          "bytes": 10616,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/infra_core.py",
+          "exists": true,
+          "bytes": 4524,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/main_core.py",
+          "exists": true,
+          "bytes": 10683,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/marketplace_core.py",
+          "exists": true,
+          "bytes": 7343,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/music_core.py",
+          "exists": true,
+          "bytes": 6769,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/privacy_core.py",
+          "exists": true,
+          "bytes": 7796,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/rag_core.py",
+          "exists": true,
+          "bytes": 11436,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/support_core.py",
+          "exists": true,
+          "bytes": 9736,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/utils_core.py",
+          "exists": true,
+          "bytes": 15279,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/carma_core.py",
+          "exists": true,
+          "bytes": 10196,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/consciousness_core.py",
+          "exists": true,
+          "bytes": 15880,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_data.py",
+          "exists": true,
+          "bytes": 4684,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_fractal.py",
+          "exists": true,
+          "bytes": 2385,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_game.py",
+          "exists": true,
+          "bytes": 2557,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_infra.py",
+          "exists": true,
+          "bytes": 2310,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_marketplace.py",
+          "exists": true,
+          "bytes": 2065,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_music.py",
+          "exists": true,
+          "bytes": 1656,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_audit.py",
+          "exists": true,
+          "bytes": 13816,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_carma.py",
+          "exists": true,
+          "bytes": 5423,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_consciousness.py",
+          "exists": true,
+          "bytes": 13485,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_dream.py",
+          "exists": true,
+          "bytes": 12741,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_luna.py",
+          "exists": true,
+          "bytes": 10705,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_privacy.py",
+          "exists": true,
+          "bytes": 2194,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_support.py",
+          "exists": true,
+          "bytes": 9030,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/lib/aios_adapter_utils.py",
+          "exists": true,
+          "bytes": 13689,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/scripts/test_carma_core_v1.py",
+          "exists": true,
+          "bytes": 2208,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/scripts/test_data_core_v1.py",
+          "exists": true,
+          "bytes": 3479,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_dream_core_v1.py",
+          "exists": true,
+          "bytes": 2878,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_enterprise_core_v1.py",
+          "exists": true,
+          "bytes": 4387,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_fractal_core_v1.py",
+          "exists": true,
+          "bytes": 2246,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_game_core_v1.py",
+          "exists": true,
+          "bytes": 2940,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_infra_core_v1.py",
+          "exists": true,
+          "bytes": 2855,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_main_core_v1.py",
+          "exists": true,
+          "bytes": 3794,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_marketplace_core_v1.py",
+          "exists": true,
+          "bytes": 2711,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_music_core_v1.py",
+          "exists": true,
+          "bytes": 2480,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_privacy_core_v1.py",
+          "exists": true,
+          "bytes": 3058,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_rag_core_v1.py",
+          "exists": true,
+          "bytes": 3378,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_support_core_v1.py",
+          "exists": true,
+          "bytes": 2714,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_utils_core_v1.py",
+          "exists": true,
+          "bytes": 4222,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_carma_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 1604,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_consciousness_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 2092,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_data_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 1565,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_enterprise_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 1844,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_fractal_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 1087,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_game_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 933,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_infra_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 868,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_marketplace_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 914,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_music_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 918,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_privacy_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 926,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_support_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 1385,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/scripts/test_utils_adapter_cpu_plan_v1.py",
+          "exists": true,
+          "bytes": 2020,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/CARMA_CORE_V1.md",
+          "exists": true,
+          "bytes": 2854,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/CONSCIOUSNESS_CORE_V1.md",
+          "exists": true,
+          "bytes": 3830,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/DATA_CORE_V1.md",
+          "exists": true,
+          "bytes": 1885,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/DREAM_CORE_V1.md",
+          "exists": true,
+          "bytes": 2480,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/ENTERPRISE_CORE_V1.md",
+          "exists": true,
+          "bytes": 2211,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/FRACTAL_CORE_V1.md",
+          "exists": true,
+          "bytes": 832,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/GAME_CORE_V1.md",
+          "exists": true,
+          "bytes": 1168,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/INFRA_CORE_V1.md",
+          "exists": true,
+          "bytes": 633,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/LUNA_CORE_V1.md",
+          "exists": true,
+          "bytes": 2692,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/MAIN_CORE_V1.md",
+          "exists": true,
+          "bytes": 2158,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/MARKETPLACE_CORE_V1.md",
+          "exists": true,
+          "bytes": 885,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/MUSIC_CORE_V1.md",
+          "exists": true,
+          "bytes": 797,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/PRIVACY_CORE_V1.md",
+          "exists": true,
+          "bytes": 789,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/RAG_CORE_V1.md",
+          "exists": true,
+          "bytes": 3348,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/SUPPORT_CORE_V1.md",
+          "exists": true,
+          "bytes": 1692,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/UTILS_CORE_V1.md",
+          "exists": true,
+          "bytes": 2109,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/docs/TEMPLATE_CORE_DISPOSITION.md",
+          "exists": true,
+          "bytes": 592,
+          "git_status": "untracked"
+        },
+        {
+          "path": "foundation/BACKUP_CORE.md",
+          "exists": true,
+          "bytes": 5285,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/VIV_BUILD_STATUS.md",
+          "exists": true,
+          "bytes": 24264,
+          "git_status": "modified"
+        },
+        {
+          "path": "foundation/triad_boundary_registry.json",
+          "exists": true,
+          "bytes": 97984,
+          "git_status": "modified"
+        }
+      ],
+      "file_count": 93,
+      "total_bytes": null,
+      "notes": [
+        "Larger than 1–2 but still source-sized (no weights/pt/vault)",
+        "Optional split later: (3a) automation runners only, (3b) cores+adapters+docs",
+        "luna_core.py has trivial 1-line delta — omit unless needed for consistency"
+      ]
+    }
+  ],
+  "deferred_not_in_pack": [
+    "foundation/lib/cpu_*.py / viv_ide.py / mouth contract tests (adjacent, not tonight theme)",
+    "foundation/lib/node_federation*.py + tests",
+    "foundation/models/Training/** and Viv-SLM probe/docs",
+    "foundation/metacognition/**",
+    "foundation/lib/qwen25_token_policy.py + tokenizer tests",
+    "foundation/lib/viv_identity_personality.py / viv_slm_foundation.py",
+    "foundation/lib/data/** package if present beyond data_core.py"
+  ],
+  "operator_on_wake": [
+    "Review COMMIT_READY.md groups; stage group 1 first",
+    "git add listed paths only; do not add journals/CURRENT_TASK/vault/pt",
+    "Commit when ready (operator decision); push after local verify",
+    "Re-run skeleton system smoke after group 1 lands",
+    "Re-check canary CANARY_PASS with --enable-canary only"
+  ]
+}

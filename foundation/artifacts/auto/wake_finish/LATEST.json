@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "schema_version": "wake_finish_pack_v1",
+  "stamp": "20260807T093018Z",
+  "at": "2026-08-07T09:30:18+00:00",
+  "skeleton_bulk_done": true,
+  "aios_runtime_started": false,
+  "coverage": {
+    "systems_counted": 39,
+    "systems_structural_coverage_pct": 100.0,
+    "systems_partial_pct": 23.1,
+    "systems_skeleton_pct": 76.9,
+    "bus_slots_total": 13,
+    "bus_slots_filled_pct": 92.3,
+    "bus_vacant": ["uml_invoke"]
+  },
+  "receipts": {
+    "full_map": "foundation/artifacts/auto/aios_skeleton/LATEST.json",
+    "operator_index": "foundation/artifacts/auto/aios_skeleton/skeleton_map_latest.json",
+    "stamped_map": "foundation/artifacts/auto/aios_skeleton/20260807T093018Z/SKELETON_MAP.json",
+    "system_smoke": "foundation/artifacts/auto/system_smoke/LATEST.json",
+    "overnight_notes": "foundation/artifacts/auto/wake_finish/skeleton_gaps_overnight.md"
+  },
+  "vacant_for_compute_core": ["uml_invoke"],
+  "subagent_spawn": "BOUND (aios_subagent_v1 plan-only/SKIP)",
+  "commit_paths_ready": [
+    "foundation/lib/aios_skeleton_bus.py",
+    "foundation/lib/aios_skeleton_map.py",
+    "foundation/lib/aios_skeleton_stub.py",
+    "foundation/lib/aios_skeleton_subagent_profiles.py",
+    "foundation/lib/aios_adapter_security.py",
+    "foundation/lib/aios_adapter_perception.py",
+    "foundation/lib/aios_adapter_ethics.py",
+    "foundation/lib/aios_adapter_federation.py",
+    "foundation/lib/aios_systems.py",
+    "foundation/lib/aios_systems_preflight.py",
+    "foundation/lib/aios_system_smoke_v1.py",
+    "foundation/scripts/run_aios_skeleton_v1.py",
+    "foundation/scripts/map_aios_skeleton_bus_v1.py",
+    "foundation/scripts/run_aios_system_smoke_v1.py",
+    "foundation/scripts/test_aios_system_smoke_v1.py",
+    "COLD_START.md",
+    "foundation/VIV_BUILD_STATUS.md",
+    "foundation/artifacts/auto/aios_skeleton/",
+    "foundation/artifacts/auto/system_smoke/",
+    "foundation/artifacts/auto/wake_finish/"
+  ]
+}
