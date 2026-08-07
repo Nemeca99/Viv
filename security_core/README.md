@@ -63,6 +63,22 @@ It also exposes typed backup capabilities:
 - `authorize_backup`
 - `verify_backup_ledger`
 
+The offline federation stage adds native asymmetric primitives to the rebuilt
+module without opening a transport or installing a new runtime module:
+
+- `federation_generate_key_material(node_id)` — Windows CNG ECDSA P-256 key
+  generation with a DPAPI-protected private blob and public-key hash.
+- `federation_sign_protected(node_id, protected_private_key_hex, message)` —
+  signs a canonical federation body locally.
+- `federation_verify(public_key_hex, message, signature_hex)` — verifies the
+  raw 64-byte ECDSA signature against a public CNG blob.
+
+The Python federation registry remains an offline in-process admission gate.
+It requires a callback explicitly marked as the asymmetric CNG backend, rejects
+HMAC fallback, and does not persist private keys or raw telemetry.  The rebuilt
+module is not installed into `security_core\runtime` or the shared virtual
+environment by the federation stage.
+
 The backup capability matrix keeps replication closed, permits snapshots only
 from allowlisted Viv/exact security-module paths into the vault, limits restore
 reconstruction to sandbox staging, and requires explicit Architect approval for

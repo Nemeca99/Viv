@@ -9,6 +9,7 @@ use serde_json::Value;
 
 pub mod constitution;
 pub mod backup_security;
+pub mod federation_crypto;
 pub mod gate;
 pub mod governor;
 pub mod laws;
@@ -120,6 +121,38 @@ fn check_growth(actuator: String, proposed_r: f64, max_r: f64) -> PyResult<PyObj
         dict.set_item("gate", "rust")?;
         Ok(dict.into())
     })
+}
+
+#[pyfunction]
+fn federation_generate_key_material(node_id: String) -> PyResult<PyObject> {
+    let material = federation_crypto::generate_key_material(&node_id)
+        .map_err(|error| PyErr::new::<pyo3::exceptions::PyRuntimeError, _>(error))?;
+    let encoded = serde_json::to_string(&material)
+        .map_err(|error| PyErr::new::<pyo3::exceptions::PyValueError, _>(error.to_string()))?;
+    Python::with_gil(|py| {
+        let json = py.import_bound("json")?;
+        Ok(json.call_method1("loads", (encoded,))?.into())
+    })
+}
+
+#[pyfunction]
+fn federation_sign_protected(
+    node_id: String,
+    protected_private_key_hex: String,
+    message: Vec<u8>,
+) -> PyResult<String> {
+    federation_crypto::sign_protected(&node_id, &protected_private_key_hex, &message)
+        .map_err(|error| PyErr::new::<pyo3::exceptions::PyRuntimeError, _>(error))
+}
+
+#[pyfunction]
+fn federation_verify(
+    public_key_hex: String,
+    message: Vec<u8>,
+    signature_hex: String,
+) -> PyResult<bool> {
+    federation_crypto::verify(&public_key_hex, &message, &signature_hex)
+        .map_err(|error| PyErr::new::<pyo3::exceptions::PyRuntimeError, _>(error))
 }
 
 fn training_verdict_to_py(
@@ -238,6 +271,9 @@ fn security_core(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(enforce_morality, m)?)?;
     m.add_function(wrap_pyfunction!(dormancy_threshold, m)?)?;
     m.add_function(wrap_pyfunction!(check_growth, m)?)?;
+    m.add_function(wrap_pyfunction!(federation_generate_key_material, m)?)?;
+    m.add_function(wrap_pyfunction!(federation_sign_protected, m)?)?;
+    m.add_function(wrap_pyfunction!(federation_verify, m)?)?;
     m.add_function(wrap_pyfunction!(authorize_backup, m)?)?;
     m.add_function(wrap_pyfunction!(verify_backup_ledger, m)?)?;
     m.add_function(wrap_pyfunction!(authorize_training, m)?)?;

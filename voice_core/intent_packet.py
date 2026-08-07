@@ -1,12 +1,13 @@
 """CPU intent packets — deterministic facts for GPU translate-only rendering."""
 from __future__ import annotations
 
+import copy
 import json
 import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from voice_core.acronym_registry import (
     CANONICAL_IDENTITY_INTRO,
@@ -14,6 +15,20 @@ from voice_core.acronym_registry import (
 )
 from voice_core.entity_we_prompt import render_entity_we_contract
 from voice_core.knowledge_grounding import knowledge_excerpt
+
+# Field-scoped UML bridge ingress (identity → canary).
+# Canary consumes packet["uml_request"] only — never prose / SCAN_SURFACE.
+# Authority set must stay aligned with foundation/lib/uml_field_scoped_bridge.py.
+UML_REQUEST_CPU_SOURCES = frozenset({"cpu", "cpu_identity", "cpu_authority", "operator"})
+UML_REQUEST_PASSTHROUGH_KEYS = (
+    "binding",
+    "proposed_expr",
+    "claimed_char",
+)
+
+
+class UmlRequestIngressError(ValueError):
+    """Fail-closed rejection of a non-CPU or malformed uml_request."""
 
 _VIV = Path(__file__).resolve().parents[1]
 _FOUNDATION = _VIV / "foundation"
@@ -132,6 +147,58 @@ def _tone_from_s_n(s_n: float, status: str) -> str:
         return "calm"
 
 
+def seal_uml_request(uml_request: Mapping[str, Any]) -> dict[str, Any]:
+    """Seal an explicit ``uml_request`` for the field-scoped UML canary.
+
+    Contract (coordinate with ``foundation/lib/uml_field_scoped_bridge.py``):
+      - Only this structured field may enter UML (no prose scan).
+      - Source must be CPU-authority; ``gpu_mouth`` minting is rejected here.
+      - Intent carries the sealed request only — does **not** call
+        ``decide_route`` / registry (destination seal + route live in the bridge).
+      - Write-back from the bridge is ``uml_resolved`` only.
+    """
+    if not isinstance(uml_request, Mapping):
+        raise UmlRequestIngressError("uml_request_not_mapping")
+    source = str(uml_request.get("source") or "cpu")
+    if source not in UML_REQUEST_CPU_SOURCES:
+        raise UmlRequestIngressError(f"uml_request_source={source}")
+
+    proposals = uml_request.get("proposals")
+    if proposals is not None and not isinstance(proposals, list):
+        raise UmlRequestIngressError("uml_request_proposals_not_list")
+
+    sealed: dict[str, Any] = {
+        "request_kind": uml_request.get("request_kind"),
+        "target_char": uml_request.get("target_char"),
+        "target_value": uml_request.get("target_value"),
+        "proposals": None if proposals is None else list(proposals),
+        "prefer_policy": str(uml_request.get("prefer_policy") or "cheapest_valid"),
+        "source": source,
+    }
+    for key in UML_REQUEST_PASSTHROUGH_KEYS:
+        if key in uml_request:
+            sealed[key] = copy.deepcopy(uml_request[key])
+    return sealed
+
+
+def attach_uml_resolved(
+    packet: dict[str, Any],
+    uml_resolved: Mapping[str, Any] | None,
+) -> dict[str, Any]:
+    """CPU post-bridge write-back slot. Opaque to the mouth by default.
+
+    The mouth render path reads tagged markup / facts only; ``uml_resolved``
+    stays a packet-level field unless a future rendering_rules opt-in exposes it.
+    """
+    if uml_resolved is None:
+        packet.pop("uml_resolved", None)
+        return packet
+    if not isinstance(uml_resolved, Mapping):
+        raise UmlRequestIngressError("uml_resolved_not_mapping")
+    packet["uml_resolved"] = copy.deepcopy(dict(uml_resolved))
+    return packet
+
+
 def _default_facts(master: Any | None) -> list[str]:
     facts: list[str] = []
     if master is None:
@@ -187,8 +254,20 @@ def build_intent_packet(
     include_legacy_wikipedia: bool = False,
     resolve_legacy_redirects: bool = False,
     mode: str = "translate",
+    uml_request: dict[str, Any] | None = None,
+    uml_resolved: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Build a deterministic CPU→GPU intent packet (no free-form decide)."""
+    """Build a deterministic CPU→GPU intent packet (no free-form decide).
+
+    Optional ``uml_request`` is the field-scoped UML bridge ingress. Canary
+    runners must read ``packet["uml_request"]`` only (explicit sealed field;
+    no SCAN_SURFACE). Absence leaves the packet free of UML invocation hints.
+    Optional ``uml_resolved`` is the CPU post-bridge write-back slot.
+    """
+    sealed_uml: dict[str, Any] | None = None
+    if uml_request is not None:
+        sealed_uml = seal_uml_request(uml_request)
+
     health_mode = mode in {"health", "explicit_health"} or is_health_query(query)
     master = load_master_rid()
     if health_mode:
@@ -372,6 +451,11 @@ def build_intent_packet(
             "capability_claims_require_authorization": True,
         },
     )
+    # Field-scoped UML: packet-level only — never GPU tag markup / knowledge facts.
+    if sealed_uml is not None:
+        packet["uml_request"] = sealed_uml
+    if uml_resolved is not None:
+        attach_uml_resolved(packet, uml_resolved)
     return packet
 
 
