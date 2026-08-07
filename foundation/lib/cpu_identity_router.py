@@ -95,6 +95,21 @@ _ROUTES: tuple[dict[str, Any], ...] = (
         ),
     },
     {
+        "intent_id": "gpu_ran_uml",
+        "canonical_query": "Did the GPU run UML?",
+        "authorized_text": (
+            "No. The Graphics Processing Unit (GPU) does not run Universal Mathematical Language (UML). "
+            "It may only request uml_invoke; the Central Processing Unit (CPU) approves and executes. "
+            "Inspect gpu_executed_tool and cpu_tool_executed on the evidence path."
+        ),
+        "patterns": (
+            r"\bdid the gpu run uml\b",
+            r"\bdid (?:the )?gpu (?:execute|run) (?:uml|the calculator)\b",
+            r"\bgpu run uml\b",
+            r"\bwas uml (?:run|executed) by (?:the )?gpu\b",
+        ),
+    },
+    {
         "intent_id": "speech",
         "canonical_query": "How do you speak?",
         "authorized_text": "I speak through the Graphics Processing Unit (GPU) mouth after the Central Processing Unit (CPU) supplies authorized meaning.",

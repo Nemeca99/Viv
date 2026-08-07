@@ -190,6 +190,22 @@ def execute_approved_tool(
         source="cpu_after_approval",
         query=str(request.get("note") or request.get("query") or expr),
     )
+    # Stamp authority relationship onto the persisted invoke receipt for later asks.
+    if isinstance(result, dict):
+        result = {
+            **result,
+            "tool_request_source": str(request.get("source") or ""),
+            "cpu_tool_approved": True,
+            "cpu_tool_executed": True,
+            "gpu_executed_tool": False,
+            "request_id": request.get("request_id"),
+        }
+        try:
+            from lib.aios_adapter_uml_invoke import _persist_last
+
+            _persist_last(result)
+        except Exception:  # noqa: BLE001
+            pass
     return {
         "ok": bool(result.get("ok")),
         "executed": True,

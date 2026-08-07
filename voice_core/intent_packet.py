@@ -761,6 +761,37 @@ def deterministic_speak(packet: dict[str, Any]) -> str:
                                     + "; ".join(bus_bits[:6])
                                     + "."
                                 )
+                        if intent_id == "gpu_ran_uml":
+                            facts = [str(f) for f in (packet.get("facts") or [])]
+                            gpu_exec = next(
+                                (f.split("=", 1)[1] for f in facts if f.startswith("gpu_executed_tool=")),
+                                None,
+                            )
+                            cpu_exec = next(
+                                (f.split("=", 1)[1] for f in facts if f.startswith("cpu_tool_executed=")),
+                                None,
+                            )
+                            approved = next(
+                                (f.split("=", 1)[1] for f in facts if f.startswith("cpu_tool_approved=")),
+                                None,
+                            )
+                            # Fall back to last invoke authority markers when this turn has no fresh tool bundle.
+                            if gpu_exec is None or cpu_exec is None:
+                                try:
+                                    from lib.aios_adapter_uml_invoke import last_invoke
+
+                                    last = last_invoke() or {}
+                                except Exception:  # noqa: BLE001
+                                    last = {}
+                                if last.get("source") == "cpu_after_approval" or last.get("uml_invoked"):
+                                    gpu_exec = "False"
+                                    cpu_exec = "True" if last.get("uml_invoked") else "False"
+                                    approved = "True" if last.get("ok") is not None else approved
+                            return (
+                                authorized
+                                + f" Evidence on this path: gpu_executed_tool={gpu_exec}; "
+                                + f"cpu_tool_executed={cpu_exec}; cpu_tool_approved={approved}."
+                            )
                         if intent_id in {"uml_show_work", "uml_why_valid", "uml_prove_ran"}:
                             uml_bits = [
                                 str(f)

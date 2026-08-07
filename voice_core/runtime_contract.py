@@ -26,6 +26,7 @@ _IDENTITY_TERMS = (
     "solve", "compute", "evaluate", "show me what uml", "what uml did",
     "why is that answer valid", "uml actually ran",
     "gpu use tools", "tool authority", "request the calculator", "approves tool",
+    "did the gpu run uml", "gpu run uml", "executed by the gpu",
 )
 _INVENTED_PROVENANCE_RE = re.compile(
     r"\b(?:previous session|prior session|last session|earlier session|"

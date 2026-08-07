@@ -551,11 +551,28 @@ def speak(
                     "uml actually ran",
                     "evidence",
                     "prove uml",
+                    "did the gpu run",
+                    "gpu run uml",
                 )
             ):
                 from lib.aios_adapter_uml_invoke import last_invoke
 
                 uml_receipt = last_invoke()
+                # Reconstruct authority markers for follow-up inspection turns.
+                if uml_receipt and (
+                    str(uml_receipt.get("source") or "") == "cpu_after_approval"
+                    or uml_receipt.get("gpu_executed_tool") is False
+                ):
+                    enriched_facts = list(enriched_facts or [])
+                    enriched_facts.extend(
+                        [
+                            f"tool_request_source={uml_receipt.get('tool_request_source') or 'operator_via_mouth'}",
+                            "tool_requested=uml_invoke",
+                            f"cpu_tool_approved={uml_receipt.get('cpu_tool_approved', True)}",
+                            f"cpu_tool_executed={uml_receipt.get('cpu_tool_executed', True)}",
+                            f"gpu_executed_tool={uml_receipt.get('gpu_executed_tool', False)}",
+                        ]
+                    )
             enriched_facts = list(enriched_facts or [])
             if isinstance(tool_bundle, dict):
                 approval = tool_bundle.get("approval") or {}
