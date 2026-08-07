@@ -258,11 +258,24 @@ def parse_gpu_tool_request_from_text(text: str) -> dict[str, Any] | None:
     GPU cannot include cpu_approved=true meaningfully — review rejects self-approve.
     """
     raw = str(text or "")
-    m = re.search(r"TOOL_REQUEST\s*:\s*(\{.*?\})", raw, flags=re.I | re.S)
+    m = re.search(r"TOOL_REQUEST\s*:\s*(\{)", raw, flags=re.I | re.S)
     if not m:
         return None
+    start = m.start(1)
+    depth = 0
+    end = None
+    for i, ch in enumerate(raw[start:], start=start):
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                end = i + 1
+                break
+    if end is None:
+        return None
     try:
-        payload = json.loads(m.group(1))
+        payload = json.loads(raw[start:end])
     except json.JSONDecodeError:
         return None
     if not isinstance(payload, dict):
