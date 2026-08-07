@@ -739,6 +739,7 @@ def _render_md(report: Mapping[str, Any]) -> str:
         f"| False accepts | {s['false_accepts']} |",
         f"| Latency p50 ms (info) | {s['latency_p50_ms']:.3f} |",
         f"| Federation probes (A/S/M/D/LIT) | {s.get('federation_probes_admitted')} |",
+        f"| Intent-packet ingress | {s.get('intent_packet_ingress_n')}/{s['n']} |",
         f"| Hard gate | {'PASS' if s['hard_gate'] else 'FAIL'} |",
         "",
         "## Pass criteria",
@@ -780,11 +781,12 @@ def _append_thesis(report: Mapping[str, Any], json_path: Path) -> str:
         f"opaque_mutations={s['opaque_payload_mutations']} "
         f"false_accepts={s['false_accepts']} "
         f"rollback={'PASS' if report['rollback_check']['ok'] else 'FAIL'}; "
+        f"intent_packet_ingress={s.get('intent_packet_ingress_n')}/{s['n']}; "
         f"federation_probes={s.get('federation_probes_admitted')}; "
         f"receipt `{str(json_path).replace(chr(92), '/')}`; "
         f"lib `foundation/lib/uml_field_scoped_bridge.py`; "
         f"script `foundation/scripts/run_field_scoped_bridge_canary_v1.py`; "
-        f"path `uml_request→Security/gate→UML(decide_route)→uml_resolved`; "
+        f"path `build_intent_packet.uml_request→Security/gate→UML(decide_route)→attach_uml_resolved`; "
         f"**NO DEFAULT PROMOTION / NO TAG ARCHITECTURE / NO SOFT-0.99 / NO SCAN_SURFACE**. "
         f"Operator gate: `--enable-canary` (default OFF); disable by omitting flag or `--rollback-check`."
     )
@@ -826,16 +828,24 @@ def selftest() -> int:
         },
         expect={"accept": True, "target_char": ch, "fail_closed": False},
     )
-    disabled = invoke_field_scoped_bridge(case, registry, canary_enabled=False)
-    assert disabled.status == "DISABLED", disabled
+    disabled = invoke_case(
+        case, registry, canary_enabled=False, s_n=0.95, prefer_intent_packet=True
+    )
+    assert disabled.status == "DISABLED", disabled.to_dict()
     assert not disabled.uml_invoked
     assert "uml_resolved" not in disabled.identity_out
+    assert disabled.ingress_surface == "intent_packet"
 
-    enabled = invoke_field_scoped_bridge(case, registry, canary_enabled=True)
+    enabled = invoke_case(
+        case, registry, canary_enabled=True, s_n=0.95, prefer_intent_packet=True
+    )
     assert enabled.status == "PASS", enabled.to_dict()
     assert enabled.decoded_char == ch
+    assert enabled.ingress_surface == "intent_packet"
     assert enabled.identity_out.get("uml_resolved", {}).get("canary_only") is True
     assert enabled.identity_out.get("uml_resolved", {}).get("default_path") is False
+    assert "uml_request" in enabled.identity_out
+    assert "tagged_packet" in enabled.identity_out
 
     adv = shadow._identity_shell(
         case_id="CANARY-SELFTEST-ADV",
@@ -850,9 +860,12 @@ def selftest() -> int:
         },
         expect={"accept": False, "fail_closed": True, "reason_class": "authority_violation"},
     )
-    denied = invoke_field_scoped_bridge(adv, registry, canary_enabled=True)
+    denied = invoke_case(
+        adv, registry, canary_enabled=True, s_n=0.95, prefer_intent_packet=True
+    )
     assert denied.status == "FAIL_CLOSED", denied.to_dict()
     assert denied.reason_class == "authority_violation"
+    assert not denied.uml_invoked
     print("SELFTEST_OK")
     return 0
 

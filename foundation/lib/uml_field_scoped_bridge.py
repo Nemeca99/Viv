@@ -30,6 +30,52 @@ CANARY_ENV = "FIELD_SCOPED_BRIDGE_CANARY"
 
 _CPU_SOURCES = frozenset({"cpu", "cpu_identity", "cpu_authority", "operator"})
 
+# Specific deny classes Security IN/OUT may emit that must surface at
+# BridgeInvokeResult.reason_class (do not collapse to security_*_denied).
+# Keeps fail-closed; only improves receipt taxonomy for known classes.
+_SURFACED_GATE_DENY_REASONS = frozenset(
+    {
+        "invented_binding",
+        "authority_violation",
+        "authority_tags_invented",
+        "gpu_minted_rejected",
+        "gpu_minted_resolved_rejected",
+        "ambiguous_packet",
+        "ambiguous_uml_request",
+        "ambiguous_request_kind",
+        "ambiguous_request_kind_type",
+        "ambiguous_or_missing",
+        "ambiguous_or_missing_destination",
+        "ambiguous_target_char",
+        "ambiguous_target_value",
+        "ambiguous_uml_resolved",
+        "missing_uml_resolved",
+        "missing_uml_request",
+        "uml_request_not_mapping",
+        "seal_failed",
+        "write_scope_violation",
+        "mouth_envelope_invented",
+        "destination_mismatch",
+        "unknown_char",
+        "unknown_value",
+        "missing_destination",
+        "unsupported_request_kind",
+    }
+)
+
+
+def _surface_gate_deny_reason(fallback: str, gate_reason: str | None) -> str:
+    """Promote known security_in/out.reason values to top-level reason_class."""
+    raw = str(gate_reason or "").strip()
+    if not raw:
+        return fallback
+    if raw in _SURFACED_GATE_DENY_REASONS:
+        return raw
+    # Gate may emit unsupported_request_kind:<kind>
+    if raw.startswith("unsupported_request_kind"):
+        return "unsupported_request_kind"
+    return fallback
+
 
 class BridgeError(Exception):
     def __init__(self, reason_class: str, detail: str):
@@ -54,10 +100,11 @@ def security_gate(
     text: str,
     s_n: float,
 ) -> dict[str, Any]:
-    """Call existing Security membrane; else fail-closed external stub.
+    """Legacy text membrane consult (kept for callers). Prefer packet gates.
 
-    Bridge does not mint Security authority. When the membrane is absent the
-    stub records Security as external and denies.
+    Packet-scoped API lives in ``lib.uml_bridge_security_gate``:
+    ``security_in(packet)`` / ``security_out(packet, uml_resolved)``.
+    Bridge does not mint Security authority.
     """
     stage = str(stage).upper()
     try:
@@ -283,32 +330,31 @@ def invoke_field_scoped_bridge(
     security_in: dict[str, Any] | None = None
     security_out: dict[str, Any] | None = None
     try:
+        from lib.uml_bridge_security_gate import (
+            security_in as packet_security_in,
+            security_out as packet_security_out,
+        )
+
+        # Security IN wraps UML invoke — packet gate before destination seal.
+        in_receipt = packet_security_in(working, s_n=s_n)
+        security_in = in_receipt.to_dict()
+        if not in_receipt.allowed:
+            gate_reason = str(in_receipt.reason or "")
+            raise BridgeError(
+                _surface_gate_deny_reason("security_in_denied", gate_reason),
+                str(in_receipt.detail or gate_reason or "security_in_blocked"),
+            )
+        if not in_receipt.may_invoke_uml:
+            raise BridgeError("missing_uml_request", "uml_request required")
+
         uml_request = _extract_uml_request(working)
         if not uml_request:
             raise BridgeError("missing_uml_request", "uml_request required")
 
         assert_cpu_authority(uml_request)
 
-        # Destination seal BEFORE Security text materialization and route choice.
+        # Destination seal BEFORE route choice (after Security IN admit).
         target_char, target_value = resolve_sealed_destination(registry, uml_request)
-
-        ingress_text = json.dumps(
-            {
-                "bridge": BRIDGE_MODE,
-                "request_kind": uml_request.get("request_kind"),
-                "target_char": target_char,
-                "target_value": target_value,
-                "source": uml_request.get("source") or "cpu",
-            },
-            sort_keys=True,
-            separators=(",", ":"),
-        )
-        security_in = security_gate(stage="IN", text=ingress_text, s_n=s_n)
-        if not security_in.get("allowed"):
-            raise BridgeError(
-                "security_in_denied",
-                str(security_in.get("reason") or "security_in_blocked"),
-            )
 
         proposals = uml_request.get("proposals")
         decision = decide_route(
@@ -345,6 +391,16 @@ def invoke_field_scoped_bridge(
             "default_path": False,
         }
 
+        # Security OUT before commit — uml_resolved-only write scope.
+        out_receipt = packet_security_out(working, uml_resolved, s_n=s_n)
+        security_out = out_receipt.to_dict()
+        if not out_receipt.allowed:
+            gate_reason = str(out_receipt.reason or "")
+            raise BridgeError(
+                _surface_gate_deny_reason("security_out_denied", gate_reason),
+                str(out_receipt.detail or gate_reason or "security_out_blocked"),
+            )
+
         if packet_mode:
             from voice_core.intent_packet import attach_uml_resolved
 
@@ -360,14 +416,6 @@ def invoke_field_scoped_bridge(
         opaque_sha = _sha(opaque_after)
         if opaque_sha != identity_sha_before:
             raise BridgeError("identity_payload_mutated", "opaque fields changed")
-
-        egress_text = json.dumps(uml_resolved, sort_keys=True, separators=(",", ":"))
-        security_out = security_gate(stage="OUT", text=egress_text, s_n=s_n)
-        if not security_out.get("allowed"):
-            raise BridgeError(
-                "security_out_denied",
-                str(security_out.get("reason") or "security_out_blocked"),
-            )
 
         authority_leak = bool(
             security_in.get("authority_minted")

@@ -204,7 +204,7 @@ PROFILES: tuple[AutomationProfile, ...] = (
         "plan_only",
         False,
         "none",
-        "lib.aios_adapter_consciousness.consciousness_cycle",
+        "lib.aios_adapter_consciousness.cpu_plan",
         ("no_durable_commit", "no_aios_runtime"),
         6,
     ),
@@ -709,20 +709,22 @@ def plan_luna(profile: AutomationProfile) -> dict[str, Any]:
 
 
 def plan_consciousness(profile: AutomationProfile) -> dict[str, Any]:
-    from lib.aios_adapter_consciousness import consciousness_cycle
+    from lib.aios_adapter_consciousness import cpu_plan
 
-    plan = consciousness_cycle(
+    plan = cpu_plan(
         prompt="truthful system documentation",
         experience={
             "nodes": {"truth": {"weight": 1.0}, "evidence": {"weight": 1.0}},
             "edges": [("evidence", "CAUSES", "truth")],
         },
+        explicit_commit=False,
     )
     return _base_result(
         profile=profile,
         mode="plan_only",
         ok=bool(plan.get("ok")) and plan.get("writes_performed") is False,
         plan=plan,
+        durable_commit_performed=False,
     )
 
 
@@ -846,6 +848,204 @@ def run_closed_smoke(profile: AutomationProfile) -> dict[str, Any]:
     )
 
 
+def _python() -> str:
+    return str(PYTHON if PYTHON.is_file() else Path(sys.executable))
+
+
+def _run_preflight(*, profile: str = "quick") -> dict[str, Any]:
+    from lib.aios_systems_preflight import SCHEMA_VERSION as PREFLIGHT_SCHEMA
+    from lib.aios_systems_preflight import build_receipt, write_receipt as write_preflight
+
+    receipt = build_receipt(profile=profile, plan_only=True, include_foundation_health=False)
+    path = write_preflight(receipt)
+    ready = [row for row in (receipt.get("catalog") or []) if row.get("plan_only_ready")]
+    backup_entries = [
+        {
+            "id": row.get("id"),
+            "automation_entry": row.get("automation_entry"),
+            "risk_tag": row.get("risk_tag"),
+        }
+        for row in (receipt.get("catalog") or [])
+        if row.get("automation_entry")
+    ]
+    return {
+        "ok": bool(receipt.get("ok")),
+        "cold_start_phase": 0,
+        "cold_start_phase_name": COLD_START_PHASES[0],
+        "schema_version": PREFLIGHT_SCHEMA,
+        "receipt": str(path).replace("\\", "/"),
+        "latest": receipt.get("latest_path"),
+        "counts": receipt.get("counts"),
+        "plan_only_ready": ready,
+        "plan_only_ready_count": len(ready),
+        "automation_entries": backup_entries,
+        "aios_runtime_started": False,
+        "gpu_train_started": False,
+    }
+
+
+def _run_training_catalog() -> dict[str, Any]:
+    from lib.training_automation_v1 import RISK_GPU_LONG, SCHEMA_CATALOG, catalog_jobs
+
+    jobs = catalog_jobs()
+    return {
+        "ok": True,
+        "cold_start_phase": 3,
+        "cold_start_phase_name": COLD_START_PHASES[3],
+        "mode": "catalog",
+        "schema_catalog": SCHEMA_CATALOG,
+        "job_count": len(jobs),
+        "jobs": [
+            {
+                "id": j["id"],
+                "title": j["title"],
+                "risk": j["risk"],
+                "auto_execute": j.get("auto_execute"),
+                "requires_gpu_long_gate": j.get("requires_gpu_long_gate"),
+            }
+            for j in jobs
+        ],
+        "risk_counts": {
+            "GPU_LONG": sum(1 for j in jobs if j["risk"] == RISK_GPU_LONG),
+            "CPU_SAFE": sum(1 for j in jobs if j["risk"] == "CPU_SAFE"),
+            "MEASUREMENT_ONLY": sum(1 for j in jobs if j["risk"] == "MEASUREMENT_ONLY"),
+        },
+        "gpu_long_launched": False,
+        "aios_runtime_started": False,
+    }
+
+
+def _run_training_uml_status() -> dict[str, Any]:
+    from lib.training_automation_v1 import collect_uml_status, write_receipt as write_training
+    from lib.training_automation_v1 import _utc_stamp as training_stamp
+
+    status = collect_uml_status()
+    stamp = training_stamp()
+    receipt = {
+        "ok": bool(status.get("ok")),
+        "mode": "execute",
+        "profile": "uml_status",
+        "stamp": stamp,
+        "status": status,
+        "survivor_sha256": (status.get("survivor") or {}).get("sha256"),
+        "thesis_ladder_tip": (status.get("thesis_ladder_tip") or {}).get("tip_line"),
+        "smoke_ran": False,
+        "gpu_train_launched": False,
+    }
+    path = write_training(stamp, receipt)
+    return {
+        "ok": bool(receipt.get("ok")),
+        "cold_start_phase": 3,
+        "cold_start_phase_name": COLD_START_PHASES[3],
+        "profile": "uml_status",
+        "receipt": str(path).replace("\\", "/"),
+        "survivor_sha256": receipt.get("survivor_sha256"),
+        "thesis_ladder_tip": receipt.get("thesis_ladder_tip"),
+        "gpu_long_launched": False,
+        "aios_runtime_started": False,
+    }
+
+
+def _delegate_backup(*, plan_only: bool, backup_profile: str = "uml_lane") -> dict[str, Any]:
+    cmd = [_python(), str(BACKUP_RUNNER), "--profile", backup_profile]
+    if plan_only:
+        cmd.append("--plan-only")
+    proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(FOUNDATION_ROOT), check=False)
+    stdout = (proc.stdout or "").strip()
+    stderr = (proc.stderr or "").strip()
+    parsed: dict[str, Any] = {}
+    if stdout:
+        try:
+            import json
+
+            parsed = json.loads(stdout)
+        except json.JSONDecodeError:
+            parsed = {"raw_stdout": stdout}
+    ok = proc.returncode == 0 and bool(parsed.get("ok", False))
+    return {
+        "ok": ok,
+        "cold_start_phase": 2,
+        "cold_start_phase_name": COLD_START_PHASES[2],
+        "mode": "plan_only" if plan_only else "execute",
+        "backup_profile": backup_profile,
+        "automation_entry": "scripts/run_backup_core_automation_v1.py",
+        "backup_receipt": parsed.get("receipt"),
+        "delegate": {
+            "command": cmd,
+            "returncode": proc.returncode,
+            "stdout_summary": {
+                k: parsed.get(k)
+                for k in ("ok", "mode", "profile", "copied_items", "logical_bytes", "snapshot_id", "receipt")
+                if k in parsed
+            },
+            "stderr_tail": stderr[-1500:] if stderr else "",
+        },
+        "aios_runtime_started": False,
+        "deny_weight_packs": True,
+        "gpu_long_launched": False,
+    }
+
+
+def run_bundle_plan_only(*, preflight_profile: str = "quick") -> dict[str, Any]:
+    """Default integrated surface: preflight + training catalog + backup plan."""
+    preflight = _run_preflight(profile=preflight_profile)
+    training = _run_training_catalog()
+    backup = _delegate_backup(plan_only=True, backup_profile="uml_lane")
+    ok = bool(preflight.get("ok")) and bool(training.get("ok")) and bool(backup.get("ok"))
+    return {
+        "ok": ok,
+        "schema_version": SCHEMA_VERSION,
+        "module": MODULE_ID,
+        "version": VERSION,
+        "mode": "plan_only",
+        "bundle": "integrated_plan_only",
+        "at": _utc(),
+        "roadmap_refs": ROADMAP_REFS,
+        "phase_map": phase_map()["bundle"]["plan_only"],
+        "siblings": {
+            "systems_preflight": preflight,
+            "training_catalog": training,
+            "backup_uml_lane": backup,
+        },
+        "aios_runtime_started": False,
+        "gpu_long_launched": False,
+        "deny_weight_packs": True,
+        "federation_activation": False,
+        "bridge_promotion": False,
+        "soft_0_99": False,
+    }
+
+
+def run_bundle_execute_safe(*, preflight_profile: str = "quick") -> dict[str, Any]:
+    """Safe execute: preflight + uml_status + backup uml_lane (no GPU_LONG, no AIOS)."""
+    preflight = _run_preflight(profile=preflight_profile)
+    training = _run_training_uml_status()
+    backup = _delegate_backup(plan_only=False, backup_profile="uml_lane")
+    ok = bool(preflight.get("ok")) and bool(training.get("ok")) and bool(backup.get("ok"))
+    return {
+        "ok": ok,
+        "schema_version": SCHEMA_VERSION,
+        "module": MODULE_ID,
+        "version": VERSION,
+        "mode": "execute_safe",
+        "bundle": "integrated_execute_safe",
+        "at": _utc(),
+        "roadmap_refs": ROADMAP_REFS,
+        "phase_map": phase_map()["bundle"]["execute_safe"],
+        "siblings": {
+            "systems_preflight": preflight,
+            "training_uml_status": training,
+            "backup_uml_lane": backup,
+        },
+        "aios_runtime_started": False,
+        "gpu_long_launched": False,
+        "deny_weight_packs": True,
+        "federation_activation": False,
+        "bridge_promotion": False,
+        "soft_0_99": False,
+    }
+
+
 def write_receipt(payload: dict[str, Any], *, stamp: str | None = None) -> Path:
     stamp_value = stamp or _utc_stamp()
     folder = RECEIPTS_ROOT / stamp_value
@@ -857,6 +1057,7 @@ def write_receipt(payload: dict[str, Any], *, stamp: str | None = None) -> Path:
     body.setdefault("stamp", stamp_value)
     body.setdefault("created_at", _utc())
     body.setdefault("receipt_root", str(RECEIPTS_ROOT).replace("\\", "/"))
+    body.setdefault("roadmap_refs", ROADMAP_REFS)
     path.write_text(json.dumps(body, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8", newline="\n")
     md = folder / "RECEIPT.md"
     md.write_text(
@@ -865,17 +1066,23 @@ def write_receipt(payload: dict[str, Any], *, stamp: str | None = None) -> Path:
                 f"# AIOS core automation receipt `{stamp_value}`",
                 "",
                 f"- ok: `{body.get('ok')}`",
+                f"- mode: `{body.get('mode')}`",
+                f"- bundle: `{body.get('bundle')}`",
                 f"- profile: `{body.get('profile')}`",
                 f"- core_id: `{body.get('core_id')}`",
-                f"- mode: `{body.get('mode')}`",
                 f"- aios_runtime_started: `{body.get('aios_runtime_started')}`",
+                f"- gpu_long_launched: `{body.get('gpu_long_launched')}`",
                 f"- deny_weight_packs: `{body.get('deny_weight_packs')}`",
                 f"- federation_activation: `{body.get('federation_activation')}`",
                 f"- bridge_promotion: `{body.get('bridge_promotion')}`",
+                "",
+                "Roadmap: `COLD_START.md` Phases 0–8 (no parallel roadmap).",
                 "",
             ]
         ),
         encoding="utf-8",
         newline="\n",
     )
+    latest = RECEIPTS_ROOT / "LATEST.json"
+    latest.write_text(json.dumps(body, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8", newline="\n")
     return path

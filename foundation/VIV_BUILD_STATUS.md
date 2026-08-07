@@ -31,6 +31,20 @@ Maps `VIV_COMPLETE_SUMMARY.md` vision to what exists **today** on this machine.
 | **LEGACY** | 6 | CARMA, dream, vision, Rust cores, wiki batches, full constitution |
 | **NONE** | 3 | §10 hearing, §14 symbiotic ethics loop, §18 (aspirational) |
 
+### Skeleton spine (2026-08-07) — **SKELETON / PARTIAL**
+
+| | |
+| --- | --- |
+| **Status** | Structural spine landed; not a claim every core is fleshed |
+| **Map** | 35 systems · structural coverage **100%** · PARTIAL/BOUND **25.7%** · SKELETON **74.3%** |
+| **Bus** | 9 slots · filled **77.8%** · vacant for compute-core wire-in: `uml_invoke`, `subagent_spawn` |
+| **Smoke** | System skeleton smoke **PASS 12/12** (already done; do not rebuild) |
+| **Latest map receipt** | `artifacts/auto/aios_skeleton/LATEST.json` (stamp `20260807T092807Z`) |
+| **Latest smoke** | `artifacts/auto/system_smoke/LATEST.json` (stamp `20260807T092608Z`) |
+| **Runner** | `scripts/run_aios_skeleton_v1.py --plan-only` |
+| **Bus / map libs** | `lib/aios_skeleton_bus.py`, `lib/aios_skeleton_map.py`, `lib/aios_skeleton_stub.py`, `lib/aios_skeleton_subagent_profiles.py` |
+| **Vacant (honest)** | Nested-PEMDAS invoke + subagent spawn callable — reserved for compute core |
+
 ---
 
 ## 2026-07-23 OpenAster training status
@@ -146,6 +160,7 @@ exclusivity applies between Qwen/OpenAster mouth processes.
 | Python three mains | **BUILT** | `rid_main.py`, `auto_main.py`, `uml_main.py` |
 | Python lib spine | **BUILT** | `foundation/lib/*` (50+ modules) |
 | UML calculator | **BUILT** | `uml_main.py`, `lib/uml_engine.py` |
+| Identity→UML bridge (Aug 7) | **CANARY_PASS (default OFF)** | Shadow `FIELD_SCOPED_WINS`; canary `CANARY_PASS` with `--enable-canary` only; ingress `uml_request`; evidence `Training/evidence/snapshots/20260807T085000Z` + `artifacts/auto/field_scoped_bridge_canary/20260807T092040Z` — see `COLD_START.md` Part 3.2 / Part 5 |
 | UML full spec (verify/trace/b52/corpus) | PARTIAL | Engine exists; CLI surface incomplete per roadmap |
 | Rust `security_core` (Viv) | **BUILT** v0.2.2 | `L:\Continue\Viv\security_core\` — gate, 8 Laws, tariff, PyO3; red-team 64/64 |
 | Viv agentic queue | **BUILT** | `lib/agentic_runtime.py`, `agentic_main.py` — Rust `tool_gate` on all writes |
@@ -384,8 +399,10 @@ $PY = "L:\Continue\.venv\Scripts\python.exe"
 
 | Doc | Role |
 | ------ | ---- |
+| `../COLD_START.md` | Living operator manual (v1-manual shape; Phases 0–8 + core automation cookbook) |
 | `VIV_COMPLETE_SUMMARY.md` | Full vision (what Viv is) |
 | `VIV_BUILD_STATUS.md` | This file (what exists) |
 | `AIOS_ALPHA_BRIEFING.md` | Verification commands + proven artifacts |
 | `FOUNDATION_ROADMAP.md` | Three-mains build order |
 | `BACKUP_CORE.md` | AIOS snapshot, restore, security, and recovery contract |
+| `scripts/run_aios_core_automation_v1.py` | Integrated core automation (preflight + training + backup); see `COLD_START.md` Part 5 |

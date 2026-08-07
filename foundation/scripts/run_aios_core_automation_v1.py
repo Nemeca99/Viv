@@ -1,25 +1,35 @@
 #!/usr/bin/env python3
 """Unified local AIOS core automation surface (plan-first).
 
-Lists effect-closed core automation profiles and runs them with receipts.
-Non-backup cores default to ``--plan-only``. Backup profiles delegate to the
-existing ``run_backup_core_automation_v1.py`` runner.
+Integrates sibling runners without duplicating them:
 
-Never starts the AIOS runtime, never activates federation against real
-endpoints, never promotes bridges, never copies weight packs / GPU trees.
+- systems preflight (``run_aios_systems_preflight_v1.py`` / plan-only catalog)
+- training automation (``run_training_automation_v1.py`` catalog / ``uml_status``)
+- backup (``run_backup_core_automation_v1.py --profile uml_lane``)
+
+Profiles are tagged to ``COLD_START.md`` Phases 0–8. This is not a parallel
+roadmap.
+
+Never starts the AIOS runtime, never launches GPU_LONG, never activates
+federation against real endpoints, never promotes bridges, never copies
+weight packs / GPU trees.
 
 Examples:
 
+    # Default integrated plan-only (preflight + training catalog + backup plan):
+    L:\\Continue\\.venv\\Scripts\\python.exe scripts\\run_aios_core_automation_v1.py --plan-only
+
+    # Safe execute (preflight + uml_status + backup uml_lane):
+    L:\\Continue\\.venv\\Scripts\\python.exe scripts\\run_aios_core_automation_v1.py --execute-safe
+
+    # Per-core plan / closed-smoke (secondary):
     L:\\Continue\\.venv\\Scripts\\python.exe scripts\\run_aios_core_automation_v1.py --list
-    L:\\Continue\\.venv\\Scripts\\python.exe scripts\\run_aios_core_automation_v1.py --profile backup_uml_lane --plan-only
-    L:\\Continue\\.venv\\Scripts\\python.exe scripts\\run_aios_core_automation_v1.py --profile infra --plan-only
-    L:\\Continue\\.venv\\Scripts\\python.exe scripts\\run_aios_core_automation_v1.py --profile fractal --execute
+    L:\\Continue\\.venv\\Scripts\\python.exe scripts\\run_aios_core_automation_v1.py --profile fractal --plan-only
 """
 from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import sys
 from pathlib import Path
 
@@ -29,62 +39,27 @@ if str(FOUNDATION) not in sys.path:
 
 from lib.aios_core_automation import (  # noqa: E402
     RECEIPTS_ROOT,
+    ROADMAP_REFS,
     get_profile,
     inventory_rows,
     list_profiles,
+    phase_map,
+    run_bundle_execute_safe,
+    run_bundle_plan_only,
     run_closed_smoke,
     run_plan,
     write_receipt,
+    _delegate_backup,
     _utc_stamp,
 )
 
-PYTHON = Path(r"L:\Continue\.venv\Scripts\python.exe")
-BACKUP_RUNNER = FOUNDATION / "scripts" / "run_backup_core_automation_v1.py"
-
 
 def _print(payload: dict) -> None:
-    print(json.dumps(payload, indent=2, ensure_ascii=False, default=str))
-
-
-def _delegate_backup(profile_id: str, *, plan_only: bool) -> dict:
-    backup_profile = "uml_lane" if profile_id.endswith("uml_lane") else "safe"
-    cmd = [
-        str(PYTHON if PYTHON.is_file() else sys.executable),
-        str(BACKUP_RUNNER),
-        "--profile",
-        backup_profile,
-    ]
-    if plan_only:
-        cmd.append("--plan-only")
-    proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(FOUNDATION), check=False)
-    stdout = (proc.stdout or "").strip()
-    stderr = (proc.stderr or "").strip()
-    parsed: dict = {}
-    if stdout:
-        try:
-            parsed = json.loads(stdout)
-        except json.JSONDecodeError:
-            parsed = {"raw_stdout": stdout}
-    ok = proc.returncode == 0 and bool(parsed.get("ok", False))
-    return {
-        "ok": ok,
-        "mode": "plan_only" if plan_only else "execute",
-        "profile": profile_id,
-        "core_id": "backup_core",
-        "backup_profile": backup_profile,
-        "delegate": {
-            "command": cmd,
-            "returncode": proc.returncode,
-            "stdout": parsed,
-            "stderr": stderr[-2000:] if stderr else "",
-        },
-        "backup_receipt": parsed.get("receipt"),
-        "aios_runtime_started": False,
-        "deny_weight_packs": True,
-        "federation_activation": False,
-        "bridge_promotion": False,
-        "soft_0_99": False,
-    }
+    text = json.dumps(payload, indent=2, ensure_ascii=True, default=str)
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        sys.stdout.buffer.write((text + "\n").encode("utf-8", errors="replace"))
 
 
 def main() -> int:
@@ -95,7 +70,7 @@ def main() -> int:
     parser.add_argument(
         "--list",
         action="store_true",
-        help="List automation profiles and inventory rows, then exit.",
+        help="List per-core profiles / inventory / COLD_START phase map, then exit.",
     )
     parser.add_argument(
         "--inventory",
@@ -103,77 +78,148 @@ def main() -> int:
         help="Print core inventory table (JSON) and exit.",
     )
     parser.add_argument(
+        "--phase-map",
+        action="store_true",
+        help="Print COLD_START phase mapping for profiles + bundles, then exit.",
+    )
+    parser.add_argument(
         "--profile",
         default=None,
-        help="Automation profile id (see --list).",
+        help="Optional single-core profile id (secondary to integrated bundle).",
     )
     parser.add_argument(
         "--plan-only",
         action="store_true",
-        help="Force plan-only (default for non-backup cores).",
+        help="Integrated plan-only bundle (default when no --profile / --execute-safe).",
+    )
+    parser.add_argument(
+        "--execute-safe",
+        action="store_true",
+        help="Integrated safe execute: preflight + uml_status + backup uml_lane.",
     )
     parser.add_argument(
         "--execute",
         action="store_true",
-        help="Run bounded execute path when the profile allows it.",
+        help="With --profile: run closed-smoke / backup execute when allowed.",
+    )
+    parser.add_argument(
+        "--preflight-profile",
+        choices=("quick", "full"),
+        default="quick",
+        help="Systems preflight profile (default: quick).",
     )
     args = parser.parse_args()
 
-    if args.list or args.inventory or args.profile is None:
-        if args.profile is None and not args.list and not args.inventory:
-            parser.print_help()
-            print("\n# profiles")
-            for row in list_profiles():
-                print(
-                    f"  {row['profile_id']:18} core={row['core_id']:18} "
-                    f"default={row['default_mode']:10} execute={row['execute_allowed']}"
-                )
-            return 0
+    if args.list or args.inventory or args.phase_map:
         payload = {
             "ok": True,
             "receipts_root": str(RECEIPTS_ROOT).replace("\\", "/"),
+            "roadmap_refs": ROADMAP_REFS,
             "profiles": list_profiles(),
             "inventory": inventory_rows(),
+            "phase_map": phase_map(),
             "aios_runtime_started": False,
+            "gpu_long_launched": False,
         }
         _print(payload)
         return 0
 
+    if args.execute_safe and (args.plan_only or args.execute or args.profile):
+        _print(
+            {
+                "ok": False,
+                "error": "conflicting_flags",
+                "detail": "--execute-safe is exclusive of --plan-only/--execute/--profile",
+            }
+        )
+        return 2
+
+    # Primary: integrated bundle (default = plan-only).
+    if args.profile is None:
+        if args.execute:
+            _print(
+                {
+                    "ok": False,
+                    "error": "execute_requires_profile_or_execute_safe",
+                    "hint": "use --execute-safe, or --profile <id> --execute",
+                }
+            )
+            return 2
+        stamp = _utc_stamp()
+        if args.execute_safe:
+            result = run_bundle_execute_safe(preflight_profile=args.preflight_profile)
+            stamp_name = f"{stamp}_execute_safe"
+        else:
+            # Default and explicit --plan-only both run the integrated plan bundle.
+            result = run_bundle_plan_only(preflight_profile=args.preflight_profile)
+            stamp_name = f"{stamp}_plan_only"
+        receipt_path = write_receipt(result, stamp=stamp_name)
+        summary = {
+            "ok": bool(result.get("ok")),
+            "receipt": str(receipt_path).replace("\\", "/"),
+            "stamp": stamp_name,
+            "mode": result.get("mode"),
+            "bundle": result.get("bundle"),
+            "phase_map": result.get("phase_map"),
+            "siblings": {
+                name: {
+                    "ok": (block or {}).get("ok"),
+                    "receipt": (block or {}).get("receipt") or (block or {}).get("backup_receipt"),
+                    "cold_start_phase": (block or {}).get("cold_start_phase"),
+                }
+                for name, block in (result.get("siblings") or {}).items()
+            },
+            "aios_runtime_started": False,
+            "gpu_long_launched": False,
+            "deny_weight_packs": True,
+        }
+        _print(summary)
+        return 0 if summary["ok"] else 1
+
+    # Secondary: single-core profile path.
     profile = get_profile(args.profile)
     if profile is None:
-        _print({"ok": False, "error": "unknown_profile", "profile": args.profile, "available": [p["profile_id"] for p in list_profiles()]})
+        _print(
+            {
+                "ok": False,
+                "error": "unknown_profile",
+                "profile": args.profile,
+                "available": [p["profile_id"] for p in list_profiles()],
+            }
+        )
         return 2
 
     if args.execute and args.plan_only:
         _print({"ok": False, "error": "conflicting_flags", "detail": "use either --plan-only or --execute"})
         return 2
 
-    # Default: plan-only for non-backup; backup keeps its runner default (execute) unless --plan-only.
     if profile.execute_kind == "backup_delegate":
-        plan_only = bool(args.plan_only) and not args.execute
-        if args.execute:
-            plan_only = False
-        elif not args.plan_only and not args.execute:
-            # Explicit: backup without flags still executes via delegate (matches backup runner).
-            plan_only = False
-        result = _delegate_backup(profile.profile_id, plan_only=plan_only)
-    else:
-        # Non-backup: plan-only unless --execute and profile allows.
-        if args.execute:
-            if not profile.execute_allowed:
-                result = {
-                    "ok": False,
-                    "error": "execute_not_allowed",
-                    "profile": profile.profile_id,
-                    "core_id": profile.core_id,
-                    "constraints": list(profile.constraints),
-                    "hint": "pass --plan-only or obtain operator authority for this core",
-                    "aios_runtime_started": False,
-                }
-            else:
-                result = run_closed_smoke(profile)
+        plan_only = True if args.plan_only or not args.execute else False
+        if not args.plan_only and not args.execute:
+            plan_only = True  # per-core default is plan-only unless --execute
+        result = _delegate_backup(
+            plan_only=plan_only,
+            backup_profile="uml_lane" if profile.profile_id.endswith("uml_lane") else "safe",
+        )
+        result["profile"] = profile.profile_id
+        result["core_id"] = profile.core_id
+    elif args.execute:
+        if not profile.execute_allowed:
+            result = {
+                "ok": False,
+                "error": "execute_not_allowed",
+                "profile": profile.profile_id,
+                "core_id": profile.core_id,
+                "cold_start_phase": profile.cold_start_phase,
+                "constraints": list(profile.constraints),
+                "hint": "pass --plan-only or obtain operator authority for this core",
+                "aios_runtime_started": False,
+                "gpu_long_launched": False,
+            }
         else:
-            result = run_plan(profile.profile_id)
+            result = run_closed_smoke(profile)
+    else:
+        result = run_plan(profile.profile_id)
 
     stamp = _utc_stamp()
     receipt_path = write_receipt(result, stamp=f"{stamp}_{profile.profile_id}")
@@ -184,12 +230,13 @@ def main() -> int:
         "profile": result.get("profile") or profile.profile_id,
         "core_id": result.get("core_id") or profile.core_id,
         "mode": result.get("mode"),
+        "cold_start_phase": result.get("cold_start_phase", profile.cold_start_phase),
         "aios_runtime_started": False,
+        "gpu_long_launched": False,
         "deny_weight_packs": True,
         "error": result.get("error"),
+        "backup_receipt": result.get("backup_receipt"),
     }
-    if result.get("backup_receipt"):
-        summary["backup_receipt"] = result.get("backup_receipt")
     _print(summary)
     return 0 if summary["ok"] else 1
 
