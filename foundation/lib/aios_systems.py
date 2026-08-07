@@ -30,14 +30,14 @@ _V1_CORES: list[dict[str, Any]] = [
     {"id": "containment", "role": "filesystem boundary guard", "priority": 8, "viv": "security_core + security_membrane"},
     {"id": "data_core", "role": "persistent data stores", "priority": 35, "viv": "artifacts/ + sandbox/work"},
     {"id": "dream_core", "role": "REM idle consolidation", "priority": 15, "viv": "lib/aios_dream.py"},
-    {"id": "fractal_core", "role": "recursive multi-scale reason", "priority": 50, "deferred": True},
-    {"id": "game_core", "role": "game / sim interactions", "priority": 90, "deferred": True},
-    {"id": "infra_core", "role": "deploy / monitor", "priority": 55, "deferred": True},
+    {"id": "fractal_core", "role": "recursive multi-scale reason", "priority": 50, "viv": "lib/aios_adapter_fractal.py"},
+    {"id": "game_core", "role": "game simulation, personal analytics, and coaching", "priority": 90, "viv": "lib/aios_adapter_game.py"},
+    {"id": "infra_core", "role": "deployment, CI, monitoring, and rollback policy", "priority": 55, "viv": "lib/aios_adapter_infra.py"},
     {"id": "luna_core", "role": "personality / converse layer", "priority": 25, "viv": "voice_core + personality DNA (partial)"},
     {"id": "main_core", "role": "OS routing / kernel", "priority": 12, "viv": "aios_main.py + three mains"},
-    {"id": "marketplace_core", "role": "plugin marketplace", "priority": 95, "deferred": True},
-    {"id": "music_core", "role": "music generation", "priority": 95, "deferred": True},
-    {"id": "privacy_core", "role": "privacy controls", "priority": 45, "deferred": True},
+    {"id": "marketplace_core", "role": "optional plugin discovery and trust policy", "priority": 95, "viv": "lib/aios_adapter_marketplace.py (optional; installation closed)"},
+    {"id": "music_core", "role": "optional music selection and output policy", "priority": 95, "viv": "lib/aios_adapter_music.py (optional; playback closed)"},
+    {"id": "privacy_core", "role": "privacy controls, consent, and retention policy", "priority": 45, "viv": "lib/aios_adapter_privacy.py"},
     {"id": "rag_core", "role": "document RAG / ManualOracle", "priority": 6, "viv": "lib/aios_knowledge.py"},
     {"id": "security_core", "role": "immutable laws", "priority": 1, "viv": "Viv/security_core (Rust)"},
     {"id": "streamlit_core", "role": "Streamlit UI", "priority": 90, "deferred": True},
@@ -65,6 +65,24 @@ _V2_CORES: list[dict[str, Any]] = [
     {"id": "backup_core", "role": "backup/restore", "priority": 40},
     {"id": "dream_core", "role": "idle dream cycles", "priority": 15, "viv": "lib/aios_dream.py"},
     {"id": "vision_core", "role": "stereoscopic vision/effector", "priority": 35},
+    {
+        "id": "perception_core",
+        "role": "multi-sense perception skeleton (vision/hearing/text)",
+        "priority": 36,
+        "viv": "lib/aios_adapter_perception.py",
+    },
+    {
+        "id": "ethics_core",
+        "role": "ethics + adaptive behavior skeleton",
+        "priority": 46,
+        "viv": "lib/aios_adapter_ethics.py",
+    },
+    {
+        "id": "federation_core",
+        "role": "node federation / distributed skeleton",
+        "priority": 56,
+        "viv": "lib/aios_adapter_federation.py",
+    },
     {"id": "dataset_core", "role": "global index / datasets", "priority": 10},
     {"id": "knowledge_core", "role": "knowledge absorb / harmonic filter", "priority": 7, "viv": "lib/aios_knowledge.py"},
     {"id": "sandbox_core", "role": "contained execution", "priority": 16, "viv": "Viv/sandbox + aios_coder"},
@@ -78,9 +96,20 @@ _V2_CORES: list[dict[str, Any]] = [
 # adapter-backed core "legacy" because the old survey predates the adapter.
 _ADAPTER_FILES: dict[str, str] = {
     "backup_core": "aios_adapter_backup.py",
+    "data_core": "aios_adapter_data.py",
+    "ethics_core": "aios_adapter_ethics.py",
+    "federation": "aios_adapter_federation.py",
+    "federation_core": "aios_adapter_federation.py",
+    "fractal_core": "aios_adapter_fractal.py",
+    "game_core": "aios_adapter_game.py",
+    "marketplace_core": "aios_adapter_marketplace.py",
+    "music_core": "aios_adapter_music.py",
     "dataset_core": "aios_adapter_dataset.py",
     "input_core": "aios_adapter_input.py",
+    "infra_core": "aios_adapter_infra.py",
     "nox_forge_core": "aios_adapter_nox.py",
+    "perception_core": "aios_adapter_perception.py",
+    "security_core": "aios_adapter_security.py",
     "support_core": "aios_adapter_support.py",
     "tools": "aios_adapter_tool.py",
     "tool_core": "aios_adapter_tool.py",
@@ -266,3 +295,37 @@ def write_registry(report: dict[str, Any] | None = None) -> dict[str, Any]:
 def next_absorb_target() -> dict[str, Any] | None:
     rep = scan_systems()
     return rep.get("next")
+
+
+def adapter_file_map() -> dict[str, str]:
+    """Public copy of core_id → adapter filename for preflight discovery."""
+    return dict(_ADAPTER_FILES)
+
+
+def registered_core_specs() -> list[dict[str, Any]]:
+    """Deduped V1+V2 core metadata for systems preflight (no disk scan)."""
+    by_id: dict[str, dict[str, Any]] = {}
+    for gen, rows in (("V1", _V1_CORES), ("V2", _V2_CORES)):
+        for entry in rows:
+            core_id = str(entry["id"])
+            if core_id not in by_id:
+                by_id[core_id] = {
+                    "id": core_id,
+                    "role": entry.get("role"),
+                    "priority": int(entry.get("priority") or 99),
+                    "deferred": bool(entry.get("deferred")),
+                    "viv": entry.get("viv"),
+                    "generations": [gen],
+                }
+                continue
+            merged = by_id[core_id]
+            gens = merged.setdefault("generations", [])
+            if gen not in gens:
+                gens.append(gen)
+            merged["priority"] = min(int(merged.get("priority") or 99), int(entry.get("priority") or 99))
+            merged["deferred"] = bool(merged.get("deferred")) or bool(entry.get("deferred"))
+            if not merged.get("viv") and entry.get("viv"):
+                merged["viv"] = entry.get("viv")
+            if entry.get("role") and not merged.get("role"):
+                merged["role"] = entry.get("role")
+    return sorted(by_id.values(), key=lambda row: (int(row.get("priority") or 99), str(row["id"])))

@@ -31,6 +31,11 @@ from lib.aios_organism import (  # noqa: E402
 )
 from lib.paths import AUTO_ARTIFACTS  # noqa: E402
 from lib.consciousness_core import (  # noqa: E402
+    ConsciousnessPulse,
+    LongTermMemory,
+    ReflectionGraph,
+    ShortTermMemory,
+    consolidate_once,
     identity_drift,
     module_status,
     select_soul_fragment,
@@ -226,6 +231,7 @@ def consciousness_state(*, prompt: str = "") -> dict[str, Any]:
     """Expose the rebuilt deterministic consciousness slice without writing state."""
     fragment = select_soul_fragment(prompt)
     drift = identity_drift(expected_name="Viv", observed_name="Viv", expected_fragment=fragment["selected"], observed_fragment=fragment["selected"])
+    cycle = consciousness_cycle(prompt=prompt)
     return {
         "ok": True,
         "evidence": {
@@ -235,9 +241,74 @@ def consciousness_state(*, prompt: str = "") -> dict[str, Any]:
             "module": module_status(),
             "fragment": fragment,
             "identity_drift": drift,
+            "cycle": cycle,
             "writes_performed": False,
             "llm_authority": False,
         },
+    }
+
+
+def consciousness_cycle(*, prompt: str = "", experience: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Run one isolated CPU pulse/reflection cycle with an explicit commit hold."""
+    stm = ShortTermMemory()
+    ltm = LongTermMemory()
+    mirror = ReflectionGraph()
+    pulse = ConsciousnessPulse(reflection_frequency=1)
+    tick = pulse.tick(prompt=prompt, stm=stm, mirror=mirror, experience=experience)
+    commit = consolidate_once(stm, ltm, explicit_authorization=False)
+    return {
+        "ok": bool(tick.get("ok")) and commit.get("state") in {"NOT_DUE", "HOLD"},
+        "pulse": tick,
+        "mirror": mirror.state(),
+        "memory_commit": commit,
+        "writes_performed": False,
+        "llm_authority": False,
+    }
+
+
+def cpu_plan(
+    *,
+    prompt: str = "",
+    experience: dict[str, Any] | None = None,
+    explicit_commit: bool = False,
+) -> dict[str, Any]:
+    """Plan one consciousness cycle without durable writes or LLM authority.
+
+    ``explicit_commit`` is recorded as intent only. The planner never authorizes
+    durable consolidation; a True flag yields READY_FOR_GOVERNED_EXECUTOR handoff
+    metadata without performing the commit.
+    """
+    cycle = consciousness_cycle(prompt=prompt, experience=experience)
+    commit = dict(cycle.get("memory_commit") or {})
+    handoff = {
+        "explicit_commit_requested": bool(explicit_commit),
+        "durable_commit_performed": False,
+        "state": commit.get("state"),
+        "executor_handoff": (
+            "READY_FOR_GOVERNED_EXECUTOR"
+            if explicit_commit and commit.get("state") in {"HOLD", "NOT_DUE", "COMMITTED_IN_MEMORY"}
+            else "HOLD"
+        ),
+    }
+    fragment = select_soul_fragment(prompt)
+    drift = identity_drift(
+        expected_name="Viv",
+        observed_name="Viv",
+        expected_fragment=fragment["selected"],
+        observed_fragment=fragment["selected"],
+    )
+    ok = bool(cycle.get("ok")) and cycle.get("writes_performed") is False
+    return {
+        "ok": ok,
+        "cycle": cycle,
+        "fragment": fragment,
+        "identity_drift": drift,
+        "commit_handoff": handoff,
+        "writes_performed": False,
+        "durable_commit_performed": False,
+        "llm_authority": False,
+        "aios_runtime_started": False,
+        "viv_executes_v2": False,
     }
 
 
@@ -247,6 +318,13 @@ def run_smoke() -> dict[str, Any]:
     beat = latest_beat()
     pulse = plant_pulse()
     consciousness = consciousness_state(prompt="truthful system documentation")
+    cycle = consciousness_cycle(
+        prompt="truthful system documentation",
+        experience={
+            "nodes": {"truth": {"weight": 1.0}, "evidence": {"weight": 1.0}},
+            "edges": [("evidence", "CAUSES", "truth"), ("evidence", "MECHANISM", "truth")],
+        },
+    )
     sev = st.get("evidence") or {}
     bev = beat.get("evidence") or {}
     pev = pulse.get("evidence") or {}
@@ -261,6 +339,9 @@ def run_smoke() -> dict[str, Any]:
         and bool(consciousness.get("ok"))
         and consciousness.get("evidence", {}).get("fragment", {}).get("selected") == "oracle"
         and consciousness.get("evidence", {}).get("identity_drift", {}).get("drift") is False
+        and cycle.get("ok") is True
+        and cycle.get("memory_commit", {}).get("state") == "NOT_DUE"
+        and cycle.get("mirror", {}).get("edges") == 2
         and v2.get("viv_executes_v2") is False
         and pev.get("viv_fake_cognition") is False
     )
@@ -283,6 +364,7 @@ def run_smoke() -> dict[str, Any]:
         "latest_beat": beat,
         "plant_pulse": pulse,
         "consciousness_state": consciousness,
+        "deterministic_cycle": cycle,
     }
     try:
         EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)

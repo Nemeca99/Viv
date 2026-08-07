@@ -88,6 +88,23 @@ L:\Continue\.venv\Scripts\python.exe scripts\test_backup_core_automation_v1.py
 L:\Continue\.venv\Scripts\python.exe scripts\test_backup_core_contracts.py
 ```
 
+### Unified AIOS core automation surface
+
+One orchestrator integrates systems preflight, training automation, and backup
+along `COLD_START.md` Phases 0–8 (not a parallel roadmap). Receipts:
+`artifacts/auto/aios_core_automation/<stamp>/`.
+
+```powershell
+cd L:\Continue\Viv\foundation
+# Default integrated plan-only (preflight + training catalog + backup plan):
+L:\Continue\.venv\Scripts\python.exe scripts\run_aios_core_automation_v1.py --plan-only
+# Safe execute (preflight + uml_status + backup uml_lane; no GPU_LONG / no AIOS):
+L:\Continue\.venv\Scripts\python.exe scripts\run_aios_core_automation_v1.py --execute-safe
+# Phase map / per-core inventory:
+L:\Continue\.venv\Scripts\python.exe scripts\run_aios_core_automation_v1.py --phase-map
+L:\Continue\.venv\Scripts\python.exe scripts\test_aios_core_automation_v1.py
+```
+
 No schedule hook is installed yet. Cadence, off-L: destination, and retention
 deletion remain operator decisions (`REPLICATE` is compiled closed; retention
 planner only lists candidates).

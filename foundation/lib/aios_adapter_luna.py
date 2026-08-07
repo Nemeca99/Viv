@@ -3,7 +3,7 @@
 Registry id: luna_core
 V2 source (read-only): L:/Continue/FSAA/Luna/AIOS_V2/luna_core
 
-API: status(), render_line(...), voice_probe(), run_smoke()
+API: status(), communication_plan(...), render_line(...), voice_probe(), run_smoke()
 
 Wraps lib/aios_personality + voice_core.speak_status. Personality shapes tone;
 does not invent chatbot converse or execute V2 LunaCore LLM loops.
@@ -32,6 +32,7 @@ from lib.aios_personality import (  # noqa: E402
     tone_label,
     weights,
 )
+from lib.luna_core import build_response_plan  # noqa: E402
 from lib.paths import AUTO_ARTIFACTS  # noqa: E402
 
 ADAPTER_ID = "luna_core"
@@ -81,6 +82,43 @@ def _v2_presence() -> dict[str, Any]:
             "V2 LunaCore surveyed read-only; Viv uses aios_personality DNA + "
             "voice_core status (no fake converse)."
         ),
+    }
+
+
+def communication_plan(
+    *,
+    prompt: str = "",
+    grounded: bool = False,
+    health_mode: bool = False,
+) -> dict[str, Any]:
+    """Return a CPU-owned communication plan without rendering or writing state."""
+    clean = str(prompt or "").strip()
+    if not clean:
+        return {
+            "ok": False,
+            "state": "ABSTAIN",
+            "reason": "empty_prompt",
+            "renderer_called": False,
+            "writes_performed": False,
+            "llm_authority": False,
+        }
+    plan = build_response_plan(clean, grounded=bool(grounded), health_mode=bool(health_mode))
+    return {
+        "ok": bool(plan.get("ok")),
+        "state": "PLANNED",
+        "evidence": {
+            "adapter": ADAPTER_ID,
+            "op": "communication_plan",
+            "at": _utc(),
+            "prompt_chars": len(clean),
+            "plan": plan,
+            "renderer_role": "surface_rendering_only",
+            "renderer_called": False,
+            "telemetry_allowed": bool(health_mode),
+            "writes_performed": False,
+            "llm_authority": False,
+            "viv_fake_converse": False,
+        },
     }
 
 
@@ -214,8 +252,9 @@ def voice_probe() -> dict[str, Any]:
 
 
 def run_smoke() -> dict[str, Any]:
-    """Prove DNA load + render_line + voice probe; assert no fake converse."""
+    """Prove the CPU plan, DNA line, and voice probe; assert no fake converse."""
     st = status()
+    plan = communication_plan(prompt="Why does the security system need evidence?", grounded=True)
     line = render_line(
         deltas=["adapter_smoke"],
         stdout="luna_core wrap",
@@ -223,18 +262,25 @@ def run_smoke() -> dict[str, Any]:
     )
     voice = voice_probe()
     sev = st.get("evidence") or {}
+    pev = plan.get("evidence") or {}
     lev = line.get("evidence") or {}
     vev = voice.get("evidence") or {}
     v2 = sev.get("v2") or {}
     pers = sev.get("personality") or {}
     ok = (
         bool(st.get("ok"))
+        and bool(plan.get("ok"))
         and bool(line.get("ok"))
         and bool(sev.get("dna_exists"))
         and bool(pers.get("name"))
         and isinstance(pers.get("weights"), dict)
         and len(pers.get("weights") or {}) > 0
         and sev.get("viv_fake_converse") is False
+        and pev.get("renderer_called") is False
+        and pev.get("plan", {}).get("linguistic_operator", {}).get("operator") == "why"
+        and pev.get("plan", {}).get("fragment", {}).get("selected") == "guardian"
+        and pev.get("llm_authority") is False
+        and pev.get("writes_performed") is False
         and lev.get("viv_fake_converse") is False
         and v2.get("viv_executes_v2") is False
         and vev.get("viv_spoke") is False
@@ -244,6 +290,7 @@ def run_smoke() -> dict[str, Any]:
         "op": "smoke",
         "at": _utc(),
         "status_ok": bool(st.get("ok")),
+        "communication_plan_ok": bool(plan.get("ok")),
         "render_ok": bool(line.get("ok")),
         "voice_ok": bool(voice.get("ok")),
         "dna_exists": sev.get("dna_exists"),
@@ -257,6 +304,7 @@ def run_smoke() -> dict[str, Any]:
         "v2_luna_readable": v2.get("v2_luna_readable"),
         "viv_executes_v2": v2.get("viv_executes_v2"),
         "status": st,
+        "communication_plan": plan,
         "render_line": line,
         "voice_probe": voice,
     }

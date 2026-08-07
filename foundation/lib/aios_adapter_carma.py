@@ -9,7 +9,7 @@ from __future__ import annotations
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 _FOUNDATION = Path(__file__).resolve().parents[1]
 if str(_FOUNDATION) not in sys.path:
@@ -19,6 +19,11 @@ from lib.carma_memory import remember as _carma_remember  # noqa: E402
 from lib.carma_memory import retrieve as _carma_retrieve  # noqa: E402
 from lib.carma_memory import status as _carma_status  # noqa: E402
 from lib.security_membrane import membrane_status  # noqa: E402
+from lib.carma_core import (  # noqa: E402
+    module_status as cpu_module_status,
+    plan_stm_ltm,
+    retrieval_packet,
+)
 
 ADAPTER_ID = "carma"
 _SMOKE_TAG = "adapter_carma_smoke"
@@ -100,6 +105,7 @@ def status() -> dict[str, Any]:
                 "carma": carma,
                 "membrane": mem,
                 "s_n": _s_n(),
+                "cpu_planner": cpu_module_status(),
             },
         }
     except Exception as exc:  # noqa: BLE001
@@ -112,6 +118,28 @@ def status() -> dict[str, Any]:
                 "error": str(exc),
             },
         }
+
+
+def cpu_plan(
+    fragments: list[Mapping[str, Any]],
+    *,
+    query: str = "",
+    top: int = 5,
+    explicit_commit: bool = False,
+) -> dict[str, Any]:
+    """Plan retrieval and STM/LTM handling without touching live memory."""
+    rows = [dict(row) for row in fragments if isinstance(row, Mapping)]
+    retrieval = retrieval_packet(query, rows, top=top) if query else None
+    stm = plan_stm_ltm(rows, explicit_commit=explicit_commit)
+    return {
+        "ok": bool(stm.get("ok")) and (retrieval is None or bool(retrieval.get("ok"))),
+        "retrieval": retrieval,
+        "stm_ltm": stm,
+        "writes_performed": False,
+        "durable_commit_performed": False,
+        "llm_authority": False,
+        "aios_runtime_started": False,
+    }
 
 
 def run_smoke() -> dict[str, Any]:

@@ -1,7 +1,7 @@
 {
   "schema_version": "viv_triad_architecture_v1",
   "triad_contract_version": "viv_triad_contract_v1",
-  "generated_from_python_files": 1177,
+  "generated_from_python_files": 1225,
   "boundaries": {
     "foundation/auto_main.py": {
       "filesystem_mutation:out.write_text": 2,
@@ -226,6 +226,12 @@
     "foundation/lib/master_rid.py": {
       "filesystem_mutation:MASTER_RID_PATH.write_text": 1,
       "filesystem_mutation:SUPERVISOR_PATH.write_text": 1
+    },
+    "foundation/lib/node_federation_loopback_master_listener.py": {
+      "network:socket.socket": 1
+    },
+    "foundation/lib/node_federation_tls_loopback.py": {
+      "network:socket.socket": 2
     },
     "foundation/lib/piston_engine.py": {
       "filesystem_mutation:HALT_FLAG.unlink": 1,
@@ -505,6 +511,12 @@
     "foundation/models/Training/current/viv_slm/build_viv_slm_v60_preservation_replay_inputs.py": {
       "filesystem_mutation:path.write_text": 1
     },
+    "foundation/models/Training/current/viv_slm/generate_viv_slm_failure_hypothesis.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/identity_expert_curve_analyzer.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
     "foundation/models/Training/current/viv_slm/model/train.py": {
       "filesystem_mutation:report.write_text": 1,
       "filesystem_mutation:sample_path.write_text": 1
@@ -533,6 +545,13 @@
     },
     "foundation/models/Training/current/viv_slm/register_viv_slm_checkpoint_layer.py": {
       "filesystem_mutation:ledger_path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/run_identity_expert_autolearn.py": {
+      "filesystem_mutation:path.write_text": 1
+    },
+    "foundation/models/Training/current/viv_slm/run_identity_expert_router_canary.py": {
+      "filesystem_mutation:history_path.write_text": 1,
+      "filesystem_mutation:path.write_text": 1
     },
     "foundation/models/Training/current/viv_slm/run_viv_slm_layer_campaign.py": {
       "filesystem_mutation:path.write_text": 1
@@ -2124,6 +2143,18 @@
       "filesystem_mutation:bad_audit.write_text": 1,
       "filesystem_mutation:manifest.write_text": 1,
       "filesystem_mutation:src.write_text": 1
+    },
+    "foundation/scripts/test_node_federation_fixed_loopback_master_listener.py": {
+      "network:socket.create_connection": 2,
+      "network:socket.socket": 1
+    },
+    "foundation/scripts/test_node_federation_loopback_endpoint_activation.py": {
+      "process:subprocess.run": 1
+    },
+    "foundation/scripts/test_node_federation_tls_loopback.py": {
+      "filesystem_mutation:config_path.write_text": 1,
+      "filesystem_mutation:extension_file.write_text": 1,
+      "process:subprocess.run": 1
     },
     "foundation/scripts/test_qwen25_tokenizer_template_mask_parity_v1.py": {
       "filesystem_mutation:args.output.write_text": 1

@@ -24,6 +24,7 @@ if str(_FOUNDATION) not in sys.path:
 from lib.foundation_health import evaluate_foundation_gate  # noqa: E402
 from lib.paths import AUTO_ARTIFACTS, CARMA_ARTIFACTS, SANDBOX_ROOT  # noqa: E402
 from lib.security_membrane import membrane_status  # noqa: E402
+from lib.support_core import diagnostic_report, module_status as cpu_module_status  # noqa: E402
 
 ADAPTER_ID = "support_core"
 REGISTRY_ID = "support_core"
@@ -120,7 +121,9 @@ def status() -> dict[str, Any]:
                 "viv_modules": {
                     "foundation_health": "lib.foundation_health.evaluate_foundation_gate",
                     "membrane": "lib.security_membrane.membrane_status",
+                    "cpu_planner": "lib.support_core.diagnostic_report",
                 },
+                "cpu_planner": cpu_module_status(),
             },
         }
     except Exception as exc:  # noqa: BLE001
@@ -133,6 +136,24 @@ def status() -> dict[str, Any]:
                 "error": str(exc),
             },
         }
+
+
+def cpu_plan(
+    checks: list[dict[str, Any]],
+    cache_entries: list[dict[str, Any]],
+    *,
+    sample_text: str | None = None,
+) -> dict[str, Any]:
+    """Evaluate supplied support evidence without probing or mutating live state."""
+    report = diagnostic_report(checks, cache_entries, sample_text=sample_text)
+    return {
+        "ok": bool(report.get("ok")),
+        "report": report,
+        "live_probe_performed": False,
+        "writes_performed": False,
+        "execution_performed": False,
+        "llm_authority": False,
+    }
 
 
 def health() -> dict[str, Any]:

@@ -32,6 +32,16 @@ from lib.paths import (  # noqa: E402
     SANDBOX_ROOT,
     VIV_ROOT,
 )
+from lib.utils_core import (  # noqa: E402
+    classify_path,
+    module_status as cpu_module_status,
+    plan_bridge_call,
+    plan_file_operation,
+    plan_retry,
+    timestamp_age,
+    validate_input,
+    validate_message_envelope,
+)
 
 ADAPTER_ID = "utils_core"
 REGISTRY_ID = "utils_core"
@@ -145,7 +155,9 @@ def status() -> dict[str, Any]:
                 "viv_modules": {
                     "paths": "lib.paths",
                     "resolve": "lib.aios_adapter_utils.resolve_path",
+                    "cpu_planner": "lib.utils_core",
                 },
+                "cpu_planner": cpu_module_status(),
                 "viv_ports_v1_bridges": False,
             },
         }
@@ -159,6 +171,59 @@ def status() -> dict[str, Any]:
                 "error": str(exc),
             },
         }
+
+
+def cpu_plan(
+    *,
+    value: Any = None,
+    value_kind: str = "json",
+    retry: dict[str, Any] | None = None,
+    path: str | None = None,
+    path_operation: str = "inspect",
+    allowed_roots: tuple[str, ...] = (),
+    message: dict[str, Any] | None = None,
+    bridge: str | None = None,
+    bridge_action: str | None = None,
+    observed_at: str | None = None,
+    now: str | None = None,
+    stale_after_seconds: float = 3.0,
+) -> dict[str, Any]:
+    """Combine pure utility plans without touching live state."""
+    sections: dict[str, Any] = {
+        "module": cpu_module_status(),
+        "input": validate_input(value, kind=value_kind),
+    }
+    if retry is not None:
+        sections["retry"] = plan_retry(**retry)
+    if path is not None:
+        sections["path"] = classify_path(path, allowed_roots=allowed_roots, operation=path_operation)
+        sections["file_operation"] = plan_file_operation(
+            path,
+            operation=path_operation,
+            allowed_roots=allowed_roots,
+        )
+    if message is not None:
+        sections["message"] = validate_message_envelope(message)
+    if bridge is not None or bridge_action is not None:
+        sections["bridge"] = plan_bridge_call(bridge or "", bridge_action or "")
+    if observed_at is not None and now is not None:
+        sections["freshness"] = timestamp_age(
+            observed_at,
+            now,
+            stale_after_seconds=stale_after_seconds,
+        )
+    failed = [name for name, result in sections.items() if name != "module" and result.get("ok") is False]
+    return {
+        "ok": not failed,
+        "sections": sections,
+        "failed_sections": failed,
+        "filesystem_read_performed": False,
+        "filesystem_write_performed": False,
+        "execution_performed": False,
+        "network_probe_performed": False,
+        "sleep_performed": False,
+        "llm_authority": False,
+    }
 
 
 def list_roots() -> dict[str, Any]:

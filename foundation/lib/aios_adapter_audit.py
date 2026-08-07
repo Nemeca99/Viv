@@ -23,6 +23,15 @@ if str(_FOUNDATION) not in sys.path:
     sys.path.insert(0, str(_FOUNDATION))
 
 from lib.paths import ARTIFACTS, AUTO_ARTIFACTS  # noqa: E402
+from lib.enterprise_core import (  # noqa: E402
+    evaluate_compliance,
+    evaluate_json_config,
+    evaluate_python_source,
+    make_audit_event,
+    module_status as cpu_module_status,
+    plan_report,
+    summarize_observations,
+)
 
 ADAPTER_ID = "audit_core"
 REGISTRY_ID = "audit_core"
@@ -167,6 +176,7 @@ def status() -> dict[str, Any]:
                 "v2_logs_dir": _as_posix(V2_LOGS) if V2_LOGS.is_dir() else None,
                 "v2_audit_jsonl_count": v2_n,
                 "viv_writes_v2": False,
+                "cpu_planner": cpu_module_status(),
                 "note": "Prefer Viv artifacts/audit; V2 audit_core logs are read-only.",
             },
         }
@@ -180,6 +190,56 @@ def status() -> dict[str, Any]:
                 "error": str(exc),
             },
         }
+
+
+def cpu_plan(
+    *,
+    python_source: str | None = None,
+    python_path: str = "supplied.py",
+    json_config: Any = None,
+    json_path: str = "supplied.json",
+    required_keys: tuple[str, ...] = (),
+    observations: list[dict[str, Any]] | None = None,
+    controls: list[dict[str, Any]] | None = None,
+    report_type: str | None = None,
+    standard: str = "soc2",
+    audit_action: str | None = None,
+) -> dict[str, Any]:
+    """Evaluate supplied enterprise evidence without scanning or writing."""
+    sections: dict[str, Any] = {"module": cpu_module_status()}
+    if python_source is not None:
+        sections["python_source"] = evaluate_python_source(python_source, path=python_path)
+    if json_config is not None:
+        sections["json_config"] = evaluate_json_config(
+            json_config,
+            path=json_path,
+            required_keys=required_keys,
+        )
+    if observations is not None:
+        sections["observations"] = summarize_observations(observations)
+    if controls is not None:
+        sections["compliance"] = evaluate_compliance(controls, standard=standard)
+    if report_type is not None:
+        sections["report"] = plan_report(
+            report_type,
+            observations=observations or [],
+            controls=controls or [],
+            standard=standard,
+        )
+    if audit_action is not None:
+        sections["audit_event"] = make_audit_event(audit_action, evidence={"source": "cpu_plan"})
+    failed = [name for name, result in sections.items() if name != "module" and result.get("ok") is False]
+    return {
+        "ok": not failed,
+        "sections": sections,
+        "failed_sections": failed,
+        "filesystem_scan_performed": False,
+        "filesystem_write_performed": False,
+        "audit_write_performed": False,
+        "background_worker_started": False,
+        "external_integration_performed": False,
+        "llm_authority": False,
+    }
 
 
 def tail(log_name: str, n: int = 20) -> dict[str, Any]:

@@ -29,6 +29,13 @@ from lib.aios_dream import (  # noqa: E402
     DREAM_STATE,
 )
 from lib.paths import AUTO_ARTIFACTS, SANDBOX_ROOT  # noqa: E402
+from lib.dream_core import (  # noqa: E402
+    archive_plan,
+    metrics,
+    module_status as cpu_module_status,
+    plan_trigger,
+    scan_fragments,
+)
 
 ADAPTER_ID = "dream_core"
 REGISTRY_ID = "dream_core"
@@ -139,6 +146,7 @@ def status() -> dict[str, Any]:
                 "journal_dir": _as_posix(JOURNAL_DIR),
                 "journal_file_count": journal_n,
                 "viv_module": "lib.aios_dream",
+                "cpu_planner": cpu_module_status(),
                 "v2": _v2_presence(),
             },
         }
@@ -152,6 +160,49 @@ def status() -> dict[str, Any]:
                 "error": str(exc),
             },
         }
+
+
+def cycle_plan(
+    *,
+    idle_minutes: float = 0.0,
+    active_conversation: bool = False,
+    fragments_since_last: int | None = None,
+    hours_since_last: float | None = None,
+    manual_request: bool = False,
+    pulse_elapsed_seconds: float = 0.0,
+    pulse_bpm: float | None = None,
+    s_n: float | None = None,
+) -> dict[str, Any]:
+    """Return a CPU-only trigger plan from supplied or current artifact metadata."""
+    state = _load_state()
+    live_chars = int(state.get("last_live_chars") or 0)
+    fragments = int(state.get("fragments_since_last") or 0) if fragments_since_last is None else int(fragments_since_last)
+    hours = float(state.get("hours_since_last") or 0.0) if hours_since_last is None else float(hours_since_last)
+    return plan_trigger(
+        active_conversation=active_conversation,
+        idle_minutes=idle_minutes,
+        fragments_since_last=fragments,
+        hours_since_last=hours,
+        manual_request=manual_request,
+        pulse_elapsed_seconds=pulse_elapsed_seconds,
+        pulse_bpm=pulse_bpm,
+        s_n=_s_n() if s_n is None else s_n,
+    ) | {"live_chars_observed": live_chars, "artifact_reads_performed": True}
+
+
+def consolidation_plan(records: list[Mapping[str, Any]]) -> dict[str, Any]:
+    """Scan caller-supplied records and return a non-mutating archive plan."""
+    scan = scan_fragments(records)
+    archive = archive_plan(scan)
+    return {
+        "ok": bool(scan.get("ok") and archive.get("ok")),
+        "scan": scan,
+        "archive": archive,
+        "metrics": metrics(scan),
+        "writes_performed": False,
+        "execution_performed": False,
+        "llm_authority": False,
+    }
 
 
 def latest() -> dict[str, Any]:
@@ -252,10 +303,23 @@ def list_recent(n: int = 5) -> dict[str, Any]:
 
 
 def run_smoke() -> dict[str, Any]:
-    """Prove real dream artifact read path (status + latest + list_recent)."""
+    """Prove artifact reads plus the deterministic CPU planning boundary."""
     st = status()
     lat = latest()
     recent = list_recent(3)
+    plan = plan_trigger(
+        idle_minutes=10,
+        fragments_since_last=100,
+        hours_since_last=24,
+        pulse_bpm=0.1,
+        s_n=0.8,
+    )
+    candidates = consolidation_plan(
+        [
+            {"id": "a", "text": "Dream records preserve provenance."},
+            {"id": "b", "text": "Dream records preserve provenance."},
+        ]
+    )
     sev = st.get("evidence") or {}
     lev = lat.get("evidence") or {}
     rev = recent.get("evidence") or {}
@@ -269,6 +333,9 @@ def run_smoke() -> dict[str, Any]:
         and n_returned > 0
         and bool(lev.get("preview"))
         and sev.get("v2", {}).get("viv_executes_v2") is False
+        and plan.get("state") == "PLANNED"
+        and candidates.get("archive", {}).get("delete_source_records") is False
+        and candidates.get("writes_performed") is False
     )
     evidence = {
         "adapter": ADAPTER_ID,
@@ -284,6 +351,10 @@ def run_smoke() -> dict[str, Any]:
         "cycles": sev.get("cycles"),
         "v2_dream_readable": (sev.get("v2") or {}).get("v2_dream_readable"),
         "viv_executes_v2": (sev.get("v2") or {}).get("viv_executes_v2"),
+        "cpu_plan_state": plan.get("state"),
+        "cpu_plan_mode": plan.get("mode"),
+        "duplicate_groups": len(candidates.get("scan", {}).get("duplicate_groups") or []),
+        "archive_delete_source_records": candidates.get("archive", {}).get("delete_source_records"),
         "status": st,
         "latest": lat,
         "list_recent": recent,
