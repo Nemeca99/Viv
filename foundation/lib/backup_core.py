@@ -28,6 +28,7 @@ OBJECTS_ROOT = VAULT_ROOT / "objects"
 MANIFESTS_ROOT = VAULT_ROOT / "manifests"
 HEAD_PATH = VAULT_ROOT / "refs" / "HEAD"
 EVIDENCE_ROOT = FOUNDATION / "artifacts" / "auto" / "backup_core"
+RECEIPTS_ROOT = EVIDENCE_ROOT / "receipts"
 RESTORE_STAGING_ROOT = VIV_ROOT / "sandbox" / "restore_staging"
 BOOTSTRAP_REPORT = EVIDENCE_ROOT / "bootstrap_restore_verification.json"
 MIN_FREE_BYTES = 12 * 1024 * 1024 * 1024
@@ -45,6 +46,9 @@ IGNORED_PARTS = {
 }
 IGNORED_SUFFIXES = {".pyc", ".pyo", ".security-tmp", ".staged"}
 IGNORED_NAMES = {"security_backup_events.jsonl"}
+# Never copy multi-GB weight packs into the vault unless an operator-gated
+# catalog path is used. Automation always enables these deny rules.
+WEIGHT_PACK_SUFFIXES = {".pt", ".pth", ".ckpt", ".gguf", ".safetensors"}
 
 
 class BackupError(RuntimeError):
@@ -183,7 +187,29 @@ def _artifact_class(path: Path) -> str:
     return "code_config_doc"
 
 
-def _expand_files(roots: Iterable[Path | str]) -> tuple[list[Path], list[dict[str, str]]]:
+def _weight_pack_exclusion_reason(path: Path) -> str | None:
+    """Return a deny reason when a path must not be copied into the vault."""
+    parts = [part.casefold() for part in path.parts]
+    suffix = path.suffix.casefold()
+    if "models" in parts:
+        index = parts.index("models")
+        if index + 1 < len(parts) and parts[index + 1] == "gpu":
+            return "excluded_models_gpu"
+    if suffix in WEIGHT_PACK_SUFFIXES:
+        return f"excluded_weight_suffix:{suffix}"
+    if "test_training" in parts and "runs" in parts:
+        training_index = parts.index("test_training")
+        runs_index = parts.index("runs")
+        if runs_index > training_index:
+            return "excluded_test_training_runs"
+    return None
+
+
+def _expand_files(
+    roots: Iterable[Path | str],
+    *,
+    deny_weight_packs: bool = False,
+) -> tuple[list[Path], list[dict[str, str]]]:
     files: set[Path] = set()
     skipped: list[dict[str, str]] = []
     for raw in roots:
@@ -203,6 +229,11 @@ def _expand_files(roots: Iterable[Path | str]) -> tuple[list[Path], list[dict[st
                 continue
             if candidate.suffix.lower() in IGNORED_SUFFIXES:
                 continue
+            if deny_weight_packs:
+                reason = _weight_pack_exclusion_reason(candidate)
+                if reason is not None:
+                    skipped.append({"path": _posix(candidate), "reason": reason})
+                    continue
             files.add(_validate_source(candidate))
     return sorted(files, key=lambda value: _posix(value).lower()), skipped
 
@@ -235,6 +266,83 @@ def default_snapshot_roots() -> list[Path]:
     ]
     roots.extend(path for path in EXTERNAL_EXACT if path.exists())
     return roots
+
+
+def uml_evidence_snapshot_roots() -> list[Path]:
+    """UML evidence lane: thesis + evidence snapshots + planner docs. No weights."""
+    return [
+        FOUNDATION / "models" / "Training" / "evidence",
+        FOUNDATION
+        / "models"
+        / "Training"
+        / "current"
+        / "viv_slm"
+        / "model"
+        / "test_training"
+        / "UML_TRAINING_THESIS.md",
+        FOUNDATION / "docs" / "BACKUP_CORE_CPU_PLAN_V1.md",
+        FOUNDATION / "BACKUP_CORE.md",
+        FOUNDATION / "lib" / "backup_core.py",
+        FOUNDATION / "lib" / "aios_adapter_backup.py",
+        FOUNDATION / "lib" / "cpu_backup_planner.py",
+        FOUNDATION / "scripts" / "test_backup_core_contracts.py",
+        FOUNDATION / "scripts" / "test_cpu_backup_planner_v1.py",
+        FOUNDATION / "scripts" / "test_backup_adapter_cpu_plan_v1.py",
+        FOUNDATION / "scripts" / "run_backup_core_automation_v1.py",
+        FOUNDATION / "scripts" / "test_backup_core_automation_v1.py",
+    ]
+
+
+def automation_snapshot_roots(*, profile: str = "safe") -> list[Path]:
+    """Roots for the local-first backup automation profiles.
+
+    - ``safe``: sovereign code/config/docs/audit + UML evidence; excludes openaster
+      adapter trees and artifacts/models bulk by using a lean root list.
+    - ``uml_lane``: UML evidence + backup-core modules only (bounded operator run).
+    - ``legacy_default``: historical ``default_snapshot_roots`` plus UML evidence.
+    """
+    selected = str(profile or "safe").strip().casefold()
+    if selected == "uml_lane":
+        roots = uml_evidence_snapshot_roots()
+    elif selected == "legacy_default":
+        roots = list(default_snapshot_roots())
+        roots.extend(uml_evidence_snapshot_roots())
+    elif selected == "safe":
+        roots = [
+            VIV_ROOT / "security_core" / "src",
+            VIV_ROOT / "security_core" / "scripts",
+            VIV_ROOT / "security_core" / "runtime",
+            VIV_ROOT / "security_core" / "Cargo.toml",
+            VIV_ROOT / "security_core" / "Cargo.lock",
+            VIV_ROOT / "security_core" / "README.md",
+            VIV_ROOT / "src",
+            VIV_ROOT / "scripts",
+            FOUNDATION / "lib",
+            FOUNDATION / "scripts",
+            FOUNDATION / "docs",
+            FOUNDATION / "model_config.json",
+            FOUNDATION / "cpu_config.json",
+            FOUNDATION / "BACKUP_CORE.md",
+            FOUNDATION / "VIV_BUILD_STATUS.md",
+            FOUNDATION / "AIFL_STATUS.md",
+            FOUNDATION / "VOICE.md",
+            FOUNDATION / "VIV_INDEX.md",
+            FOUNDATION / "artifacts" / "audit",
+            FOUNDATION / "artifacts" / "auto" / "agentic" / "CURRENT_TASK.json",
+        ]
+        roots.extend(uml_evidence_snapshot_roots())
+        roots.extend(path for path in EXTERNAL_EXACT if path.exists())
+    else:
+        raise BackupError(f"unknown automation profile: {profile}")
+    ordered: list[Path] = []
+    seen: set[str] = set()
+    for root in roots:
+        key = _posix(root).casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        ordered.append(root)
+    return ordered
 
 
 def immutable_model_catalog_paths() -> list[Path]:
@@ -335,10 +443,11 @@ def create_snapshot(
     trigger: str,
     paths: Iterable[Path | str] | None = None,
     catalog_paths: Iterable[Path | str] = (),
+    deny_weight_packs: bool = False,
 ) -> SnapshotResult:
     """Create one immutable, parent-linked snapshot after Rust authorization."""
     roots = list(paths) if paths is not None else default_snapshot_roots()
-    files, skipped = _expand_files(roots)
+    files, skipped = _expand_files(roots, deny_weight_packs=deny_weight_packs)
     if not files:
         raise BackupError("snapshot contains no files")
 
@@ -384,6 +493,7 @@ def create_snapshot(
         "policy": {
             "copy_sovereign_assets": True,
             "immutable_bases": "hash_catalog_only",
+            "deny_weight_packs": bool(deny_weight_packs),
             "minimum_free_bytes": MIN_FREE_BYTES,
             "restore": "staged_then_approved",
             "transaction_failure_rollback": True,

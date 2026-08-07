@@ -59,6 +59,39 @@ L:\Continue\.venv\Scripts\python.exe scripts\test_backup_core_contracts.py
 L:\Continue\.venv\Scripts\python.exe -c "from lib.aios_adapter_backup import run_smoke; print(run_smoke())"
 ```
 
+### Local backup automation (safe, non-destructive)
+
+One-command governed snapshot through the existing vault executor. Default
+profile copies sovereign code/config/docs/audit plus the UML evidence lane and
+**denies** `models/gpu`, weight suffixes (`.pt`/`.pth`/`.gguf`/`.safetensors`),
+and `test_training/runs`. Receipts land under
+`artifacts/auto/backup_core/receipts/<stamp>/`.
+
+```powershell
+cd L:\Continue\Viv\foundation
+# Plan only (no vault write):
+L:\Continue\.venv\Scripts\python.exe scripts\run_backup_core_automation_v1.py --plan-only --profile uml_lane
+# Execute bounded UML+backup-core lane:
+L:\Continue\.venv\Scripts\python.exe scripts\run_backup_core_automation_v1.py --profile uml_lane
+# Execute safe sovereign+UML set (still denies weight packs):
+L:\Continue\.venv\Scripts\python.exe scripts\run_backup_core_automation_v1.py --profile safe
+# Optional operator gate: hash-catalog GGUF/HF bases (still no weight copy):
+L:\Continue\.venv\Scripts\python.exe scripts\run_backup_core_automation_v1.py --profile safe --catalog-models
+```
+
+Selftests:
+
+```powershell
+L:\Continue\.venv\Scripts\python.exe scripts\test_cpu_backup_planner_v1.py
+L:\Continue\.venv\Scripts\python.exe scripts\test_backup_adapter_cpu_plan_v1.py
+L:\Continue\.venv\Scripts\python.exe scripts\test_backup_core_automation_v1.py
+L:\Continue\.venv\Scripts\python.exe scripts\test_backup_core_contracts.py
+```
+
+No schedule hook is installed yet. Cadence, off-L: destination, and retention
+deletion remain operator decisions (`REPLICATE` is compiled closed; retention
+planner only lists candidates).
+
 Build without installation:
 
 ```powershell
