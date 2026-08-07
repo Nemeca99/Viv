@@ -735,6 +735,35 @@ def deterministic_speak(packet: dict[str, Any]) -> str:
     if mode in {"converse", "talk", "ide"}:
         query = str(packet.get("query") or "").strip()
         if query:
+            # Prefer sealed identity router before heuristic converse templates.
+            try:
+                from lib.cpu_identity_router import route_identity_query
+
+                routed = route_identity_query(query)
+                if (
+                    isinstance(routed, dict)
+                    and routed.get("ok")
+                    and str(routed.get("state") or "") == "ROUTED"
+                ):
+                    authorized = str(routed.get("authorized_text") or "").strip()
+                    if authorized:
+                        intent_id = str(routed.get("intent_id") or "")
+                        if intent_id in {"active_systems", "prove_state", "doing_now"}:
+                            bus_bits = [
+                                str(f)
+                                for f in (packet.get("facts") or [])
+                                if str(f).startswith("skeleton_bus_")
+                            ]
+                            if bus_bits:
+                                return (
+                                    authorized
+                                    + " Verified skeleton-bus fields in this packet: "
+                                    + "; ".join(bus_bits[:6])
+                                    + "."
+                                )
+                        return authorized
+            except Exception:  # noqa: BLE001 — fail open to legacy heuristics
+                pass
             q = query.casefold()
             if any(term in q for term in ("qwen", "costume", "casual chat", "casual conversation", "which system do you belong", "aios system you belong", "aios the system", "viv and the operator", "operator and viv", "training project", "what does we", "we usually feel", "test this hypothesis", "components are responsible", "memory and logging", "split speaking from persistence")):
                 if "qwen" in q or "costume" in q:

@@ -12,12 +12,23 @@ from voice_core.intent_packet import contains_telemetry_disclosure, deterministi
 
 
 _IDENTITY_TERMS = (
-    "human", "person", "identity", "who is speaking", "which identity", "which name",
-    "what name", "human friend", "friendly", "warm", "naturally", "natural speech",
+    "human", "person", "identity", "who is speaking", "who are you", "which identity", "which name",
+    "what name", "your name", "your tone", "speaking style", "speaking tone", "how do you speak",
+    "how do you sound", "hello", "hi ", "hey ", "good morning", "good evening",
+    "human friend", "friendly", "warm", "naturally", "natural speech",
     "first-time visitor", "what is aios", "what does aios mean", "qwen", "costume",
     "casual chat", "casual conversation", "which system do you belong", "system you belong", "aios system you belong",
     "viv and the operator", "operator and viv", "training project", "what does we",
     "we usually feel", "test this hypothesis", "components are responsible",
+    "uml", "nested-pemdas", "nested pemdas", "universal mathematical language",
+    "currently active", "active systems", "what is running", "what are you doing",
+    "what can you prove", "prove about", "why did you answer", "why did you say",
+)
+_INVENTED_PROVENANCE_RE = re.compile(
+    r"\b(?:previous session|prior session|last session|earlier session|"
+    r"instructions given during a previous|"
+    r"as we discussed before|as i said earlier in (?:a |the )?prior)\b",
+    flags=re.I,
 )
 _MEMORY_TERMS = (
     "memory", "memories", "remember", "recall", "log", "logs", "logging", "persistent",
@@ -114,6 +125,10 @@ def finalize_draft(
     if ordinary_mode and contains_telemetry_disclosure(text):
         text = fallback_renderer(packet)
         source = f"{source}_telemetry_contained"
+
+    if ordinary_mode and _INVENTED_PROVENANCE_RE.search(text):
+        text = fallback_renderer(packet)
+        source = f"{source}_invented_provenance_contained"
 
     grounded = grounded_response_fallback(packet)
     if grounded is not None:

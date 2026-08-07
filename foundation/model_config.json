@@ -67,7 +67,7 @@
       "components": [
         "ollama",
         "Qwen2.5-3B-Instruct",
-        "viv-voice-qwen"
+        "viv-qwen25-3b-canary-v1"
       ],
       "may_decide": false,
       "may_remember": false,
@@ -89,7 +89,7 @@
     "hf_base": "L:/Continue/Viv/foundation/models/gpu/OpenAster1-128k-base-hf",
     "lora_adapter": "L:/Continue/Viv/foundation/models/gpu/viv_voice_lora",
     "modelfile": "L:/Continue/Viv/foundation/models/gpu/Modelfile.viv-voice-raw",
-    "served_name": "viv-voice-qwen",
+    "served_name": "viv-qwen25-3b-canary-v1",
     "prefer_over_lora": true,
     "use_lora": false,
     "raw_base": false,
@@ -216,7 +216,7 @@
   },
   "aios_client": {
     "vllm_base_url": "http://127.0.0.1:11434/v1",
-    "vllm_model": "viv-voice-qwen",
+    "vllm_model": "viv-qwen25-3b-canary-v1",
     "env_voice_url": "AIOS_VLLM_BASE_URL",
     "env_voice_optional": "AIOS_VOICE_OPTIONAL",
     "env_silent_without_voice": "AIOS_SILENT_WITHOUT_VOICE"

@@ -25,6 +25,10 @@ APPROVED_ACRONYMS: dict[str, AcronymSpec] = {
     "CPU": AcronymSpec("CPU", "Central Processing Unit", "standard_term"),
     "GPU": AcronymSpec("GPU", "Graphics Processing Unit", "standard_term"),
     "EOS": AcronymSpec("EOS", "End of Sequence", "standard_term"),
+    # Operator UML = Universal Mathematical Language (not Unified Modeling Language).
+    "UML": AcronymSpec("UML", "Universal Mathematical Language", "operator_contract"),
+    "PEMDAS": AcronymSpec("PEMDAS", "Parentheses Exponents Multiplication Division Addition Subtraction", "operator_contract"),
+    "RID": AcronymSpec("RID", "Recursive Integrity Dimension", "operator_contract"),
 }
 
 CANONICAL_IDENTITY_INTRO = (

@@ -88,11 +88,13 @@ def speak_status() -> dict[str, Any]:
         "llama_cpp",
         "gguf",
     }
+    served_present = bool(reach.get("served_present"))
     return {
         "ok": True,
         "gpu_optional": True,
         "backend": voice.get("backend"),
-        "served_name": voice.get("served_name"),
+        "served_name": voice.get("served_name") or ep.get("model"),
+        "served_present": served_present,
         "prefer_over_lora": prefer_qwen,
         "lora_ready": lora,
         "gguf": gguf_st,
@@ -101,6 +103,11 @@ def speak_status() -> dict[str, Any]:
         "endpoint": ep,
         "events_path": str(VOICE_EVENTS_PATH).replace("\\", "/"),
         "detail": reach,
+        "converse_gate": (
+            "CONVERSE_MODEL_OK"
+            if served_present
+            else ("OLLAMA_UP_MODEL_MISSING" if reach.get("reachable") else "OLLAMA_DOWN")
+        ),
     }
 
 
@@ -418,9 +425,47 @@ def speak(
             if normalized_query in {"state summary", "status summary", "status report"}
             else "converse"
         )
+    enriched_facts = list(facts) if facts is not None else None
+    qfold = (query or "").casefold()
+    if force_packet is None and any(
+        term in qfold
+        for term in (
+            "active",
+            "running",
+            "systems",
+            "uml",
+            "prove",
+            "current state",
+            "doing right now",
+        )
+    ):
+        try:
+            from lib.aios_skeleton_bus import default_bus
+
+            wire = default_bus().wire_status()
+            enriched_facts = list(enriched_facts or [])
+            pct = wire.get("pct_filled")
+            vacant = list(wire.get("vacant_for_compute_core") or [])
+            bound = [
+                str(r.get("slot"))
+                for r in (wire.get("rows") or [])
+                if str(r.get("fill") or "") in {"BOUND", "PARTIAL"}
+            ]
+            if pct is not None:
+                enriched_facts.append(f"skeleton_bus_filled_pct={pct}")
+            if bound:
+                enriched_facts.append(
+                    "skeleton_bus_bound=" + ",".join(bound[:12])
+                )
+            if vacant:
+                enriched_facts.append(
+                    "skeleton_bus_vacant=" + ",".join(str(x) for x in vacant[:8])
+                )
+        except Exception:  # noqa: BLE001 — speak must not die on bus probe
+            pass
     packet = force_packet or build_intent_packet(
         query=query,
-        facts=facts,
+        facts=enriched_facts,
         knowledge_query=knowledge_query,
         knowledge_mode=knowledge_mode,
         wikipedia_title=wikipedia_title,

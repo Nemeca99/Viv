@@ -53,16 +53,34 @@ def server_reachable(
 ) -> dict[str, Any]:
     ep = voice_endpoint(cfg)
     url = ep["models_url"]
+    wanted = str(ep.get("model") or "").strip()
     try:
         req = urllib.request.Request(url, method="GET")
         with urllib.request.urlopen(req, timeout=timeout_s) as resp:
             body = resp.read().decode("utf-8", errors="replace")
+        model_ids: list[str] = []
+        served_present = False
+        try:
+            payload = json.loads(body)
+            model_ids = [str(m.get("id") or "") for m in (payload.get("data") or [])]
+            served_present = any(
+                mid == wanted
+                or mid.startswith(wanted + ":")
+                or mid.split(":", 1)[0] == wanted
+                for mid in model_ids
+                if mid
+            )
+        except (json.JSONDecodeError, TypeError, AttributeError):
+            served_present = False
         return {
             "ok": True,
             "reachable": True,
             "url": url,
             "status": resp.status,
             "body_preview": body[:200],
+            "served_name": wanted,
+            "served_present": served_present,
+            "model_ids": model_ids[:20],
         }
     except (urllib.error.URLError, TimeoutError, OSError) as ex:
         return {
@@ -71,6 +89,9 @@ def server_reachable(
             "silent": True,
             "url": url,
             "error": str(ex),
+            "served_name": wanted,
+            "served_present": False,
+            "model_ids": [],
         }
 
 

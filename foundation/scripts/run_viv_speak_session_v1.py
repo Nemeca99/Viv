@@ -288,6 +288,143 @@ def _dry_run(text: str) -> dict[str, Any]:
     }
 
 
+def _preflight() -> dict[str, Any]:
+    """Check model presence + identity router + finalize path BEFORE live converse."""
+    from lib.cpu_identity_router import route_identity_query
+    from voice_core.intent_packet import build_intent_packet, deterministic_speak
+    from voice_core.runtime_contract import finalize_draft
+    from voice_core.speak import speak_status
+
+    steps: list[dict[str, Any]] = []
+    t0 = time.perf_counter()
+    status = speak_status()
+    served_present = bool(status.get("served_present"))
+    steps.append(
+        {
+            "id": "speak_status",
+            "ok": bool(status.get("ok")),
+            "reachable": bool(status.get("reachable")),
+            "served_name": status.get("served_name"),
+            "served_present": served_present,
+            "converse_gate": status.get("converse_gate"),
+            "model_ids": (status.get("detail") or {}).get("model_ids"),
+        }
+    )
+
+    probes = (
+        "Who are you?",
+        "What is your tone?",
+        "hello Viv",
+        "What is UML responsible for?",
+        "What are you doing right now?",
+    )
+    router_ok = True
+    finalize_ok = True
+    probe_rows: list[dict[str, Any]] = []
+    for q in probes:
+        routed = route_identity_query(q)
+        auth = ""
+        routed_ok = (
+            isinstance(routed, dict)
+            and routed.get("ok")
+            and str(routed.get("state") or "") == "ROUTED"
+        )
+        if routed_ok:
+            auth = str(routed.get("authorized_text") or "").strip()
+        else:
+            router_ok = False
+        packet = build_intent_packet(query=q, mode="converse", memory_top=1)
+        det = deterministic_speak(packet)
+        finalized = finalize_draft(
+            query=q,
+            packet=packet,
+            raw_text=det,
+            voice_source="preflight_deterministic",
+            cpu_fallback=deterministic_speak,
+            renderer_retry=None,
+        )
+        out = str(finalized.get("text") or "").strip()
+        evidence_collapse = "cannot verify an answer from the current verified evidence" in out.casefold()
+        soft_template = out.casefold().startswith("i'm here with you")
+        # Exact match preferred; accept non-empty routed doctrine that survived finalize
+        # without evidence collapse / soft template (acronym repair may lightly rewrite).
+        match = bool(auth) and out == auth
+        doctrine_ok = (
+            routed_ok
+            and bool(out)
+            and not evidence_collapse
+            and not soft_template
+            and (match or (auth[:48].casefold() in out.casefold()))
+        )
+        if not doctrine_ok:
+            finalize_ok = False
+        probe_rows.append(
+            {
+                "query": q,
+                "router_ok": routed_ok,
+                "intent_id": (routed or {}).get("intent_id") if isinstance(routed, dict) else None,
+                "authorized_text": auth[:160],
+                "deterministic_text": det[:160],
+                "finalized_text": out[:160],
+                "voice_source": finalized.get("voice_source"),
+                "match_authorized": match,
+                "doctrine_ok": doctrine_ok,
+                "evidence_collapse": evidence_collapse,
+            }
+        )
+    steps.append({"id": "identity_router_probes", "ok": router_ok, "probes": probe_rows})
+    steps.append(
+        {
+            "id": "finalize_identity_path",
+            "ok": finalize_ok,
+            "note": "Authorized identity text must survive finalize_draft (no evidence collapse).",
+        }
+    )
+
+    converse_ready = bool(served_present and router_ok and finalize_ok)
+    pipe_only = bool(router_ok and finalize_ok and not served_present)
+    if converse_ready:
+        readiness = "CONVERSE_READY"
+        detail = "Model present + identity anchors finalize clean. Safe for controlled --live probes."
+    elif pipe_only:
+        readiness = "PIPE_ONLY_IDENTITY_CPU"
+        detail = (
+            "Identity CPU path OK but configured Ollama model missing/mismatched. "
+            "Do not claim GPU converse-ready."
+        )
+    else:
+        readiness = "NOT_CONVERSE_READY"
+        detail = "Preflight failed — fix model name and/or identity finalize before --live converse."
+
+    elapsed = round(time.perf_counter() - t0, 3)
+    return {
+        "ok": converse_ready or pipe_only,
+        "mode": "preflight",
+        "status": readiness,
+        "readiness": readiness,
+        "operator_verdict": readiness,
+        "text_verdict": readiness,
+        "mp3_verdict": "SKIP",
+        "detail": detail,
+        "elapsed_s": elapsed,
+        "served_present": served_present,
+        "router_ok": router_ok,
+        "finalize_ok": finalize_ok,
+        "converse_ready": converse_ready,
+        "query": None,
+        "mp3_path": None,
+        "mp3_status": "SKIP",
+        "aios_started": False,
+        "gpu_long": False,
+        "leftover_servers": False,
+        "vacant_bus": ["uml_invoke"],
+        "steps": steps,
+        "probes": probe_rows,
+        "speak_status": status,
+        "text_preview": (probe_rows[0]["finalized_text"] if probe_rows else ""),
+    }
+
+
 def _live(text: str, max_tokens: int, *, stamp: str) -> dict[str, Any]:
     from voice_core.speak import speak, speak_status
 
@@ -301,6 +438,8 @@ def _live(text: str, max_tokens: int, *, stamp: str) -> dict[str, Any]:
             "reachable": bool(status.get("reachable")),
             "backend": status.get("backend"),
             "served_name": status.get("served_name"),
+            "served_present": status.get("served_present"),
+            "converse_gate": status.get("converse_gate"),
         }
     )
 
@@ -408,8 +547,12 @@ def build_parser() -> argparse.ArgumentParser:
     mode.add_argument(
         "--dry-run",
         action="store_true",
-        default=True,
-        help="Prove status+packet+mouth contracts without live GPU speak (default)",
+        help="Prove status+packet+mouth contracts without live GPU speak (default if no mode flag)",
+    )
+    mode.add_argument(
+        "--preflight",
+        action="store_true",
+        help="Gate check: Ollama model present + identity router/finalize (no casual converse)",
     )
     mode.add_argument(
         "--live",
@@ -434,14 +577,21 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     stamp = _utc_stamp()
     live = bool(args.live)
-    mode = "live" if live else "dry_run"
+    preflight = bool(args.preflight)
+    if live:
+        mode = "live"
+    elif preflight:
+        mode = "preflight"
+    else:
+        mode = "dry_run"
 
     try:
-        body = (
-            _live(args.text, args.max_tokens, stamp=stamp)
-            if live
-            else _dry_run(args.text)
-        )
+        if live:
+            body = _live(args.text, args.max_tokens, stamp=stamp)
+        elif preflight:
+            body = _preflight()
+        else:
+            body = _dry_run(args.text)
     except Exception as exc:  # noqa: BLE001 — always write failure receipt
         body = {
             "ok": False,

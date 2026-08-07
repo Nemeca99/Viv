@@ -1,47 +1,36 @@
 # Operator happy path — talk to Viv (text)
 
 **Goal:** real text reply from Viv. No mic. No camera. No full AIOS.  
-**Milestone:** `--live --text` → reply in stdout + receipt. MP3 = optional later.
+**Rule:** run **`--preflight` before `--live`**. Do not treat pipe-ok as converse-ready.
 
-## Do this (3 commands)
+## Do this (in order)
 
 ```powershell
 cd L:\Continue\Viv
 $py = "L:\Continue\.venv\Scripts\python.exe"
 
-# 1) Offline contracts (fast; no audio write)
-& $py foundation\scripts\run_viv_speak_session_v1.py --dry-run
+# 1) GATE — model present + identity anchors survive finalize
+& $py foundation\scripts\run_viv_speak_session_v1.py --preflight
 
-# 2) Is Ollama / Qwen up?
-& $py voice_core\voice_main.py status
-
-# 3) One real text turn
+# 2) Only if preflight says CONVERSE_READY (or PIPE_ONLY_IDENTITY_CPU for CPU-only)
+& $py foundation\scripts\run_viv_speak_session_v1.py --live --text "Who are you?"
+& $py foundation\scripts\run_viv_speak_session_v1.py --live --text "What is your tone?"
 & $py foundation\scripts\run_viv_speak_session_v1.py --live --text "hello Viv"
 ```
 
-Open the receipt: `foundation/artifacts/auto/viv_speak_session/LATEST.json` → `RECEIPT.json`.  
-Success = `ok=true` and a non-empty `text_preview` / `speak_result.text`.
-
-## If status says unreachable
-
-1. Start Ollama (user app / service).
-2. Ensure a chat model exists (`ollama list`). Config expects `viv-voice-qwen` — rename in `foundation/model_config.json` `voice.served_name` if your tag differs.
-3. Re-run command 3.
-
-Offline still returns deterministic CPU text through Security — useful pipeline proof, but label it `ALMOST_OFFLINE`, not GPU live.
-
-## Do not
-
-- Full AIOS start, GPU_LONG, 120s plant, mic/STT, camera, soft-0.99, enable `voice_speak`.
-- Leave stub servers running overnight.
+Open receipts under `foundation/artifacts/auto/viv_speak_session/`.
 
 ## Verdict labels
 
 | Label | Meaning |
-|---|---|
-| **TEXT_LIVE_READY** | `--live` returned real mouth text (Ollama or honest deterministic) |
-| **ALMOST** | Path works; start Ollama for GPU mouth quality |
-| **BLOCKED** | Dry-run or live failed — fix receipt `detail` first |
-| MP3 | SKIP/TODO — not required for tomorrow |
+|-------|---------|
+| `CONVERSE_READY` | Ollama model matches config + identity finalize OK |
+| `PIPE_ONLY_IDENTITY_CPU` | Identity CPU OK; GPU model missing/mismatch |
+| `NOT_CONVERSE_READY` | Do not run casual `--live` yet |
+| `TEXT_LIVE_READY` | One live turn returned text (still check `text_preview`) |
 
-More detail: `SPEAK_TOMORROW.md` (same folder).
+## Do not
+
+- Skip preflight after overnight / rebuild
+- Treat evidence-fallback as a greeting
+- Full AIOS start, mic/STT, soft-0.99
