@@ -2,7 +2,7 @@
   "ok": true,
   "schema_version": "wake_finish_pack_v1",
   "stamp": "20260807T093018Z",
-  "at": "2026-08-07T09:30:18+00:00",
+  "at": "2026-08-07T04:30:18-05:00",
   "skeleton_bulk_done": true,
   "aios_runtime_started": false,
   "coverage": {
@@ -12,7 +12,9 @@
     "systems_skeleton_pct": 76.9,
     "bus_slots_total": 13,
     "bus_slots_filled_pct": 92.3,
-    "bus_vacant": ["uml_invoke"]
+    "bus_vacant": [
+      "uml_invoke"
+    ]
   },
   "receipts": {
     "full_map": "foundation/artifacts/auto/aios_skeleton/LATEST.json",
@@ -21,7 +23,9 @@
     "system_smoke": "foundation/artifacts/auto/system_smoke/LATEST.json",
     "overnight_notes": "foundation/artifacts/auto/wake_finish/skeleton_gaps_overnight.md"
   },
-  "vacant_for_compute_core": ["uml_invoke"],
+  "vacant_for_compute_core": [
+    "uml_invoke"
+  ],
   "subagent_spawn": "BOUND (aios_subagent_v1 plan-only/SKIP)",
   "commit_paths_ready": [
     "foundation/lib/aios_skeleton_bus.py",
@@ -44,5 +48,47 @@
     "foundation/artifacts/auto/aios_skeleton/",
     "foundation/artifacts/auto/system_smoke/",
     "foundation/artifacts/auto/wake_finish/"
-  ]
+  ],
+  "backups": {
+    "done": true,
+    "updated_utc": "2026-08-07T09:33:01Z",
+    "git": {
+      "branch": "codex/viv-v60-preflight-backup",
+      "base": "def895e",
+      "head": "e27805c24f32e64afc063d3545c28789a759d2be",
+      "commits": [
+        "e27805c Track wake_finish SPEAK_TOMORROW and COMMIT_READY pack.",
+        "808e75c Bind subagent_spawn and harden skeleton bus/speak session.",
+        "4dc4a33 Update COLD_START and VIV_BUILD_STATUS for WAKE_FINISH.",
+        "cbdadb0 Expand AIOS core automation with service/cognitive/RID runners and core adapters.",
+        "09f989a Add skeleton map gap polish and speak session runner.",
+        "54270e5 Land AIOS skeleton, system smoke, and core automation bulk."
+      ],
+      "hashes": [
+        "54270e5768f58515737ad01c59a23303616d59b2",
+        "09f989a9ed4555b2d9707902762b08853eb0233a",
+        "cbdadb0364b3967d4ee8d536f750d9d895bfe958",
+        "4dc4a333924dc1297138c291e0d2922601ac2350",
+        "808e75c5f1fa357f3887bd32386eb722d080c0b0",
+        "e27805c24f32e64afc063d3545c28789a759d2be"
+      ]
+    },
+    "local": {
+      "profile": "uml_lane",
+      "trigger": "wake_finish_bulk_git_backup",
+      "ok": true,
+      "receipt": "L:/Continue/Viv/foundation/artifacts/auto/backup_core/receipts/20260807T093248Z/RECEIPT.json",
+      "snapshot_id": "9d0884a55b0b5972da4d45a3c5f51fcd97605b7b11391a12a9a78a1b755cc03d",
+      "copied_items": 31,
+      "logical_bytes": 1070937,
+      "deny_weight_packs": true,
+      "aios_runtime_started": false
+    },
+    "notes": [
+      "OPERATOR_HAPPY_PATH.md not present",
+      "No separate speak->mp3 script; run_viv_speak_session_v1.py included",
+      "No force push; wake_finish staged with git add -f due to artifacts/auto ignore"
+    ]
+  },
+  "backups_done": true
 }
