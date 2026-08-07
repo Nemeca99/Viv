@@ -250,8 +250,7 @@ def build_map_receipt(*, profile: str = "full", stamp: str | None = None) -> dic
         },
         "vacant_for_compute_core": wire.get("vacant_for_compute_core") or [],
         "vacant_slot_notes": {
-            "uml_invoke": "Nested-PEMDAS / uml_engine invoke — deliberately vacant",
-            "subagent_spawn": "Spawn callable vacant; SKIP profiles exist only",
+            "uml_invoke": "Nested-PEMDAS / uml_engine invoke — deliberately vacant for compute-core",
         },
         "systems": systems,
         "cold_start_phases": dict(COLD_START_PHASES),
@@ -277,8 +276,10 @@ def write_receipt(receipt: dict[str, Any], *, stamp: str | None = None) -> Path:
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / "SKELETON_MAP.json"
     latest = SKELETON_DIR / "LATEST.json"
+    operator_latest = SKELETON_DIR / "skeleton_map_latest.json"
     receipt["receipt_path"] = _posix(path)
     receipt["latest_path"] = _posix(latest)
+    receipt["skeleton_map_latest_path"] = _posix(operator_latest)
     receipt["foundation_root"] = _posix(FOUNDATION_ROOT)
     text = json.dumps(receipt, indent=2, ensure_ascii=False) + "\n"
     path.write_text(text, encoding="utf-8", newline="\n")
@@ -309,6 +310,42 @@ def write_receipt(receipt: dict[str, Any], *, stamp: str | None = None) -> Path:
     md = folder / "SKELETON_MAP.md"
     md.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     receipt["receipt_md"] = _posix(md)
-    path.write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
-    latest.write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    text = json.dumps(receipt, indent=2, ensure_ascii=False) + "\n"
+    path.write_text(text, encoding="utf-8", newline="\n")
+    latest.write_text(text, encoding="utf-8", newline="\n")
+    # Operator-facing index (includes overnight gap stubs + vacant hooks).
+    gap_ids = ("perception_core", "ethics_core", "federation_core")
+    systems = receipt.get("systems") or []
+    gap_rows = [s for s in systems if s.get("id") in gap_ids]
+    index = {
+        "ok": bool(receipt.get("ok")),
+        "schema_version": "aios_skeleton_map_index_v1",
+        "at": receipt.get("created_at"),
+        "stamp": stamp,
+        "full_map_receipt": _posix(path),
+        "full_map_latest": _posix(latest),
+        "systems_counted": cov.get("systems_counted"),
+        "systems_summary": receipt.get("systems_summary"),
+        "coverage": cov,
+        "bus_slots": receipt.get("bus_slots"),
+        "wire_status": wire,
+        "vacant_for_compute_core": cov.get("bus_vacant") or ["uml_invoke", "subagent_spawn"],
+        "overnight_gap_stubs": {
+            row["id"]: {
+                "build_state": row.get("build_state"),
+                "cold_start_phase": row.get("cold_start_phase"),
+                "adapter_module": row.get("adapter_module"),
+            }
+            for row in gap_rows
+        },
+        "aios_runtime_started": False,
+        "federation_activation": False,
+        "gpu_train_started": False,
+        "soft_0_99": False,
+    }
+    operator_latest.write_text(
+        json.dumps(index, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     return path
