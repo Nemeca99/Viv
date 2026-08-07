@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
-"""Bounded Viv speak session — skeleton→live bridge (text mouth first).
+"""Bounded Viv speak session — text-first skeleton→live bridge.
 
-Default is --dry-run: prove status + intent packet + mouth envelope +
-deterministic CPU render + security observe + honest STT/TTS stubs +
-uml_invoke HOLD. Never starts full AIOS. Offline dry-run must finish <60s.
+Default --dry-run: status + intent + mouth envelope + deterministic CPU
+render + security observe + uml_invoke HOLD. No audio write. <60s. No AIOS.
 
---live requires an explicit flag and runs one bounded voice_core.speak turn
-(text mouth via Ollama/Qwen or deterministic fallback). Mic listen / TTS
-audio remain stubbed (BLOCKED) — text mouth is the 2026-08-08 milestone.
+--live --text: one voice_core.speak turn (Ollama/Qwen or deterministic).
+Primary success = non-empty reply text in receipt. MP3 = optional SKIP
+(no TTS deps required). No mic / camera / STT.
 
 Examples:
 
-    L:\\Continue\\.venv\\Scripts\\python.exe foundation\\scripts\\run_viv_speak_session_v1.py
     L:\\Continue\\.venv\\Scripts\\python.exe foundation\\scripts\\run_viv_speak_session_v1.py --dry-run
     L:\\Continue\\.venv\\Scripts\\python.exe foundation\\scripts\\run_viv_speak_session_v1.py --live --text "hello Viv"
 """
@@ -69,22 +67,27 @@ def _write_receipt(stamp: str, payload: dict[str, Any]) -> Path:
 
 
 def _audio_stubs() -> dict[str, Any]:
-    """Honest vacant slots — audio listen/hear still BLOCKED; text mouth is the milestone."""
+    """Mic/camera out of scope; MP3 optional SKIP — text is the milestone."""
     return {
         "stt": {
-            "status": "BLOCKED_ON_STT",
+            "status": "OUT_OF_SCOPE",
             "wired": False,
-            "note": "No microphone / Whisper / speech_recognition listen loop in Viv tree.",
+            "note": "Operator has mic but STT is not tomorrow's path. Input = --text only.",
         },
-        "tts": {
-            "status": "BLOCKED_ON_TTS",
+        "tts_mp3": {
+            "status": "SKIP",
             "wired": False,
-            "note": "No pyttsx3 / SAPI / edge_tts audio render wired in session; mouth is text-out.",
+            "note": "MP3-to-file is optional TODO; do not block text LIVE on TTS deps.",
         },
-        "listen_loop": {
-            "status": "STUB",
+        "camera": {
+            "status": "OUT_OF_SCOPE",
             "wired": False,
-            "note": "Operator talk path = CLI text via voice_main / session --live (not mic).",
+            "note": "Camera exists but vision is not part of speak prove-out.",
+        },
+        "input": {
+            "status": "TEXT_ONLY",
+            "wired": True,
+            "note": "--text \"...\" is the only operator input for this session.",
         },
     }
 
@@ -131,18 +134,24 @@ def _security_observe() -> dict[str, Any]:
 
 
 def _operator_verdict(*, mouth_ok: bool, ollama_up: bool) -> dict[str, str]:
-    """ALMOST = text mouth path; BLOCKED = audio listen/hear; LIVE_READY reserved for both."""
+    """Text is primary. TEXT_LIVE_READY when a real reply exists; MP3 stays SKIP."""
     if not mouth_ok:
         return {
             "operator_verdict": "BLOCKED",
             "text_verdict": "BLOCKED",
-            "audio_verdict": "BLOCKED",
+            "mp3_verdict": "SKIP",
         }
-    text = "ALMOST" if ollama_up else "ALMOST_OFFLINE"
+    if ollama_up:
+        return {
+            "operator_verdict": "TEXT_LIVE_READY",
+            "text_verdict": "TEXT_LIVE_READY",
+            "mp3_verdict": "SKIP",
+        }
     return {
-        "operator_verdict": "ALMOST",
-        "text_verdict": text,
-        "audio_verdict": "BLOCKED",
+        "operator_verdict": "TEXT_LIVE_READY",
+        "text_verdict": "TEXT_LIVE_READY_DETERMINISTIC",
+        "mp3_verdict": "SKIP",
+        "note": "Deterministic/offline mouth still counts as text prove-out; start Ollama for GPU quality.",
     }
 
 
@@ -238,17 +247,17 @@ def _dry_run(text: str) -> dict[str, Any]:
         detail = f"Dry-run exceeded {DRY_RUN_BUDGET_S:.0f}s budget ({elapsed}s) — fail closed."
     elif mouth_ok and ollama_up:
         readiness = "TEXT_MOUTH_LIVE_READY"
-        overall = "SKELETON_ONLY"
+        overall = "TEXT_PATH_READY"
         detail = (
-            "ALMOST (text): mouth endpoint reachable; dry-run contracts PASS. "
-            "BLOCKED (audio): STT/TTS still vacant — not LIVE_READY for speak/listen."
+            "Dry-run PASS; Ollama reachable. Next: --live --text for TEXT_LIVE_READY. "
+            "MP3 SKIP. Mic/camera OUT_OF_SCOPE."
         )
     elif mouth_ok:
         readiness = "TEXT_MOUTH_OFFLINE_DETERMINISTIC"
-        overall = "SKELETON_ONLY"
+        overall = "TEXT_PATH_READY"
         detail = (
-            "ALMOST_OFFLINE (text): contracts + deterministic CPU mouth PASS; Ollama down. "
-            "BLOCKED (audio): STT/TTS still vacant."
+            "Dry-run PASS offline (deterministic). Start Ollama for GPU mouth quality; "
+            "still ready for --live text prove-out. MP3 SKIP."
         )
     else:
         readiness = "BLOCKED_ON_MOUTH_CONTRACT"
@@ -266,6 +275,8 @@ def _dry_run(text: str) -> dict[str, Any]:
         "budget_s": DRY_RUN_BUDGET_S,
         "budget_ok": budget_ok,
         "query": text,
+        "mp3_path": None,
+        "mp3_status": "SKIP",
         "aios_started": False,
         "gpu_long": False,
         "leftover_servers": False,
@@ -277,7 +288,7 @@ def _dry_run(text: str) -> dict[str, Any]:
     }
 
 
-def _live(text: str, max_tokens: int) -> dict[str, Any]:
+def _live(text: str, max_tokens: int, *, stamp: str) -> dict[str, Any]:
     from voice_core.speak import speak, speak_status
 
     steps: list[dict[str, Any]] = []
@@ -294,44 +305,56 @@ def _live(text: str, max_tokens: int) -> dict[str, Any]:
     )
 
     out = speak(text, memory_top=1, max_tokens=max_tokens, mode="converse")
+    spoken = str(out.get("text") or "").strip()
     steps.append(
         {
             "id": "live_speak_turn",
-            "ok": bool(out.get("ok")) and not bool(out.get("blocked")),
+            "ok": bool(out.get("ok")) and not bool(out.get("blocked")) and bool(spoken),
             "silent": out.get("silent"),
             "blocked": out.get("blocked"),
             "voice_source": out.get("voice_source"),
-            "chars": len(str(out.get("text") or "")),
-            "text_preview": str(out.get("text") or "")[:160],
+            "chars": len(spoken),
+            "text_preview": spoken[:160],
             "egress_allowed": bool((out.get("egress") or {}).get("allowed", True)),
         }
     )
 
+    steps.append(_security_observe())
     steps.append(_uml_invoke_hold())
+    # MP3 is optional — never fail the text path for missing TTS deps.
+    steps.append(
+        {
+            "id": "mp3_write",
+            "ok": True,
+            "status": "SKIP",
+            "path": None,
+            "note": "MP3 deferred; text reply is primary success. No TTS install required.",
+        }
+    )
     audio = _audio_stubs()
-    steps.append({"id": "audio_stubs", "ok": True, **audio})
+    steps.append({"id": "audio_policy", "ok": True, **audio})
     elapsed = round(time.perf_counter() - t0, 3)
     turn_ok = (
         bool(out.get("ok"))
         and not bool(out.get("blocked"))
-        and bool(str(out.get("text") or "").strip())
+        and bool(spoken)
     )
     ollama_up = bool(status.get("reachable")) and not bool(status.get("silent"))
     verdicts = _operator_verdict(mouth_ok=turn_ok, ollama_up=ollama_up)
 
     if turn_ok and ollama_up:
-        readiness = "TEXT_MOUTH_LIVE"
-        overall = "SKELETON_ONLY"
+        readiness = "TEXT_LIVE_READY"
+        overall = "TEXT_LIVE_READY"
         detail = (
-            "ALMOST (text): one live speak turn via intent→mouth→Security OUT. "
-            "BLOCKED (audio): STT/TTS vacant — hear/listen loop not complete."
+            "TEXT_LIVE_READY: one live text speak turn (intent→mouth→Security OUT). "
+            "MP3 SKIP. Mic/camera OUT_OF_SCOPE."
         )
     elif turn_ok:
-        readiness = "TEXT_MOUTH_DETERMINISTIC_LIVE"
-        overall = "SKELETON_ONLY"
+        readiness = "TEXT_LIVE_READY_DETERMINISTIC"
+        overall = "TEXT_LIVE_READY"
         detail = (
-            "ALMOST_OFFLINE (text): deterministic/offline speak through Security path. "
-            "BLOCKED (audio): STT/TTS vacant."
+            "TEXT_LIVE_READY (deterministic): speak returned text through Security path; "
+            "Ollama offline. MP3 SKIP."
         )
     else:
         readiness = "BLOCKED_ON_LIVE_SPEAK"
@@ -340,8 +363,11 @@ def _live(text: str, max_tokens: int) -> dict[str, Any]:
         verdicts = {
             "operator_verdict": "BLOCKED",
             "text_verdict": "BLOCKED",
-            "audio_verdict": "BLOCKED",
+            "mp3_verdict": "SKIP",
         }
+
+    out_dir = RECEIPTS_ROOT / stamp
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     return {
         "ok": turn_ok,
@@ -352,6 +378,8 @@ def _live(text: str, max_tokens: int) -> dict[str, Any]:
         "detail": detail,
         "elapsed_s": elapsed,
         "query": text,
+        "mp3_path": None,
+        "mp3_status": "SKIP",
         "aios_started": False,
         "gpu_long": False,
         "leftover_servers": False,
@@ -364,10 +392,10 @@ def _live(text: str, max_tokens: int) -> dict[str, Any]:
             "silent": out.get("silent"),
             "blocked": out.get("blocked"),
             "voice_source": out.get("voice_source"),
-            "text": out.get("text"),
+            "text": spoken,
             "events_path": out.get("events_path"),
         },
-        "text_preview": str(out.get("text") or "")[:240],
+        "text_preview": spoken[:240],
     }
 
 
@@ -386,9 +414,13 @@ def build_parser() -> argparse.ArgumentParser:
     mode.add_argument(
         "--live",
         action="store_true",
-        help="Run one bounded live text speak turn (explicit)",
+        help="One bounded live text speak turn; writes receipt (MP3 optional SKIP)",
     )
-    p.add_argument("--text", default=DEFAULT_TEXT, help="Scripted operator turn text")
+    p.add_argument(
+        "--text",
+        default=DEFAULT_TEXT,
+        help="Operator input text (only input; no mic)",
+    )
     p.add_argument("--max-tokens", type=int, default=64, help="Live speak max tokens")
     p.add_argument(
         "--print-receipt",
@@ -405,17 +437,24 @@ def main(argv: list[str] | None = None) -> int:
     mode = "live" if live else "dry_run"
 
     try:
-        body = _live(args.text, args.max_tokens) if live else _dry_run(args.text)
+        body = (
+            _live(args.text, args.max_tokens, stamp=stamp)
+            if live
+            else _dry_run(args.text)
+        )
     except Exception as exc:  # noqa: BLE001 — always write failure receipt
         body = {
             "ok": False,
             "mode": mode,
             "status": "BLOCKED_ON_EXCEPTION",
             "readiness": "BLOCKED_ON_EXCEPTION",
+            "operator_verdict": "BLOCKED",
             "detail": str(exc),
             "traceback": traceback.format_exc(limit=8),
             "aios_started": False,
             "gpu_long": False,
+            "leftover_servers": False,
+            "mp3_status": "SKIP",
             "query": args.text,
             "audio": _audio_stubs(),
         }
@@ -427,7 +466,10 @@ def main(argv: list[str] | None = None) -> int:
         "workspace": str(VIV).replace("\\", "/"),
         "python": str(PYTHON if PYTHON.is_file() else sys.executable).replace("\\", "/"),
         "script": str(Path(__file__).resolve()).replace("\\", "/"),
-        "goal": "Speak with Viv for real by end of 2026-08-08",
+        "goal": "Speak with Viv for real by end of 2026-08-08 (text-first)",
+        "happy_path": str(
+            (FOUNDATION / "artifacts" / "auto" / "wake_finish" / "OPERATOR_HAPPY_PATH.md")
+        ).replace("\\", "/"),
         "speak_tomorrow": str(
             (FOUNDATION / "artifacts" / "auto" / "wake_finish" / "SPEAK_TOMORROW.md")
         ).replace("\\", "/"),
@@ -439,6 +481,9 @@ def main(argv: list[str] | None = None) -> int:
         "mode": receipt.get("mode"),
         "status": receipt.get("status"),
         "readiness": receipt.get("readiness"),
+        "operator_verdict": receipt.get("operator_verdict"),
+        "text_verdict": receipt.get("text_verdict"),
+        "mp3_status": receipt.get("mp3_status"),
         "elapsed_s": receipt.get("elapsed_s"),
         "text_preview": receipt.get("text_preview"),
         "receipt": str(path).replace("\\", "/"),

@@ -1,213 +1,58 @@
 {
   "schema_version": "speak_tomorrow_v1",
-  "title": "SPEAK TOMORROW \u2014 critical path",
-  "goal": "Speak with Viv for real by end of 2026-08-08",
-  "written_at": "2026-08-07T09:30:00Z",
+  "title": "SPEAK TOMORROW — text-first critical path",
+  "goal": "Speak with Viv for real by end of 2026-08-08 (text primary)",
+  "written_at": "2026-08-07T09:35:00Z",
   "deadline": "2026-08-08T23:59:59-05:00",
   "workspace": "L:/Continue/Viv",
   "python": "L:/Continue/.venv/Scripts/python.exe",
   "md": "L:/Continue/Viv/foundation/artifacts/auto/wake_finish/SPEAK_TOMORROW.md",
-  "status": "SKELETON_ONLY",
+  "happy_path": "L:/Continue/Viv/foundation/artifacts/auto/wake_finish/OPERATOR_HAPPY_PATH.md",
+  "status": "TEXT_PATH_READY",
+  "operator_verdict_target": "TEXT_LIVE_READY",
   "readiness": {
-    "text_mouth": "TEXT_MOUTH_LIVE_READY_WHEN_OLLAMA_UP",
+    "text_mouth": "PRIMARY",
     "deterministic_fallback": "READY",
-    "stt_mic": "BLOCKED_ON_STT",
-    "tts_audio": "BLOCKED_ON_TTS",
-    "speak_listen_loop": "SKELETON_ONLY",
+    "mp3_tts": "SKIP",
+    "stt_mic": "OUT_OF_SCOPE",
+    "camera": "OUT_OF_SCOPE",
     "full_aios": "NOT_REQUIRED"
   },
+  "vacant_bus": ["uml_invoke"],
   "aios_started": false,
   "gpu_long": false,
   "git_commit": false,
-  "eta": {
-    "text_live_turn_min": 5,
-    "tts_thin_hours": 1,
-    "stt_thin_hours": 2,
-    "full_audio_loop_hours": 3
-  },
-  "inventory": [
-    {
-      "id": "speak",
-      "path": "voice_core/speak.py",
-      "role": "intent\u2192Security OUT\u2192text"
-    },
-    {
-      "id": "voice_main",
-      "path": "voice_core/voice_main.py",
-      "role": "operator CLI status|speak|stub|packet"
-    },
-    {
-      "id": "intent_packet",
-      "path": "voice_core/intent_packet.py",
-      "role": "CPU\u2192GPU packet + deterministic_speak"
-    },
-    {
-      "id": "mouth_contract",
-      "path": "lib/cpu_mouth_contract.py",
-      "role": "render envelope"
-    },
-    {
-      "id": "runtime_contract",
-      "path": "voice_core/runtime_contract.py",
-      "role": "finalize_draft"
-    },
-    {
-      "id": "client",
-      "path": "voice_core/client.py",
-      "role": "Ollama endpoint"
-    },
-    {
-      "id": "gguf_voice",
-      "path": "voice_core/gguf_voice.py",
-      "role": "llama.cpp spare"
-    },
-    {
-      "id": "stub_server",
-      "path": "voice_core/stub_server.py",
-      "role": "offline proof; avoid long-lived unless needed"
-    },
-    {
-      "id": "voice_bridge",
-      "path": "foundation/lib/voice_bridge.py",
-      "role": "foundation re-export"
-    },
-    {
-      "id": "contract_automation",
-      "path": "foundation/scripts/run_voice_contract_automation_v1.py",
-      "role": "CPU contracts; no server start"
-    },
-    {
-      "id": "session_v1",
-      "path": "foundation/scripts/run_viv_speak_session_v1.py",
-      "role": "bounded dry-run/live session"
-    },
-    {
-      "id": "voice_md",
-      "path": "foundation/VOICE.md",
-      "role": "operator guide"
-    },
-    {
-      "id": "model_config_voice",
-      "path": "foundation/model_config.json#voice",
-      "role": "backend=ollama served_name=viv-voice-qwen"
-    },
-    {
-      "id": "openaster",
-      "path": "voice_core/hf_lora.py",
-      "role": "built not live"
-    },
-    {
-      "id": "autonomous_speak",
-      "path": "cpu_config autonomy.voice_speak",
-      "role": "HALTED false"
-    },
-    {
-      "id": "historical_talk",
-      "path": "CLI text speak",
-      "role": "no mic historically"
-    }
-  ],
   "morning_commands": [
     {
       "n": 1,
       "id": "dry_run",
       "must": true,
       "cmd": "L:\\Continue\\.venv\\Scripts\\python.exe foundation\\scripts\\run_viv_speak_session_v1.py --dry-run",
-      "cwd": "L:\\Continue\\Viv",
-      "eta_s": 30
+      "cwd": "L:\\Continue\\Viv"
     },
     {
       "n": 2,
       "id": "voice_status",
       "must": true,
       "cmd": "L:\\Continue\\.venv\\Scripts\\python.exe voice_core\\voice_main.py status",
-      "cwd": "L:\\Continue\\Viv",
-      "eta_s": 10
+      "cwd": "L:\\Continue\\Viv"
     },
     {
       "n": 3,
-      "id": "live_turn",
+      "id": "live_text",
       "must": true,
       "cmd": "L:\\Continue\\.venv\\Scripts\\python.exe foundation\\scripts\\run_viv_speak_session_v1.py --live --text \"hello Viv\"",
-      "cwd": "L:\\Continue\\Viv",
-      "eta_s": 90
-    },
-    {
-      "n": 4,
-      "id": "contracts_optional",
-      "must": false,
-      "cmd": "L:\\Continue\\.venv\\Scripts\\python.exe foundation\\scripts\\run_voice_contract_automation_v1.py --profile contracts",
-      "cwd": "L:\\Continue\\Viv",
-      "eta_s": 120
-    },
-    {
-      "n": 5,
-      "id": "classic_speak_optional",
-      "must": false,
-      "cmd": "L:\\Continue\\.venv\\Scripts\\python.exe voice_core\\voice_main.py speak \"state summary\"",
-      "cwd": "L:\\Continue\\Viv",
-      "eta_s": 60
+      "cwd": "L:\\Continue\\Viv"
     }
   ],
-  "blockers_ranked": [
-    {
-      "rank": 1,
-      "severity": "must",
-      "id": "prove_dry_run",
-      "summary": "Dry-run session receipt ok=true"
-    },
-    {
-      "rank": 2,
-      "severity": "must",
-      "id": "ollama_reachable",
-      "summary": "voice_main status reachable=true; align served_name if model id mismatch"
-    },
-    {
-      "rank": 3,
-      "severity": "must",
-      "id": "one_live_text_turn",
-      "summary": "run_viv_speak_session_v1.py --live one turn"
-    },
-    {
-      "rank": 4,
-      "severity": "must",
-      "id": "fix_live_block_if_any",
-      "summary": "If blocked/silent: Security OUT / model name / mouth contract"
-    },
-    {
-      "rank": 5,
-      "severity": "nice",
-      "id": "thin_tts",
-      "summary": "Windows TTS so operator hears text mouth"
-    },
-    {
-      "rank": 6,
-      "severity": "nice",
-      "id": "thin_stt",
-      "summary": "Mic \u2192 text for one listen\u2192speak turn"
-    },
-    {
-      "rank": 7,
-      "severity": "defer",
-      "id": "openaster_autonomous",
-      "summary": "OpenAster promote / voice_speak / full AIOS / GPU_LONG"
-    }
-  ],
-  "receipts_root": "L:/Continue/Viv/foundation/artifacts/auto/viv_speak_session",
   "do_not": [
-    "start full AIOS unless explicitly required and documented",
-    "GPU_LONG train",
+    "mic/STT",
+    "camera/vision",
+    "full AIOS start",
+    "GPU_LONG",
     "120s plant",
-    "enable autonomy.voice_speak",
-    "soft-0.99",
-    "git commit from this pack"
+    "block on MP3/TTS deps",
+    "fake uml_invoke"
   ],
-  "dry_run_receipt": {
-    "ok": true,
-    "stamp": "20260807T093009646Z",
-    "path": "L:/Continue/Viv/foundation/artifacts/auto/viv_speak_session/20260807T093009646Z/RECEIPT.json",
-    "status": "SKELETON_ONLY",
-    "readiness": "TEXT_MOUTH_LIVE_READY",
-    "elapsed_s": 0.977
-  }
+  "receipts_root": "L:/Continue/Viv/foundation/artifacts/auto/viv_speak_session"
 }
