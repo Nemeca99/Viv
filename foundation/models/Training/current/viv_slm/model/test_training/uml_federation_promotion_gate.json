@@ -1,0 +1,120 @@
+{
+  "schema_version": "uml_federation_promotion_gate_v2",
+  "status": "candidate_gated_not_promoted",
+  "hypothesis": "Temporary federation PASS does not imply persistent promotion. Wholesale 15/15 is FAIL_SCALE.",
+  "breakthrough_criterion": {
+    "binding": true,
+    "not": "another_accuracy_headline",
+    "comparison": "persistent_composite_cost < dynamic_foundational_federation_cost AND persistent_composite_cost < mono_or_LIT_cost",
+    "also_required": [
+      "codex_hold_preserved",
+      "operator_or_authority_gate"
+    ],
+    "note": "Until one branch wins this comparison honestly, the temporary lattice remains demonstrated capability without unnecessary permanent weight. That restraint is architecture, not hesitation.",
+    "separated_questions": {
+      "can_federation_learn": "YES — temporary lattice 15/15 trainable with Codex hold",
+      "should_composite_be_permanent": "NOT_YET — 0/11 real cost-winners"
+    },
+    "governance": "Saint-Exupéry as promotion law: a composite earns existence only when removing it would make the system less efficient. Capability and restraint are both successes; they prove different things.",
+    "real_cost_winners": 0
+  },
+  "thresholds": {
+    "min_appear_rate": 0.08,
+    "min_cheapest_mixed_rate": 0.03,
+    "min_cost_win_rate": 0.55,
+    "min_destinations_with_routes": 8,
+    "require_codex_hold": true,
+    "require_temp_uml_up": true,
+    "max_auto_promote": 2,
+    "require_beats_dynamic_federation": true,
+    "require_beats_mono_lit": true
+  },
+  "authority": {
+    "default": "audit_only",
+    "auto_promote_requires": [
+      "--promote",
+      "all_gates_pass",
+      "within_max_auto_promote",
+      "breakthrough_cost_comparison_pass"
+    ]
+  },
+  "current_evidence": {
+    "real_cost_winners": 0,
+    "last_hunt": "BLOCKED_PREREQUISITE",
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mixed_cost_benchmark_latest.json",
+    "updated_at": "2026-08-07T01:01:18.860849+00:00",
+    "service_cost_winners": 1,
+    "full_promotion_winners": 0,
+    "candidate": "U_AM",
+    "last_benchmark": "FOUND_SERVICE_COST_WINNER"
+  },
+  "cost_floor_audit": {
+    "objective": "PROVED_STRUCTURAL_IMPOSSIBILITY",
+    "sealed_destination_lane_feasible": false,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_cost_floor_audit_latest.json",
+    "updated_at": "2026-08-07T00:57:46.890276+00:00"
+  },
+  "mixed_workload_benchmark": {
+    "surface": "variable_input_computation",
+    "formula": "(x+y)*z",
+    "service_cost_winner": true,
+    "codex_hold": true,
+    "production_frequency_gate": "NOT_MEASURED",
+    "authority_gate": "NOT_INVOKED",
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mixed_cost_benchmark_latest.json"
+  },
+  "scale_sweep": {
+    "objective": "PASS_SCALE_CROSSOVER",
+    "candidate_type": "compiled_uml_macro",
+    "candidate": "U_AM",
+    "checkpoint_runtime_equivalence": "NOT_PROVED",
+    "production_frequency_gate": "NOT_MEASURED",
+    "authority_gate": "NOT_INVOKED",
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_am_scale_sweep_latest.json",
+    "updated_at": "2026-08-07T01:02:33.721488+00:00"
+  },
+  "candidate_contract": {
+    "candidate": "U_AM",
+    "candidate_type": "compiled_uml_macro",
+    "contract_status": "CANDIDATE_AWAITING_FREQUENCY_AND_AUTHORITY",
+    "service_cost_gate": true,
+    "codex_gate": true,
+    "frequency_amortization_gate": false,
+    "authority_gate": "NOT_INVOKED",
+    "promotion_ready": false,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_am_candidate_gate_latest.json",
+    "updated_at": "2026-08-07T01:15:45.194243+00:00"
+  },
+  "isolated_creation_audit": {
+    "candidate": "U_AM",
+    "objective": "PASS_ISOLATED_CREATION",
+    "median_creation_ns": 116185000,
+    "required_requests": 139511395,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_u_am_creation_audit_latest.json",
+    "updated_at": "2026-08-07T01:14:33.061350+00:00"
+  },
+  "shadow_experiment": {
+    "status": "SANDBOX_MEASURED_NOT_PRODUCTION",
+    "experiment_id_required": true,
+    "default_enabled": false,
+    "authoritative_path": "dynamic_uml_engine_evaluate",
+    "candidate_path": "observe_only",
+    "telemetry_schema": "uml_route_usage_v1",
+    "healthy_production_requests_required": 139511395,
+    "production_events_recorded": 0,
+    "authority_gate": "NOT_INVOKED",
+    "promoted": false,
+    "instructions": "U_AM_SHADOW_EXPERIMENT.md",
+    "sandbox_run": {
+      "experiment_id": "u_am_shadow_sandbox_v1",
+      "objective": "PASS_MEASURED_ZERO_U_AM_DEMAND",
+      "evaluator_invocations": 12380,
+      "u_am_macro_eligible": 0,
+      "u_am_domain_nonmacro": 527,
+      "parity_checks": 0,
+      "parity_fault": null,
+      "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_u_am_shadow_sandbox_latest.json"
+    },
+    "updated_at": "2026-08-07T01:43:07.255412+00:00"
+  }
+}

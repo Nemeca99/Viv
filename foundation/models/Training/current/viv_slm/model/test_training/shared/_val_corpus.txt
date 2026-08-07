@@ -1,0 +1,3 @@
+each expert is a subagent when the model reasons
+meta thinking spawns more thinking recursively
+the dog the cat the mat viv speaks again

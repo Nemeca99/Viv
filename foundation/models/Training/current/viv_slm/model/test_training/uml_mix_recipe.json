@@ -1,0 +1,86 @@
+{
+  "schema_version": "uml_mix_recipe_v1",
+  "status": "active",
+  "notes": "Default UML equation mix recipe after G (prefer-cheap boost×2 held Codex and slightly improved UML).",
+  "bank_version": "v6_federation",
+  "mix_ratio": 0.779375,
+  "mix_ratio_target": 1.0,
+  "mix_ratio_note": "Precision ADS best=0.779375 stop=window_min_step; receipt runs/uml_mix_ads_precision_latest.json",
+  "mix_ads": {
+    "script": "run_uml_mix_ads.py",
+    "ladder_default": [
+      0.15,
+      0.25,
+      0.35,
+      0.45,
+      0.5
+    ],
+    "phase2_ladder": [
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "fine_ladder": [
+      0.72,
+      0.74,
+      0.76,
+      0.78,
+      0.8
+    ],
+    "steps_per_rung": "steps_sweep",
+    "gate": "codex_hold_vs_start",
+    "last_result": "HALT_ROLLBACK_at_0.78_survivor_0.76",
+    "note": "Ceiling ~0.76–0.78 under 1500/rung. Next: longer steps at 0.76 or micro-step 0.77."
+  },
+  "prefer_cheap_boost": 1.5,
+  "layer_long_steps_note": "PASS +10k @ mix 0.779375: UML 0.767->0.809, Codex held (+0.0007). Receipt: runs/uml_mix_layers/layer_long_steps_latest.json",
+  "layer_soft_boost_note": "PASS boost 2.0->1.5 +10k: UML 0.809->0.845, Codex held (+0.0007). Receipt: runs/uml_mix_layers/layer_soft_boost_latest.json",
+  "layer_math_bank_note": "PASS native bank +10k: native UML 0.309->0.618; v6 continuity UML=0.588 (bank switch expected); Codex held. Receipt: runs/uml_mix_layers/layer_math_bank_latest.json",
+  "plant_sn_gate": {
+    "module": "foundation/lib/uml_plant_sn_gate.py",
+    "train_flag": "plant_sn_gate on _train_leg / layer plant_sn",
+    "source": "docs/external furnace ADD_FUEL/SHED_LOAD/CRITICAL",
+    "status": "TIE_COMPATIBLE_ONLY",
+    "note": "Matched A/B: gated 0.859 vs ungated 0.864 (Δ-0.0046). Gate is capacity governor, not UML booster. Receipt: runs/uml_plant_sn_ab_latest.json"
+  },
+  "layer_plant_sn_note": "PASS gated train: UML 0.588->0.859 (+0.272), Codex 0.963->0.964; plant stayed SHED_LOAD entire run.",
+  "layer_continue_train_note": "PASS×2 @ mix 0.779375 plant_sn gate: loop1 UML 0.647->0.870 (+0.223); loop2 0.870->0.882 (+0.011), Codex ~0.966 hold. Survivor committed. Receipt: runs/uml_mix_layers/layer_continue_train_latest.json",
+  "speak_baseline_note": "Match=1.0 held. Cheap-rate on n=7 prompts is noisy (0.14–0.29); treat as secondary to Codex/UML val.",
+  "registry_hygiene_note": "Stopped emitting pure (V*K)/K scale-cancel forms in uml_equation_registry._candidate_forms (guarded cancel remains default-on).",
+  "speak_cheap_ab_a_note": "PASS match=1.0 all; survivor cheap=0.143 room vs plant_sn 0.286 (n=7). Receipt: runs/uml_speak_cheap_ab_a_latest.json",
+  "bank_no_md_drag_note": "Registry rebuilt (drag 162→0); mix bank rebuilt; continuity re-eval flat UML 0.8816 / Codex 0.9657. Receipts: uml_registry_no_md_drag_latest.json, uml_mix_bank_no_md_drag_continuity_latest.json",
+  "next_train_action": "B skipped (continuity clean). Optional next: speak cheap-route pressure training experiment (not blind +10k), or operator direction.",
+  "post_L3_plan": {
+    "after": ["soft_boost", "math_bank", "plant_sn", "continue_train", "continue_train_loop2", "speak_a", "bank_no_md_drag"],
+    "next": "optional_speak_pressure_experiment",
+    "status": "A_THEN_C_DONE_B_SKIPPED",
+    "source": "foundation/docs/external cpu_thermal_furnace + tri_axis_furnace",
+    "rule": "When master_rid S_n drops, shed mix dose; when stable, full base mix."
+  },
+  "rid_residual_weight": 0.0,
+  "rid_residual_weight_note": "J short A/B INCONCLUSIVE vs boost-only; keep code path, default off until longer evidence.",
+  "thermal_route_weight": 0.0,
+  "thermal_route_weight_note": "Matched A/B (10k steps, v6_federation, boost×2): THERMAL_TIE vs weight=1.0 (uml_acc Δ=-0.0003). Keep speak/encode thermal snap; train weight default off. Receipt: runs/uml_thermal_weight_ab_latest.json",
+  "steps_default": 10000,
+  "steps_sweep": 1500,
+  "batch_size": 64,
+  "lr": 7e-06,
+  "seed": 42,
+  "log_every": 500,
+  "boost_sweep": [
+    1.5,
+    2.0,
+    3.0
+  ],
+  "codex_hold_tol": 0.001,
+  "source_evidence": [
+    "runs/uml_equation_ab_v2_b3_10000.json",
+    "runs/uml_equation_ab_v2_g_boost2.json",
+    "runs/uml_equation_ab_b3_vs_g.json",
+    "runs/uml_thermal_weight_ab_latest.json",
+    "runs/uml_mix_ads_latest.json"
+  ],
+  "ads_precision_last": "2026-08-06T23:30:23.788868+00:00"
+}

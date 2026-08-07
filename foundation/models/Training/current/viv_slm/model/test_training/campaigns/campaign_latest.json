@@ -1,0 +1,19 @@
+{
+  "dataset": "codex_v43",
+  "deep_steps": 250,
+  "deploy_devices": {
+    "deep": "cuda",
+    "efficient": "cpu"
+  },
+  "efficient_steps": 250,
+  "originals_untouched": true,
+  "reasoning_styles": {
+    "deep": "explore_then_lock_long",
+    "efficient": "speculative_verify_short"
+  },
+  "sandbox_only": true,
+  "schema_version": "viv_slm_sandbox_campaign_run_v1",
+  "smoke": "PASS",
+  "status": "PASS",
+  "train_device": "cuda"
+}

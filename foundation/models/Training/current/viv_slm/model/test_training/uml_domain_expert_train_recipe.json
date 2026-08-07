@@ -1,0 +1,213 @@
+{
+  "schema_version": "uml_domain_expert_train_recipe_v1",
+  "status": "full_temporary_arithmetic_lattice",
+  "source": "emergence_audit_P3",
+  "base_experts": [
+    {
+      "id": "A",
+      "domain": "addition",
+      "ops": [
+        "+"
+      ],
+      "axiom_seeds": [
+        "x+0=x",
+        "0+x=x",
+        "a+b=b+a",
+        "(a+b)+c=a+(b+c)"
+      ]
+    },
+    {
+      "id": "S",
+      "domain": "subtraction",
+      "ops": [
+        "-"
+      ],
+      "axiom_seeds": [
+        "x-0=x",
+        "x-x=0",
+        "(a+b)-b=a"
+      ]
+    },
+    {
+      "id": "M",
+      "domain": "multiplication",
+      "ops": [
+        "*",
+        "**"
+      ],
+      "axiom_seeds": [
+        "x*1=x",
+        "1*x=x",
+        "x*0=0",
+        "a*b=b*a"
+      ]
+    },
+    {
+      "id": "D",
+      "domain": "division",
+      "ops": [
+        "/"
+      ],
+      "axiom_seeds": [
+        "x/1=x",
+        "(x*y)/y=x"
+      ]
+    }
+  ],
+  "training_note": "Generators first; temporary federations; distill composites only after frequency+efficiency proof.",
+  "next_action": "Shadow instrumentation live-validated on sandbox workloads. Attaching to a live production UML service (source=production) is the remaining frequency step; authority remains closed.",
+  "binding_read": {
+    "lattice_foundation": "live",
+    "generators": [
+      "addition",
+      "subtraction",
+      "multiplication",
+      "division"
+    ],
+    "foundation_medium": "uml_structure",
+    "claim": "Capability (15/15 temp) and restraint (0 promotions) are both successes; they prove different things. Promotion only when composite beats dynamic federation and mono/LIT on cost, plus Codex+authority.",
+    "not_yet": "U_AM compiled macro is a service-cost candidate, but production frequency/amortization and authority are not satisfied; .pt runtime equivalence is not claimed."
+  },
+  "foundation_medium": {
+    "id": "U",
+    "domain": "uml_structure",
+    "mix_default": 0.6,
+    "axiom_bank": "data/uml_domain_axioms_v1/uml_structure"
+  },
+  "last_run": "2026-08-07T01:43:07.255412+00:00",
+  "last_objective": "PASS_MEASURED_ZERO_U_AM_DEMAND",
+  "mix_by_domain": {
+    "addition": 0.779375,
+    "subtraction": 0.779375,
+    "multiplication": 0.5,
+    "division": 0.779375,
+    "uml_structure": 0.6
+  },
+  "promoted": [
+    "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/checkpoints/uml_structure/specialist.pt"
+  ],
+  "temporary_pair_federations": {
+    "passed": [
+      "U_AS",
+      "U_AM",
+      "U_AD",
+      "U_SM",
+      "U_SD",
+      "U_MD"
+    ],
+    "mix_default": 0.5,
+    "warm": "U"
+  },
+  "temporary_triple_federations": {
+    "passed": [
+      "U_ASM",
+      "U_ASD",
+      "U_AMD",
+      "U_SMD"
+    ],
+    "mix_default": 0.5,
+    "warm": "U"
+  },
+  "temporary_asmd_federation": {
+    "passed": [
+      "U_ASMD"
+    ],
+    "mix_default": 0.5,
+    "warm": "U",
+    "uml_start": 0.2452705274830765,
+    "uml_after": 0.8610701931511611,
+    "codex_hold": true
+  },
+  "temporary_lattice_summary": {
+    "foundations_persistent": [
+      "U",
+      "A",
+      "S",
+      "M",
+      "D"
+    ],
+    "pairs_temp_pass": 6,
+    "triples_temp_pass": 4,
+    "asmd_temp_pass": 1,
+    "arith_configs_validated": 15,
+    "persistent_composites": 0
+  },
+  "promotion_gate": {
+    "verdict": "PASS_SCALE_TEMPORARY_DEFAULT",
+    "hypothesis_supported": true,
+    "promoted": [],
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_federation_promotion_gate_latest.json"
+  },
+  "native_thicken": {
+    "objective": "PASS",
+    "native_before": 0.25,
+    "native_after": 1.0,
+    "committed": true,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_native_thicken_latest.json"
+  },
+  "breakthrough_criterion": {
+    "binding": true,
+    "not": "another_accuracy_headline",
+    "comparison": "persistent_composite_cost < dynamic_foundational_federation_cost AND persistent_composite_cost < mono_or_LIT_cost",
+    "also_required": [
+      "codex_hold_preserved",
+      "operator_or_authority_gate"
+    ],
+    "note": "Until one branch wins this comparison honestly, the temporary lattice remains demonstrated capability without unnecessary permanent weight. That restraint is architecture, not hesitation.",
+    "separated_questions": {
+      "can_federation_learn": "YES — temporary lattice 15/15 trainable with Codex hold",
+      "should_composite_be_permanent": "NOT_YET — 0/11 real cost-winners"
+    },
+    "governance": "Saint-Exupéry as promotion law: a composite earns existence only when removing it would make the system less efficient. Capability and restraint are both successes; they prove different things."
+  },
+  "cost_winner_hunt": {
+    "objective": "BLOCKED_PREREQUISITE",
+    "n_full_wins": 0,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_cost_winner_hunt_latest.json"
+  },
+  "cost_floor_audit": {
+    "objective": "PROVED_STRUCTURAL_IMPOSSIBILITY",
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_cost_floor_audit_latest.json"
+  },
+  "mixed_workload_cost": {
+    "candidate": "U_AM",
+    "service_cost_winner": true,
+    "promotion_ready": false,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mixed_cost_benchmark_latest.json"
+  },
+  "u_am_scale_sweep": {
+    "objective": "PASS_SCALE_CROSSOVER",
+    "candidate_type": "compiled_uml_macro",
+    "promotion_ready": false,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_am_scale_sweep_latest.json"
+  },
+  "u_am_candidate_gate": {
+    "promotion_ready": false,
+    "frequency_status": "INCONCLUSIVE_NO_PRODUCTION_TELEMETRY",
+    "authority": "NOT_INVOKED",
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_am_candidate_gate_latest.json"
+  },
+  "u_am_isolated_creation": {
+    "median_creation_ns": 116185000,
+    "required_requests": 139511395,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_u_am_creation_audit_latest.json"
+  },
+  "u_am_shadow_experiment": {
+    "status": "READY_NOT_RUNNING",
+    "default_enabled": false,
+    "experiment_id_required": true,
+    "source_required": "production",
+    "dynamic_path_authoritative": true,
+    "candidate_observe_only": true,
+    "telemetry_schema": "uml_route_usage_v1",
+    "instructions": "U_AM_SHADOW_EXPERIMENT.md"
+  },
+  "u_am_shadow_sandbox": {
+    "objective": "PASS_MEASURED_ZERO_U_AM_DEMAND",
+    "u_am_macro_eligible": 0,
+    "u_am_domain_nonmacro": 527,
+    "evaluator_invocations": 12380,
+    "pipeline_runs_to_break_even": null,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_u_am_shadow_sandbox_latest.json"
+  }
+}

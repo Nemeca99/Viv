@@ -1,0 +1,40 @@
+{
+  "schema_version": "rid_normalized_address_space_v1",
+  "status": "doctrine",
+  "fold": "RID(a,b,c)=a*b*c continuous_[0,1]",
+  "claim": "Parameter growth expands RID decimal precision depth of one normalized identity space; it does not require a separate giant floating-point object per identity in the conventional weight sense.",
+  "decimal_address_space": {
+    "rule": "d decimal places yield 10^d - 1 unique nonzero values in (0,1) at that quantization",
+    "examples": [
+      {"d": 1, "unique_nonzero": 9, "range_note": "0.1..0.9"},
+      {"d": 2, "unique_nonzero": 99, "range_note": "0.01..0.99"},
+      {"d": 3, "unique_nonzero": 999, "range_note": "0.001..0.999"}
+    ],
+    "precision_for_n_parameters": "d = ceil(log10(N + 1))",
+    "examples_n": [
+      {"N": 999, "d": 3},
+      {"N": 999999, "d": 6},
+      {"N": 999999999, "d": 9},
+      {"N": 999999999999, "d": 12}
+    ]
+  },
+  "uniqueness": "No two parameters share the same RID-normalized probability identity at the active precision depth.",
+  "pipeline": [
+    "prompt",
+    "lossless_uml_identity",
+    "locate_probability_region_in_rid_space",
+    "choose_among_valid_routes",
+    "select_most_efficient_route",
+    "decode_fixed_token_answer"
+  ],
+  "contrast": {
+    "conventional": "Distribute an answer across billions of learned floating-point weights and reconstruct it probabilistically.",
+    "viv": "Normalize every possibility into a unique RID coordinate; locate the answer region from deterministic UML; use probability only to select the route through that space."
+  },
+  "division_of_labor": {
+    "UML": "tokenizer — controls token identity, encode/decode, sealed destinations",
+    "RID": "stability — system/training health fold, residual into PID, halt/cool-down"
+  },
+  "expert_link": "A/S/M/D experts examine the encoded equation and identify which domain or federation provides the most efficient route to the already located answer — they do not independently guess the destination.",
+  "evidence_status": "doctrine_plus_combinatorial_selftest; not yet proved as full trillion-parameter plant implementation"
+}

@@ -20,8 +20,9 @@
 
 import math, ast as _ast, re, sys, os, time
 import random as _random
+import threading
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Any, Callable, Optional
 
 # Strip ANSI escape codes (phones/terminals sometimes inject these)
 _ANSI = re.compile(r'\x1b(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
@@ -205,6 +206,73 @@ class Node:
     exp:      float = None
     children: list  = field(default_factory=list)
     imag:     bool  = False   # imaginary result flag
+
+
+# Optional evaluation observer for explicitly named shadow experiments.
+# Default is disabled, so normal evaluator behavior and cost are unchanged.
+_EVALUATION_OBSERVER: Callable[[str, Node, Any, str], None] | None = None
+_EVALUATION_OBSERVER_ID: str | None = None
+_EVALUATION_OBSERVER_FAIL_CLOSED = True
+_EVALUATION_OBSERVER_LOCK = threading.RLock()
+
+
+def install_evaluation_observer(
+    observer: Callable[[str, Node, Any, str], None],
+    *,
+    experiment_id: str,
+    fail_closed: bool = True,
+) -> None:
+    """Install the sole evaluator observer for a named shadow experiment.
+
+    Competing observers are a fault condition. The observer never chooses or
+    changes a result; it receives the authoritative result after evaluation.
+    """
+    experiment = str(experiment_id).strip()
+    if not experiment:
+        raise ValueError("uml_evaluation_observer_experiment_id_required")
+    if not callable(observer):
+        raise TypeError("uml_evaluation_observer_must_be_callable")
+    global _EVALUATION_OBSERVER
+    global _EVALUATION_OBSERVER_ID
+    global _EVALUATION_OBSERVER_FAIL_CLOSED
+    with _EVALUATION_OBSERVER_LOCK:
+        if _EVALUATION_OBSERVER is not None:
+            raise RuntimeError(
+                "uml_evaluation_observer_competing_writer:"
+                f"active={_EVALUATION_OBSERVER_ID!r}:requested={experiment!r}"
+            )
+        _EVALUATION_OBSERVER = observer
+        _EVALUATION_OBSERVER_ID = experiment
+        _EVALUATION_OBSERVER_FAIL_CLOSED = bool(fail_closed)
+
+
+def remove_evaluation_observer(*, experiment_id: str) -> None:
+    """Remove the active observer; only its owning experiment may remove it."""
+    experiment = str(experiment_id).strip()
+    global _EVALUATION_OBSERVER
+    global _EVALUATION_OBSERVER_ID
+    global _EVALUATION_OBSERVER_FAIL_CLOSED
+    with _EVALUATION_OBSERVER_LOCK:
+        if _EVALUATION_OBSERVER is None:
+            return
+        if experiment != _EVALUATION_OBSERVER_ID:
+            raise RuntimeError(
+                "uml_evaluation_observer_owner_mismatch:"
+                f"active={_EVALUATION_OBSERVER_ID!r}:requested={experiment!r}"
+            )
+        _EVALUATION_OBSERVER = None
+        _EVALUATION_OBSERVER_ID = None
+        _EVALUATION_OBSERVER_FAIL_CLOSED = True
+
+
+def evaluation_observer_status() -> dict[str, object]:
+    """Return observer state without exposing the callback."""
+    with _EVALUATION_OBSERVER_LOCK:
+        return {
+            "active": _EVALUATION_OBSERVER is not None,
+            "experiment_id": _EVALUATION_OBSERVER_ID,
+            "fail_closed": _EVALUATION_OBSERVER_FAIL_CLOSED,
+        }
 
 # ══════════════════════════════════════════════════════════════
 # AST EVALUATOR
@@ -575,7 +643,25 @@ def evaluate(expr: str):
         trace = p.trace
     else:
         node = std_parse(expr)
-    return eval_node(node), node, notation, trace
+    value = eval_node(node)
+    # Lock-free read keeps the disabled hot path cheap. Install/remove writes
+    # are lock-serialized; a local callable reference remains valid if removal
+    # races this one completed evaluation.
+    observer = _EVALUATION_OBSERVER
+    observer_id = _EVALUATION_OBSERVER_ID
+    fail_closed = _EVALUATION_OBSERVER_FAIL_CLOSED
+    if observer is not None:
+        try:
+            observer(str(expr), node, value, notation)
+        except Exception as exc:
+            message = (
+                "uml_evaluation_observer_failed:"
+                f"experiment={observer_id!r}:error={type(exc).__name__}:{exc}"
+            )
+            if fail_closed:
+                raise RuntimeError(message) from exc
+            print(f"UML_EVALUATION_OBSERVER_DEGRADED:{message}", file=sys.stderr)
+    return value, node, notation, trace
 
 
 def structural_signature(node: Node) -> tuple:

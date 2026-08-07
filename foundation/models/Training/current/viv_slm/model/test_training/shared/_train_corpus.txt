@@ -1,0 +1,13 @@
+the dog bites man and the cat sits on the mat
+viv speaks with one identity and two specialists
+cpu mind drafts short and verifies what gpu mouth says
+gpu mouth reasons deep and long on the same knowledge
+same vocab same identity different weights different lanes
+efficient lane is greedy fast and stops early when sure
+deep lane explores then locks when the answer is clear
+the cat sits the dog bites the mat is warm
+viv is one voice with two trained specialists
+cpu speculative decoder on both ends of gpu reasoning
+identity lives in weights not in sys prompt injection
+contingent knowledge arrives through tagged rag not identity
+the specialists talk to each other in real time

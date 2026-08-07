@@ -1,0 +1,342 @@
+{
+  "schema_version": "uml_domain_expert_lattice_v1",
+  "status": "doctrine_plus_live_generators",
+  "metaphor": "conway_generators",
+  "generators_live": true,
+  "generator_checkpoints": {
+    "A": "checkpoints/addition/specialist.pt",
+    "S": "checkpoints/subtraction/specialist.pt",
+    "M": "checkpoints/multiplication/specialist.pt",
+    "D": "checkpoints/division/specialist.pt",
+    "U": "checkpoints/uml_structure/specialist.pt"
+  },
+  "foundation_medium_expert": {
+    "id": "U",
+    "domain": "uml_structure",
+    "role": "mandatory_substrate",
+    "checkpoint": "checkpoints/uml_structure/specialist.pt",
+    "muscles_vs_skeleton": "A/S/M/D are muscles; U is skeleton — combined movement is one valid body only through U.",
+    "authority": [
+      "nested_pemdas_composition",
+      "structural_parsing_grouping",
+      "reversible_codec_identity",
+      "destination_sealing",
+      "malformed_route_rejection",
+      "canonical_route_comparison"
+    ],
+    "lattice_binding": "Every arithmetic federation is U+<arith> (U+A, U+AM, U+ASMD, …). Do NOT expand to peer-5 C(5,k)=31.",
+    "admission": "PASS",
+    "mix_admitted": 0.45,
+    "note": "FOUNDATION = true no matter what. CONDITIONAL bindings/federations/throttle stack on top; never rewrite foundation. U admitted at mix 0.45 after hold miss at 0.6."
+  },
+  "knowledge_stack": {
+    "foundation_axioms": [
+      "U",
+      "A",
+      "S",
+      "M",
+      "D"
+    ],
+    "conditional_bindings": [
+      "sealed_identities",
+      "task_surface",
+      "time_context_facts"
+    ],
+    "federation_and_route": [
+      "U_plus_arith_configs",
+      "probability_among_structurally_valid",
+      "cost_prefers"
+    ],
+    "decoded_response": "human_readable_result",
+    "rule": "Conditional learning is subordinate to foundation. Invalid equations are never validated by text frequency."
+  },
+  "control_order": [
+    "U_structure_wellformed_sealed",
+    "ASMD_applicable_transforms",
+    "probability_among_structurally_valid",
+    "cost_selects_preferred"
+  ],
+  "notes": "Four arithmetic generators LIVE (P3). U = mandatory structure substrate (not peer-5). Federations = 15 arith configs each bound as U+…. Temporary federations first; promote composites after frequency+efficiency+Codex+authority.",
+  "base_experts": [
+    {
+      "id": "U",
+      "domain": "uml_structure",
+      "role": "mandatory_substrate"
+    },
+    {
+      "id": "A",
+      "domain": "addition",
+      "role": "monolithic_primitive"
+    },
+    {
+      "id": "S",
+      "domain": "subtraction",
+      "role": "monolithic_primitive"
+    },
+    {
+      "id": "M",
+      "domain": "multiplication",
+      "role": "monolithic_primitive"
+    },
+    {
+      "id": "D",
+      "domain": "division",
+      "role": "monolithic_primitive"
+    }
+  ],
+  "composition_unordered": {
+    "formula": "sum C(4,k) for k=1..4",
+    "note": "Arithmetic generators only; each config operationally U+<label>. Peer-5 counting (31/325) rejected.",
+    "with_substrate": "U+A, U+S, U+M, U+D, U+AS, U+AM, … U+ASMD (15)",
+    "singles": 4,
+    "pairs": 6,
+    "triples": 4,
+    "all_four": 1,
+    "total_nonempty": 15,
+    "mixed_domain": 11,
+    "labels": {
+      "singles": [
+        "A",
+        "S",
+        "M",
+        "D"
+      ],
+      "pairs": [
+        "AS",
+        "AM",
+        "AD",
+        "SM",
+        "SD",
+        "MD"
+      ],
+      "triples": [
+        "ASM",
+        "ASD",
+        "AMD",
+        "SMD"
+      ],
+      "all_four": [
+        "ASMD"
+      ]
+    }
+  },
+  "composition_ordered": {
+    "formula": "sum P(4,k) for k=1..4",
+    "total_without_repeats": 64,
+    "note": "AS != SA as computational routes even if same domains participate."
+  },
+  "with_domain_repeats": {
+    "bounded": false,
+    "pruning": [
+      "uml_cost",
+      "RID_health",
+      "PID_residual",
+      "max_route_length"
+    ]
+  },
+  "pipeline": [
+    "text",
+    "reversible_uml_equation",
+    "identify_required_domains",
+    "construct_candidate_federations",
+    "generate_valid_routes_in_federation",
+    "evaluate_all_routes_to_sealed_token",
+    "compare_uml_cost",
+    "probabilistic_select_among_valid",
+    "decode_to_text"
+  ],
+  "expert_query": [
+    "does_my_domain_apply",
+    "which_portion_is_mine",
+    "can_i_solve_alone",
+    "my_route_cost",
+    "would_cooperation_reduce_cost"
+  ],
+  "persistence_policy": {
+    "default": "temporary_federation",
+    "promote_to_persistent_composite_when": [
+      "combination_frequency_high",
+      "uml_cost_beats_alternatives",
+      "codex_hold_preserved",
+      "operator_or_authority_gate"
+    ],
+    "breakthrough_criterion": {
+      "binding": true,
+      "comparison": "persistent_composite_cost < dynamic_foundational_federation_cost AND persistent_composite_cost < mono_or_LIT_cost",
+      "also_required": [
+        "codex_hold_preserved",
+        "operator_or_authority_gate"
+      ],
+      "restraint": "Temporary lattice = demonstrated capability without unnecessary permanent weight. Restraint is architecture, not hesitation.",
+      "not": "another_accuracy_headline",
+      "real_cost_winners": 0,
+      "separated_questions": {
+        "can_federation_learn": "YES — temporary lattice 15/15 trainable with Codex hold",
+        "should_composite_be_permanent": "NOT_YET — 0/11 real cost-winners; gate cannot be gamed by accuracy, frequency, or temporary PASS"
+      },
+      "governance": "Saint-Exupéry as promotion law: a composite earns existence only when removing it would make the system less efficient. Full lattice proves capability; zero promotions prove restraint — both successes, different claims.",
+      "last_hunt": "BLOCKED_PREREQUISITE",
+      "hunt_receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_cost_winner_hunt_latest.json",
+      "guarded_u_cancel": {
+        "status": "ENABLED_DEFAULT_ON",
+        "fail_closed": true,
+        "env_override": "UML_GUARDED_CANCEL",
+        "subtracts": [
+          "(V*K)/K",
+          "(K*V)/K",
+          "(K*K)/K"
+        ],
+        "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_guarded_cancel_enable_latest.json",
+        "note": "Cancelable MD drag is removed before federation dispatch. Only residual irreducible MD is eligible for later U_MD service-cost investigation."
+      }
+    }
+  },
+  "control_law": "Determinism chooses the destination. Probability chooses the route. Domain weighting chooses who participates. Cost chooses which valid route should win.",
+  "temporary_federations": {
+    "status": "PASS",
+    "policy": "temporary_only",
+    "warm_substrate": "U",
+    "admitted": [
+      "U_AS",
+      "U_AM",
+      "U_AD",
+      "U_SM",
+      "U_SD",
+      "U_MD"
+    ],
+    "passed": [
+      "U_AS",
+      "U_AM",
+      "U_AD",
+      "U_SM",
+      "U_SD",
+      "U_MD"
+    ],
+    "pair_tier_complete": true,
+    "runs_dir": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_temp_federations",
+    "updated_at": "2026-08-07T00:26:35.684536+00:00"
+  },
+  "temporary_triple_federations": {
+    "status": "PASS",
+    "policy": "temporary_only",
+    "warm_substrate": "U",
+    "tier": "triple",
+    "admitted": [
+      "U_ASM",
+      "U_ASD",
+      "U_AMD",
+      "U_SMD"
+    ],
+    "passed": [
+      "U_ASM",
+      "U_ASD",
+      "U_AMD",
+      "U_SMD"
+    ],
+    "complete": true,
+    "runs_dir": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_temp_federations",
+    "updated_at": "2026-08-07T00:31:01.565518+00:00"
+  },
+  "temporary_asmd_federation": {
+    "status": "PASS",
+    "policy": "temporary_only",
+    "warm_substrate": "U",
+    "tier": "all_four",
+    "admitted": [
+      "U_ASMD"
+    ],
+    "passed": [
+      "U_ASMD"
+    ],
+    "complete": true,
+    "runs_dir": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_temp_federations",
+    "updated_at": "2026-08-07T00:32:45.142630+00:00"
+  },
+  "temporary_lattice_complete": {
+    "status": "PASS",
+    "arith_configs": 15,
+    "pairs": 6,
+    "triples": 4,
+    "asmd": 1,
+    "persistent_composites": false,
+    "policy": "temporary_only_until_promotion_gates",
+    "updated_at": "2026-08-07T00:32:45.142630+00:00"
+  },
+  "promotion_gate_latest": {
+    "status": "PASS_SCALE_TEMPORARY_DEFAULT",
+    "hypothesis_supported": true,
+    "candidates": [],
+    "promoted": [],
+    "train_ok_promote_deny": 11,
+    "persistent_composites": 0,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_federation_promotion_gate_latest.json",
+    "updated_at": "2026-08-07T00:37:19.254502+00:00"
+  },
+  "cost_winner_hunt_latest": {
+    "objective": "BLOCKED_PREREQUISITE",
+    "n_full_wins": 0,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_cost_winner_hunt_latest.json",
+    "updated_at": "2026-08-07T00:55:24.990572+00:00"
+  },
+  "cost_floor_audit_latest": {
+    "objective": "PROVED_STRUCTURAL_IMPOSSIBILITY",
+    "literal_floor": 1,
+    "mixed_observed_min_by_width": {
+      "2": 5
+    },
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_cost_floor_audit_latest.json",
+    "updated_at": "2026-08-07T00:57:46.890276+00:00"
+  },
+  "mixed_workload_cost_latest": {
+    "objective": "FOUND_SERVICE_COST_WINNER",
+    "candidate": "U_AM",
+    "service_cost_winner": true,
+    "promotion_ready": false,
+    "reason_not_promoted": "production_frequency_and_authority_not_satisfied",
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mixed_cost_benchmark_latest.json",
+    "updated_at": "2026-08-07T01:01:18.860849+00:00"
+  },
+  "u_am_scale_sweep_latest": {
+    "objective": "PASS_SCALE_CROSSOVER",
+    "candidate_type": "compiled_uml_macro",
+    "promotion_ready": false,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_am_scale_sweep_latest.json",
+    "updated_at": "2026-08-07T01:02:33.721488+00:00"
+  },
+  "composite_candidates": {
+    "U_AM": {
+      "type": "compiled_uml_macro",
+      "status": "CANDIDATE_AWAITING_FREQUENCY_AND_AUTHORITY",
+      "promotion_ready": false,
+      "promoted": false,
+      "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_am_candidate_gate_latest.json",
+      "updated_at": "2026-08-07T01:15:45.194243+00:00"
+    }
+  },
+  "u_am_isolated_creation_latest": {
+    "objective": "PASS_ISOLATED_CREATION",
+    "artifact_bytes": 110080,
+    "required_requests": 139511395,
+    "promotion_ready": false,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_u_am_creation_audit_latest.json",
+    "updated_at": "2026-08-07T01:14:33.061350+00:00"
+  },
+  "u_am_shadow_experiment": {
+    "status": "SANDBOX_MEASURED_NOT_PRODUCTION",
+    "default_enabled": false,
+    "dynamic_path_authoritative": true,
+    "candidate_serves": false,
+    "candidate_promoted": false,
+    "single_observer_authority": true,
+    "aggregate_telemetry": "uml_route_usage_v1",
+    "required_healthy_production_requests": 139511395,
+    "recorded_healthy_production_requests": 0,
+    "sandbox_u_am_eligible": 0,
+    "sandbox_evaluator_invocations": 12380,
+    "sandbox_parity_checks": 0,
+    "receipt": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_u_am_shadow_sandbox_latest.json",
+    "updated_at": "2026-08-07T01:43:07.255412+00:00",
+    "sandbox_u_am_macro_eligible": 0,
+    "sandbox_u_am_domain_nonmacro": 527
+  }
+}

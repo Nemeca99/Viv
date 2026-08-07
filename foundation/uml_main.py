@@ -40,6 +40,16 @@ from lib.uml_engine import (  # noqa: E402
     word_encoding_options,
 )
 from lib.triad_kernel import TRIAD_CONTRACT_VERSION
+from lib.uml_character_tokenizer import (  # noqa: E402
+    TOKEN_ID_BASE as UML_CHARACTER_TOKEN_ID_BASE,
+    TOKEN_UNIT as UML_CHARACTER_TOKEN_UNIT,
+    VOCAB_MODE as UML_CHARACTER_VOCAB_MODE,
+    VOCAB_SHA256 as UML_CHARACTER_VOCAB_SHA256,
+    VOCAB_SIZE as UML_CHARACTER_VOCAB_SIZE,
+    decode as decode_uml_characters,
+    encode as encode_uml_characters,
+    structure as uml_character_structure,
+)
 
 VERSION = "1.1.0"
 DEFAULT_CORPUS = FOUNDATION_ROOT / "artifacts" / "uml" / "corpus.jsonl"
@@ -222,6 +232,66 @@ def cmd_word(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_tokenize(args: argparse.Namespace) -> int:
+    """Encode text with the CPU UML single-character vocabulary."""
+    try:
+        encoded = uml_character_structure(args.text)
+    except Exception as ex:
+        print(f"Error: {ex}", file=sys.stderr)
+        return 1
+    if args.json:
+        print(json.dumps(encoded, ensure_ascii=False, indent=2))
+    else:
+        print(" ".join(str(token_id) for token_id in encoded["token_ids"]))
+    return 0
+
+
+def cmd_detokenize(args: argparse.Namespace) -> int:
+    """Decode CPU UML single-character token IDs back into text."""
+    try:
+        text = decode_uml_characters(args.token_ids)
+    except Exception as ex:
+        print(f"Error: {ex}", file=sys.stderr)
+        return 1
+    if args.json:
+        print(
+            json.dumps(
+                {
+                    "token_ids": args.token_ids,
+                    "text": text,
+                    "vocab_mode": UML_CHARACTER_VOCAB_MODE,
+                    "vocab_size": UML_CHARACTER_VOCAB_SIZE,
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+    else:
+        print(text)
+    return 0
+
+
+def cmd_tokenizer_vocab(args: argparse.Namespace) -> int:
+    """Print the complete CPU Universal UML vocabulary metadata."""
+    del args
+    print(
+        json.dumps(
+            {
+                "vocab_mode": UML_CHARACTER_VOCAB_MODE,
+                "token_unit": UML_CHARACTER_TOKEN_UNIT,
+                "vocab_size": UML_CHARACTER_VOCAB_SIZE,
+                "token_id_base": UML_CHARACTER_TOKEN_ID_BASE,
+                "unicode_scalar_range": "U+0000..U+10FFFF",
+                "surrogate_range_excluded": "U+D800..U+DFFF",
+                "vocab_sha256": UML_CHARACTER_VOCAB_SHA256,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+    return 0
+
+
 def cmd_dual_eval(args: argparse.Namespace) -> int:
     if len(args.expr) < 2:
         print("usage: uml_main dual-eval <uml-expr> -- <std-expr>", file=sys.stderr)
@@ -323,6 +393,20 @@ def build_parser() -> argparse.ArgumentParser:
     wd.add_argument("--json", action="store_true")
     wd.set_defaults(func=cmd_word)
 
+    tk = sub.add_parser("tokenize", help="Encode text with the CPU UML character vocabulary")
+    tk.add_argument("text")
+    tk.add_argument("--json", action="store_true")
+    tk.set_defaults(func=cmd_tokenize)
+
+    dt = sub.add_parser("detokenize", help="Decode CPU UML character token IDs")
+    dt.add_argument("token_ids", nargs="+", type=int)
+    dt.add_argument("--json", action="store_true")
+    dt.set_defaults(func=cmd_detokenize)
+
+    sub.add_parser("tokenizer-vocab", help="Print the CPU UML character vocabulary").set_defaults(
+        func=cmd_tokenizer_vocab
+    )
+
     de = sub.add_parser("dual-eval", help="Parallel UML vs standard engine comparison")
     de.add_argument("expr", nargs="+", help='UML expr -- STD expr (use "--" separator)')
     de.add_argument("--json", action="store_true")
@@ -359,7 +443,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     known = (
         "eval", "verify", "trace", "convert", "b52", "dual-eval", "corpus",
-        "repl", "demo", "symbols", "examples", "word", "-h", "--help", "--version",
+        "repl", "demo", "symbols", "examples", "word", "tokenize", "detokenize",
+        "tokenizer-vocab", "-h", "--help", "--version",
     )
     if argv and argv[0] not in known:
         argv = ["eval", *argv]
