@@ -49,8 +49,11 @@ Cargo.lock
 *.db
 *.db-*
 datasets/
-models/
-checkpoints/
+# Root model packs only; use trailing-/* so uml_bigram can be re-included.
+/models/*
+!/models/uml_bigram_part3/
+!/models/uml_bigram_part3/**
+/checkpoints/
 
 # Machine indexes and generated runtime evidence that are too large for Git
 artifacts/file_index/
@@ -94,13 +97,28 @@ desktop.ini
 # Keep governed source documentation and receipts trackable. Generated files
 # are ignored only when they use conventional cache/temp names above.
 
-# Isolated Part 3 model source and compact evidence are intentionally
-# trackable for backup. No other model material is unignored here.
-!models/
-!models/uml_bigram_part3/
-!models/uml_bigram_part3/**
+# Isolated Part 3 model source remains trackable via /models/* exceptions above.
 models/uml_bigram_part3/__pycache__/
 models/uml_bigram_part3/artifacts/run_500_steps/tensor_dataset/**/*.pt
+
+# Massive local weight / HF / run packs — never track
+foundation/models/gpu/
+foundation/artifacts/models/
+foundation/models/Training/backups/
+foundation/models/Training/current/viv_slm/model/artifacts_local/
+foundation/models/Training/current/viv_slm/model/test_training/runs/
+foundation/models/Training/current/viv_slm/model/test_training/data/
+foundation/models/Training/current/viv_slm/model/test_training/checkpoints/
+foundation/models/Training/current/viv_slm/model/test_training/dataset/**/*.pt
+foundation/models/Training/current/viv_slm/model/test_training/**/__pycache__/
+# Training data corpuses are local; keep only tiny indexes/READMEs if present
+foundation/models/Training/data/**
+!foundation/models/Training/data/
+!foundation/models/Training/data/**/README.md
+!foundation/models/Training/data/**/INDEX.json
+!foundation/models/Training/data/knowledge/
+!foundation/models/Training/data/knowledge/README.md
+!foundation/models/Training/data/knowledge/INDEX.json
 
 # Viv-SLM Training control plane: keep declarative source, indexes, manifests,
 # and small audit documents trackable while excluding generated runs/tensors.
@@ -138,14 +156,5 @@ foundation/artifacts/auto/tag_architecture_ab_v1/**
 !foundation/artifacts/auto/tag_architecture_ab_v1/*/
 !foundation/artifacts/auto/tag_architecture_ab_v1/*/*.json
 !foundation/artifacts/auto/tag_architecture_ab_v1/*/*.md
-foundation/models/Training/data/**/*.pt
-foundation/models/Training/data/**/*.pth
-foundation/models/Training/data/**/*.bin
-foundation/models/Training/data/**/*.safetensors
-foundation/models/Training/data/**/*.gguf
-foundation/models/Training/data/knowledge/**
-!foundation/models/Training/data/knowledge/
-!foundation/models/Training/data/knowledge/README.md
-!foundation/models/Training/data/knowledge/INDEX.json
 foundation/models/Training/current/viv_slm/**/__pycache__/
 foundation/models/Training/legacy/viv_slm/**/__pycache__/
