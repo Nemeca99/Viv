@@ -36,14 +36,16 @@ Maps `VIV_COMPLETE_SUMMARY.md` vision to what exists **today** on this machine.
 | | |
 | --- | --- |
 | **Status** | Structural spine landed; not a claim every core is fleshed |
-| **Map** | 35 systems · structural coverage **100%** · PARTIAL/BOUND **25.7%** · SKELETON **74.3%** |
-| **Bus** | 9 slots · filled **77.8%** · vacant for compute-core wire-in: `uml_invoke`, `subagent_spawn` |
+| **Map** | 39 systems · structural coverage **100%** · PARTIAL **23.1%** · SKELETON **76.9%** |
+| **Bus** | 13 slots · filled **92.3%** (12/13) · vacant for compute-core: `uml_invoke` only (`subagent_spawn` BOUND → `aios_subagent_v1`) |
+| **Overnight gaps** | `perception_core` / `ethics_core` / `federation_core` stubs + bus slots `perception_plan` / `ethics_plan` / `federation_plan` / `hardware_plan` |
 | **Smoke** | System skeleton smoke **PASS 12/12** (already done; do not rebuild) |
-| **Latest map receipt** | `artifacts/auto/aios_skeleton/LATEST.json` (stamp `20260807T092807Z`) |
+| **Latest map** | `artifacts/auto/aios_skeleton/LATEST.json` + `skeleton_map_latest.json` |
 | **Latest smoke** | `artifacts/auto/system_smoke/LATEST.json` (stamp `20260807T092608Z`) |
 | **Runner** | `scripts/run_aios_skeleton_v1.py --plan-only` |
 | **Bus / map libs** | `lib/aios_skeleton_bus.py`, `lib/aios_skeleton_map.py`, `lib/aios_skeleton_stub.py`, `lib/aios_skeleton_subagent_profiles.py` |
-| **Vacant (honest)** | Nested-PEMDAS invoke + subagent spawn callable — reserved for compute core |
+| **Vacant (honest)** | `uml_invoke` only — reserved for compute-core wire-in; `subagent_spawn` bound to skeleton worker bus |
+| **Overnight notes** | `artifacts/auto/wake_finish/skeleton_gaps_overnight.md` |
 
 ---
 

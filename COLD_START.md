@@ -198,10 +198,11 @@ UML Nested-PEMDAS + RID/PID plant + mouth/security surfaces) plugs into
 `foundation/lib/aios_skeleton_bus.py` slots:
 
 `security_in`, `security_out`, `uml_invoke`, `rid_sample`, `mouth_render`,
-`memory_plan`, `dream_plan`, `subagent_spawn`, `plant_health`.
+`memory_plan`, `dream_plan`, `subagent_spawn`, `plant_health`,
+`perception_plan`, `ethics_plan`, `federation_plan`, `hardware_plan`.
 
-Vacant slots are honest emptiness for wire-in (today: `uml_invoke`,
-`subagent_spawn`). One-command map:
+Vacant slots are honest emptiness for wire-in (today: `uml_invoke` only;
+`subagent_spawn` is bound to `run_aios_subagent_v1.py`). One-command map:
 
 ```powershell
 L:\Continue\.venv\Scripts\python.exe foundation\scripts\run_aios_skeleton_v1.py --plan-only
@@ -502,6 +503,26 @@ vision, and `GPU_LONG` training remain operator-gated and are listed in
 | Training automation | `scripts/run_training_automation_v1.py` |
 | Backup core | `scripts/run_backup_core_automation_v1.py` |
 | Continue automation check | `L:\Continue\automation\check_automation.ps1` (before/after automation spine edits) |
+| **Speak session (tomorrow goal)** | `scripts/run_viv_speak_session_v1.py` — see §5.1a |
+
+## 5.1a GOAL: speak by 2026-08-08
+
+**Binding operator goal:** speak/listen with Viv for real by end of **2026-08-08**
+(not contract-only theater). Critical path + morning commands:
+
+- `foundation/artifacts/auto/wake_finish/SPEAK_TOMORROW.md`
+- `foundation/artifacts/auto/wake_finish/SPEAK_TOMORROW.json`
+
+```powershell
+cd L:\Continue\Viv
+$py = "L:\Continue\.venv\Scripts\python.exe"
+& $py foundation\scripts\run_viv_speak_session_v1.py --dry-run
+& $py foundation\scripts\run_viv_speak_session_v1.py --live --text "hello Viv"
+```
+
+Honest status: text mouth can be LIVE when Ollama is up; mic STT + audio TTS are
+still stubs (`SKELETON_ONLY` for full listen loop). Do **not** start full AIOS
+for this path. Receipts: `foundation/artifacts/auto/viv_speak_session/`.
 
 ## 5.2 AIOS subagent worker bus (skeleton)
 
@@ -753,6 +774,7 @@ when its purpose, owner, boundary, tests, artifacts, and rollback path are clear
 | `foundation/VIV_COMPLETE_SUMMARY.md` | full vision, including unfinished areas |
 | `foundation/TRIAD_MEMBRANE.md` | membrane and triad boundary |
 | `foundation/VOICE.md` | voice and training boundary |
+| `foundation/artifacts/auto/wake_finish/SPEAK_TOMORROW.md` | **GOAL: speak by 2026-08-08** critical path |
 | `foundation/AIFL_CONTRACT.md` | feedback/training contract |
 | `foundation/PRT_GAMES.md` | predictive reasoning training games |
 | `foundation/SUPERCOOLING_GROWTH_CONTRACT.md` | structural adapter growth |
@@ -767,8 +789,12 @@ when its purpose, owner, boundary, tests, artifacts, and rollback path are clear
 
 ### WAKE_FINISH (Codex reset tonight)
 
+**GOAL: Speak with Viv for real by end of 2026-08-08.**  
+Speak critical path: `foundation/artifacts/auto/wake_finish/SPEAK_TOMORROW.md` (+ `SPEAK_TOMORROW.json`).  
+Session runner: `foundation/scripts/run_viv_speak_session_v1.py` (`--dry-run` default; `--live` explicit).  
+Dry-run receipt: `foundation/artifacts/auto/viv_speak_session/LATEST.json` (ok=true, SKELETON_ONLY).  
 Machine-readable twin: `foundation/artifacts/auto/wake_finish/LATEST.json`  
-Stamp: `20260807T092807Z` · Written for Codex reset handoff (no git commit in this pack).
+Stamp: `20260807T093014Z` · Codex reset handoff (no git commit in this pack).
 
 #### Done
 
@@ -781,7 +807,7 @@ Stamp: `20260807T092807Z` · Written for Codex reset handoff (no git commit in t
   - Receipts: `foundation/artifacts/auto/aios_subagents/` (`LATEST.json`)
   - Scripts (commit paths): `foundation/lib/aios_subagent_v1.py`, `foundation/scripts/run_aios_subagent_v1.py`, `foundation/scripts/test_aios_subagent_v1.py`
   - Manual: this file §5.2
-- **Skeleton map + bus LANDED** — 35 systems structural coverage 100%; bus filled 77.8%; vacant for compute-core: `uml_invoke`, `subagent_spawn`.
+- **Skeleton map + bus LANDED** — structural coverage 100%; `subagent_spawn` BOUND to `aios_subagent_v1`; vacant for compute-core: `uml_invoke` only.
   - Receipt: `foundation/artifacts/auto/aios_skeleton/20260807T092807Z/SKELETON_MAP.json`
   - LATEST: `foundation/artifacts/auto/aios_skeleton/LATEST.json`
   - Runner: `foundation/scripts/run_aios_skeleton_v1.py`
@@ -790,22 +816,19 @@ Stamp: `20260807T092807Z` · Written for Codex reset handoff (no git commit in t
   - Receipt: `foundation/artifacts/auto/field_scoped_bridge_canary/20260807T092616Z/field_scoped_bridge_canary_v1_20260807T092616Z.json`
 - Status matrix: `foundation/VIV_BUILD_STATUS.md` (Skeleton spine row).
 - Core automation same-day stamps — §5.1 `20260807T092111Z_plan_only` / `20260807T092120Z_execute_safe`.
+- **Speak session skeleton LANDED** — `run_viv_speak_session_v1.py`; dry-run `ok=true` / `SKELETON_ONLY` / `TEXT_MOUTH_LIVE_READY`.
+  - Path docs: `wake_finish/SPEAK_TOMORROW.md` (+ `.json`)
+  - Receipt: `foundation/artifacts/auto/viv_speak_session/20260807T093009646Z/RECEIPT.json`
+  - Manual: this file §5.1a
 
 #### Must-do on wake (ordered)
 
-**GOAL: Speak with Viv for real by end of 2026-08-08.**  
-Pointer: `foundation/artifacts/auto/wake_finish/SPEAK_TOMORROW.md` (may still be writing — if missing, say "pending from speak critical-path agent").
-
-0. Read `SPEAK_TOMORROW.md` (or note pending) — first commands there lead the speak path.
-1. Confirm vacant bus slots still `uml_invoke` + `subagent_spawn` via map/`wire_status` (CLI subagent bus is landed; bus-slot wire-in may still be vacant).
-2. **Wire compute core** (UML Nested-PEMDAS + RID/PID plant + mouth/security) into vacant slots — plan-only bind; no AIOS start. Bind `subagent_spawn` to `run_aios_subagent_v1.py` if still vacant.
-3. Re-run skeleton map after wire-in; then re-run system smoke; require PASS.
-4. Re-check canary under `--enable-canary` only; keep **default OFF**.
-5. Read this WAKE_FINISH + `wake_finish/LATEST.json` + skeleton map + smoke receipts (Done above) for evidence context.
-6. **Commit/push** (operator git): smoke trio + **subagent trio** (`aios_subagent_v1.py`, `run_aios_subagent_v1.py`, `test_aios_subagent_v1.py`) + skeleton bus/map/stub/security adapter + `run_aios_skeleton_v1.py` + `COLD_START.md` + `VIV_BUILD_STATUS.md` + `artifacts/auto/system_smoke/` + `artifacts/auto/aios_subagents/` + `artifacts/auto/aios_skeleton/` (exact list in wake_finish JSON).
-7. Optional soft-0.99 ask only if canary still PASS + default OFF — do not enable.
-8. Update `VIV_BUILD_STATUS.md` fill counts if wire-in changes them.
-9. Record next blocker in the blank session form below; stop on smoke fail / policy conflict.
+1. **GOAL: speak by 2026-08-08** — read `foundation/artifacts/auto/wake_finish/SPEAK_TOMORROW.md` (+ `.json`) and run its morning commands first (dry-run → status → `--live`).
+2. Read this WAKE_FINISH + `wake_finish/LATEST.json` + Done receipts above.
+3. **Commit/push** (operator git): smoke trio + subagent trio + skeleton bus/map/stub/subagent profiles/security adapter + `run_aios_skeleton_v1.py` + `COLD_START.md` + `VIV_BUILD_STATUS.md` + `artifacts/auto/system_smoke/` + `artifacts/auto/aios_skeleton/` + `artifacts/auto/aios_subagents/` (exact list in wake_finish JSON).
+4. Confirm vacant slot `uml_invoke` only → wire compute core (plan-only) → re-run skeleton map + system smoke; require PASS.
+5. Re-check canary under `--enable-canary` only; keep **default OFF**. Optional soft-0.99 ask only if still PASS + default OFF — do not enable.
+6. Update `VIV_BUILD_STATUS.md` if fill counts change; record blocker below; stop on smoke fail / policy conflict.
 
 #### Do-not
 
