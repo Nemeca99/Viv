@@ -2,11 +2,12 @@
 """Bounded Viv speak session — skeleton→live bridge (text mouth first).
 
 Default is --dry-run: prove status + intent packet + mouth envelope +
-deterministic CPU render + honest STT/TTS stubs. Never starts full AIOS.
+deterministic CPU render + security observe + honest STT/TTS stubs +
+uml_invoke HOLD. Never starts full AIOS. Offline dry-run must finish <60s.
 
 --live requires an explicit flag and runs one bounded voice_core.speak turn
 (text mouth via Ollama/Qwen or deterministic fallback). Mic listen / TTS
-audio remain stubbed until a later Codex pass.
+audio remain stubbed (BLOCKED) — text mouth is the 2026-08-08 milestone.
 
 Examples:
 
@@ -31,6 +32,7 @@ RECEIPTS_ROOT = FOUNDATION / "artifacts" / "auto" / "viv_speak_session"
 SCHEMA_VERSION = "viv_speak_session_receipt_v1"
 DEFAULT_TEXT = "hello Viv — one scripted turn"
 PYTHON = Path(r"L:\Continue\.venv\Scripts\python.exe")
+DRY_RUN_BUDGET_S = 60.0
 
 for _p in (str(FOUNDATION), str(VIV)):
     if _p not in sys.path:
@@ -67,23 +69,80 @@ def _write_receipt(stamp: str, payload: dict[str, Any]) -> Path:
 
 
 def _audio_stubs() -> dict[str, Any]:
-    """Honest vacant slots — no mic listen / TTS audio path in tree yet."""
+    """Honest vacant slots — audio listen/hear still BLOCKED; text mouth is the milestone."""
     return {
         "stt": {
-            "status": "STUB",
+            "status": "BLOCKED_ON_STT",
             "wired": False,
             "note": "No microphone / Whisper / speech_recognition listen loop in Viv tree.",
         },
         "tts": {
-            "status": "STUB",
+            "status": "BLOCKED_ON_TTS",
             "wired": False,
-            "note": "No pyttsx3 / SAPI / edge_tts audio render; mouth is text-out today.",
+            "note": "No pyttsx3 / SAPI / edge_tts audio render wired in session; mouth is text-out.",
         },
         "listen_loop": {
             "status": "STUB",
             "wired": False,
-            "note": "Operator talk path historically = CLI text via voice_main speak / model_main speak.",
+            "note": "Operator talk path = CLI text via voice_main / session --live (not mic).",
         },
+    }
+
+
+def _uml_invoke_hold() -> dict[str, Any]:
+    """Vacant bus slot — never fake Nested-PEMDAS / UML authority."""
+    return {
+        "id": "uml_invoke",
+        "ok": True,
+        "status": "HOLD",
+        "wired": False,
+        "fill": "VACANT",
+        "authority": False,
+        "note": (
+            "Bus slot uml_invoke deliberately vacant. "
+            "Speak session does not call uml_engine / Nested-PEMDAS. "
+            "Do not invent UML results here."
+        ),
+    }
+
+
+def _security_observe() -> dict[str, Any]:
+    """Cheap security IN/OUT observe if adapter present; never mutate."""
+    try:
+        from lib.aios_adapter_security import cpu_plan
+
+        plan = cpu_plan()
+        return {
+            "id": "security_observe",
+            "ok": True,
+            "wired": True,
+            "build_state": (plan or {}).get("build_state")
+            or ((plan or {}).get("extra") or {}).get("status", {}).get("build_state"),
+            "note": "Plan-only security adapter observe; dry-run does not triad-emit.",
+        }
+    except Exception as exc:  # noqa: BLE001 — soft path
+        return {
+            "id": "security_observe",
+            "ok": True,
+            "wired": False,
+            "status": "UNAVAILABLE",
+            "note": f"Security adapter not imported: {type(exc).__name__}",
+        }
+
+
+def _operator_verdict(*, mouth_ok: bool, ollama_up: bool) -> dict[str, str]:
+    """ALMOST = text mouth path; BLOCKED = audio listen/hear; LIVE_READY reserved for both."""
+    if not mouth_ok:
+        return {
+            "operator_verdict": "BLOCKED",
+            "text_verdict": "BLOCKED",
+            "audio_verdict": "BLOCKED",
+        }
+    text = "ALMOST" if ollama_up else "ALMOST_OFFLINE"
+    return {
+        "operator_verdict": "ALMOST",
+        "text_verdict": text,
+        "audio_verdict": "BLOCKED",
     }
 
 
@@ -118,6 +177,7 @@ def _dry_run(text: str) -> dict[str, Any]:
             "status": packet.get("status"),
             "facts_n": len(packet.get("facts") or []),
             "has_tagged_packet": bool(packet.get("tagged_packet")),
+            "uml_request": "absent",
         }
     )
 
@@ -154,26 +214,41 @@ def _dry_run(text: str) -> dict[str, Any]:
         }
     )
 
+    steps.append(_security_observe())
+    steps.append(_uml_invoke_hold())
+
     audio = _audio_stubs()
     steps.append({"id": "audio_stubs", "ok": True, **audio})
 
     elapsed = round(time.perf_counter() - t0, 3)
-    mouth_ok = all(bool(s.get("ok")) for s in steps if s["id"] != "audio_stubs")
+    budget_ok = elapsed < DRY_RUN_BUDGET_S
+    core_ids = {
+        "speak_status",
+        "intent_packet",
+        "mouth_envelope",
+        "mouth_finalize_deterministic",
+    }
+    mouth_ok = all(bool(s.get("ok")) for s in steps if s.get("id") in core_ids) and budget_ok
     ollama_up = bool(status.get("reachable")) and not bool(status.get("silent"))
+    verdicts = _operator_verdict(mouth_ok=mouth_ok, ollama_up=ollama_up)
 
-    if mouth_ok and ollama_up:
+    if not budget_ok:
+        readiness = "BLOCKED_ON_TIMEOUT"
+        overall = "BLOCKED_ON_TIMEOUT"
+        detail = f"Dry-run exceeded {DRY_RUN_BUDGET_S:.0f}s budget ({elapsed}s) — fail closed."
+    elif mouth_ok and ollama_up:
         readiness = "TEXT_MOUTH_LIVE_READY"
         overall = "SKELETON_ONLY"
         detail = (
-            "Text mouth endpoint reachable; dry-run contracts PASS. "
-            "Audio STT/TTS listen loop still STUB — not LIVE_READY for speak/listen."
+            "ALMOST (text): mouth endpoint reachable; dry-run contracts PASS. "
+            "BLOCKED (audio): STT/TTS still vacant — not LIVE_READY for speak/listen."
         )
     elif mouth_ok:
         readiness = "TEXT_MOUTH_OFFLINE_DETERMINISTIC"
         overall = "SKELETON_ONLY"
         detail = (
-            "Contracts + deterministic CPU mouth PASS; Ollama/Qwen not reachable. "
-            "Audio STT/TTS still STUB."
+            "ALMOST_OFFLINE (text): contracts + deterministic CPU mouth PASS; Ollama down. "
+            "BLOCKED (audio): STT/TTS still vacant."
         )
     else:
         readiness = "BLOCKED_ON_MOUTH_CONTRACT"
@@ -185,11 +260,16 @@ def _dry_run(text: str) -> dict[str, Any]:
         "mode": "dry_run",
         "status": overall,
         "readiness": readiness,
+        **verdicts,
         "detail": detail,
         "elapsed_s": elapsed,
+        "budget_s": DRY_RUN_BUDGET_S,
+        "budget_ok": budget_ok,
         "query": text,
         "aios_started": False,
         "gpu_long": False,
+        "leftover_servers": False,
+        "vacant_bus": ["uml_invoke"],
         "steps": steps,
         "audio": audio,
         "speak_status": status,
@@ -227,37 +307,55 @@ def _live(text: str, max_tokens: int) -> dict[str, Any]:
         }
     )
 
+    steps.append(_uml_invoke_hold())
     audio = _audio_stubs()
     steps.append({"id": "audio_stubs", "ok": True, **audio})
     elapsed = round(time.perf_counter() - t0, 3)
-    turn_ok = bool(out.get("ok")) and not bool(out.get("blocked")) and bool(str(out.get("text") or "").strip())
+    turn_ok = (
+        bool(out.get("ok"))
+        and not bool(out.get("blocked"))
+        and bool(str(out.get("text") or "").strip())
+    )
+    ollama_up = bool(status.get("reachable")) and not bool(status.get("silent"))
+    verdicts = _operator_verdict(mouth_ok=turn_ok, ollama_up=ollama_up)
 
-    if turn_ok and bool(status.get("reachable")):
+    if turn_ok and ollama_up:
         readiness = "TEXT_MOUTH_LIVE"
         overall = "SKELETON_ONLY"
         detail = (
-            "One live text speak turn completed (intent→mouth→Security OUT). "
-            "STT/TTS audio still STUB — operator hear/speak loop not complete."
+            "ALMOST (text): one live speak turn via intent→mouth→Security OUT. "
+            "BLOCKED (audio): STT/TTS vacant — hear/listen loop not complete."
         )
     elif turn_ok:
         readiness = "TEXT_MOUTH_DETERMINISTIC_LIVE"
         overall = "SKELETON_ONLY"
-        detail = "Speak returned deterministic/offline text through Security path; GPU mouth offline."
+        detail = (
+            "ALMOST_OFFLINE (text): deterministic/offline speak through Security path. "
+            "BLOCKED (audio): STT/TTS vacant."
+        )
     else:
         readiness = "BLOCKED_ON_LIVE_SPEAK"
         overall = "BLOCKED_ON_LIVE_SPEAK"
         detail = "Live speak turn failed or blocked."
+        verdicts = {
+            "operator_verdict": "BLOCKED",
+            "text_verdict": "BLOCKED",
+            "audio_verdict": "BLOCKED",
+        }
 
     return {
         "ok": turn_ok,
         "mode": "live",
         "status": overall,
         "readiness": readiness,
+        **verdicts,
         "detail": detail,
         "elapsed_s": elapsed,
         "query": text,
         "aios_started": False,
         "gpu_long": False,
+        "leftover_servers": False,
+        "vacant_bus": ["uml_invoke"],
         "steps": steps,
         "audio": audio,
         "speak_status": status,

@@ -41,6 +41,9 @@ def main() -> int:
         "vision",
         "hearing",
         "federation",
+        "perception",
+        "ethics",
+        "hardware",
         "soft_099",
         "aios_runtime",
         "compute_core",
@@ -76,6 +79,22 @@ def main() -> int:
     # Stub SKIP.
     vision = run_subagent("vision", write=True)
     assert vision.get("outcome") == "SKIP" and vision.get("ok") is True, vision
+    for stub_id in ("perception", "ethics", "federation", "hardware"):
+        stub = run_subagent(stub_id, write=False)
+        assert stub.get("outcome") == "SKIP" and stub.get("ok") is True, (stub_id, stub)
+
+    # Bus slot subagent_spawn bound; uml_invoke vacant.
+    from lib.aios_skeleton_bus import default_bus
+
+    bus = default_bus()
+    wire = bus.wire_status()
+    vacant = set(wire.get("vacant_for_compute_core") or [])
+    assert vacant == {"uml_invoke"}, vacant
+    spawn_fn = bus.slots.get("subagent_spawn")
+    assert callable(spawn_fn), spawn_fn
+    spawned = spawn_fn("selftest_ping", plan_only=True, write=False)
+    assert spawned.get("ok") is True and spawned.get("outcome") == "PASS", spawned
+    assert bus.slots.get("uml_invoke") is None
 
     # Forbidden flags refused.
     refused = run_subagent("selftest_ping", enable_soft_099=True, write=True)

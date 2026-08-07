@@ -84,11 +84,11 @@ _SLOT_BINDINGS: dict[str, dict[str, Any]] = {
         "note": "cycle_plan / cpu_plan; no dream execute",
     },
     "subagent_spawn": {
-        "bound": False,
-        "source": "lib.aios_skeleton_subagent_profiles (plan-only SKIP)",
-        "adapter": None,
-        "fill": "VACANT",
-        "note": "Profiles exist as SKIP stubs; spawn callable vacant for compute-core",
+        "bound": True,
+        "source": "lib.aios_subagent_v1 / scripts/run_aios_subagent_v1.py",
+        "adapter": "aios_subagent_v1",
+        "fill": "BOUND",
+        "note": "Skeleton worker bus: plan-only/SKIP spawn with receipts; not deep cognition",
     },
     "plant_health": {
         "bound": True,
@@ -220,6 +220,30 @@ def _try_import_cpu_plan(module: str) -> Callable[..., Any] | None:
     return None
 
 
+def _subagent_spawn_slot(
+    profile: str = "selftest_ping",
+    *,
+    plan_only: bool = True,
+    write: bool = False,
+    objective_id: str | None = None,
+    parent_turn_token_id: str | None = None,
+    timeout_s: float | None = None,
+    **_kwargs: Any,
+) -> dict[str, Any]:
+    """Bus slot callable → real skeleton subagent runner (plan-first)."""
+    from lib.aios_subagent_v1 import run_subagent
+
+    return run_subagent(
+        profile,
+        objective_id=objective_id,
+        parent_turn_token_id=parent_turn_token_id,
+        timeout_s=timeout_s,
+        plan_only=plan_only,
+        execute=False,
+        write=write,
+    )
+
+
 def default_bus() -> SkeletonBus:
     """Build bus with existing automation as filled slots; leave compute slots vacant."""
     bus = SkeletonBus()
@@ -227,7 +251,7 @@ def default_bus() -> SkeletonBus:
     sec = _try_import_cpu_plan("lib.aios_adapter_security")
     bus.bind("security_in", sec, note=_SLOT_BINDINGS["security_in"]["note"])
     bus.bind("security_out", sec, note=_SLOT_BINDINGS["security_out"]["note"])
-    # uml_invoke deliberately vacant
+    # uml_invoke deliberately vacant for compute-core
     bus.bind("uml_invoke", None, note=_SLOT_BINDINGS["uml_invoke"]["note"])
     rid = _try_import_cpu_plan("lib.aios_adapter_rid")
     bus.bind("rid_sample", rid, note=_SLOT_BINDINGS["rid_sample"]["note"])
@@ -237,8 +261,14 @@ def default_bus() -> SkeletonBus:
     bus.bind("memory_plan", mem, note=_SLOT_BINDINGS["memory_plan"]["note"])
     dream = _try_import_cpu_plan("lib.aios_adapter_dream")
     bus.bind("dream_plan", dream, note=_SLOT_BINDINGS["dream_plan"]["note"])
-    # subagent_spawn vacant (profiles are SKIP-only)
-    bus.bind("subagent_spawn", None, note=_SLOT_BINDINGS["subagent_spawn"]["note"])
+    # subagent_spawn → real skeleton worker bus (aios_subagent_v1)
+    bus.bind(
+        "subagent_spawn",
+        _subagent_spawn_slot,
+        note=_SLOT_BINDINGS["subagent_spawn"]["note"],
+    )
+    bus.meta["subagent_spawn"]["source"] = _SLOT_BINDINGS["subagent_spawn"]["source"]
+    bus.meta["subagent_spawn"]["adapter"] = _SLOT_BINDINGS["subagent_spawn"]["adapter"]
     plant = rid
     bus.bind("plant_health", plant, note=_SLOT_BINDINGS["plant_health"]["note"])
     perception = _try_import_cpu_plan("lib.aios_adapter_perception")
@@ -250,9 +280,13 @@ def default_bus() -> SkeletonBus:
     hardware = _try_import_cpu_plan("lib.aios_adapter_infra")
     bus.bind("hardware_plan", hardware, note=_SLOT_BINDINGS["hardware_plan"]["note"])
     # Restore static fill labels for partial bindings even when callable exists.
+    # Never wipe BOUND callables (e.g. subagent_spawn). Only uml_invoke stays VACANT.
     for slot, info in _SLOT_BINDINGS.items():
         if info.get("fill") == "PARTIAL" and bus.slots.get(slot) is not None:
             bus.meta[slot]["fill"] = "PARTIAL"
+            bus.meta[slot]["bound"] = True
+        elif info.get("fill") == "BOUND" and bus.slots.get(slot) is not None:
+            bus.meta[slot]["fill"] = "BOUND"
             bus.meta[slot]["bound"] = True
         elif info.get("fill") == "VACANT":
             bus.meta[slot]["fill"] = "VACANT"
