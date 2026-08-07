@@ -1,0 +1,610 @@
+{
+  "arms": {
+    "LAYERED_BRIDGE": {
+      "candidate": "LAYERED_BRIDGE",
+      "checks": {
+        "arm": "LAYERED_BRIDGE",
+        "binding_destination": {
+          "target_char": "e",
+          "target_token_id": 70
+        },
+        "expected_destination": {
+          "target_char": "e",
+          "target_token_id": 70
+        },
+        "hard_fail": false,
+        "missing": [],
+        "provenance_keys_checked": [
+          "source",
+          "authority",
+          "survivor_hash",
+          "policy_mode",
+          "rid_state",
+          "plant_state"
+        ],
+        "provenance_preserved": true,
+        "seal_issues": [],
+        "seal_keys_checked": [
+          "sealed_destination",
+          "destination_match",
+          "raw_route",
+          "final_route"
+        ],
+        "seal_preserved": true
+      },
+      "determinism": {
+        "hashes": [
+          "66fcede9f8edd825d98332fcc535da9372a9c373ddbf71a4d2ab5719a64bdcca",
+          "66fcede9f8edd825d98332fcc535da9372a9c373ddbf71a4d2ab5719a64bdcca",
+          "66fcede9f8edd825d98332fcc535da9372a9c373ddbf71a4d2ab5719a64bdcca"
+        ]
+      },
+      "hard_gate": {
+        "provenance_preserved": true,
+        "removal_rejected": true,
+        "roundtrip_ok": true,
+        "seal_preserved": true,
+        "semantic_ambiguity": 0,
+        "status": "PASS"
+      },
+      "latency": {
+        "lookup": {
+          "coefficient_of_variation": 0.06725994120967295,
+          "low_signal": false,
+          "max": 0.3224,
+          "mean": 0.26827,
+          "min": 0.2489,
+          "n": 40,
+          "p50": 0.2617,
+          "p95": 0.3079,
+          "p99": 0.3224,
+          "stdev": 0.018043824428318964,
+          "unit": "ms_per_receipt_lookup"
+        },
+        "rounds": 40,
+        "serialize": {
+          "coefficient_of_variation": 0.09608031231709362,
+          "low_signal": false,
+          "max": 0.1207,
+          "mean": 0.09051000000000001,
+          "min": 0.0813,
+          "n": 40,
+          "p50": 0.0869,
+          "p95": 0.1034,
+          "p99": 0.1207,
+          "stdev": 0.008696229067820143,
+          "unit": "ms_per_receipt_serialize"
+        },
+        "timer": "time.perf_counter_ns",
+        "timer_resolution_s": 1e-07,
+        "validate": {
+          "coefficient_of_variation": 0.09465431281524177,
+          "low_signal": false,
+          "max": 0.6489,
+          "mean": 0.4839225,
+          "min": 0.4347,
+          "n": 40,
+          "p50": 0.4665,
+          "p95": 0.5666,
+          "p99": 0.6489,
+          "stdev": 0.04580535169333383,
+          "unit": "ms_per_receipt_validate"
+        },
+        "warmup_rounds": 3
+      },
+      "migration": {
+        "adapter_touches": {
+          "bridge_index_entries": 1,
+          "composition_bindings": 1,
+          "new_plane_namespace_slot": 1,
+          "packet_seal_reconstruction": false,
+          "typed_record_rewrites": 0
+        },
+        "bridge_links_for_receipt": 1,
+        "code_fixture_touches_proxy": {
+          "adapter_modules": 1,
+          "fixture_records_requiring_typed_reshape": 0,
+          "fixture_records_touched": 1,
+          "native_schema_rewrites": 0
+        },
+        "field_remaps": 0,
+        "migration_steps": [
+          "retain_item77_measurement_import_v1_native_row",
+          "add_bridge_link_without_value_rewrite",
+          "add_composition_binding_to_sealed_destination"
+        ],
+        "native_item77_rows": 1,
+        "native_row_shape": [
+          "native_id",
+          "name",
+          "value"
+        ],
+        "plane_wrappers": 1,
+        "value_fields_retained_natively": [
+          "cheapest",
+          "cost",
+          "destination_match",
+          "error",
+          "federation",
+          "final_route",
+          "kind",
+          "plant_state",
+          "policy_mode",
+          "prompt",
+          "raw_route",
+          "rid_state",
+          "sealed_destination",
+          "source",
+          "survivor_hash",
+          "uml_domains"
+        ]
+      },
+      "removal_test": {
+        "appendix_five_proxy": "Dropping the candidate adapter component must make validation fail; no silent acceptance of a partial envelope.",
+        "error": "ArchitectureError:layered_envelope_schema",
+        "removed_component": "bridge",
+        "residue_keys_after_removal": [
+          "composition",
+          "planes"
+        ],
+        "rollback_clean": true,
+        "validator_rejected_removal": true
+      },
+      "schema_version": "tag_layered_bridge_v1",
+      "storage": {
+        "item77_records": 1,
+        "serialization_sha256": "66fcede9f8edd825d98332fcc535da9372a9c373ddbf71a4d2ab5719a64bdcca",
+        "serialized_bytes": 9703
+      }
+    },
+    "UNIFIED_TYPED_REGISTRY": {
+      "candidate": "UNIFIED_TYPED_REGISTRY",
+      "checks": {
+        "arm": "UNIFIED_TYPED_REGISTRY",
+        "binding_destination": {
+          "target_char": "e",
+          "target_token_id": 70
+        },
+        "expected_destination": {
+          "target_char": "e",
+          "target_token_id": 70
+        },
+        "hard_fail": false,
+        "missing": [],
+        "provenance_keys_checked": [
+          "source",
+          "authority",
+          "survivor_hash",
+          "policy_mode",
+          "rid_state",
+          "plant_state"
+        ],
+        "provenance_preserved": true,
+        "seal_issues": [],
+        "seal_keys_checked": [
+          "sealed_destination",
+          "destination_match",
+          "raw_route",
+          "final_route"
+        ],
+        "seal_preserved": true
+      },
+      "determinism": {
+        "hashes": [
+          "e37f57d521f1baefec8b76980a84a18b1b1c444e025d7f4ee986be015befb7a9",
+          "e37f57d521f1baefec8b76980a84a18b1b1c444e025d7f4ee986be015befb7a9",
+          "e37f57d521f1baefec8b76980a84a18b1b1c444e025d7f4ee986be015befb7a9"
+        ]
+      },
+      "hard_gate": {
+        "provenance_preserved": true,
+        "removal_rejected": true,
+        "roundtrip_ok": true,
+        "seal_preserved": true,
+        "semantic_ambiguity": 0,
+        "status": "PASS"
+      },
+      "latency": {
+        "lookup": {
+          "coefficient_of_variation": 0.05914571356190528,
+          "low_signal": false,
+          "max": 0.1557,
+          "mean": 0.13796,
+          "min": 0.1276,
+          "n": 40,
+          "p50": 0.1367,
+          "p95": 0.1538,
+          "p99": 0.1557,
+          "stdev": 0.008159742643000453,
+          "unit": "ms_per_receipt_lookup"
+        },
+        "rounds": 40,
+        "serialize": {
+          "coefficient_of_variation": 0.09935394303354436,
+          "low_signal": false,
+          "max": 0.0989,
+          "mean": 0.07664,
+          "min": 0.0668,
+          "n": 40,
+          "p50": 0.0751,
+          "p95": 0.0908,
+          "p99": 0.0989,
+          "stdev": 0.00761448619409084,
+          "unit": "ms_per_receipt_serialize"
+        },
+        "timer": "time.perf_counter_ns",
+        "timer_resolution_s": 1e-07,
+        "validate": {
+          "coefficient_of_variation": 0.0985079004243799,
+          "low_signal": false,
+          "max": 0.4568,
+          "mean": 0.3504425,
+          "min": 0.3132,
+          "n": 40,
+          "p50": 0.3378,
+          "p95": 0.4242,
+          "p99": 0.4568,
+          "stdev": 0.03452135489447075,
+          "unit": "ms_per_receipt_validate"
+        },
+        "warmup_rounds": 3
+      },
+      "migration": {
+        "adapter_touches": {
+          "bridge_index_entries": 0,
+          "composition_bindings": 1,
+          "new_plane_namespace_slot": 0,
+          "packet_seal_reconstruction": true,
+          "typed_record_rewrites": 1
+        },
+        "bridge_links_for_receipt": 0,
+        "code_fixture_touches_proxy": {
+          "adapter_modules": 1,
+          "fixture_records_requiring_typed_reshape": 1,
+          "fixture_records_touched": 1,
+          "native_schema_rewrites": 1
+        },
+        "field_remaps": 11,
+        "migration_steps": [
+          "map_census_row_into_typed_RECORD_KEYS",
+          "rebuild_authority_packet_group_membership",
+          "add_composition_binding_to_sealed_destination",
+          "delegate_plane_validators_after_reconstruction"
+        ],
+        "native_item77_rows": 0,
+        "native_row_shape": [
+          "attributes",
+          "authority",
+          "binding",
+          "confidence",
+          "name",
+          "plane",
+          "provenance",
+          "record_id",
+          "required",
+          "source",
+          "value"
+        ],
+        "plane_wrappers": 0,
+        "value_fields_retained_natively": [
+          "cheapest",
+          "cost",
+          "destination_match",
+          "error",
+          "federation",
+          "final_route",
+          "kind",
+          "plant_state",
+          "policy_mode",
+          "prompt",
+          "raw_route",
+          "rid_state",
+          "sealed_destination",
+          "source",
+          "survivor_hash",
+          "uml_domains"
+        ]
+      },
+      "removal_test": {
+        "appendix_five_proxy": "Dropping the candidate adapter component must make validation fail; no silent acceptance of a partial envelope.",
+        "error": "ArchitectureError:typed_registry_envelope_schema",
+        "removed_component": "registry",
+        "residue_keys_after_removal": [
+          "composition",
+          "packet_groups"
+        ],
+        "rollback_clean": true,
+        "validator_rejected_removal": true
+      },
+      "schema_version": "tag_unified_typed_registry_v1",
+      "storage": {
+        "item77_records": 1,
+        "serialization_sha256": "e37f57d521f1baefec8b76980a84a18b1b1c444e025d7f4ee986be015befb7a9",
+        "serialized_bytes": 8225
+      }
+    }
+  },
+  "decision": {
+    "comparisons": {
+      "adapter_touch_ratio_b_over_a": 1.3333333333333333,
+      "byte_advantage_pct_b_vs_a": 15.232402349788726,
+      "fixture_records_touched": {
+        "LAYERED_BRIDGE": 1,
+        "UNIFIED_TYPED_REGISTRY": 1
+      },
+      "latency_advantage_pct_b_vs_a": 27.588424437299043,
+      "latency_comparable": true,
+      "migration_risk_proxy": {
+        "LAYERED_BRIDGE": 0,
+        "UNIFIED_TYPED_REGISTRY": 2
+      },
+      "migration_steps": {
+        "LAYERED_BRIDGE": 3,
+        "UNIFIED_TYPED_REGISTRY": 4
+      },
+      "native_schema_rewrites": {
+        "LAYERED_BRIDGE": 0,
+        "UNIFIED_TYPED_REGISTRY": 1
+      },
+      "serialized_bytes": {
+        "LAYERED_BRIDGE": 9703.0,
+        "UNIFIED_TYPED_REGISTRY": 8225.0
+      },
+      "validate_p50_ms": {
+        "LAYERED_BRIDGE": 0.4665,
+        "UNIFIED_TYPED_REGISTRY": 0.3378
+      }
+    },
+    "material_advantage": false,
+    "note": "Keep prior TIE_WITH_CONSTRAINTS posture; defer architecture choice.",
+    "promote": null,
+    "reasons": [
+      "differences_below_material_threshold_or_risk_tradeoff",
+      "layered_bridge_lower_migration_surface_but_not_alone_material_under_rule",
+      "typed_registry_smaller_or_faster_but_not_alone_material_under_rule"
+    ],
+    "thresholds": {
+      "adapter_touch_ratio": 2.0,
+      "latency_cv_signal_floor": 0.25,
+      "min_validation_ms_p50": 0.05,
+      "serialized_byte_and_latency_pct": 20.0
+    },
+    "verdict": "TIE_WITH_CONSTRAINTS"
+  },
+  "experiment_id": "TAG_RECEIPT_BOUNDARY_PILOT_V1",
+  "limitations": [
+    "Single-receipt pilot only; not a multi-window architecture bakeoff.",
+    "Migration step / rewrite counts are explicit proxies for this binding, not full production cutover estimates.",
+    "Latency is local Python timing; low-signal distributions are excluded from the material efficiency rule.",
+    "Experiment-only names item77_receipt / cheap_route_example remain proposed and operator-gated.",
+    "No production schema promotion, router change, training, or checkpoint mutation was performed."
+  ],
+  "material_thresholds": {
+    "adapter_touch_ratio": 2.0,
+    "latency_cv_signal_floor": 0.25,
+    "min_validation_ms_p50": 0.05,
+    "serialized_byte_and_latency_pct": 20.0
+  },
+  "metrics_table": [
+    {
+      "LAYERED_BRIDGE": "PASS",
+      "UNIFIED_TYPED_REGISTRY": "PASS",
+      "metric": "hard_gate"
+    },
+    {
+      "LAYERED_BRIDGE": true,
+      "UNIFIED_TYPED_REGISTRY": true,
+      "metric": "seal_preserved"
+    },
+    {
+      "LAYERED_BRIDGE": true,
+      "UNIFIED_TYPED_REGISTRY": true,
+      "metric": "provenance_preserved"
+    },
+    {
+      "LAYERED_BRIDGE": 3,
+      "UNIFIED_TYPED_REGISTRY": 4,
+      "metric": "migration_steps"
+    },
+    {
+      "LAYERED_BRIDGE": 0,
+      "UNIFIED_TYPED_REGISTRY": 1,
+      "metric": "native_schema_rewrites"
+    },
+    {
+      "LAYERED_BRIDGE": 0,
+      "UNIFIED_TYPED_REGISTRY": 11,
+      "metric": "field_remaps_proxy"
+    },
+    {
+      "LAYERED_BRIDGE": false,
+      "UNIFIED_TYPED_REGISTRY": true,
+      "metric": "packet_seal_reconstruction_required"
+    },
+    {
+      "LAYERED_BRIDGE": 9703,
+      "UNIFIED_TYPED_REGISTRY": 8225,
+      "metric": "serialized_bytes"
+    },
+    {
+      "LAYERED_BRIDGE": 0.4665,
+      "UNIFIED_TYPED_REGISTRY": 0.3378,
+      "metric": "validate_p50_ms"
+    },
+    {
+      "LAYERED_BRIDGE": 0.0869,
+      "UNIFIED_TYPED_REGISTRY": 0.0751,
+      "metric": "serialize_p50_ms"
+    },
+    {
+      "LAYERED_BRIDGE": 0.2617,
+      "UNIFIED_TYPED_REGISTRY": 0.1367,
+      "metric": "lookup_p50_ms"
+    },
+    {
+      "LAYERED_BRIDGE": true,
+      "UNIFIED_TYPED_REGISTRY": true,
+      "metric": "appendix5_removal_rejected"
+    }
+  ],
+  "mutation_guard": {
+    "census_after": {
+      "mtime_ns": 1786091128407346900,
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/census.json",
+      "sha256": "4e5cae2b14fb5de224e1dd672a94687d1a4ce0b8077249d1cb84009753bb60e6",
+      "size_bytes": 2375118
+    },
+    "census_before": {
+      "mtime_ns": 1786091128407346900,
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/census.json",
+      "sha256": "4e5cae2b14fb5de224e1dd672a94687d1a4ce0b8077249d1cb84009753bb60e6",
+      "size_bytes": 2375118
+    },
+    "census_unchanged": true,
+    "status": "PASS",
+    "survivor_after": {
+      "mtime_ns": 1786089759700114500,
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mix_layers/layer_survivor.pt",
+      "sha256": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3",
+      "size_bytes": 3372432
+    },
+    "survivor_before": {
+      "mtime_ns": 1786089759700114500,
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mix_layers/layer_survivor.pt",
+      "sha256": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3",
+      "size_bytes": 3372432
+    },
+    "survivor_hash": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3",
+    "survivor_path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mix_layers/layer_survivor.pt",
+    "survivor_unchanged": true
+  },
+  "naming_policy": {
+    "cheap_route_example": "proposed_operator_gated_not_established_fact",
+    "item77_receipt": "proposed_operator_gated_not_established_fact"
+  },
+  "prior_ab": {
+    "experiment_id": "TAG_ARCH_AB_V1",
+    "report": "L:/Continue/Viv/foundation/artifacts/auto/tag_architecture_ab_v1/20260807T083432Z/tag_architecture_ab_v1_20260807T083432Z.json",
+    "verdict": "TIE_WITH_CONSTRAINTS"
+  },
+  "promotion": {
+    "LAYERED_BRIDGE": false,
+    "UNIFIED_TYPED_REGISTRY": false,
+    "any_production_schema": false
+  },
+  "recommended_next_action": "Defer architecture choice; retain TIE_WITH_CONSTRAINTS. No second receipt class required unless operator wants a non-LIT federation sealed row as a follow-up observation (not a promotion gate).",
+  "run": {
+    "duration_seconds": 0.125501,
+    "exact_command": "L:\\Continue\\.venv\\Scripts\\python.exe L:/Continue/Viv/foundation/scripts/tag_receipt_boundary_pilot_v1.py --run --census L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/census.json",
+    "finished_at": "2026-08-07T08:43:44+00:00",
+    "pid": 230568,
+    "platform": "Windows-11-10.0.22000-SP0",
+    "python_executable": "L:/Continue/.venv/Scripts/python.exe",
+    "python_version": "3.12.10",
+    "started_at": "2026-08-07T08:43:44+00:00"
+  },
+  "schema_version": "tag_receipt_boundary_pilot_v1",
+  "secondary_seal_observation": {
+    "arms": {
+      "LAYERED_BRIDGE": {
+        "destination_match_preserved": true,
+        "hard_fail": false,
+        "missing": [],
+        "provenance_preserved": true,
+        "seal_issues": [],
+        "seal_preserved": true
+      },
+      "UNIFIED_TYPED_REGISTRY": {
+        "destination_match_preserved": true,
+        "hard_fail": false,
+        "missing": [],
+        "provenance_preserved": true,
+        "seal_issues": [],
+        "seal_preserved": true
+      }
+    },
+    "destination_match": false,
+    "example_id": "SC77-000",
+    "note": "Secondary observation only; primary comparison remains the sealed receipt. Included to clarify seal-preservation behavior under SEAL_GUARD_STOP / destination_match=false.",
+    "policy_mode": "raw_no_snap",
+    "role": "seal_failure_boundary_observation",
+    "row_sha256": "2146d1b80d557c3b2a3fa1758b2a185d26b1ecc6e3742f36b91babaa9f8cdd5c"
+  },
+  "selected_receipt": {
+    "census_path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/census.json",
+    "census_sha256": "4e5cae2b14fb5de224e1dd672a94687d1a4ce0b8077249d1cb84009753bb60e6",
+    "primary": {
+      "destination_match": true,
+      "example_id": "SC77-000",
+      "fields_bound": [
+        "cheapest",
+        "cost",
+        "destination_match",
+        "error",
+        "federation",
+        "final_route",
+        "kind",
+        "plant_state",
+        "policy_mode",
+        "prompt",
+        "raw_route",
+        "rid_state",
+        "sealed_destination",
+        "source",
+        "survivor_hash",
+        "uml_domains"
+      ],
+      "policy_mode": "prefer_efficient_snap",
+      "role": "primary",
+      "row_sha256": "2d0c06ad8eefd1009c6fc4377060bc927ac16ad0c4de35226706ced3d5ceea3e",
+      "seal_violation_implied": false,
+      "selection_reasons": "destination_match,sealed_destination,policy_mode,raw_vs_final_mode,raw_and_final,raw_ne_final,federation,cost,error,cheapest,kind,rid_available,plant_available,survivor_hash",
+      "selection_score": 55
+    },
+    "primary_row": {
+      "cheapest": "70",
+      "cost": 1,
+      "destination_match": true,
+      "error": 0.0,
+      "federation": "LIT",
+      "final_route": "70",
+      "kind": "valid_efficient",
+      "plant_state": {
+        "available": true,
+        "coolant_s_n": 0.6702299109036437,
+        "gpu_s_n": 0.8706433657161514,
+        "master_s_n": 0.7449,
+        "source": "master_rid",
+        "thermal_stress": 0.3297700890963563
+      },
+      "policy_mode": {
+        "mode": "prefer_efficient_snap",
+        "policy": "thermal_efficient",
+        "post_snap": true
+      },
+      "prompt": "What is the UML for 'e'?\nViv: ",
+      "raw_route": "80",
+      "rid_state": {
+        "available": true,
+        "master_s_n": 0.7449,
+        "source": "master_rid"
+      },
+      "sealed_destination": {
+        "target_char": "e",
+        "target_token_id": 70
+      },
+      "source": {
+        "example_id": "SC77-000",
+        "template_id": "dedicated_direct",
+        "template_source": "run_uml_speak_ab_f.py:PROMPTS"
+      },
+      "survivor_hash": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3",
+      "uml_domains": []
+    },
+    "prompt_manifest_path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/prompt_manifest.json",
+    "prompt_manifest_sha256": "476a87330f182159159d326640f6e284db0fd5335396d2fadd536cabbe233805",
+    "secondary_included": true,
+    "survivor_hash": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3"
+  },
+  "verdict": "TIE_WITH_CONSTRAINTS"
+}

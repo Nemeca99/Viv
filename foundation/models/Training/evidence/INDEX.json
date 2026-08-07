@@ -18,6 +18,19 @@
     "checkpoint_sha256": "649675EACF43E8065D24A09236FCD1DD56B8976B0FCBDC6265D4B826C20965EA",
     "next_hypothesis_packet_sha256": "16A88AA5CE89EFDF7D089F5A6EEEFF031F76E24256FF55C36DB0821F5CBF72B3"
   },
+  "snapshots": {
+    "20260807T085000Z": {
+      "path": "foundation/models/Training/evidence/snapshots/20260807T085000Z",
+      "manifest": "foundation/models/Training/evidence/snapshots/20260807T085000Z/MANIFEST.json",
+      "lane": "uml_integration_tag_bridge",
+      "verdicts": {
+        "speak_cheap_census_item77": "SEAL_GUARD_STOP",
+        "tag_architecture_ab": "TIE_WITH_CONSTRAINTS",
+        "tag_receipt_boundary_pilot": "TIE_WITH_CONSTRAINTS",
+        "identity_uml_bridge_shadow": "FIELD_SCOPED_WINS"
+      }
+    }
+  },
   "future_layout": "foundation/models/Training/evidence/viv_slm/<version>/<campaign>/",
   "migration_rule": "The index may point to authoritative artifacts, but it does not replace them. Preserve negative, rejected, and inconclusive evidence."
 }

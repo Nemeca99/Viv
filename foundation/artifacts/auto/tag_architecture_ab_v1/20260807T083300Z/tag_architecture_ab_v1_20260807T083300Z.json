@@ -1,0 +1,765 @@
+{
+  "arms": {
+    "LAYERED_BRIDGE": {
+      "auditability": {
+        "checks": 21792,
+        "missing": 0,
+        "missing_examples": [],
+        "recovered": 21792,
+        "recovery_rate": 1.0
+      },
+      "authority_safety": {
+        "adversarial_cases": 140,
+        "authority_false_accepts": 0,
+        "error_classes_by_category": {
+          "destination_mismatch": {
+            "ArchitectureError:uml_route_sealed_destination_mismatch": 10
+          },
+          "duplicate_conflicting_bindings": {
+            "ArchitectureError:duplicate_conflicting_binding": 10
+          },
+          "gpu_draft_echoes_tag_markup": {
+            "ArchitectureError:gpu_draft_verification": 10
+          },
+          "identity_collision": {
+            "AmbiguousLookup:composition_binding_ambiguous": 10
+          },
+          "invalid_uml_domain_federation": {
+            "ArchitectureError:uml_route_invalid_federation": 10
+          },
+          "invented_binding": {
+            "ArchitectureError:composition_binding_not_found": 10
+          },
+          "knowledge_vs_knowledge_tags": {
+            "AmbiguousLookup:composition_binding_ambiguous": 10
+          },
+          "source_authority_mismatch": {
+            "ArchitectureError:source_mismatch": 10
+          },
+          "stale_missing_provenance": {
+            "ArchitectureError:provenance_fields_missing": 5,
+            "ArchitectureError:provenance_stale": 5
+          },
+          "tampered_digest": {
+            "TaggedPacketError:packet_digest_mismatch": 10
+          },
+          "tampered_signature": {
+            "TaggedPacketError:cpu_signature_mismatch": 10
+          },
+          "unknown_plane": {
+            "ArchitectureError:unknown_plane": 10
+          },
+          "unknown_tag": {
+            "ArchitectureError:unknown_mouth_tag": 10
+          },
+          "user_mints_cpu_authority": {
+            "ArchitectureError:source_mismatch": 10
+          }
+        },
+        "false_accept_examples": [],
+        "false_accepts": 0,
+        "rejected": 140,
+        "rejected_by_category": {
+          "destination_mismatch": 10,
+          "duplicate_conflicting_bindings": 10,
+          "gpu_draft_echoes_tag_markup": 10,
+          "identity_collision": 10,
+          "invalid_uml_domain_federation": 10,
+          "invented_binding": 10,
+          "knowledge_vs_knowledge_tags": 10,
+          "source_authority_mismatch": 10,
+          "stale_missing_provenance": 10,
+          "tampered_digest": 10,
+          "tampered_signature": 10,
+          "unknown_plane": 10,
+          "unknown_tag": 10,
+          "user_mints_cpu_authority": 10
+        }
+      },
+      "candidate": "LAYERED_BRIDGE",
+      "collision_ambiguity": {
+        "ambiguity_cases": 192,
+        "identity_ambiguities_detected": 96,
+        "identity_collision_bundles": 96,
+        "knowledge_ambiguities_detected": 96,
+        "knowledge_semantic_ambiguity_bundles": 96,
+        "unresolved_ambiguities": 0,
+        "unresolved_rate": 0.0
+      },
+      "complexity_proxy": {
+        "branch_nodes": 59,
+        "method_count": 5,
+        "nonblank_noncomment_lines": 252
+      },
+      "determinism": {
+        "hashes": [
+          "ad2f7fa4e5b7d6970620840433c9d213933e4451c65824891aa0c84061b61d0d",
+          "ad2f7fa4e5b7d6970620840433c9d213933e4451c65824891aa0c84061b61d0d",
+          "ad2f7fa4e5b7d6970620840433c9d213933e4451c65824891aa0c84061b61d0d"
+        ],
+        "replays": 3,
+        "unique_hashes": 1
+      },
+      "hard_gate": {
+        "authority_false_accepts": 0,
+        "field_loss_bundles": 0,
+        "nondeterministic_replays": 0,
+        "seal_or_binding_ambiguities": 0,
+        "status": "PASS"
+      },
+      "integration_fit": {
+        "active_plane_adapters": 5,
+        "existing_plane_validators_delegated": 5,
+        "fixture_records_serialized_through_new_record_shape": 0,
+        "native_plane_schema_rewrites": 0,
+        "native_plane_schemas_retained": 5,
+        "packet_seal_reconstruction_required": false,
+        "proxy_note": "Static integration proxy only: native payloads stay in their current plane shapes; bridge adapters are still new code."
+      },
+      "latency": {
+        "index_build": {
+          "coefficient_of_variation": 0.05075651411567799,
+          "max": 90.2517,
+          "mean": 79.19374666666666,
+          "min": 75.8169,
+          "n": 15,
+          "p50": 77.768,
+          "p95": 90.2517,
+          "p99": 90.2517,
+          "per_bundle_us_p50": 810.0833333333334,
+          "stdev": 4.019598520560093,
+          "unit": "ms_per_full_corpus"
+        },
+        "qualified_lookup": {
+          "coefficient_of_variation": 0.06183286957859597,
+          "low_signal": true,
+          "max": 75.19664115646259,
+          "mean": 61.403592687074834,
+          "min": 58.39179421768708,
+          "n": 20,
+          "p50": 59.88520408163265,
+          "p95": 66.75170068027211,
+          "p99": 75.19664115646259,
+          "stdev": 3.7967603382771276,
+          "unit": "ns_per_qualified_lookup"
+        },
+        "timer": "time.perf_counter_ns",
+        "timer_resolution_s": 1e-07,
+        "validation": {
+          "coefficient_of_variation": 0.01641251491380231,
+          "low_signal": false,
+          "max": 115.5666,
+          "mean": 111.44938666666667,
+          "min": 108.7361,
+          "n": 15,
+          "p50": 111.1333,
+          "p95": 115.5666,
+          "p99": 115.5666,
+          "per_bundle_us_p50": 1157.6385416666667,
+          "stdev": 1.8291647208007873,
+          "unit": "ms_per_full_corpus"
+        },
+        "warmup_rounds": 2
+      },
+      "removal_test": {
+        "broken_invariants": [
+          "cross_plane_logical_roundtrip",
+          "composition_binding_resolution",
+          "qualified_and_ambiguity_safe_lookup",
+          "common_provenance_audit"
+        ],
+        "error": "ArchitectureError:layered_envelope_schema",
+        "removed_component": "bridge",
+        "validator_rejected_removal": true
+      },
+      "roundtrip_fidelity": {
+        "bundles_compared": 96,
+        "field_loss_bundles": 0,
+        "field_loss_examples": [],
+        "preserved_records": 2016
+      },
+      "storage": {
+        "canonical_serialized_bytes": 2540219,
+        "mean_bytes_per_bundle": 26460.614583333332,
+        "mean_token_indices_per_bundle": 26460.614583333332,
+        "note": "Canonical UML character tokenizer assigns one index per Unicode scalar; this is an index-count proxy, not measured energy.",
+        "serialization_sha256": "ad2f7fa4e5b7d6970620840433c9d213933e4451c65824891aa0c84061b61d0d",
+        "token_unit": "unicode_scalar",
+        "tokenizer_schema": "uml_universal_character_tokenizer_v1",
+        "uml_character_token_indices": 2540219
+      },
+      "valid_acceptance": {
+        "accepted_bundles": 96,
+        "false_reject_examples": [],
+        "false_rejects": 0,
+        "input_bundles": 96,
+        "input_records": 2016
+      }
+    },
+    "UNIFIED_TYPED_REGISTRY": {
+      "auditability": {
+        "checks": 21792,
+        "missing": 0,
+        "missing_examples": [],
+        "recovered": 21792,
+        "recovery_rate": 1.0
+      },
+      "authority_safety": {
+        "adversarial_cases": 140,
+        "authority_false_accepts": 0,
+        "error_classes_by_category": {
+          "destination_mismatch": {
+            "ArchitectureError:uml_route_sealed_destination_mismatch": 10
+          },
+          "duplicate_conflicting_bindings": {
+            "ArchitectureError:duplicate_conflicting_binding": 10
+          },
+          "gpu_draft_echoes_tag_markup": {
+            "ArchitectureError:gpu_draft_verification": 10
+          },
+          "identity_collision": {
+            "AmbiguousLookup:composition_binding_ambiguous": 10
+          },
+          "invalid_uml_domain_federation": {
+            "ArchitectureError:uml_route_invalid_federation": 10
+          },
+          "invented_binding": {
+            "ArchitectureError:composition_binding_not_found": 10
+          },
+          "knowledge_vs_knowledge_tags": {
+            "AmbiguousLookup:composition_binding_ambiguous": 10
+          },
+          "source_authority_mismatch": {
+            "ArchitectureError:source_mismatch": 10
+          },
+          "stale_missing_provenance": {
+            "ArchitectureError:provenance_fields_missing": 5,
+            "ArchitectureError:provenance_stale": 5
+          },
+          "tampered_digest": {
+            "TaggedPacketError:packet_digest_mismatch": 10
+          },
+          "tampered_signature": {
+            "TaggedPacketError:cpu_signature_mismatch": 10
+          },
+          "unknown_plane": {
+            "ArchitectureError:unknown_plane": 10
+          },
+          "unknown_tag": {
+            "ArchitectureError:unknown_mouth_tag": 10
+          },
+          "user_mints_cpu_authority": {
+            "ArchitectureError:source_mismatch": 10
+          }
+        },
+        "false_accept_examples": [],
+        "false_accepts": 0,
+        "rejected": 140,
+        "rejected_by_category": {
+          "destination_mismatch": 10,
+          "duplicate_conflicting_bindings": 10,
+          "gpu_draft_echoes_tag_markup": 10,
+          "identity_collision": 10,
+          "invalid_uml_domain_federation": 10,
+          "invented_binding": 10,
+          "knowledge_vs_knowledge_tags": 10,
+          "source_authority_mismatch": 10,
+          "stale_missing_provenance": 10,
+          "tampered_digest": 10,
+          "tampered_signature": 10,
+          "unknown_plane": 10,
+          "unknown_tag": 10,
+          "user_mints_cpu_authority": 10
+        }
+      },
+      "candidate": "UNIFIED_TYPED_REGISTRY",
+      "collision_ambiguity": {
+        "ambiguity_cases": 192,
+        "identity_ambiguities_detected": 96,
+        "identity_collision_bundles": 96,
+        "knowledge_ambiguities_detected": 96,
+        "knowledge_semantic_ambiguity_bundles": 96,
+        "unresolved_ambiguities": 0,
+        "unresolved_rate": 0.0
+      },
+      "complexity_proxy": {
+        "branch_nodes": 8,
+        "method_count": 5,
+        "nonblank_noncomment_lines": 59
+      },
+      "determinism": {
+        "hashes": [
+          "28f35c74d450c8f2fcbbb66c4d9c731b40b36edb24cce1658c0e79f528cabd53",
+          "28f35c74d450c8f2fcbbb66c4d9c731b40b36edb24cce1658c0e79f528cabd53",
+          "28f35c74d450c8f2fcbbb66c4d9c731b40b36edb24cce1658c0e79f528cabd53"
+        ],
+        "replays": 3,
+        "unique_hashes": 1
+      },
+      "hard_gate": {
+        "authority_false_accepts": 0,
+        "field_loss_bundles": 0,
+        "nondeterministic_replays": 0,
+        "seal_or_binding_ambiguities": 0,
+        "status": "PASS"
+      },
+      "integration_fit": {
+        "active_plane_adapters": 5,
+        "existing_plane_validators_delegated": 5,
+        "fixture_records_serialized_through_new_record_shape": 2016,
+        "native_plane_schema_rewrites": 5,
+        "native_plane_schemas_retained": 0,
+        "packet_seal_reconstruction_required": true,
+        "proxy_note": "Static integration proxy only: every tag needs a typed adapter; existing validators are delegated after native reconstruction."
+      },
+      "latency": {
+        "index_build": {
+          "coefficient_of_variation": 0.07045942613642034,
+          "max": 48.6818,
+          "mean": 42.032619999999994,
+          "min": 38.9666,
+          "n": 15,
+          "p50": 41.4305,
+          "p95": 48.6818,
+          "p99": 48.6818,
+          "per_bundle_us_p50": 431.5677083333333,
+          "stdev": 2.9615942842102236,
+          "unit": "ms_per_full_corpus"
+        },
+        "qualified_lookup": {
+          "coefficient_of_variation": 0.05429628598277513,
+          "low_signal": true,
+          "max": 77.59353741496598,
+          "mean": 63.77923044217687,
+          "min": 60.044642857142854,
+          "n": 20,
+          "p50": 62.85076530612245,
+          "p95": 65.51339285714286,
+          "p99": 77.59353741496598,
+          "stdev": 3.462975335849753,
+          "unit": "ns_per_qualified_lookup"
+        },
+        "timer": "time.perf_counter_ns",
+        "timer_resolution_s": 1e-07,
+        "validation": {
+          "coefficient_of_variation": 0.021962581916639173,
+          "low_signal": false,
+          "max": 76.6409,
+          "mean": 72.75507333333333,
+          "min": 70.6081,
+          "n": 15,
+          "p50": 72.7327,
+          "p95": 76.6409,
+          "p99": 76.6409,
+          "per_bundle_us_p50": 757.6322916666667,
+          "stdev": 1.5978892579344235,
+          "unit": "ms_per_full_corpus"
+        },
+        "warmup_rounds": 2
+      },
+      "removal_test": {
+        "broken_invariants": [
+          "all_tag_serialization",
+          "typed_lookup",
+          "packet_group_reconstruction",
+          "common_provenance_audit"
+        ],
+        "error": "ArchitectureError:typed_registry_envelope_schema",
+        "removed_component": "registry",
+        "validator_rejected_removal": true
+      },
+      "roundtrip_fidelity": {
+        "bundles_compared": 96,
+        "field_loss_bundles": 0,
+        "field_loss_examples": [],
+        "preserved_records": 2016
+      },
+      "storage": {
+        "canonical_serialized_bytes": 2240351,
+        "mean_bytes_per_bundle": 23336.989583333332,
+        "mean_token_indices_per_bundle": 23336.989583333332,
+        "note": "Canonical UML character tokenizer assigns one index per Unicode scalar; this is an index-count proxy, not measured energy.",
+        "serialization_sha256": "28f35c74d450c8f2fcbbb66c4d9c731b40b36edb24cce1658c0e79f528cabd53",
+        "token_unit": "unicode_scalar",
+        "tokenizer_schema": "uml_universal_character_tokenizer_v1",
+        "uml_character_token_indices": 2240351
+      },
+      "valid_acceptance": {
+        "accepted_bundles": 96,
+        "false_reject_examples": [],
+        "false_rejects": 0,
+        "input_bundles": 96,
+        "input_records": 2016
+      }
+    }
+  },
+  "candidates": {
+    "LAYERED_BRIDGE": {
+      "definition": "Separate authority, mouth, UML route, context, and optional item-77 native namespaces; deterministic bridge only for composed receipts; plane validators authoritative.",
+      "schema_version": "tag_layered_bridge_v1"
+    },
+    "UNIFIED_TYPED_REGISTRY": {
+      "definition": "One fixed typed record registry for all tags, explicit plane and authority, packet-group seals, qualified bindings, and delegated existing plane validators.",
+      "schema_version": "tag_unified_typed_registry_v1"
+    }
+  },
+  "classification": "The tested typed-envelope/delegated-validator design is substantively Arm B. A future single envelope that keeps plane validators authoritative is not automatically a synthesis; if every tag serializes through the typed registry, it remains constrained UNIFIED_TYPED_REGISTRY.",
+  "decision": {
+    "evidence": [
+      {
+        "a": 2540219.0,
+        "b": 2240351.0,
+        "metric": "serialized_footprint",
+        "weight": 1,
+        "winner": "UNIFIED_TYPED_REGISTRY"
+      },
+      {
+        "a": 311.0,
+        "b": 67.0,
+        "metric": "candidate_specific_static_complexity",
+        "weight": 1,
+        "winner": "UNIFIED_TYPED_REGISTRY"
+      },
+      {
+        "a": 0,
+        "b": 5,
+        "metric": "native_schema_migration_proxy",
+        "note": "Weighted for production change risk; still a static proxy.",
+        "weight": 2,
+        "winner": "LAYERED_BRIDGE"
+      },
+      {
+        "a": 111.1333,
+        "b": 72.7327,
+        "metric": "validation_latency_p50",
+        "weight": 1,
+        "winner": "UNIFIED_TYPED_REGISTRY"
+      },
+      {
+        "metric": "qualified_lookup_latency_p50",
+        "note": "Excluded as low-signal Python micro-timing.",
+        "weight": 0,
+        "winner": null
+      }
+    ],
+    "footprint_complexity_threshold": "10%",
+    "point_delta_b_minus_a": 1,
+    "points": {
+      "LAYERED_BRIDGE": 2,
+      "UNIFIED_TYPED_REGISTRY": 3
+    },
+    "reason": "predeclared_material_delta_points",
+    "tie_band": "absolute point delta < 2",
+    "timing_threshold": "10% and not low-signal"
+  },
+  "deltas": {
+    "b_minus_a": {
+      "candidate_branch_proxy": -51.0,
+      "candidate_loc_proxy": -193.0,
+      "native_schema_rewrites_proxy": 5.0,
+      "qualified_lookup_p50_ns": 2.9655612244897966,
+      "serialized_bytes": -299868.0,
+      "uml_character_token_indices": -299868.0,
+      "validation_p50_ms_full_corpus": -38.40060000000001
+    }
+  },
+  "experiment_id": "TAG_ARCH_AB_V1",
+  "flat_union_negative_control": {
+    "bundles": 96,
+    "bundles_with_collision": 96,
+    "candidate": "FLAT_UNION",
+    "collision_events": 780,
+    "control_only": true,
+    "examples": [
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "authority_packet",
+        "name": "identity",
+        "overwriting_plane": "context_role"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "item77_receipt",
+        "name": "cheap_route_example",
+        "overwriting_plane": "item77_receipt"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "item77_receipt",
+        "name": "cheap_route_example",
+        "overwriting_plane": "item77_receipt"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "item77_receipt",
+        "name": "cheap_route_example",
+        "overwriting_plane": "item77_receipt"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "item77_receipt",
+        "name": "cheap_route_example",
+        "overwriting_plane": "item77_receipt"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "item77_receipt",
+        "name": "cheap_route_example",
+        "overwriting_plane": "item77_receipt"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "item77_receipt",
+        "name": "cheap_route_example",
+        "overwriting_plane": "item77_receipt"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "item77_receipt",
+        "name": "cheap_route_example",
+        "overwriting_plane": "item77_receipt"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-000",
+        "first_plane": "context_role",
+        "name": "identity",
+        "overwriting_plane": "mouth_atom"
+      },
+      {
+        "bundle_id": "tag-ab-bundle-001",
+        "first_plane": "authority_packet",
+        "name": "identity",
+        "overwriting_plane": "context_role"
+      }
+    ],
+    "hard_gate": "FAIL",
+    "overwritten_records": 780,
+    "reason": "Plane erasure overwrites valid same-name records."
+  },
+  "hypothesis": "A bounded replay can distinguish layered native namespaces from a schema-locked typed registry on safety, fidelity, ambiguity, auditability, footprint, latency, and integration proxies without training or runtime writes.",
+  "inputs": {
+    "adversarial_cases": 140,
+    "adversarial_categories": [
+      "user_mints_cpu_authority",
+      "gpu_draft_echoes_tag_markup",
+      "identity_collision",
+      "knowledge_vs_knowledge_tags",
+      "unknown_tag",
+      "unknown_plane",
+      "invalid_uml_domain_federation",
+      "stale_missing_provenance",
+      "source_authority_mismatch",
+      "duplicate_conflicting_bindings",
+      "tampered_digest",
+      "tampered_signature",
+      "invented_binding",
+      "destination_mismatch"
+    ],
+    "context_roles": [
+      "identity",
+      "knowledge_tags",
+      "other",
+      "user"
+    ],
+    "logical_corpus_sha256": "7d88fbe88c0d483513a1ce439392cef7d6b14c5acb1dde08e80e15fac7e58e52",
+    "mouth_base_atoms": [
+      "architect_work",
+      "automatic_services",
+      "cpu_mind",
+      "gpu_mouth",
+      "identity",
+      "no_tools"
+    ],
+    "mouth_combo_domains": [
+      "cpu_gpu_panel",
+      "ops_panel"
+    ],
+    "mouth_domains": [
+      "architect_work",
+      "automatic_services",
+      "cpu_gpu_panel",
+      "cpu_mind",
+      "gpu_mouth",
+      "identity",
+      "no_tools",
+      "ops_panel"
+    ],
+    "packet_tag_types": [
+      "identity",
+      "knowledge",
+      "telemetry",
+      "user_request",
+      "allowed_actions",
+      "unknowns",
+      "rendering_rules"
+    ],
+    "signature_note": "The production packet module creates a process-local HMAC key. Logical corpus hash redacts only that process-local signature; packet digest and all logical fields remain hashed.",
+    "source_hashes": {
+      "appendix_five": {
+        "path": "L:/Continue/Viv/foundation/metacognition/appendix five.txt",
+        "sha256": "4d6e267bc9e6d949839c49b290ce10c9d2f18bc952e31effc783a25508502c68"
+      },
+      "authority_packet": {
+        "path": "L:/Continue/Viv/foundation/lib/aios_tagged_packet.py",
+        "sha256": "1db792e317a7f903d4ba52b5288b9558a5dc762891cc5b4ac1299fe7a9bf3489"
+      },
+      "context_role": {
+        "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/context_pack.py",
+        "sha256": "3bde8ef15d630c8ae5361368962d607e9703cd5f856e57d9756207289f30b189"
+      },
+      "mouth_atom": {
+        "path": "L:/Continue/Viv/foundation/scripts/stage1_mouth_identity_curriculum.py",
+        "sha256": "cab9796e94220b951be83bcf64e0212d1f7007600f12a7ea40919411046e09aa"
+      },
+      "snap_free_receipt": {
+        "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/run_uml_snap_free_audit.py",
+        "sha256": "9d702e751e7bd567f8f5ce69a5ae14aa6d9e95bfa2d547ca641e55dc60aa28a4"
+      },
+      "speak_receipt": {
+        "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/speak_lanes.py",
+        "sha256": "b412c5837c4c9ca72b2c8c6fb3d4791fc9b2f554a477182bd9ebdfdd02434fd6"
+      },
+      "uml_registry": {
+        "path": "L:/Continue/Viv/foundation/lib/uml_equation_registry.py",
+        "sha256": "45130a643d46361bcd1893c54dd7e2d9134bfa3a81added9380cef77b95451f1"
+      },
+      "uml_route": {
+        "path": "L:/Continue/Viv/foundation/lib/uml_route_governor.py",
+        "sha256": "f59f92c8db6d3c4d63e7bba9a2ab8b18ef4d937b066e93957739f6a448b9e127"
+      },
+      "uml_token_economics": {
+        "path": "L:/Continue/Viv/foundation/lib/uml_token_economics.py",
+        "sha256": "864ee30838d5d8308da1773be2b59afdf04669394a99c08731b2156a54f83a4a"
+      },
+      "uml_tokenizer": {
+        "path": "L:/Continue/Viv/foundation/lib/uml_character_tokenizer.py",
+        "sha256": "e4bf78e15637797e597d431eaf0b71a57b842393ef82d898f772f63bc7cd8a5c"
+      }
+    },
+    "uml_route_labels": [
+      "A",
+      "D",
+      "LIT",
+      "M",
+      "S",
+      "U",
+      "U_AD",
+      "U_AM",
+      "U_AMD",
+      "U_AS",
+      "U_ASD",
+      "U_ASM",
+      "U_ASMD",
+      "U_MD",
+      "U_SD",
+      "U_SM",
+      "U_SMD"
+    ],
+    "valid_bundles": 96,
+    "valid_records": 2016
+  },
+  "item77": {
+    "example_count": 768,
+    "field_coverage": {
+      "cheapest": 768,
+      "cost": 768,
+      "destination_match": 768,
+      "error": 768,
+      "federation": 768,
+      "final_route": 768,
+      "kind": 768,
+      "plant_state": 768,
+      "policy_mode": 768,
+      "prompt": 768,
+      "raw_route": 768,
+      "rid_state": 768,
+      "sealed_destination": 768,
+      "source": 768,
+      "survivor_hash": 768,
+      "uml_domains": 768
+    },
+    "parse_errors": [],
+    "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/census.json",
+    "prompt_manifest_path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/prompt_manifest.json",
+    "prompt_manifest_rows": 256,
+    "prompt_manifest_sha256": "476a87330f182159159d326640f6e284db0fd5335396d2fadd536cabbe233805",
+    "sha256": "4e5cae2b14fb5de224e1dd672a94687d1a4ce0b8077249d1cb84009753bb60e6",
+    "status": "INTEGRATED",
+    "survivor_hash": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3"
+  },
+  "limitations": [
+    "Both candidates are executable offline prototypes in one harness, not production router integrations. Static migration and complexity counts are proxies, not maintainability claims.",
+    "Latency is local Python timing under concurrent workstation load; qualified lookups below the declared signal floor are labeled low-signal and excluded from the decision.",
+    "UML character-token count is one index per Unicode scalar. It is not a neural tokenizer count, energy reading, or tariff estimate.",
+    "Production authority HMAC uses a process-local secret, so cross-process signature bytes are intentionally not a reproducibility target. Within-run canonical replay hashes must still be identical.",
+    "Item-77 integration remains pending when no timestamped per-example receipt is discoverable. This does not invalidate the requested fallback corpus, but it limits real cheap-route receipt coverage.",
+    "Any production tag/plane promotion, router migration, new item-77 tag name, model/training change, or checkpoint change requires operator authority."
+  ],
+  "mutation_guard": {
+    "after": {
+      "guarded_training_file_count": 913,
+      "guarded_training_metadata_sha256": "512edfaf84630e8faff0c88d47aab5230d230403e63fa0984bb4f72aa1976fb2",
+      "master_rid_path": "L:/Continue/Viv/foundation/artifacts/auto/master_rid.json",
+      "master_rid_sha256": "96d39c2f60c93a2bf168e4832a1fd81259cd3a392465a192f859f9af41a9c23d",
+      "source_sha256": {
+        "appendix_five": "4d6e267bc9e6d949839c49b290ce10c9d2f18bc952e31effc783a25508502c68",
+        "authority_packet": "1db792e317a7f903d4ba52b5288b9558a5dc762891cc5b4ac1299fe7a9bf3489",
+        "context_role": "3bde8ef15d630c8ae5361368962d607e9703cd5f856e57d9756207289f30b189",
+        "mouth_atom": "cab9796e94220b951be83bcf64e0212d1f7007600f12a7ea40919411046e09aa",
+        "snap_free_receipt": "9d702e751e7bd567f8f5ce69a5ae14aa6d9e95bfa2d547ca641e55dc60aa28a4",
+        "speak_receipt": "b412c5837c4c9ca72b2c8c6fb3d4791fc9b2f554a477182bd9ebdfdd02434fd6",
+        "uml_registry": "45130a643d46361bcd1893c54dd7e2d9134bfa3a81added9380cef77b95451f1",
+        "uml_route": "f59f92c8db6d3c4d63e7bba9a2ab8b18ef4d937b066e93957739f6a448b9e127",
+        "uml_token_economics": "864ee30838d5d8308da1773be2b59afdf04669394a99c08731b2156a54f83a4a",
+        "uml_tokenizer": "e4bf78e15637797e597d431eaf0b71a57b842393ef82d898f772f63bc7cd8a5c"
+      }
+    },
+    "before": {
+      "guarded_training_file_count": 913,
+      "guarded_training_metadata_sha256": "512edfaf84630e8faff0c88d47aab5230d230403e63fa0984bb4f72aa1976fb2",
+      "master_rid_path": "L:/Continue/Viv/foundation/artifacts/auto/master_rid.json",
+      "master_rid_sha256": "96d39c2f60c93a2bf168e4832a1fd81259cd3a392465a192f859f9af41a9c23d",
+      "source_sha256": {
+        "appendix_five": "4d6e267bc9e6d949839c49b290ce10c9d2f18bc952e31effc783a25508502c68",
+        "authority_packet": "1db792e317a7f903d4ba52b5288b9558a5dc762891cc5b4ac1299fe7a9bf3489",
+        "context_role": "3bde8ef15d630c8ae5361368962d607e9703cd5f856e57d9756207289f30b189",
+        "mouth_atom": "cab9796e94220b951be83bcf64e0212d1f7007600f12a7ea40919411046e09aa",
+        "snap_free_receipt": "9d702e751e7bd567f8f5ce69a5ae14aa6d9e95bfa2d547ca641e55dc60aa28a4",
+        "speak_receipt": "b412c5837c4c9ca72b2c8c6fb3d4791fc9b2f554a477182bd9ebdfdd02434fd6",
+        "uml_registry": "45130a643d46361bcd1893c54dd7e2d9134bfa3a81added9380cef77b95451f1",
+        "uml_route": "f59f92c8db6d3c4d63e7bba9a2ab8b18ef4d937b066e93957739f6a448b9e127",
+        "uml_token_economics": "864ee30838d5d8308da1773be2b59afdf04669394a99c08731b2156a54f83a4a",
+        "uml_tokenizer": "e4bf78e15637797e597d431eaf0b71a57b842393ef82d898f772f63bc7cd8a5c"
+      }
+    },
+    "runtime_model_training_mutation_detected": false,
+    "scope": "Source hashes, master RID hash, and non-runs training/checkpoint/data metadata inventory.",
+    "status": "PASS"
+  },
+  "recommended_next_action": "Operator review the measured tie/winner constraints and authorize at most one read-only adapter pilot on a single existing receipt path; do not promote or change production schemas from this offline result alone.",
+  "run": {
+    "duration_seconds": 8.025463,
+    "exact_command": "L:\\Continue\\.venv\\Scripts\\python.exe L:\\Continue\\Viv\\foundation\\scripts\\tag_architecture_ab_v1.py --full",
+    "finished_at": "2026-08-07T08:33:00+00:00",
+    "pid": 251736,
+    "platform": "Windows-11-10.0.22000-SP0",
+    "python_executable": "L:/Continue/.venv/Scripts/python.exe",
+    "python_version": "3.12.10",
+    "started_at": "2026-08-07T08:32:52+00:00"
+  },
+  "runtime_health": {
+    "errors": 0,
+    "heartbeat": "not_applicable_no_runtime_loop",
+    "mode": "offline_read_only",
+    "other_worker_interference": "none_observed_or_requested",
+    "sample_validity": "VALID",
+    "stalls": 0
+  },
+  "schema_version": "tag_architecture_ab_v1",
+  "shared_validator_complexity_proxy": {
+    "branch_nodes": 111,
+    "nonblank_noncomment_lines": 245,
+    "note": "Shared plane-validation proxy; excluded from arm delta."
+  },
+  "verdict": "TIE_WITH_CONSTRAINTS"
+}

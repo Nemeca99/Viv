@@ -1,0 +1,2013 @@
+{
+  "schema_version": "uml_speak_cheap_census_v1",
+  "experiment_id": "thesis_item_77_speak_cheap_census",
+  "classification": {
+    "classification": "SEAL_GUARD_STOP",
+    "next_experiment": null,
+    "reason": "At least one evaluated mode produced a destination/seal violation: {'raw_no_snap': 143, 'plant_rid_policy': 120}."
+  },
+  "checkpoint_identity": {
+    "after": {
+      "mtime_ns": 1786089759700114500,
+      "mtime_utc": "2026-08-07T03:02:39.700114-05:00",
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mix_layers/layer_survivor.pt",
+      "sha256": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3",
+      "size_bytes": 3372432
+    },
+    "before": {
+      "mtime_ns": 1786089759700114500,
+      "mtime_utc": "2026-08-07T03:02:39.700114-05:00",
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_mix_layers/layer_survivor.pt",
+      "sha256": "ffb4a8f6682f91cf04e318254a88390ce8ca1cd839c5cc782a2db797f36ff6b3",
+      "size_bytes": 3372432
+    },
+    "unchanged": true
+  },
+  "modes": {
+    "raw_no_snap": {
+      "cheap_route_bootstrap_95_ci": [
+        0.25390625,
+        0.3671875
+      ],
+      "cheap_route_count": 79,
+      "cheap_route_rate": 0.30859375,
+      "destination_match_bootstrap_95_ci": [
+        0.3828125,
+        0.50390625
+      ],
+      "destination_match_count": 113,
+      "destination_match_rate": 0.44140625,
+      "invalid_count": 143,
+      "invalid_reasons": {
+        "eval_error:SyntaxError": {
+          "count": 3,
+          "rate": 0.02097902097902098
+        },
+        "eval_error:ValueError": {
+          "count": 8,
+          "rate": 0.055944055944055944
+        },
+        "value_mismatch": {
+          "count": 132,
+          "rate": 0.9230769230769231
+        }
+      },
+      "mean_route_cost": 1.5486725663716814,
+      "mean_route_cost_bootstrap_95_ci": [
+        1.3982300884955752,
+        1.7079646017699115
+      ],
+      "mean_route_error": 0.62109375,
+      "mean_route_error_bootstrap_95_ci": [
+        0.564453125,
+        0.6764322916666666
+      ],
+      "mode": "raw_no_snap",
+      "n": 256,
+      "route_cost_valid_n": 113,
+      "route_distribution": {
+        "exact_equation": {
+          "0+34": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+36": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+37": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+41": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+44": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "0+46": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+47": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+50": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+52": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "0+53": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "0+55": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+57": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+62": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+68": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+70": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+73": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+77": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+78": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+81": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+9": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+90": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*36": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*42": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*43": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*45": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*47": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "1*52": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "1*55": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*59": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*66": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*69": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*70": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*71": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "1*80": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "1*83": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*84": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*85": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "10": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "13": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "13**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "14": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "2": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "22": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "23": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "28": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "32": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "34": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "36": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "37": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "4*9": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "40": {
+            "count": 6,
+            "rate": 0.0234375
+          },
+          "40**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "41": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "42": {
+            "count": 7,
+            "rate": 0.02734375
+          },
+          "42**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "43": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "44": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "44**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "45": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "46": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "47": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "48": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "49": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "5": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "5*5": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "5*8": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "50": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "51": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "52": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "52**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "53": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "54": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "55": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "56": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "58": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "6": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "66": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "67": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "68": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "69": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "7*6": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "7*8": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "70": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "71": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "72": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "73": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "74": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "76": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "77": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "78": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "79": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "8": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "8*9": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "80": {
+            "count": 9,
+            "rate": 0.03515625
+          },
+          "81": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "81**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "82": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "83": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "84": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "85": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "85**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "86": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "87": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "88": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "88**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "89": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "89**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "9*9": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "90": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "91": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I am here and ready to l": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "I ause Viv": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I com": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I come from verified con": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I she a": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I should sound known fac": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I should sound own is an": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I speak in a personal, c": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I speak warmly, directly": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "I support the Architect'": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "I will use clear words a": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "My default style is pers": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "My. The 91": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The CPU and Security OUT": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The CPU decides what may": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "The Central Processing U": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "The Gral Processing Unit": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The Graphics Processing": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "The The CPU and Security": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The UML lane helps repre": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "The out pretending to be": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Truth. The CPU owns deci": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Truty. The The CPU owns": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "UnGeral gi": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Uncertainty": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "Uncertainty i": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Uncertainty into a human": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Uncertainty is stated pl": {
+            "count": 6,
+            "rate": 0.0234375
+          },
+          "Uncertainty.": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "def": {
+            "count": 1,
+            "rate": 0.00390625
+          }
+        },
+        "federation": {
+          "A": {
+            "count": 16,
+            "rate": 0.0625
+          },
+          "INVALID": {
+            "count": 143,
+            "rate": 0.55859375
+          },
+          "LIT": {
+            "count": 79,
+            "rate": 0.30859375
+          },
+          "M": {
+            "count": 18,
+            "rate": 0.0703125
+          }
+        },
+        "kind": {
+          "invalid": {
+            "count": 143,
+            "rate": 0.55859375
+          },
+          "valid_costly": {
+            "count": 34,
+            "rate": 0.1328125
+          },
+          "valid_efficient": {
+            "count": 79,
+            "rate": 0.30859375
+          }
+        }
+      },
+      "seal_destination_violation_count": 143,
+      "seal_destination_violation_example_ids": [
+        "SC77-000",
+        "SC77-001",
+        "SC77-003",
+        "SC77-004",
+        "SC77-005",
+        "SC77-006",
+        "SC77-007",
+        "SC77-008",
+        "SC77-009",
+        "SC77-010",
+        "SC77-011",
+        "SC77-013",
+        "SC77-015",
+        "SC77-016",
+        "SC77-017",
+        "SC77-018",
+        "SC77-019",
+        "SC77-020",
+        "SC77-021",
+        "SC77-022",
+        "SC77-023",
+        "SC77-024",
+        "SC77-026",
+        "SC77-027",
+        "SC77-028",
+        "SC77-029",
+        "SC77-031",
+        "SC77-032",
+        "SC77-033",
+        "SC77-034",
+        "SC77-035",
+        "SC77-037",
+        "SC77-038",
+        "SC77-039",
+        "SC77-041",
+        "SC77-043",
+        "SC77-044",
+        "SC77-045",
+        "SC77-046",
+        "SC77-048",
+        "SC77-049",
+        "SC77-050",
+        "SC77-051",
+        "SC77-052",
+        "SC77-053",
+        "SC77-054",
+        "SC77-055",
+        "SC77-056",
+        "SC77-057",
+        "SC77-058",
+        "SC77-059",
+        "SC77-060",
+        "SC77-061",
+        "SC77-062",
+        "SC77-063",
+        "SC77-065",
+        "SC77-067",
+        "SC77-071",
+        "SC77-072",
+        "SC77-073",
+        "SC77-075",
+        "SC77-081",
+        "SC77-082",
+        "SC77-085",
+        "SC77-088",
+        "SC77-092",
+        "SC77-094",
+        "SC77-095",
+        "SC77-096",
+        "SC77-098",
+        "SC77-099",
+        "SC77-100",
+        "SC77-101",
+        "SC77-105",
+        "SC77-106",
+        "SC77-107",
+        "SC77-108",
+        "SC77-109",
+        "SC77-111",
+        "SC77-115",
+        "SC77-118",
+        "SC77-121",
+        "SC77-124",
+        "SC77-125",
+        "SC77-132",
+        "SC77-133",
+        "SC77-134",
+        "SC77-138",
+        "SC77-139",
+        "SC77-140",
+        "SC77-143",
+        "SC77-144",
+        "SC77-146",
+        "SC77-148",
+        "SC77-149",
+        "SC77-150",
+        "SC77-159",
+        "SC77-162",
+        "SC77-165",
+        "SC77-169",
+        "SC77-171",
+        "SC77-175",
+        "SC77-176",
+        "SC77-177",
+        "SC77-179",
+        "SC77-180",
+        "SC77-182",
+        "SC77-186",
+        "SC77-187",
+        "SC77-188",
+        "SC77-190",
+        "SC77-191",
+        "SC77-192",
+        "SC77-193",
+        "SC77-194",
+        "SC77-195",
+        "SC77-196",
+        "SC77-197",
+        "SC77-202",
+        "SC77-203",
+        "SC77-204",
+        "SC77-207",
+        "SC77-210",
+        "SC77-212",
+        "SC77-216",
+        "SC77-217",
+        "SC77-222",
+        "SC77-224",
+        "SC77-225",
+        "SC77-228",
+        "SC77-229",
+        "SC77-230",
+        "SC77-233",
+        "SC77-234",
+        "SC77-235",
+        "SC77-240",
+        "SC77-243",
+        "SC77-246",
+        "SC77-247",
+        "SC77-249",
+        "SC77-252",
+        "SC77-253",
+        "SC77-254"
+      ],
+      "status": "SUPPORTED",
+      "supported_n": 256,
+      "unsupported_count": 0,
+      "unsupported_reasons": {},
+      "valid_count": 113,
+      "valid_rate": 0.44140625
+    },
+    "plant_rid_policy": {
+      "cheap_route_bootstrap_95_ci": [
+        0.328125,
+        0.4453125
+      ],
+      "cheap_route_count": 99,
+      "cheap_route_rate": 0.38671875,
+      "destination_match_bootstrap_95_ci": [
+        0.47265625,
+        0.59375
+      ],
+      "destination_match_count": 136,
+      "destination_match_rate": 0.53125,
+      "invalid_count": 120,
+      "invalid_reasons": {
+        "eval_error:SyntaxError": {
+          "count": 3,
+          "rate": 0.025
+        },
+        "eval_error:ValueError": {
+          "count": 5,
+          "rate": 0.041666666666666664
+        },
+        "value_mismatch": {
+          "count": 112,
+          "rate": 0.9333333333333333
+        }
+      },
+      "mean_route_cost": 1.375,
+      "mean_route_cost_bootstrap_95_ci": [
+        1.2720588235294117,
+        1.4926470588235294
+      ],
+      "mean_route_error": 0.5260416666666666,
+      "mean_route_error_bootstrap_95_ci": [
+        0.4694010416666667,
+        0.5826822916666666
+      ],
+      "mode": "plant_rid_policy",
+      "n": 256,
+      "route_cost_valid_n": 136,
+      "route_distribution": {
+        "exact_equation": {
+          "0+37": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+41": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+46": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+53": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+77": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+78": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+81": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+9": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "0+90": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "1*36": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*42": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*45": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*47": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*52": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "1*66": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*68": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*70": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "1*71": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*80": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "1*84": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "1*85": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "10": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "10**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "12": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "13": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "13**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "14": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "15": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "20": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "21": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "23": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "28": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "3*7": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "30": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "32": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "34": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "34**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "35": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "36": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "37": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "38": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "38**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "4*9": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "40": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "40**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "41": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "42": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "42**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "43": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "43**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "44": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "44**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "45": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "46": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "47": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "48": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "48**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "49": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "5*5": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "5*7": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "50": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "51": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "51**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "52": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "53": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "53**1": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "54": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "54**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "55": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "55**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "56": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "57**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "58": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "6": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "6*5": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "62": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "66": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "67": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "68": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "69": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "69**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "7*1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "70": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "70**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "71": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "71**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "72": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "72**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "73": {
+            "count": 6,
+            "rate": 0.0234375
+          },
+          "73**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "74": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "76": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "77": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "78": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "79": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "8": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "80": {
+            "count": 6,
+            "rate": 0.0234375
+          },
+          "81": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "81**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "82": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "83": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "83**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "84": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "85": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "86": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "87": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "88": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "88**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "89": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "89**1": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "9*9": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "90": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "91": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "95": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I am here and ready to l": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "I ause Viv": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I com": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I come from verified con": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I should sound known fac": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I speak in a personal, c": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "I speak warmly, directly": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "I support the Architect'": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "I will use clear words a": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "My default style is pers": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The CPU and Security OUT": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The CPU decides what may": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "The Central Processing U": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "The Gral Processing Unit": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The Graphics Processing": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The The CPU and Security": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "The UML lane helps repre": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "The out pretending to be": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Truth. The CPU owns deci": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Truty. The The CPU owns": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "UnGeral gi": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Uncertainty": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "Uncertainty into a human": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "Uncertainty is stated pl": {
+            "count": 5,
+            "rate": 0.01953125
+          },
+          "Uncertainty.": {
+            "count": 1,
+            "rate": 0.00390625
+          }
+        },
+        "federation": {
+          "A": {
+            "count": 6,
+            "rate": 0.0234375
+          },
+          "INVALID": {
+            "count": 120,
+            "rate": 0.46875
+          },
+          "LIT": {
+            "count": 99,
+            "rate": 0.38671875
+          },
+          "M": {
+            "count": 31,
+            "rate": 0.12109375
+          }
+        },
+        "kind": {
+          "invalid": {
+            "count": 120,
+            "rate": 0.46875
+          },
+          "valid_costly": {
+            "count": 37,
+            "rate": 0.14453125
+          },
+          "valid_efficient": {
+            "count": 99,
+            "rate": 0.38671875
+          }
+        }
+      },
+      "seal_destination_violation_count": 120,
+      "seal_destination_violation_example_ids": [
+        "SC77-000",
+        "SC77-001",
+        "SC77-003",
+        "SC77-004",
+        "SC77-005",
+        "SC77-006",
+        "SC77-007",
+        "SC77-008",
+        "SC77-009",
+        "SC77-010",
+        "SC77-011",
+        "SC77-016",
+        "SC77-017",
+        "SC77-018",
+        "SC77-019",
+        "SC77-020",
+        "SC77-021",
+        "SC77-022",
+        "SC77-023",
+        "SC77-024",
+        "SC77-026",
+        "SC77-027",
+        "SC77-028",
+        "SC77-029",
+        "SC77-031",
+        "SC77-032",
+        "SC77-033",
+        "SC77-034",
+        "SC77-037",
+        "SC77-038",
+        "SC77-039",
+        "SC77-043",
+        "SC77-044",
+        "SC77-045",
+        "SC77-046",
+        "SC77-048",
+        "SC77-049",
+        "SC77-050",
+        "SC77-051",
+        "SC77-054",
+        "SC77-055",
+        "SC77-057",
+        "SC77-058",
+        "SC77-059",
+        "SC77-062",
+        "SC77-063",
+        "SC77-065",
+        "SC77-067",
+        "SC77-071",
+        "SC77-072",
+        "SC77-073",
+        "SC77-075",
+        "SC77-081",
+        "SC77-082",
+        "SC77-088",
+        "SC77-096",
+        "SC77-098",
+        "SC77-099",
+        "SC77-100",
+        "SC77-101",
+        "SC77-105",
+        "SC77-106",
+        "SC77-108",
+        "SC77-111",
+        "SC77-118",
+        "SC77-121",
+        "SC77-124",
+        "SC77-125",
+        "SC77-132",
+        "SC77-133",
+        "SC77-134",
+        "SC77-138",
+        "SC77-140",
+        "SC77-143",
+        "SC77-144",
+        "SC77-146",
+        "SC77-148",
+        "SC77-149",
+        "SC77-150",
+        "SC77-159",
+        "SC77-162",
+        "SC77-169",
+        "SC77-171",
+        "SC77-175",
+        "SC77-176",
+        "SC77-177",
+        "SC77-179",
+        "SC77-180",
+        "SC77-182",
+        "SC77-187",
+        "SC77-188",
+        "SC77-190",
+        "SC77-191",
+        "SC77-192",
+        "SC77-193",
+        "SC77-194",
+        "SC77-195",
+        "SC77-196",
+        "SC77-197",
+        "SC77-202",
+        "SC77-203",
+        "SC77-204",
+        "SC77-207",
+        "SC77-210",
+        "SC77-212",
+        "SC77-216",
+        "SC77-224",
+        "SC77-225",
+        "SC77-228",
+        "SC77-230",
+        "SC77-233",
+        "SC77-234",
+        "SC77-235",
+        "SC77-240",
+        "SC77-244",
+        "SC77-245",
+        "SC77-246",
+        "SC77-247",
+        "SC77-249",
+        "SC77-252"
+      ],
+      "status": "SUPPORTED",
+      "supported_n": 256,
+      "unsupported_count": 0,
+      "unsupported_reasons": {},
+      "valid_count": 136,
+      "valid_rate": 0.53125
+    },
+    "prefer_efficient_snap": {
+      "cheap_route_bootstrap_95_ci": [
+        1.0,
+        1.0
+      ],
+      "cheap_route_count": 256,
+      "cheap_route_rate": 1.0,
+      "destination_match_bootstrap_95_ci": [
+        1.0,
+        1.0
+      ],
+      "destination_match_count": 256,
+      "destination_match_rate": 1.0,
+      "invalid_count": 0,
+      "invalid_reasons": {},
+      "mean_route_cost": 1.0,
+      "mean_route_cost_bootstrap_95_ci": [
+        1.0,
+        1.0
+      ],
+      "mean_route_error": 0.0,
+      "mean_route_error_bootstrap_95_ci": [
+        0.0,
+        0.0
+      ],
+      "mode": "prefer_efficient_snap",
+      "n": 256,
+      "route_cost_valid_n": 256,
+      "route_distribution": {
+        "exact_equation": {
+          "10": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "11": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "12": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "13": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "14": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "15": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "16": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "17": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "18": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "19": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "2": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "20": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "21": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "22": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "23": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "24": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "25": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "26": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "27": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "28": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "29": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "30": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "31": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "32": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "33": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "34": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "35": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "36": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "37": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "38": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "39": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "4": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "40": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "41": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "42": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "43": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "44": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "45": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "46": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "47": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "48": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "49": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "5": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "50": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "51": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "52": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "53": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "54": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "55": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "56": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "57": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "58": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "59": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "6": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "60": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "61": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "62": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "63": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "64": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "65": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "66": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "67": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "68": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "69": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "7": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "70": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "71": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "72": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "73": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "74": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "75": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "76": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "77": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "78": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "79": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "80": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "81": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "82": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "83": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "84": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "85": {
+            "count": 4,
+            "rate": 0.015625
+          },
+          "86": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "87": {
+            "count": 1,
+            "rate": 0.00390625
+          },
+          "88": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "89": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "9": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "90": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "91": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "92": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "93": {
+            "count": 3,
+            "rate": 0.01171875
+          },
+          "94": {
+            "count": 2,
+            "rate": 0.0078125
+          },
+          "95": {
+            "count": 4,
+            "rate": 0.015625
+          }
+        },
+        "federation": {
+          "LIT": {
+            "count": 256,
+            "rate": 1.0
+          }
+        },
+        "kind": {
+          "valid_efficient": {
+            "count": 256,
+            "rate": 1.0
+          }
+        }
+      },
+      "seal_destination_violation_count": 0,
+      "seal_destination_violation_example_ids": [],
+      "status": "SUPPORTED",
+      "supported_n": 256,
+      "unsupported_count": 0,
+      "unsupported_reasons": {},
+      "valid_count": 256,
+      "valid_rate": 1.0
+    }
+  },
+  "receipt_sha256": "0391cdb4bac85ef343a76cbfe0646de1be172ecdd332587828fa6189919ac0df",
+  "started_at": "2026-08-07T03:24:14.403405-05:00",
+  "finished_at": "2026-08-07T03:25:28.321846-05:00"
+}

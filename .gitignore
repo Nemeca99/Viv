@@ -112,6 +112,32 @@ foundation/models/Training/checkpoints/**/*.pth
 foundation/models/Training/evidence/*
 !foundation/models/Training/evidence/
 !foundation/models/Training/evidence/INDEX.json
+# Timestamped small evidence snapshots (JSON/MD manifests + compact reports).
+# Keep these trackable for backup; exclude weight tensors and huge run dumps.
+!foundation/models/Training/evidence/snapshots/
+foundation/models/Training/evidence/snapshots/**
+!foundation/models/Training/evidence/snapshots/*/
+!foundation/models/Training/evidence/snapshots/*/MANIFEST.json
+!foundation/models/Training/evidence/snapshots/*/README.md
+!foundation/models/Training/evidence/snapshots/*/reports/
+!foundation/models/Training/evidence/snapshots/*/reports/**
+foundation/models/Training/evidence/snapshots/**/*.pt
+foundation/models/Training/evidence/snapshots/**/*.pth
+foundation/models/Training/evidence/snapshots/**/*.bin
+foundation/models/Training/evidence/snapshots/**/*.safetensors
+
+# Keep compact identity/tag architecture pilot reports under auto/ trackable.
+# Full speak-cheap census rows remain ignored via runs/; store aggregates in snapshots.
+!foundation/artifacts/auto/identity_uml_bridge_shadow_v1/
+foundation/artifacts/auto/identity_uml_bridge_shadow_v1/**
+!foundation/artifacts/auto/identity_uml_bridge_shadow_v1/*/
+!foundation/artifacts/auto/identity_uml_bridge_shadow_v1/*/*.json
+!foundation/artifacts/auto/identity_uml_bridge_shadow_v1/*/*.md
+!foundation/artifacts/auto/tag_architecture_ab_v1/
+foundation/artifacts/auto/tag_architecture_ab_v1/**
+!foundation/artifacts/auto/tag_architecture_ab_v1/*/
+!foundation/artifacts/auto/tag_architecture_ab_v1/*/*.json
+!foundation/artifacts/auto/tag_architecture_ab_v1/*/*.md
 foundation/models/Training/data/**/*.pt
 foundation/models/Training/data/**/*.pth
 foundation/models/Training/data/**/*.bin

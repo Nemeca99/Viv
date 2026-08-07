@@ -1,0 +1,113 @@
+{
+  "schema_version": "viv_evidence_snapshot_v1",
+  "snapshot_id": "20260807T085000Z",
+  "created_at_utc": "2026-08-07T08:51:33.1817701Z",
+  "purpose": "Timestamped backup pointer for UML integration / tag-architecture / identity-UML bridge evidence lane.",
+  "git_remote_intended": "https://github.com/Nemeca99/Viv.git",
+  "branch_intended": "main",
+  "notes": [
+    "Full speak-cheap census JSON is hashed in-place but not copied (2.3MB run artifact).",
+    "Aggregate-only census summary is included.",
+    "Large checkpoints (.pt) are intentionally excluded.",
+    "Tag architecture remains TIE_WITH_CONSTRAINTS / deferred.",
+    "Bridge shadow verdict FIELD_SCOPED_WINS; no promotion."
+  ],
+  "verdicts": {
+    "uml_stack_survivor": "ID~0.931165 / OOD~0.841 / Codex~0.9702; staging = conditional OOD repair only",
+    "speak_cheap_census_item77": "SEAL_GUARD_STOP",
+    "tag_architecture_ab": "TIE_WITH_CONSTRAINTS",
+    "tag_receipt_boundary_pilot": "TIE_WITH_CONSTRAINTS",
+    "identity_uml_bridge_shadow": "FIELD_SCOPED_WINS"
+  },
+  "files": [
+    {
+      "key": "tag_ab_md",
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/tag_architecture_ab_v1/20260807T083432Z/tag_architecture_ab_v1_20260807T083432Z.md",
+      "bytes": 5974,
+      "sha256": "d9c008b551ffeb66b4d96707d537dda849b9129598768a7efd7cdbbf59fd081a",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "bridge_shadow_json",
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/identity_uml_bridge_shadow_v1/20260807T084911Z/identity_uml_bridge_shadow_v1_20260807T084911Z.json",
+      "bytes": 282771,
+      "sha256": "743a532545eee909fa00d80b088d2ce91ebd6095d937ff77332e955045dd4d29",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "tag_receipt_pilot_json",
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/tag_architecture_ab_v1/20260807T084344Z/tag_receipt_boundary_pilot_v1_20260807T084344Z.json",
+      "bytes": 20159,
+      "sha256": "b11f2d551dff259bc9ff9fe49904bbb7adaccfd2496b6f4711acd1230c414132",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "script_tag_ab",
+      "path": "L:/Continue/Viv/foundation/scripts/tag_architecture_ab_v1.py",
+      "bytes": 119370,
+      "sha256": "c9f4813d3136b5e2ecddeb3830bc48912277e4a5c03cd98885328044953200b5",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "bridge_shadow_md",
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/identity_uml_bridge_shadow_v1/20260807T084911Z/identity_uml_bridge_shadow_v1_20260807T084911Z.md",
+      "bytes": 1054,
+      "sha256": "92453673f625ba4d29bc206e1268981d9ec359c742d3bce68344f891c24bc53f",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "census_full",
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/runs/uml_speak_cheap_census/census_20260807T082414Z/census.json",
+      "bytes": 2375118,
+      "sha256": "4e5cae2b14fb5de224e1dd672a94687d1a4ce0b8077249d1cb84009753bb60e6",
+      "copied_into_snapshot": false
+    },
+    {
+      "key": "script_bridge",
+      "path": "L:/Continue/Viv/foundation/scripts/identity_uml_bridge_shadow_v1.py",
+      "bytes": 44428,
+      "sha256": "11145cd81b7f7222e58b6de0ade85c247f7b3683ca3d79bfafdb3ffdeb30d700",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "script_cheap_census",
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/run_uml_speak_cheap_census.py",
+      "bytes": 46977,
+      "sha256": "4547cf08dcdae88e7961843c828483f855ceee73372d6ead7a1d79adbed1e723",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "script_tag_pilot",
+      "path": "L:/Continue/Viv/foundation/scripts/tag_receipt_boundary_pilot_v1.py",
+      "bytes": 50132,
+      "sha256": "b84d8b3e47db6009750516bf66df99bf6cc8cd82f2394248bfbed7e4a1fde918",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "tag_receipt_pilot_md",
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/tag_architecture_ab_v1/20260807T084344Z/tag_receipt_boundary_pilot_v1_20260807T084344Z.md",
+      "bytes": 3830,
+      "sha256": "f8bf9ea1515ca3383b04e3e820e2154ac5d4ba285660f7508d16f6aafcdf67eb",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "tag_ab_json",
+      "path": "L:/Continue/Viv/foundation/artifacts/auto/tag_architecture_ab_v1/20260807T083432Z/tag_architecture_ab_v1_20260807T083432Z.json",
+      "bytes": 29303,
+      "sha256": "82515c7bd5c05d31a1d9573e039f64869dd41b6d024a5e5878422392c8eb6e51",
+      "copied_into_snapshot": true
+    },
+    {
+      "key": "thesis",
+      "path": "L:/Continue/Viv/foundation/models/Training/current/viv_slm/model/test_training/UML_TRAINING_THESIS.md",
+      "bytes": 63078,
+      "sha256": "249c7d53618c604ee12e77325dc48915942639180976718a34d2e586992b9d59",
+      "copied_into_snapshot": true
+    }
+  ],
+  "aggregate_census_summary": {
+    "path": "L:/Continue/Viv/foundation/models/Training/evidence/snapshots/20260807T085000Z/reports/census_20260807T082414Z_aggregate_only.json",
+    "sha256": "73a2592e510ea212be0e8a367f974e2e96afb4059ed5b9cacc782125b787165f",
+    "bytes": 47298
+  }
+}
